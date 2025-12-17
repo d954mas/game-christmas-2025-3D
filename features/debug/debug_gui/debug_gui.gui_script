@@ -3,7 +3,6 @@ local ButtonScale = require "libs.gui.button_scale"
 local STORAGE = require "features.core.storage.storage"
 local INPUT = require "features.core.input.input"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
-local GAME = require "game.game_world"
 local FEATURES = require "features.features"
 
 --@class SceneDebugView
@@ -73,11 +72,8 @@ function Script:bind_vh()
 end
 
 function Script:update_player_info()
-	if false and STORAGE.debug:draw_debug_info_is() then
-		local player = GAME.level_creator.player
-		if player then
-			gui.set_text(self.vh.game_info.lbl_player_pos, string.format("Player(%.2f,%.2f,%.2f)", player.position.x, player.position.y, player.position.z))
-		end
+	if  STORAGE.debug_gui_storage:is_show() then
+
 	end
 end
 
@@ -123,7 +119,7 @@ function Script:init_gui()
 			debug_log_string = string.sub(debug_log_string, #debug_log_string - 1024, #debug_log_string)
 		end
 		gui.set_text(self.vh.game_info.lbl_debug_log_string, debug_log_string) --]]
-		local game = self.views.panels.game
+		--local game = self.views.panels.game
 		--local config = self.views.panels.game.config
 
 		--if (gui.is_enabled(game.root)) then
