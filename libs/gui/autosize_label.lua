@@ -1,5 +1,5 @@
 local CLASS = require "libs.class"
-local LOCALIZATION = require "libs.localization"
+local LOCALIZATION = require "features.core.localization.localization"
 
 local TEMP_V = vmath.vector3()
 

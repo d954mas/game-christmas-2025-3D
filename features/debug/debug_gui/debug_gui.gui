@@ -397,43 +397,6 @@ nodes {
 }
 nodes {
   position {
-    x: -330.0
-    y: 240.0
-  }
-  type: TYPE_BOX
-  texture: "main/empty"
-  id: "ecs/root"
-  parent: "panel_game"
-  inherit_alpha: true
-  size_mode: SIZE_MODE_AUTO
-}
-nodes {
-  scale {
-    x: 0.3
-    y: 0.3
-  }
-  size {
-    x: 200.0
-    y: 100.0
-  }
-  type: TYPE_TEXT
-  text: "DRAW SYSTEM"
-  font: "main"
-  id: "ecs/lbl"
-  pivot: PIVOT_NW
-  shadow {
-    x: 1.0
-    y: 1.0
-    z: 1.0
-  }
-  parent: "ecs/root"
-  layer: "text"
-  inherit_alpha: true
-  text_tracking: 0.05
-  enabled: false
-}
-nodes {
-  position {
     x: -480.0
     y: 210.0
   }
@@ -575,6 +538,59 @@ nodes {
   template_node_child: true
 }
 nodes {
+  position {
+    x: -378.0
+    y: 219.0
+  }
+  type: TYPE_TEMPLATE
+  id: "ecs_debug"
+  parent: "panel_game"
+  inherit_alpha: true
+  template: "/features/core/ecs/ecs_debug.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "ecs_debug/root"
+  parent: "ecs_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "ecs_debug/line"
+  parent: "ecs_debug/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_name"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_entities"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_t"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_tavg"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_tmax"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
   type: TYPE_BOX
   texture: "main/empty"
   id: "game_info"
@@ -648,5 +664,5 @@ layers {
 }
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
-max_nodes: 128
+max_nodes: 1024
 max_dynamic_textures: 0

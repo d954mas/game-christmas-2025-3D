@@ -27,6 +27,7 @@ local ADS_FEATURE = require "features.sdk.ads.ads_feature"
 ---#region FEATURES DEBUG
 local IMGUI_FEATURE = require "features.debug.imgui.imgui_feature"
 local DEBUG_GUI_FEATURE = require "features.debug.debug_gui.debug_gui_feature"
+local ECS_DEBUG_FEATURE = require "features.core.ecs.ecs_debug_feature"
 ---#endregion
 
 ---#region FEATURES GAME
@@ -67,6 +68,7 @@ function Script:init()
 	--features debug
 	FEATURES:add_feature(IMGUI_FEATURE)
 	FEATURES:add_feature(DEBUG_GUI_FEATURE)
+	FEATURES:add_feature(ECS_DEBUG_FEATURE)
 
 	---features game
 	FEATURES:add_feature(CAMERAS_FEATURE)

@@ -1,0 +1,159 @@
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+nodes {
+  type: TYPE_BOX
+  id: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "line"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  size {
+    x: 750.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Name"
+  font: "main"
+  id: "line/lbl_name"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "line"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.05
+}
+nodes {
+  position {
+    x: 236.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Entities"
+  font: "main"
+  id: "line/lbl_entities"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "line"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.05
+}
+nodes {
+  position {
+    x: 306.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "T"
+  font: "main"
+  id: "line/lbl_t"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "line"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.05
+}
+nodes {
+  position {
+    x: 356.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "TAvg"
+  font: "main"
+  id: "line/lbl_tavg"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "line"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.05
+}
+nodes {
+  position {
+    x: 406.0
+  }
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "TMax"
+  font: "main"
+  id: "line/lbl_tmax"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "line"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.05
+}
+layers {
+  name: "text"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

@@ -6,6 +6,7 @@
 ---@field on_storage_init fun(self)
 ---@field late_init fun(self)
 ---@field on_resize fun(self, w, h)
+---@field on_debug_gui_added fun(self, gui:DebugGuiScript)
 
 
 ---lifecycle
@@ -91,9 +92,10 @@ function M:on_resize(w, h)
     end
 end
 
-function M:on_debug_gui_added()
+---@param gui DebugGuiScript
+function M:on_debug_gui_added(gui)
     for i = 1, #self.on_debug_gui_added_list do
-        self.on_debug_gui_added_list[i]:on_debug_gui_added()
+        self.on_debug_gui_added_list[i]:on_debug_gui_added(gui)
     end
 end
 

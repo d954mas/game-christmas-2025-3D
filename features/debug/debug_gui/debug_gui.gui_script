@@ -4,57 +4,7 @@ local STORAGE = require "features.core.storage.storage"
 local INPUT = require "features.core.input.input"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local GAME = require "game.game_world"
-local Checkbox = require "features.debug.debug_gui.debug_checkbox"
 local FEATURES = require "features.features"
-
-local EcsDebugView = {}
-
-function EcsDebugView:init()
-	self.vh = {
-		lbl = gui.get_node("ecs/lbl"),
-		root = gui.get_node("ecs/root"),
-	}
-	self.labels = {
-		[0] = gui.clone(self.vh.lbl),
-	}
-	self.visible = false
-	self.sorted_systems = {}
-	self.sort_system_f = function (a, b)
-		return a.__time.average_value > b.__time.average_value
-	end
-
-	gui.set_enabled(self.labels[0], true)
-	gui.set_text(self.labels[0], string.format("%-40s %-9s %-9s %-9s %-9s \n", "Name", "Entities", "T", "TAvg", "TMax"))
-end
-
-function EcsDebugView:update()
-	if self.visible then
-		local systems = GAME.ecs.ecs.systems
-		for i = 1, math.max(#self.sorted_systems, #systems) do
-			self.sorted_systems[i] = systems[i]
-		end
-
-		table.sort(self.sorted_systems, self.sort_system_f)
-		for i = 1, #self.sorted_systems do
-			local sys = self.sorted_systems[i]
-			local lbl = self.labels[i]
-			if not lbl then
-				lbl = gui.clone(self.vh.lbl)
-				gui.set_enabled(lbl, true)
-				self.labels[i] = lbl
-				local position = vmath.vector3(0, -i * 13, 0)
-				gui.set_position(lbl, position)
-			end
-			gui.set_text(lbl, string.format("%-30s %-9d %-6.3f %-6.3f %-6.3f\n", sys.__class.name, #sys.entities_list,
-				sys.__time.current * 1000, sys.__time.average_value * 1000, sys.__time.max * 1000))
-		end
-	end
-end
-
-function EcsDebugView:set_visible(visible)
-	self.visible = visible
-	gui.set_enabled(self.vh.root, visible)
-end
 
 --@class SceneDebugView
 local SceneDebugView = {}
@@ -89,6 +39,7 @@ function SceneDebugView:update()
 	end
 end
 
+---@class DebugGuiScript
 local Script = {}
 
 function Script:bind_vh()
@@ -107,9 +58,9 @@ function Script:bind_vh()
 		btn_profiler = ButtonScale.new("btn_profiler"),
 		btn_scene = ButtonScale.new("btn_scene"),
 		scene_debug_view = SceneDebugView,
-		ecs_debug_view = EcsDebugView,
 		panels = {
 			game = {
+				update_functions = {},
 				root = gui.get_node("panel_game"),
 				btn_activate = ButtonScale.new("btn_game"),
 				childs = {
@@ -131,8 +82,9 @@ function Script:update_player_info()
 end
 
 function Script:init_gui()
+	self.update_functions = {}
+
 	self.views.scene_debug_view:init()
-	self.views.ecs_debug_view:init()
 	self.views.btn_top_panel_show:set_input_listener(function ()
 		self:input_toggle_gui_visible()
 	end)
@@ -158,15 +110,15 @@ function Script:init_gui()
 	end)
 	chb_show_ecs:set_checked(false)--]]
 
-
-	
 	self.views.panels.game.childs.btn_reset:set_input_listener(function ()
 		STORAGE:reset()
 	end)
 
 	self.views.panels.game.update = function (_)
-		self.views.ecs_debug_view:update()
-		local debug_log_string = DEBUG_LOG_STRING
+		for i=1, #self.views.panels.game.update_functions do
+			self.views.panels.game.update_functions[i]()
+		end
+		local debug_log_string = ""--DEBUG_LOG_STRING
 		if #debug_log_string > 1024 then
 			debug_log_string = string.sub(debug_log_string, #debug_log_string - 1024, #debug_log_string)
 		end
@@ -174,12 +126,12 @@ function Script:init_gui()
 		local game = self.views.panels.game
 		--local config = self.views.panels.game.config
 
-		if (gui.is_enabled(game.root)) then
-			gui.set_text(game.childs.lbl_info, string.format(
-					"ecs: %0.2f(%0.2f)",
-					GAME.ecs.performance.time.average_value * 1000, GAME.ecs.performance.time.max_value * 1000))
+		--if (gui.is_enabled(game.root)) then
+			--gui.set_text(game.childs.lbl_info, string.format(
+			--		"ecs: %0.2f(%0.2f)",
+			--		GAME.ecs.performance.time.average_value * 1000, GAME.ecs.performance.time.max_value * 1000))
 
-		end
+		--end
 	end
 
 	INPUT.acquire(self, 90)
@@ -236,7 +188,7 @@ function Script:init()
 		profiler.set_ui_vsync_wait_visible(false)
 		profiler.set_ui_view_mode(profiler.VIEW_MODE_FULL)
 	end
-	FEATURES:on_debug_gui_added()
+	FEATURES:on_debug_gui_added(self)
 end
 
 function Script:update(dt)
@@ -252,7 +204,6 @@ function Script:update(dt)
 		end
 		self:panels_update(dt)
 		self.views.scene_debug_view:update()
-		FEATURES:on_debug_gui_update(dt)
 	end
 	self:update_player_info()
 end
