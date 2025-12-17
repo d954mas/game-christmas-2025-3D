@@ -90,7 +90,7 @@ function Script:init()
 	CONSENT_FEATURE:check_consent(function ()
 		--SM:show(SM.SCENES.GAME)
 	end)
-	
+
 	LOG.i("loader.script init function:" .. (chronos.nanotime() - loader_init_time))
 	LOG.i("loader.script init total:" .. (chronos.nanotime() - LOADER_SCRIPT_TIME_START))
 end

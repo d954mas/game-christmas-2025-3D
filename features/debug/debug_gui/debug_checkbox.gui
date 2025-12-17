@@ -1,0 +1,89 @@
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+nodes {
+  size {
+    x: 60.0
+    y: 50.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "root"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  size {
+    x: 40.0
+    y: 40.0
+  }
+  color {
+    x: 0.302
+    y: 0.302
+    z: 0.302
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "bg"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+}
+nodes {
+  size {
+    x: 20.0
+    y: 20.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "checked"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 22.0
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  size {
+    x: 200.0
+    y: 35.0
+  }
+  type: TYPE_TEXT
+  text: "text"
+  font: "main"
+  id: "lbl"
+  pivot: PIVOT_W
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.05
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "text"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+max_dynamic_textures: 1

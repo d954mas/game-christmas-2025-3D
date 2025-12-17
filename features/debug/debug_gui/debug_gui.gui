@@ -1,0 +1,652 @@
+script: "/features/debug/debug_gui/debug_gui.gui_script"
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+nodes {
+  position {
+    y: 540.0
+  }
+  size {
+    x: 40.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  id: "btn_top_panel_show/root"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_NW
+  layer: "below"
+  inherit_alpha: true
+  alpha: 0.5
+  visible: false
+}
+nodes {
+  size {
+    x: 36.0
+    y: 36.0
+  }
+  color {
+    x: 0.302
+    y: 0.302
+    z: 0.302
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "btn_top_panel_show/bg"
+  pivot: PIVOT_NW
+  parent: "btn_top_panel_show/root"
+  layer: "below"
+  inherit_alpha: true
+  alpha: 0.25
+}
+nodes {
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 960.0
+    y: 540.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "top_right"
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_TOP
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  alpha: 0.6
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: -35.0
+    y: -20.0
+  }
+  scale {
+    x: 0.7
+    y: 0.7
+    z: 0.7
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_profiler"
+  parent: "top_right"
+  layer: "below"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_profiler/root"
+  parent: "btn_profiler"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_profiler/bg"
+  parent: "btn_profiler/root"
+  template_node_child: true
+}
+nodes {
+  scale {
+    x: 0.55
+    y: 0.55
+  }
+  type: TYPE_TEXT
+  text: "PROFILER"
+  id: "btn_profiler/lbl"
+  parent: "btn_profiler/root"
+  overridden_fields: 3
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -115.0
+    y: -20.0
+  }
+  scale {
+    x: 0.7
+    y: 0.7
+    z: 0.7
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_scene"
+  parent: "top_right"
+  layer: "below"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_scene/root"
+  parent: "btn_scene"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_scene/bg"
+  parent: "btn_scene/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "SCENES"
+  id: "btn_scene/lbl"
+  parent: "btn_scene/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -195.0
+    y: -20.0
+  }
+  scale {
+    x: 0.7
+    y: 0.7
+    z: 0.7
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_game"
+  parent: "top_right"
+  layer: "below"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_game/root"
+  parent: "btn_game"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_game/bg"
+  parent: "btn_game/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "GAME"
+  id: "btn_game/lbl"
+  parent: "btn_game/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -100.0
+    y: -71.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Cpu:100"
+  font: "main"
+  id: "lbl_cpu"
+  pivot: PIVOT_W
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "top_right"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -100.0
+    y: -56.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Mem:100"
+  font: "main"
+  id: "lbl_memory"
+  pivot: PIVOT_W
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "top_right"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -157.0
+    y: -82.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "scenes"
+  parent: "top_right"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  enabled: false
+  visible: false
+}
+nodes {
+  position {
+    x: -210.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 500.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Scenes:\n"
+  ""
+  font: "main"
+  id: "scenes/scenes"
+  pivot: PIVOT_NW
+  parent: "scenes"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -10.0
+  }
+  rotation {
+    y: 0.35
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 500.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "Stack:\n"
+  ""
+  font: "main"
+  id: "scenes/stack"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "scenes"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "bottom_left"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 480.0
+    y: 270.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "panel_game"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -380.0
+    y: 256.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_TEMPLATE
+  id: "btn_reset"
+  parent: "panel_game"
+  layer: "below"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_button.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_reset/root"
+  parent: "btn_reset"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "btn_reset/bg"
+  parent: "btn_reset/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "RESET"
+  id: "btn_reset/lbl"
+  parent: "btn_reset/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -470.0
+    y: -17.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 300.0
+  }
+  type: TYPE_TEXT
+  font: "main"
+  id: "panel_game/lbl_info"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "panel_game"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -330.0
+    y: 240.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "ecs/root"
+  parent: "panel_game"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.3
+    y: 0.3
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "DRAW SYSTEM"
+  font: "main"
+  id: "ecs/lbl"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "ecs/root"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.05
+  enabled: false
+}
+nodes {
+  position {
+    x: -480.0
+    y: 210.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "checkboxes"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_TOP
+  parent: "panel_game"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 17.0
+    y: 5.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_TEMPLATE
+  id: "panel_game/checkbox_show_ecs"
+  parent: "checkboxes"
+  layer: "below"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_checkbox.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_show_ecs/root"
+  parent: "panel_game/checkbox_show_ecs"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_show_ecs/bg"
+  parent: "panel_game/checkbox_show_ecs/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_show_ecs/checked"
+  parent: "panel_game/checkbox_show_ecs/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "ecs"
+  id: "panel_game/checkbox_show_ecs/lbl"
+  parent: "panel_game/checkbox_show_ecs/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 17.0
+    y: -25.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_TEMPLATE
+  id: "panel_game/checkbox_draw_debug_info"
+  parent: "checkboxes"
+  layer: "below"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_checkbox.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_draw_debug_info/root"
+  parent: "panel_game/checkbox_draw_debug_info"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_draw_debug_info/bg"
+  parent: "panel_game/checkbox_draw_debug_info/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_draw_debug_info/checked"
+  parent: "panel_game/checkbox_draw_debug_info/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "debug info"
+  id: "panel_game/checkbox_draw_debug_info/lbl"
+  parent: "panel_game/checkbox_draw_debug_info/root"
+  overridden_fields: 8
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 17.0
+    y: -55.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  type: TYPE_TEMPLATE
+  id: "panel_game/checkbox_draw_physics"
+  parent: "checkboxes"
+  layer: "below"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_checkbox.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_draw_physics/root"
+  parent: "panel_game/checkbox_draw_physics"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_draw_physics/bg"
+  parent: "panel_game/checkbox_draw_physics/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "panel_game/checkbox_draw_physics/checked"
+  parent: "panel_game/checkbox_draw_physics/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "panel_game/checkbox_draw_physics/lbl"
+  parent: "panel_game/checkbox_draw_physics/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "game_info"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 10.0
+    y: 30.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 300.0
+  }
+  type: TYPE_TEXT
+  text: "Player(0,0,0)"
+  font: "main"
+  id: "game_info/lbl_player_pos"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "game_info"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 405.0
+    y: 540.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 700.0
+    y: 300.0
+  }
+  type: TYPE_TEXT
+  font: "main"
+  id: "game_info/lbl_debug_log_string"
+  yanchor: YANCHOR_TOP
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  layer: "text"
+  inherit_alpha: true
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "text"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+max_nodes: 128
+max_dynamic_textures: 0

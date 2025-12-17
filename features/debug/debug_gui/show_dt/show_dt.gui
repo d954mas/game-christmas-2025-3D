@@ -1,0 +1,187 @@
+script: "/features/debug/debug_gui/show_dt/show_dt.gui_script"
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+nodes {
+  position {
+    x: 895.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_BOTTOM
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 19.0
+    y: 15.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "16"
+  font: "main"
+  id: "lbl_dt"
+  xanchor: XANCHOR_RIGHT
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 19.0
+    y: 45.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "16"
+  font: "main"
+  id: "lbl_dt_max"
+  xanchor: XANCHOR_RIGHT
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 19.0
+    y: 30.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "16"
+  font: "main"
+  id: "lbl_dt_average"
+  xanchor: XANCHOR_RIGHT
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 18.0
+    y: 15.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "AVG(1s):"
+  font: "main"
+  id: "lbl_dt1"
+  xanchor: XANCHOR_RIGHT
+  pivot: PIVOT_NE
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 18.0
+    y: 45.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "MAX(1s):"
+  font: "main"
+  id: "lbl_dt_max1"
+  xanchor: XANCHOR_RIGHT
+  pivot: PIVOT_NE
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 18.0
+    y: 30.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "AVG(15s):"
+  font: "main"
+  id: "lbl_dt_average1"
+  xanchor: XANCHOR_RIGHT
+  pivot: PIVOT_NE
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "root"
+  inherit_alpha: true
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+max_nodes: 8
+max_dynamic_textures: 0

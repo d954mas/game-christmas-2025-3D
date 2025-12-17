@@ -1,0 +1,18 @@
+name: "debug"
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  data: "components {\n"
+  "  id: \"show_dt\"\n"
+  "  component: \"/features/debug/debug_gui/show_dt/show_dt.gui\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"resize-corner\"\n"
+  "  component: \"/features/debug/debug_gui/resizer/resize-corner.gui\"\n"
+  "}\n"
+  "components {\n"
+  "  id: \"debug_gui\"\n"
+  "  component: \"/features/debug/debug_gui/debug_gui.gui\"\n"
+  "}\n"
+  ""
+}

@@ -1,0 +1,7 @@
+images {
+  image: "/assets/images/empty.png"
+}
+images {
+  image: "/assets/images/white.png"
+}
+extrude_borders: 2

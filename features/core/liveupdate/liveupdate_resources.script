@@ -1,5 +1,5 @@
-local SM = require "libs.sm.scene_manager"
-local LOCALIZATION = require "libs.localization"
+local SM = require "features.core.scenes.scene_manager.scene_manager"
+local LOCALIZATION = require "features.core.localization.localization"
 local LUME = require "libs.lume"
 
 go.property("font_all", resource.font("/assets/fonts/main_all.font"))
