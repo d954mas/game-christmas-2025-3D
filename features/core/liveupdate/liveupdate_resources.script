@@ -8,15 +8,11 @@ go.property("font_base", resource.font("/assets/fonts/main.font"))
 function init(self)
     ---@async
     self.coroutine = coroutine.create(function ()
-        coroutine.yield()
-        coroutine.yield()
+        --don't remember.Some problem if replace font when collection proxy is loading?
         coroutine.yield()
         while (SM:is_working()) do coroutine.yield() end
         coroutine.yield()
-        coroutine.yield()
-        coroutine.yield()
-
-        timer.delay(2/60, false, function ()
+        timer.delay(2 / 60, false, function ()
             LOCALIZATION:on_font_loaded(self.font_all)
         end)
     end)
