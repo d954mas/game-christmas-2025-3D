@@ -60,7 +60,9 @@ function M:event_string(name, value_name, value)
     if M.inited then
         firebase.analytics.log_string(name, value_name, value)
     else
-        LOG.w("firebase not inited. event:" .. name, TAG)
+        if firebase and firebase.analytics then
+            LOG.w("firebase not inited. event:" .. name, TAG)
+        end
     end
 end
 
@@ -71,7 +73,9 @@ function M:event_number(name, value_name, value)
     if M.inited then
         firebase.analytics.log_number(name, value_name, value)
     else
-        LOG.w("firebase not inited. event:" .. name, TAG)
+        if firebase and firebase.analytics then
+            LOG.w("firebase not inited. event:" .. name, TAG)
+        end
     end
 end
 
@@ -81,7 +85,9 @@ function M:event_table(name, value)
     if M.inited then
         firebase.analytics.log_table(name, value)
     else
-        LOG.w("firebase not inited. event:" .. name, TAG)
+        if firebase and firebase.analytics then
+            LOG.w("firebase not inited. event:" .. name, TAG)
+        end
     end
 end
 
