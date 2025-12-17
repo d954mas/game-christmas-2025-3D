@@ -1,0 +1,9 @@
+[project]
+dependencies#0 = https://github.com/defold/extension-poki-sdk/archive/refs/tags/3.0.0.zip
+
+[game]
+target = POKI
+
+[html5]
+show_fullscreen_button = 0
+show_made_with_defold = 0

@@ -1,0 +1,14 @@
+local CONTEXTS = require "libs.contexts_manager"
+local FEATURES = require "features.features"
+
+function init(self)
+	CONTEXTS:register(CONTEXTS.NAMES.LIVEUPDATE_COLLECTION, self)
+	--init all after all components loaded
+	timer.delay(0, false, function ()
+		FEATURES:on_liveupdate_loaded()
+	end)
+end
+
+function final()
+	CONTEXTS:unregister(CONTEXTS.NAMES.LIVEUPDATE_COLLECTION)
+end

@@ -1,0 +1,11 @@
+[project]
+title = Christmas 2025 2d DEV
+
+
+[android]
+package = com.d954mas.game.christmas2025.2d.dev
+
+
+[game]
+version = dev
+target = OTHER

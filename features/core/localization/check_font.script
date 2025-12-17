@@ -1,0 +1,14 @@
+local LOCALIZATION = require "localization.localization"
+
+local HASH_FONT_CHANGED = hash("font_changed")
+local T_OPTIONS = { key = hash("main") }
+
+go.property("target_gui", msg.url())
+
+function update(self)
+	if LOCALIZATION.font_all then
+		go.set(self.target_gui, "fonts", LOCALIZATION.font_all, T_OPTIONS)
+		msg.post(self.target_gui, HASH_FONT_CHANGED)
+		go.delete(".")
+	end
+end

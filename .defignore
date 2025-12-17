@@ -1,0 +1,7 @@
+/bob
+/.vscode
+./.gitattributes
+.editorconfig
+node_modules/
+*/node_modules
+**/node_modules/

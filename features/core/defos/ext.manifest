@@ -1,0 +1,11 @@
+name: "defos"
+
+platforms:
+  osx:
+    context:
+        frameworks: ["AppKit"]
+        
+  linux:
+    context:      
+        frameworks: ["X11", "Xrender"]
+        libs: ["Xrender", "Xfixes"]

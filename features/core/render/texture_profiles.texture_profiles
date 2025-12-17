@@ -1,0 +1,92 @@
+path_settings {
+  path: "/assets/textures/rgb/*"
+  profile: "RGB"
+}
+path_settings {
+  path: "/assets/textures/rgb_mips/*"
+  profile: "RGB MIPS"
+}
+path_settings {
+  path: "/assets/textures/rgba/*"
+  profile: "RGBA"
+}
+path_settings {
+  path: "/assets/textures/rgba_mips/*"
+  profile: "RGBA MIPS"
+}
+path_settings {
+  path: "**"
+  profile: "RGBA"
+}
+profiles {
+  name: "RGB"
+  platforms {
+    os: OS_ID_GENERIC
+    formats {
+      format: TEXTURE_FORMAT_RGB
+      compressor: "BasisU"
+      compressor_preset: "BASISU_MEDIUM"
+    }
+    mipmaps: false
+  }
+}
+profiles {
+  name: "RGB_UNCOMPRESSED_16"
+  platforms {
+    os: OS_ID_GENERIC
+    formats {
+      format: TEXTURE_FORMAT_RGB_16BPP
+      compressor: "Uncompressed"
+      compressor_preset: "UNCOMPRESSED"
+    }
+    mipmaps: false
+  }
+}
+profiles {
+  name: "RGB MIPS"
+  platforms {
+    os: OS_ID_GENERIC
+    formats {
+      format: TEXTURE_FORMAT_RGB
+      compressor: "BasisU"
+      compressor_preset: "BASISU_MEDIUM"
+    }
+    mipmaps: true
+  }
+}
+profiles {
+  name: "RGBA"
+  platforms {
+    os: OS_ID_GENERIC
+    formats {
+      format: TEXTURE_FORMAT_RGBA
+      compressor: "BasisU"
+      compressor_preset: "BASISU_MEDIUM"
+    }
+    mipmaps: false
+  }
+}
+profiles {
+  name: "RGBA MIPS"
+  platforms {
+    os: OS_ID_GENERIC
+    formats {
+      format: TEXTURE_FORMAT_RGBA
+      compressor: "BasisU"
+      compressor_preset: "BASISU_MEDIUM"
+    }
+    mipmaps: true
+  }
+}
+profiles {
+  name: "RGB_UNCOMPRESSED"
+  platforms {
+    os: OS_ID_GENERIC
+    formats {
+      format: TEXTURE_FORMAT_RGB
+      compressor: "Uncompressed"
+      compressor_preset: "UNCOMPRESSED"
+    }
+    mipmaps: false
+  }
+}

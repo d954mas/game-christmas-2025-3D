@@ -1,0 +1,12 @@
+[project]
+title = Christmas 2025 2d
+
+[android]
+package = com.d954mas.game.christmas2025.2d
+
+[game]
+version = release
+target = OTHER
+
+[native_extension]
+app_manifest = project/app_manifest_release.appmanifest

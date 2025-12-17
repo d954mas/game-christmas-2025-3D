@@ -1,0 +1,11 @@
+[project]
+dependencies#0 = https://github.com/defold/extension-safearea/archive/refs/tags/1.4.0.zip
+dependencies#1 = https://github.com/AGulev/GA-SDK-DEFOLD/archive/dc620dcd895e400adf2e416f9db770eeed7da276.zip
+dependencies#2 = https://github.com/d954mas/defold-openssl/archive/refs/heads/master.zip
+dependencies#3 = https://github.com/defold/extension-firebase/archive/refs/tags/2.0.2.zip
+dependencies#4 = https://github.com/defold/extension-firebase-analytics/archive/refs/tags/3.1.0.zip
+dependencies#5 = https://github.com/defold/extension-iap/archive/refs/tags/6.3.0.zip
+
+[game]
+target = PLAY_MARKET
+

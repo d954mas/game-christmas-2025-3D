@@ -1,0 +1,114 @@
+local LOADER_SCRIPT_TIME_START = chronos.nanotime()
+
+local LOG = require "libs.log"
+local EVENTS = require "libs.events"
+local N28S = require "libs.n28s"
+local CONTEXTS = require "libs.contexts_manager"
+
+---#region FEATURES
+
+---#region FEATURES BASE
+local FEATURES = require "features.features"
+local INPUT_FEATURE = require "features.core.input.input_feature"
+local LIVEUPDATE_FEATURE = require "features.core.liveupdate.liveupdate_feature"
+local STORAGE_FEATURE = require "features.core.storage.storage_feature"
+local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
+local SAFEAREA_FEATURE = require "features.core.safearea.safearea_feature"
+local LOCALIZATION_FEATURE = require "features.core.localization.localization_feature"
+---#endregion
+
+---#region FEATURES SDK
+local ANALYTICS_FEATURE = require "features.sdk.analytics.analytics_feature"
+local CONSENT_FEATURE = require "features.sdk.consent.consent_feature"
+local ADS_FEATURE = require "features.sdk.ads.ads_feature"
+---#endregion
+
+
+---#region FEATURES DEBUG
+local IMGUI_FEATURE = require "features.debug.imgui.imgui_feature"
+---#endregion
+
+---#region FEATURES GAME
+local CAMERAS_FEATURE = require "features.core.camera.cameras_feature"
+---#endregion
+
+---endregion
+
+local TAG = "LOADER"
+
+---@class ScripLoader
+local Script = {}
+
+function Script:init()
+	LOG.i("loader.script init lua:" .. (chronos.nanotime() - LOADER_SCRIPT_TIME_START), TAG)
+	local loader_init_time = chronos.nanotime()
+
+	sys.set_error_handler(function (source, message, traceback)
+		local new_error_string = tostring(source) .. ": " .. tostring(message) .. "\n" .. tostring(traceback)
+		LOG.e(new_error_string)
+	end)
+
+	math.randomseed(os.time()); math.random(); math.random(); math.random()
+	CONTEXTS:register(CONTEXTS.NAMES.LOADER, self)
+
+	--features base
+	FEATURES:add_feature(INPUT_FEATURE)
+	FEATURES:add_feature(LIVEUPDATE_FEATURE)
+	--FEATURES:add_feature(SCENES_FEATURE)
+	FEATURES:add_feature(SAFEAREA_FEATURE)
+	FEATURES:add_feature(LOCALIZATION_FEATURE)
+
+	---features sdk
+	FEATURES:add_feature(ANALYTICS_FEATURE)
+	FEATURES:add_feature(ADS_FEATURE)
+	FEATURES:add_feature(CONSENT_FEATURE)
+
+	--features debug
+	FEATURES:add_feature(IMGUI_FEATURE)
+
+	---features game
+	FEATURES:add_feature(CAMERAS_FEATURE)
+
+	-- features storage
+	FEATURES:add_feature(STORAGE_FEATURE) --storage last so all features received on_storage_init
+
+	FEATURES:init()
+	FEATURES:late_init()
+
+	--load crash
+	local handle = crash.load_previous()
+	if handle then
+		LOG.e(crash.get_extra_data(handle))
+		crash.release(handle)
+	end
+
+	window.set_listener(function (_, event, data) EVENTS.WINDOW_EVENT:trigger(event, data) end)
+
+
+
+
+	CONSENT_FEATURE:check_consent(function ()
+		--SM:show(SM.SCENES.GAME)
+	end)
+	
+	LOG.i("loader.script init function:" .. (chronos.nanotime() - loader_init_time))
+	LOG.i("loader.script init total:" .. (chronos.nanotime() - LOADER_SCRIPT_TIME_START))
+end
+
+function Script:update(dt)
+	FEATURES:update(dt)
+end
+
+function Script:on_input(action_id, action)
+	INPUT_FEATURE:on_input(action_id, action)
+end
+
+function Script:on_message(message_id, message, sender)
+	FEATURES:on_message(message_id, message, sender)
+end
+
+function Script:final()
+	FEATURES:final()
+end
+
+N28S.register(Script)

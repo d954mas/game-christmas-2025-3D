@@ -1,0 +1,31 @@
+local SM = require "libs.sm.scene_manager"
+local LOCALIZATION = require "libs.localization"
+local LUME = require "libs.lume"
+
+go.property("font_all", resource.font("/assets/fonts/main_all.font"))
+go.property("font_base", resource.font("/assets/fonts/main.font"))
+
+function init(self)
+    ---@async
+    self.coroutine = coroutine.create(function ()
+        coroutine.yield()
+        coroutine.yield()
+        coroutine.yield()
+        while (SM:is_working()) do coroutine.yield() end
+        coroutine.yield()
+        coroutine.yield()
+        coroutine.yield()
+
+        timer.delay(2/60, false, function ()
+            LOCALIZATION:on_font_loaded(self.font_all)
+        end)
+    end)
+end
+
+function update(self, dt)
+    if self.coroutine then
+        self.coroutine = LUME.coroutine_resume(self.coroutine, dt)
+    else
+        msg.post("#", "disable")
+    end
+end

@@ -1,0 +1,159 @@
+[bootstrap]
+main_collection = /loader.collectionc
+render = /features/core/render/render.renderc
+
+[script]
+shared_state = 1
+
+[display]
+width = 960
+height = 540
+high_dpi = 1
+display_profiles = /features/core/render/display_profiles.display_profilesc
+dynamic_orientation = 1
+
+[android]
+input_method = HiddenInputField
+package = com.d954mas.christmas.2025.2d
+immersive_mode = 1
+version_code = 1
+minimum_sdk_version = 21
+manifest = /features/platform/android/AndroidManifest.xml
+
+[project]
+title = Christmas 2025 2d
+publisher = d954mas
+developer = d954mas
+custom_resources = assets/custom
+bundle_resources = assets/bundle
+version = 1.0
+dependencies#0 = https://github.com/AGulev/GA-SDK-DEFOLD/archive/dc620dcd895e400adf2e416f9db770eeed7da276.zip
+dependencies#1 = https://github.com/d954mas/defold-openssl/archive/refs/heads/master.zip
+dependencies#2 = https://github.com/britzl/defold-lfs/archive/refs/tags/1.3.0.zip
+
+[html5]
+heap_size = 64
+htmlfile = /features/platform/web/engine_template.html
+cssfile = /features/platform/web/dark_theme.css
+wasm_streaming = 1
+show_made_with_defold = 0
+scale_mode = no_scale
+retry_count = 1000
+retry_time = 0.1
+
+[collection]
+max_input_stack_entries = 1
+max_instances = 4096
+
+[collection_proxy]
+max_count = 16
+
+[factory]
+max_count = 0
+
+[collectionfactory]
+max_count = 256
+
+[gui]
+max_count = 16
+max_particlefx_count = 8
+max_animation_count = 512
+max_particle_count = 64
+
+[label]
+max_count = 32
+
+[mesh]
+max_count = 256
+
+[model]
+max_count = 2048
+max_bone_matrix_texture_width = 1
+max_bone_matrix_texture_height = 1
+
+[particle_fx]
+max_count = 512
+max_emitter_count = 512
+max_particle_buffer_count = 8192
+max_particle_count = 8192
+
+[sprite]
+max_count = 1024
+
+[tilemap]
+max_count = 0
+max_tile_count = 0
+
+[graphics]
+verify_graphics_calls = 0
+texture_profiles = /features/core/render/texture_profiles.texture_profiles
+
+[input]
+gamepads = /features/core/input/gamepads.gamepadsc
+game_binding = /features/core/input/input.input_bindingc
+use_accelerometer = 0
+
+[physics]
+type = 3D
+use_fixed_timestep = 1
+max_fixed_timesteps = 1
+world_count = 8
+max_collision_object_count = 2048
+max_collisions = 16
+max_contacts = 1024
+gravity_y = -30.0
+
+[profiler]
+track_cpu = 1
+
+[resource]
+max_resources = 4096
+
+[game]
+version = dev
+target = EDITOR
+
+[gameanalytics]
+game_key_ios = 9d9e8194df591d23f74368ed972a28b1
+secret_key_ios = 2ebce95889e380550ea570aa225dced937425ad7
+game_key_android = 9d9e8194df591d23f74368ed972a28b1
+secret_key_android = 2ebce95889e380550ea570aa225dced937425ad7
+game_key_html5 = 9d9e8194df591d23f74368ed972a28b1
+secret_key_html5 = 2ebce95889e380550ea570aa225dced937425ad7
+game_key_osx = 9d9e8194df591d23f74368ed972a28b1
+secret_key_osx = 2ebce95889e380550ea570aa225dced937425ad7
+game_key_windows = 9d9e8194df591d23f74368ed972a28b1
+secret_key_windows = 2ebce95889e380550ea570aa225dced937425ad7
+game_key_linux = 9d9e8194df591d23f74368ed972a28b1
+secret_key_linux = 2ebce95889e380550ea570aa225dced937425ad7
+build_ios = 1.0
+build_android = 1.0
+build_html5 = 1.0
+build_osx = 1.0
+build_windows = 1.0
+build_linux = 1.0
+custom_dimensions_01 = EDITOR,PLAY_MARKET,POKI,OTHER
+enable_event_submission = 0
+
+[liveupdate]
+settings = /features/core/liveupdate/liveupdate.settings
+
+[native_extension]
+app_manifest = /app_manifest_debug.appmanifest
+
+[yandex]
+app_id_ios = id_here
+app_id_android = id_here
+applovin_android = id_here
+
+[sound]
+stream_enabled = 0
+stream_cache_size = 2097152
+stream_chunk_size = 16384
+
+[engine]
+max_time_step = 0.1
+
+[font]
+runtime_generation = 0
+

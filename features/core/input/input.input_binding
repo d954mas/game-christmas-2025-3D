@@ -1,0 +1,140 @@
+key_trigger {
+  input: KEY_SPACE
+  action: "key_space"
+}
+key_trigger {
+  input: KEY_A
+  action: "key_a"
+}
+key_trigger {
+  input: KEY_D
+  action: "key_d"
+}
+key_trigger {
+  input: KEY_M
+  action: "key_M"
+}
+key_trigger {
+  input: KEY_ESC
+  action: "key_esc"
+}
+key_trigger {
+  input: KEY_LEFT
+  action: "key_left"
+}
+key_trigger {
+  input: KEY_RIGHT
+  action: "key_right"
+}
+key_trigger {
+  input: KEY_ENTER
+  action: "key_enter"
+}
+key_trigger {
+  input: KEY_W
+  action: "key_w"
+}
+key_trigger {
+  input: KEY_S
+  action: "key_s"
+}
+key_trigger {
+  input: KEY_UP
+  action: "key_up"
+}
+key_trigger {
+  input: KEY_DOWN
+  action: "key_down"
+}
+key_trigger {
+  input: KEY_B
+  action: "key_b"
+}
+key_trigger {
+  input: KEY_F5
+  action: "key_f5"
+}
+key_trigger {
+  input: KEY_F8
+  action: "key_f8"
+}
+key_trigger {
+  input: KEY_1
+  action: "key_1"
+}
+key_trigger {
+  input: KEY_2
+  action: "key_2"
+}
+key_trigger {
+  input: KEY_P
+  action: "key_p"
+}
+key_trigger {
+  input: KEY_0
+  action: "key_0"
+}
+key_trigger {
+  input: KEY_F
+  action: "key_f"
+}
+key_trigger {
+  input: KEY_BACKSPACE
+  action: "key_backspace"
+}
+key_trigger {
+  input: KEY_DEL
+  action: "key_del"
+}
+key_trigger {
+  input: KEY_EQUALS
+  action: "key_equals"
+}
+key_trigger {
+  input: KEY_T
+  action: "key_t"
+}
+key_trigger {
+  input: KEY_Y
+  action: "key_y"
+}
+key_trigger {
+  input: KEY_U
+  action: "key_u"
+}
+key_trigger {
+  input: KEY_I
+  action: "key_i"
+}
+key_trigger {
+  input: KEY_LCTRL
+  action: "key_lctr"
+}
+key_trigger {
+  input: KEY_Z
+  action: "key_z"
+}
+mouse_trigger {
+  input: MOUSE_BUTTON_1
+  action: "touch"
+}
+mouse_trigger {
+  input: MOUSE_WHEEL_UP
+  action: "scroll_up"
+}
+mouse_trigger {
+  input: MOUSE_WHEEL_DOWN
+  action: "scroll_down"
+}
+mouse_trigger {
+  input: MOUSE_BUTTON_RIGHT
+  action: "mouse_button_right"
+}
+touch_trigger {
+  input: TOUCH_MULTI
+  action: "touch_multi"
+}
+text_trigger {
+  input: TEXT
+  action: "text"
+}
