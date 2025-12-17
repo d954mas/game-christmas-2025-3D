@@ -5,6 +5,7 @@ local INPUT = require "features.core.input.input"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local GAME = require "game.game_world"
 local Checkbox = require "features.debug.debug_gui.debug_checkbox"
+local FEATURES = require "features.features"
 
 local EcsDebugView = {}
 
@@ -113,16 +114,7 @@ function Script:bind_vh()
 				btn_activate = ButtonScale.new("btn_game"),
 				childs = {
 					btn_reset = ButtonScale.new("btn_reset"),
-					btn_reset_buildings = ButtonScale.new("btn_reset_buildings"),
-					btn_build_all = ButtonScale.new("btn_build_all"),
-					btn_add_money = ButtonScale.new("btn_add_money"),
-					btn_add_coins = ButtonScale.new("btn_add_coins"),
 					lbl_info = gui.get_node("panel_game/lbl_info"),
-					checkbox_show_ecs = Checkbox.new("panel_game/checkbox_show_ecs"),
-					checkbox_draw_debug_info = Checkbox.new("panel_game/checkbox_draw_debug_info"),
-					checkbox_draw_physics = Checkbox.new("panel_game/checkbox_draw_physics"),
-					checkbox_draw_cells = Checkbox.new("panel_game/checkbox_draw_cells"),
-					checkbox_draw_terrain = Checkbox.new("panel_game/checkbox_draw_terrain"),
 				},
 			}
 		}
@@ -130,7 +122,7 @@ function Script:bind_vh()
 end
 
 function Script:update_player_info()
-	if STORAGE.debug:draw_debug_info_is() then
+	if false and STORAGE.debug:draw_debug_info_is() then
 		local player = GAME.level_creator.player
 		if player then
 			gui.set_text(self.vh.game_info.lbl_player_pos, string.format("Player(%.2f,%.2f,%.2f)", player.position.x, player.position.y, player.position.z))
@@ -160,61 +152,16 @@ function Script:init_gui()
 	end)
 	self:panel_hide_all()
 
-	local chb_show_ecs = self.views.panels.game.childs.checkbox_show_ecs
+	--[[local chb_show_ecs = self.views.panels.game.childs.checkbox_show_ecs
 	chb_show_ecs:set_input_listener(function (_)
 		self.views.ecs_debug_view:set_visible(chb_show_ecs.checked)
 	end)
-	chb_show_ecs:set_checked(false)
+	chb_show_ecs:set_checked(false)--]]
 
 
-	local checkbox_draw_debug_info = self.views.panels.game.childs.checkbox_draw_debug_info
-	checkbox_draw_debug_info:set_input_listener(function (checkbox)
-		STORAGE.debug:draw_debug_info_set(checkbox.checked)
-		gui.set_enabled(self.vh.game_info.root, checkbox.checked)
-	end)
-	checkbox_draw_debug_info:set_checked(STORAGE.debug:draw_debug_info_is())
-
-	local chb_draw_physics = self.views.panels.game.childs.checkbox_draw_physics
-	chb_draw_physics:set_checked(STORAGE.debug:draw_physics_is())
-	chb_draw_physics:set_input_listener(function (checkbox)
-		STORAGE.debug:draw_physics_set(checkbox.checked)
-		msg.post("@system:", "toggle_physics_debug")
-	end)
-	if (chb_draw_physics.checked) then
-		msg.post("@system:", "toggle_physics_debug")
-	end
-
-	local chb_draw_cells = self.views.panels.game.childs.checkbox_draw_cells
-	chb_draw_cells:set_checked(STORAGE.debug:draw_cells_is())
-	chb_draw_cells:set_input_listener(function (checkbox)
-		STORAGE.debug:draw_cells_set(checkbox.checked)
-	end)
-
-	local chb_draw_terrain = self.views.panels.game.childs.checkbox_draw_terrain
-	chb_draw_terrain:set_checked(STORAGE.debug:draw_terrain_is())
-	chb_draw_terrain:set_input_listener(function (checkbox)
-		STORAGE.debug:draw_terrain_set(checkbox.checked)
-	end)
-	--]]
-
+	
 	self.views.panels.game.childs.btn_reset:set_input_listener(function ()
 		STORAGE:reset()
-	end)
-
-	self.views.panels.game.childs.btn_reset_buildings:set_input_listener(function ()
-		GAME.level_creator.location_data:reset_buildings()
-	end)
-
-	self.views.panels.game.childs.btn_build_all:set_input_listener(function ()
-		GAME.level_creator.location_data:build_all()
-	end)
-
-	self.views.panels.game.childs.btn_add_money:set_input_listener(function ()
-		STORAGE.locations:debug_add_money()
-	end)
-
-	self.views.panels.game.childs.btn_add_coins:set_input_listener(function ()
-		STORAGE.locations:debug_add_coins()
 	end)
 
 	self.views.panels.game.update = function (_)
@@ -289,6 +236,7 @@ function Script:init()
 		profiler.set_ui_vsync_wait_visible(false)
 		profiler.set_ui_view_mode(profiler.VIEW_MODE_FULL)
 	end
+	FEATURES:on_debug_gui_added()
 end
 
 function Script:update(dt)
@@ -304,6 +252,7 @@ function Script:update(dt)
 		end
 		self:panels_update(dt)
 		self.views.scene_debug_view:update()
+		FEATURES:on_debug_gui_update(dt)
 	end
 	self:update_player_info()
 end

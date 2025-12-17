@@ -24,6 +24,7 @@ local M = {
     on_storage_init_list = {},
     late_init_list = {},
     on_resize_list = {},
+    on_debug_gui_added_list = {},
 }
 
 function M:add_feature(feature)
@@ -38,6 +39,7 @@ function M:add_feature(feature)
     if feature.on_storage_init then table.insert(self.on_storage_init_list, feature) end
     if feature.late_init then table.insert(self.late_init_list, feature) end
     if feature.on_resize then table.insert(self.on_resize_list, feature) end
+    if feature.on_debug_gui_added then table.insert(self.on_debug_gui_added_list, feature) end
 end
 
 function M:init()
@@ -86,6 +88,12 @@ end
 function M:on_resize(w, h)
     for i = 1, #self.on_resize_list do
         self.on_resize_list[i]:on_resize(w, h)
+    end
+end
+
+function M:on_debug_gui_added()
+    for i = 1, #self.on_debug_gui_added_list do
+        self.on_debug_gui_added_list[i]:on_debug_gui_added()
     end
 end
 
