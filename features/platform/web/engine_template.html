@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, minimal-ui, shrink-to-fit=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<!-- The above 4 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>{{project.title}} {{project.version}}</title>
+	<style type='text/css'>
+	/* Disable user selection to avoid strange bug in Chrome on Windows:
+	* Selecting a text outside the canvas, then clicking+dragging would
+	* drag the selected text but block mouse down/up events to the engine.
+	*/
+	body {
+		position: fixed; /* Prevent overscroll */
+		margin:0;
+		padding:0;
+	}
+
+	.canvas-app-container {
+		width: 100%;
+		height: 100%;
+		position: absolute;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+	}
+
+	.canvas-app-container:-webkit-full-screen {
+		/* Auto width and height in Safari/Chrome fullscreen. */
+		width: auto;
+		height: auto;
+	}
+
+	#canvas {
+		outline: none;
+		border: 0;
+		width: 100%;
+		vertical-align: bottom;
+	}
+
+	#canvas-container {
+		position: relative;
+	}
+
+	canvas:focus, canvas:active {
+		outline: none;
+		border: 0;
+		ie-dummy: expression(this.hideFocus=true);
+		-moz-outline-style: none;
+	}
+
+	div {
+		-webkit-tap-highlight-color: rgba(0,0,0,0);
+		-webkit-touch-callout: none;
+		-webkit-user-select: none;
+		-khtml-user-select: none;
+		-moz-user-select: none;
+		-ms-user-select: none;
+		user-select: none;
+	}
+
+	{{{DEFOLD_CUSTOM_CSS_INLINE}}}
+
+    </style>
+</head>
+
+<body>
+
+<div id="app-container" class="canvas-app-container">
+	<div id="webgl-not-supported" style="display: none; margin: 3em;">
+		<h1>WebGL not supported ⚠️</h1>
+		<p>WebGL is not supported by your browser - visit <a href="https://get.webgl.org/">https://get.webgl.org/</a> to earn more.</p>
+	</div>
+	<div id="canvas-container" class="canvas-app-canvas-container">
+		<canvas id="canvas" class="canvas-app-canvas" tabindex="1" width="{{display.width}}"
+				height="{{display.height}}"></canvas>
+		<div id="image-overlay" class="image-overlay">
+			<canvas id="canvas3d" style="z-index:5; position: absolute;" width="{{display.width}}"
+					height="{{display.height}}"></canvas>
+
+		</div>
+	</div>
+	<div class="buttons-background">
+		{{#html5.show_fullscreen_button}}
+		<div class="button" onclick="Module.toggleFullscreen();">Fullscreen</div>
+		{{/html5.show_fullscreen_button}}
+	</div>
+	<!-- center and anchor to bottom of page -->
+	<div id="progress-bar-root" style="position: absolute; bottom: 16%; left: 50%; visibility: hidden; z-index: 8;">
+		<div id="progress-bar-text"
+		style="color:#66ff66; text-align:center; vertical-align:bottom; margin-left:-100%;
+              font-weight:bold; font-family: Verdana, Arial, sans-serif; font-size:10px;
+              text-shadow: 0 0 2px #000000, 0 0 4px #000000, 0 0 6px #000000;">
+		</div>
+		<img id="progress-bar-bg" src="load_bar_bg.png"/>
+		<img src="load_bar_fg.png" id="progress-bar-fg" style="position:absolute; clip: rect(0px,0px,0px,0px);"/>
+		<div id="progress-bar-tooltip"
+			style="color:#cc66ff; text-align:center; vertical-align:bottom; margin-left:-100%;
+              font-weight:bold; font-family: Verdana, Arial, sans-serif; font-size:10px;
+              text-shadow: 0 0 1px #33004d, 0 0 2px #33004d, 0 0 3px #33004d, 0 0 4px #33004d;">
+	</div>
+</div>
+<script id='try-fixed_error' type='text/javascript'>
+	if (typeof globalThis === 'undefined') { window.globalThis = window; }
+</script>
+<script id='engine-loader' type='text/javascript' src="dmloader.js"></script>
+<script type='text/javascript' src="3d_image_no_depth_min.js"></script>
+<script id='my-setup' type='text/javascript'>
+	// Disable right click context menu
+	document.addEventListener("contextmenu", function(event) {
+		event.preventDefault();
+	});
+
+	var is_iOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+	var buttonHeight = 0;
+	var prevInnerWidth = -1;
+	var prevInnerHeight = -1;
+{{#html5.show_fullscreen_button}}
+	buttonHeight = 42;
+{{/html5.show_fullscreen_button}}
+
+	var app_container = document.getElementById('app-container');
+	var game_canvas = document.getElementById('canvas');
+	var progress_bar_root = document.getElementById('progress-bar-root');
+	var progress_bar_fg = document.getElementById('progress-bar-fg');
+	var progress_bar_bg = document.getElementById('progress-bar-bg');
+	var progress_bar_text = document.getElementById('progress-bar-text');
+	var progress_bar_tooltip = document.getElementById('progress-bar-tooltip');
+	
+
+	function resize_game_canvas() {
+		// Hack for iOS when exit from Fullscreen mode
+		if (is_iOS) {
+			window.scrollTo(0, 0);
+		}
+
+		
+		var innerWidth = window.innerWidth;
+		var innerHeight = window.innerHeight - buttonHeight;
+
+		var dpi = 1;
+		{{#display.high_dpi}}
+		dpi = window.devicePixelRatio || 1;
+		{{/display.high_dpi}}
+
+		if (prevInnerWidth == innerWidth && prevInnerHeight == innerHeight){return;}
+		prevInnerWidth = innerWidth;
+		prevInnerHeight = innerHeight;
+		var width = {{display.width}};
+		var height = {{display.height}};
+		var targetRatio = width / height;
+		var actualRatio = innerWidth / innerHeight;
+		width = innerWidth;
+		height = innerHeight;
+		app_container.style.width = width + "px";
+		app_container.style.height = height + buttonHeight + "px";
+		app_container.style.marginLeft = 0 + "px";
+		app_container.style.marginTop = 0 + "px";
+        game_canvas.width = Math.floor(width * dpi);
+        game_canvas.height = Math.floor(height * dpi);
+
+        if (window.my_image3D){
+			window.my_image3D.resize(width,height);
+        }
+
+
+
+		var bar_h = width < height ? width:height;
+		progress_bar_bg.width = Math.min(Math.ceil(bar_h * 0.10 * 852/53),width * 0.8);
+		progress_bar_fg.width =  progress_bar_bg.width;
+
+		progress_bar_bg.style.marginLeft = - progress_bar_bg.width/2 + "px";
+		progress_bar_fg.style.marginLeft = -progress_bar_bg.width/2 - progress_bar_fg.width/2 + "px";
+
+		progress_bar_text.style.fontSize = Math.ceil(bar_h * 0.105) + "px";
+		progress_bar_root.style.bottom = Math.ceil(height*0.02 + buttonHeight) + "px";
+
+		progress_bar_tooltip.style.fontSize = Math.ceil(bar_h * 0.075) + "px";
+
+	}
+	resize_game_canvas();
+	CUSTOM_PARAMETERS['resize_window_callback'] = resize_game_canvas;
+
+	// Function to check if WebP is supported
+	function isWebPSupported(callback) {
+		const img = new Image();
+		img.onload = function() {
+			callback((img.width > 0) && (img.height > 0));
+		};
+		img.onerror = function() {
+			callback(false);
+		};
+		img.src = 'data:image/webp;base64,UklGRiIAAABXRUJQVlA4IBYAAAAwAQCdASoBAAEADsD+JaQAA3AAAAAA';
+	}
+
+	// Function to preload an image
+	function preloadImage(src, callback) {
+		const img = new Image();
+		img.crossOrigin = "anonymous";
+		img.onload = function() {
+			callback(img);
+		};
+		img.src = src;
+	}
+
+	// Usage example
+	const canvas = document.getElementById("canvas3d");
+	const canvasContainer = document.getElementById("canvas");
+	let imageURL = "loading.jpg";
+	const depthURL = "loading_depth.png";
+
+    isWebPSupported(function(supported) {
+        if (supported) {
+            imageURL = "loading.webp";
+        }
+
+        // Preload the image
+        preloadImage(imageURL, function(img) {
+            // Set the background image dynamically
+           // canvasContainer.style.backgroundImage = url(imageURL);
+
+            // Initialize Image3D with the preloaded image
+            window.my_image3D = new window.Image3D(canvas, imageURL);
+            window.my_image3D.resize(window.innerWidth, window.innerHeight);
+        });
+    });
+
+	let lerp = function(start, end, amt) {
+		return (1 - amt) * start + amt * end;
+	}
+	window.progress_loader = {
+		percentage: 0,
+		percentage_lerp: 0,
+		lerp_speed: 0.15,
+		set_percentage: function(percentage) {
+			ProgressView.updateProgress(percentage);
+		},
+		reset_percentage: function() {
+			window.progress_loader.percentage = 0;
+			window.progress_loader.percentage_lerp = 0;
+		},
+		updateLoadingAnimation: function() {
+			window.progress_loader.percentage_lerp = lerp(window.progress_loader.percentage_lerp, window.progress_loader.percentage, window.progress_loader.lerp_speed);
+			if (Math.abs(window.progress_loader.percentage_lerp - window.progress_loader.percentage) < 0.01) {
+				window.progress_loader.percentage_lerp = window.progress_loader.percentage;
+			}
+
+			progress_bar_text.innerHTML = "<b>" + Math.ceil(window.progress_loader.percentage_lerp) + "%</b>";
+			progress_bar_fg.style.clip = "rect(0px," + progress_bar_fg.width * window.progress_loader.percentage_lerp / 100 + "px," + progress_bar_fg.height + "px, 0px)";
+
+			if (progress_bar_root.style.visibility === "visible"){
+				requestAnimationFrame(window.progress_loader.updateLoadingAnimation);
+			}
+		}
+
+	}
+// Load phrases generated by the build process`
+let loadPhrasesBase = [
+    "Hanging festive lights",
+    "Wrapping Christmas presents",
+    "Baking gingerbread cookies",
+    "Decorating the Christmas tree",
+    "Preparing hot cocoa",
+    "Sorting holiday decorations",
+    "Checking Santa's list",
+    "Warming up by the fireplace",
+    "Spreading holiday cheer",
+    "Waiting for Christmas magic"
+];
+
+
+	/* Randomize array in-place using Durstenfeld shuffle algorithm */
+    function shuffleArray(array) {
+        for (var i = array.length - 1; i > 0; i--) {
+            var j = Math.floor(Math.random() * (i + 1));
+            var temp = array[i];
+            array[i] = array[j];
+            array[j] = temp;
+        }
+    }
+
+    let loadPhrases = []
+    window.loadingProgressCount = 0
+    let phrase = "";
+    var progress_bar_tooltip = document.getElementById('progress-bar-tooltip');
+
+	let loadingPhraseFunction = function(){
+        if (window.loadingProgressCount == 0) {
+            if (loadPhrases.length == 0){
+                loadPhrases = loadPhrasesBase.slice();
+                shuffleArray(loadPhrases)
+            }
+            phrase = loadPhrases.shift()
+            progress_bar_tooltip.innerHTML  = "<b>" + phrase + "</b>";
+        }else if (window.loadingProgressCount == 1) {
+          progress_bar_tooltip.innerHTML  = "<b>&nbsp" + phrase + ".</b>";
+        }else if (window.loadingProgressCount == 2) {
+          progress_bar_tooltip.innerHTML  = "<b>&nbsp&nbsp" + phrase + "..</b>";
+        }else if (window.loadingProgressCount == 3) {
+          progress_bar_tooltip.innerHTML  = "<b>&nbsp&nbsp&nbsp" + phrase + "...</b>";
+        }else if (window.loadingProgressCount == 4) {
+          progress_bar_tooltip.innerHTML  = "<b>" + phrase + "</b>";
+        }else if (window.loadingProgressCount == 5) {
+          progress_bar_tooltip.innerHTML  = "<b>&nbsp" + phrase + ".</b>";
+        }else if (window.loadingProgressCount == 6) {
+          progress_bar_tooltip.innerHTML  = "<b>&nbsp&nbsp" + phrase + "..</b>";
+        }else if (window.loadingProgressCount == 7) {
+          progress_bar_tooltip.innerHTML  = "<b>&nbsp&nbsp&nbsp" + phrase + "...</b>";
+        }
+
+
+        window.loadingProgressCount = (window.loadingProgressCount + 1) % 8
+    }
+	loadingPhraseFunction();
+    window.loadingTooltipIntervalID = setInterval(loadingPhraseFunction, 350);
+
+
+</script>
+
+
+
+
+<script id='engine-start' type='text/javascript'>
+	ProgressView.updateProgress = function(percentage) {
+		//console.log("percentage:" + percentage);
+		if(window.progress_loader.percentage<percentage){
+			window.progress_loader.percentage = percentage
+		}
+		//window.progress_loader.percentage_lerp = percentage; // Update the global variable
+
+		if(isNaN(percentage)){
+			window.progress_loader.percentage = 100; // Update the global variable
+		}
+	};
+	ProgressView.addProgress = function (){
+	//	console.log("addProgress");
+		var progress_bar_root = document.getElementById('progress-bar-root');
+		progress_bar_root.style.visibility = "visible"
+		window.progress_loader.updateLoadingAnimation();
+	}
+	ProgressView.removeProgress = function () {
+	//	console.log("removeProgress");
+		var progress_bar_root = document.getElementById('progress-bar-root');
+		//it will be hide when game or liveupdate if needed is loaded
+		//progress_bar_root.style.visibility = "hidden";
+		// Remove any background/splash image that was set in runApp().
+		// Workaround for Safari bug DEF-3061.
+		Module.canvas.style.background = "";
+	}
+	EngineLoader.load("canvas", "{{exe-name}}");
+
+</script>
+</body>
+</html>
