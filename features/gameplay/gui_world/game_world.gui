@@ -1,0 +1,19 @@
+script: "/features/gameplay/gui_world/game_world.gui_script"
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "text"
+}
+material: "/features/gameplay/gui_world/gui_world.material"
+adjust_reference: ADJUST_REFERENCE_DISABLED
+max_nodes: 2048
+max_dynamic_textures: 0

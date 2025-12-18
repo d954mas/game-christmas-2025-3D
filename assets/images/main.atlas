@@ -73,4 +73,7 @@ images {
 images {
   image: "/assets/images/gui/arrow.png"
 }
+images {
+  image: "/scenes/settings/assets/icon_settings.png"
+}
 extrude_borders: 2
