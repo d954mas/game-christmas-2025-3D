@@ -25,8 +25,8 @@ function Storage:is_show()
 end
 
 
-function Storage:set_show()
-	self.debug_gui.show = true
+function Storage:set_show(show)
+	self.debug_gui.show = show
     self:save()
 end
 

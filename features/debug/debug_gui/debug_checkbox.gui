@@ -78,6 +78,59 @@ nodes {
   inherit_alpha: true
   text_tracking: 0.05
 }
+nodes {
+  position {
+    x: -378.0
+    y: 219.0
+  }
+  type: TYPE_TEMPLATE
+  id: "ecs_debug"
+  parent: "lbl"
+  inherit_alpha: true
+  template: "/features/core/ecs/ecs_debug.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "ecs_debug/root"
+  parent: "ecs_debug"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "ecs_debug/line"
+  parent: "ecs_debug/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_name"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_entities"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_t"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_tavg"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "ecs_debug/line/lbl_tmax"
+  parent: "ecs_debug/line"
+  template_node_child: true
+}
 layers {
   name: "below"
 }

@@ -423,7 +423,7 @@ nodes {
     y: 0.5
   }
   type: TYPE_TEMPLATE
-  id: "panel_game/checkbox_show_ecs"
+  id: "panel_game/checkbox_base"
   parent: "checkboxes"
   layer: "below"
   inherit_alpha: true
@@ -431,110 +431,76 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
-  id: "panel_game/checkbox_show_ecs/root"
-  parent: "panel_game/checkbox_show_ecs"
+  id: "panel_game/checkbox_base/root"
+  parent: "panel_game/checkbox_base"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "panel_game/checkbox_show_ecs/bg"
-  parent: "panel_game/checkbox_show_ecs/root"
+  id: "panel_game/checkbox_base/bg"
+  parent: "panel_game/checkbox_base/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "panel_game/checkbox_show_ecs/checked"
-  parent: "panel_game/checkbox_show_ecs/root"
+  id: "panel_game/checkbox_base/checked"
+  parent: "panel_game/checkbox_base/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "ecs"
-  id: "panel_game/checkbox_show_ecs/lbl"
-  parent: "panel_game/checkbox_show_ecs/root"
+  text: "debug"
+  id: "panel_game/checkbox_base/lbl"
+  parent: "panel_game/checkbox_base/root"
   overridden_fields: 8
   template_node_child: true
 }
 nodes {
-  position {
-    x: 17.0
-    y: -25.0
-  }
-  scale {
-    x: 0.5
-    y: 0.5
-  }
   type: TYPE_TEMPLATE
-  id: "panel_game/checkbox_draw_debug_info"
-  parent: "checkboxes"
-  layer: "below"
-  inherit_alpha: true
-  template: "/features/debug/debug_gui/debug_checkbox.gui"
-}
-nodes {
-  type: TYPE_BOX
-  id: "panel_game/checkbox_draw_debug_info/root"
-  parent: "panel_game/checkbox_draw_debug_info"
+  id: "panel_game/checkbox_base/ecs_debug"
+  parent: "panel_game/checkbox_base/lbl"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "panel_game/checkbox_draw_debug_info/bg"
-  parent: "panel_game/checkbox_draw_debug_info/root"
+  id: "panel_game/checkbox_base/ecs_debug/root"
+  parent: "panel_game/checkbox_base/ecs_debug"
   template_node_child: true
 }
 nodes {
   type: TYPE_BOX
-  id: "panel_game/checkbox_draw_debug_info/checked"
-  parent: "panel_game/checkbox_draw_debug_info/root"
+  id: "panel_game/checkbox_base/ecs_debug/line"
+  parent: "panel_game/checkbox_base/ecs_debug/root"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  text: "debug info"
-  id: "panel_game/checkbox_draw_debug_info/lbl"
-  parent: "panel_game/checkbox_draw_debug_info/root"
-  overridden_fields: 8
-  template_node_child: true
-}
-nodes {
-  position {
-    x: 17.0
-    y: -55.0
-  }
-  scale {
-    x: 0.5
-    y: 0.5
-  }
-  type: TYPE_TEMPLATE
-  id: "panel_game/checkbox_draw_physics"
-  parent: "checkboxes"
-  layer: "below"
-  inherit_alpha: true
-  template: "/features/debug/debug_gui/debug_checkbox.gui"
-}
-nodes {
-  type: TYPE_BOX
-  id: "panel_game/checkbox_draw_physics/root"
-  parent: "panel_game/checkbox_draw_physics"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_BOX
-  id: "panel_game/checkbox_draw_physics/bg"
-  parent: "panel_game/checkbox_draw_physics/root"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_BOX
-  id: "panel_game/checkbox_draw_physics/checked"
-  parent: "panel_game/checkbox_draw_physics/root"
+  id: "panel_game/checkbox_base/ecs_debug/line/lbl_name"
+  parent: "panel_game/checkbox_base/ecs_debug/line"
   template_node_child: true
 }
 nodes {
   type: TYPE_TEXT
-  id: "panel_game/checkbox_draw_physics/lbl"
-  parent: "panel_game/checkbox_draw_physics/root"
+  id: "panel_game/checkbox_base/ecs_debug/line/lbl_entities"
+  parent: "panel_game/checkbox_base/ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "panel_game/checkbox_base/ecs_debug/line/lbl_t"
+  parent: "panel_game/checkbox_base/ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "panel_game/checkbox_base/ecs_debug/line/lbl_tavg"
+  parent: "panel_game/checkbox_base/ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  id: "panel_game/checkbox_base/ecs_debug/line/lbl_tmax"
+  parent: "panel_game/checkbox_base/ecs_debug/line"
   template_node_child: true
 }
 nodes {

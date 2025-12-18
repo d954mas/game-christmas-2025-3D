@@ -3,6 +3,7 @@ local ButtonScale = require "libs.gui.button_scale"
 local STORAGE = require "features.core.storage.storage"
 local INPUT = require "features.core.input.input"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
+local CheckboxDebug = require "features.debug.debug_gui.debug_checkbox"
 local FEATURES = require "features.features"
 
 --@class SceneDebugView
@@ -72,13 +73,38 @@ function Script:bind_vh()
 end
 
 function Script:update_player_info()
-	if  STORAGE.debug_gui_storage:is_show() then
+	if STORAGE.debug_gui_storage:is_show() then
 
 	end
 end
 
+function Script:add_game_checkbox(title, checked, on_change)
+	local idx = #self.game_checkboxes + 1
+	local y = (idx - 1) * -50
+	local nodes = gui.clone_tree(gui.get_node("panel_game/checkbox_base/root"))
+	local template_name = "panel_game/checkbox_base/checkbox_" .. idx
+	gui.set_id(nodes["panel_game/checkbox_base/root"], template_name .. "/root")
+	gui.set_id(nodes["panel_game/checkbox_base/checked"], template_name .. "/checked")
+	local label = nodes["panel_game/checkbox_base/lbl"]
+	gui.set_text(label, title)
+	local view = CheckboxDebug.new(template_name)
+	gui.set_position(view.root, vmath.vector3(15, y, 0))
+	table.insert(self.game_checkboxes, view)
+	gui.set_enabled(view.root, true)
+	view:set_input_listener(on_change)
+	view:set_checked(checked)
+end
+
 function Script:init_gui()
 	self.update_functions = {}
+
+	gui.set_enabled(gui.get_node("panel_game/checkbox_base/root"), false)
+	self.game_checkboxes = {}
+
+	self:add_game_checkbox("Debug Info", STORAGE.debug_gui_storage:is_show(), function (checkbox)
+		STORAGE.debug_gui_storage:set_show(checkbox.checked)
+		gui.set_enabled(self.vh.game_info.root, checkbox.checked)
+	end)
 
 	self.views.scene_debug_view:init()
 	self.views.btn_top_panel_show:set_input_listener(function ()
@@ -111,10 +137,10 @@ function Script:init_gui()
 	end)
 
 	self.views.panels.game.update = function (_)
-		for i=1, #self.views.panels.game.update_functions do
+		for i = 1, #self.views.panels.game.update_functions do
 			self.views.panels.game.update_functions[i]()
 		end
-		local debug_log_string = ""--DEBUG_LOG_STRING
+		local debug_log_string = "" --DEBUG_LOG_STRING
 		if #debug_log_string > 1024 then
 			debug_log_string = string.sub(debug_log_string, #debug_log_string - 1024, #debug_log_string)
 		end
@@ -123,9 +149,9 @@ function Script:init_gui()
 		--local config = self.views.panels.game.config
 
 		--if (gui.is_enabled(game.root)) then
-			--gui.set_text(game.childs.lbl_info, string.format(
-			--		"ecs: %0.2f(%0.2f)",
-			--		GAME.ecs.performance.time.average_value * 1000, GAME.ecs.performance.time.max_value * 1000))
+		--gui.set_text(game.childs.lbl_info, string.format(
+		--		"ecs: %0.2f(%0.2f)",
+		--		GAME.ecs.performance.time.average_value * 1000, GAME.ecs.performance.time.max_value * 1000))
 
 		--end
 	end
@@ -220,6 +246,9 @@ function Script:on_input(action_id, action)
 		if (self.views.btn_profiler:on_input(action_id, action)) then return true end
 		if (self.views.btn_scene:on_input(action_id, action)) then return true end
 		if (self:panels_input(action_id, action)) then return true end
+	end
+	for i=1, #self.game_checkboxes do
+		if (self.game_checkboxes[i]:on_input(action_id, action)) then return true end
 	end
 end
 
