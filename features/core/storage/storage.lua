@@ -22,7 +22,10 @@ function Storage:_init_storage()
 	LOG.i("init new", TAG)
 	---@class StorageData
 	local data = {
-		version = 1
+		version = 1,
+		debug = {
+
+		}
 	}
 
 	self.data = data
@@ -58,7 +61,7 @@ function Storage:init()
 		self:_init_storage()
 	end
 	self:_migration()
-	FEATURES:on_storage_init()
+	FEATURES:on_storage_init(self)
 	self:save(true)
 	self:changed()
 end
@@ -152,7 +155,7 @@ end
 function Storage:reset()
 	self:_init_storage()
 	self:_migration()
-	FEATURES:on_storage_init()
+	FEATURES:on_storage_init(self)
 	self:save(true)
 	self:changed()
 end

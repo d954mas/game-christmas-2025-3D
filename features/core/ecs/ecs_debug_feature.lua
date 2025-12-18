@@ -1,6 +1,8 @@
-
 local GAME = require "game.game_world"
 local AutosizeLbl = require "libs.gui.autosize_label"
+
+local StorageDebugEcs = require "features.debug.debug_gui.debug_gui_storage_part"
+
 local EcsDebugView = {}
 
 local HASHES = {
@@ -14,10 +16,10 @@ local HASHES = {
 
 function EcsDebugView:init()
 	self.vh = {
-        root = gui.get_node("ecs_debug/root"),
+		root = gui.get_node("ecs_debug/root"),
 		line = gui.get_node("ecs_debug/line"),
 	}
-    self.lines = {}
+	self.lines = {}
 	self.visible = false
 	self.sorted_systems = {}
 	self.sort_system_f = function (a, b)
@@ -56,7 +58,7 @@ function EcsDebugView:update()
 				gui.set_text(vh.lbl_tmax, string.format("%.3f", sys.__time.max * 1000))
 			end
 		end
-		for _=#self.lines, #self.sorted_systems+1, -1 do
+		for _ = #self.lines, #self.sorted_systems + 1, -1 do
 			local line_nodes = table.remove(self.lines)
 			gui.delete_node(line_nodes)
 		end
@@ -74,13 +76,18 @@ local EcsDebugFeature = {}
 ---@param gui_script DebugGuiScript
 function EcsDebugFeature:on_debug_gui_added(gui_script)
 	EcsDebugView:init()
-	EcsDebugView:set_visible(true)
+	EcsDebugView:set_visible(self.storage:is_show())
 	table.insert(gui_script.views.panels.game.update_functions, function ()
 		EcsDebugView:update()
 	end)
-
+	gui_script:add_game_checkbox("ECS", self.storage:is_show(), function (checkbox)
+		self.storage:set_show(checkbox.checked)
+	end)
 end
 
-
+---@param storage Storage
+function EcsDebugFeature:on_storage_init(storage)
+	self.storage = StorageDebugEcs.new(storage)
+end
 
 return EcsDebugFeature

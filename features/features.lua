@@ -3,7 +3,7 @@
 ---@field update fun(self, dt) function to update feature
 ---@field on_liveupdate_loaded fun(self) function to call when liveupdate is loaded
 ---@field final fun(self) function to call when feature is removed
----@field on_storage_init fun(self)
+---@field on_storage_init fun(self, storage:Storage)
 ---@field late_init fun(self)
 ---@field on_resize fun(self, w, h)
 ---@field on_debug_gui_added fun(self, gui:DebugGuiScript)
@@ -80,9 +80,10 @@ function M:on_message(message_id, message, sender)
     end
 end
 
-function M:on_storage_init()
+---@param storage Storage
+function M:on_storage_init(storage)
     for i = 1, #self.on_storage_init_list do
-        self.on_storage_init_list[i]:on_storage_init()
+        self.on_storage_init_list[i]:on_storage_init(storage)
     end
 end
 

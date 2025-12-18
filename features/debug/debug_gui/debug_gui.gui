@@ -456,54 +456,6 @@ nodes {
   template_node_child: true
 }
 nodes {
-  type: TYPE_TEMPLATE
-  id: "panel_game/checkbox_base/ecs_debug"
-  parent: "panel_game/checkbox_base/lbl"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_BOX
-  id: "panel_game/checkbox_base/ecs_debug/root"
-  parent: "panel_game/checkbox_base/ecs_debug"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_BOX
-  id: "panel_game/checkbox_base/ecs_debug/line"
-  parent: "panel_game/checkbox_base/ecs_debug/root"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_TEXT
-  id: "panel_game/checkbox_base/ecs_debug/line/lbl_name"
-  parent: "panel_game/checkbox_base/ecs_debug/line"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_TEXT
-  id: "panel_game/checkbox_base/ecs_debug/line/lbl_entities"
-  parent: "panel_game/checkbox_base/ecs_debug/line"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_TEXT
-  id: "panel_game/checkbox_base/ecs_debug/line/lbl_t"
-  parent: "panel_game/checkbox_base/ecs_debug/line"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_TEXT
-  id: "panel_game/checkbox_base/ecs_debug/line/lbl_tavg"
-  parent: "panel_game/checkbox_base/ecs_debug/line"
-  template_node_child: true
-}
-nodes {
-  type: TYPE_TEXT
-  id: "panel_game/checkbox_base/ecs_debug/line/lbl_tmax"
-  parent: "panel_game/checkbox_base/ecs_debug/line"
-  template_node_child: true
-}
-nodes {
   position {
     x: -378.0
     y: 219.0

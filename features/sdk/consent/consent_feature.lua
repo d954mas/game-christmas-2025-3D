@@ -1,12 +1,11 @@
-local STORAGE = require "features.core.storage.storage"
 local CONSTANTS = require "libs.constants"
 local ConsentStoragePart = require "features.sdk.consent.consent_storage_part"
 
 ---@class ConsentFeature:Feature
 local M = {}
 
-function M:on_storage_init()
-    self.storage = ConsentStoragePart.new(STORAGE)
+function M:on_storage_init(storage)
+    self.storage = ConsentStoragePart.new(storage)
 end
 
 function M:check_consent(cb)

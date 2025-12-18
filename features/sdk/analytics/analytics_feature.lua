@@ -1,5 +1,4 @@
 local ANALYTICS = require "features.sdk.analytics.analytics"
-local STORAGE = require "features.core.storage.storage"
 local AnalyticsStoragePart = require "features.sdk.analytics.analytics_storage_part"
 
 ---@class AnalyticsFeature:Feature
@@ -15,8 +14,8 @@ function M:update(dt)
    end
 end
 
-function M:on_storage_init()
-    self.storage = AnalyticsStoragePart.new(STORAGE)
+function M:on_storage_init(storage)
+    self.storage = AnalyticsStoragePart.new(storage)
 end
 
 return M

@@ -1,6 +1,5 @@
-local STORAGE = require "features.storage.storage"
 local SOUNDS = require "features.sounds.sounds"
-local SoundsStoragePart = require "features.sounds.sounds_storage_part"
+local SoundsStoragePart = require "features.core.sounds.sounds_storage_part"
 
 ---@class SoundsFeature:Feature
 local M = {}
@@ -8,8 +7,9 @@ local M = {}
 function M:init()
 end
 
-function M:on_storage_init()
-    self.storage = SoundsStoragePart.new(STORAGE, SOUNDS)
+---@param storage Storage
+function M:on_storage_init(storage)
+    self.storage = SoundsStoragePart.new(storage, SOUNDS)
     local music_gain = self.storage:music_get()
     local sound_gain = self.storage:sound_get()
     --fixed set group gain on init
