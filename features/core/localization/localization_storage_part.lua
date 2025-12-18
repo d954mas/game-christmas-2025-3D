@@ -1,5 +1,6 @@
 local CLASS = require "libs.class"
 local CONSTANTS = require "libs.constants"
+local LOCALIZATION = require "features.core.localization.localization"
 local StoragePart = require "features.core.storage.storage_part"
 
 ---@class LocalizationStoragePart:StoragePart
@@ -26,6 +27,7 @@ end
 
 function LocalizationStoragePart:language_set(value)
 	self.localization.language = value
+	LOCALIZATION:set_locale(value)
 	self:save_and_changed()
 end
 
