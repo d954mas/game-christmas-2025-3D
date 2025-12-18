@@ -1,4 +1,4 @@
-local INPUT = require "libs.input"
+local INPUT = require "features.core.input.input"
 
 local M = {
 	w = 960,

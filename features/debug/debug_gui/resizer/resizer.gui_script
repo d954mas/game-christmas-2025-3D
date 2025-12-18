@@ -2,7 +2,7 @@ local N28S = require "libs.n28s"
 local CONSTANTS = require "libs.constants"
 local LOG = require "libs.log"
 local HASHES = require "libs.hashes"
-local INPUT = require "libs.input"
+local INPUT = require "features.core.input.input"
 
 local WIDTH = 960
 local HEIGHT = 540

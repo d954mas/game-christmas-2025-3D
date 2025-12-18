@@ -83,7 +83,6 @@ function EcsDebugFeature:on_debug_gui_added(gui_script)
 	gui_script:add_game_checkbox("ECS", self.storage:is_show(), function (checkbox)
 		self.storage:set_show(checkbox.checked)
 		EcsDebugView:set_visible(checkbox.checked)
-		print(checkbox.checked)
 	end)
 end
 
