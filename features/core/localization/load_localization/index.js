@@ -141,7 +141,7 @@ async function main(auth) {
     console.log("start");
     const sheets = google.sheets({version: 'v4', auth});
 	//https://docs.google.com/spreadsheets/d/1BUmB7w0f4RVaqfJtRp3ix_3HKL0V5Izu-I9MB9NhCX4
-    const config_sheet = "1BUmB7w0f4RVaqfJtRp3ix_3HKL0V5Izu-I9MB9NhCX4"
+    const config_sheet = "1FiPE18ZHoE_Pdd1qZ2zXKpEMKTF_9XLjK-SuRqZsO8Y"
 
     let localization = await download_localization(sheets, "localization!A8:L1000", auth, config_sheet);
     let symbols_list_all = await prepare_symbols_file(localization)

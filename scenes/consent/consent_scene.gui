@@ -359,9 +359,6 @@ layers {
   name: "below"
 }
 layers {
-  name: "text_numbers"
-}
-layers {
   name: "text"
 }
 material: "/builtins/materials/gui.material"

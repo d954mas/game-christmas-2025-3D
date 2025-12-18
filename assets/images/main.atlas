@@ -52,4 +52,7 @@ images {
 images {
   image: "/features/core/localization/flags/flag_zh.png"
 }
+images {
+  image: "/assets/images/gui/ui_panel.png"
+}
 extrude_borders: 2
