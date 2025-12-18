@@ -720,7 +720,7 @@ nodes {
   id: "flag_de"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -749,7 +749,7 @@ nodes {
   id: "flag_ja"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -778,7 +778,7 @@ nodes {
   id: "flag_fr"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -807,7 +807,7 @@ nodes {
   id: "flag_es"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -836,7 +836,7 @@ nodes {
   id: "flag_it"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -864,7 +864,7 @@ nodes {
   id: "flag_zh"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -893,7 +893,7 @@ nodes {
   id: "flag_en"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -922,7 +922,7 @@ nodes {
   id: "flag_ko"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
@@ -951,7 +951,7 @@ nodes {
   id: "flag_ru"
   parent: "flags"
   inherit_alpha: true
-  template: "/scenes/settings/flag.gui"
+  template: "/features/core/localization/flag.gui"
 }
 nodes {
   type: TYPE_BOX
