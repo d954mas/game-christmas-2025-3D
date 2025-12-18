@@ -70,4 +70,7 @@ images {
 images {
   image: "/assets/images/gui/buttons/btn_disable.png"
 }
+images {
+  image: "/assets/images/gui/arrow.png"
+}
 extrude_borders: 2

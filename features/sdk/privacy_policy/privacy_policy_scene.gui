@@ -5,7 +5,7 @@ fonts {
 }
 textures {
   name: "main"
-  texture: "/assets/main.atlas"
+  texture: "/assets/images/main.atlas"
 }
 nodes {
   position {
@@ -642,7 +642,7 @@ nodes {
     y: 76.0
   }
   type: TYPE_BOX
-  texture: "main/btn_collect"
+  texture: "main/btn_accept"
   id: "btn_next/arrow"
   parent: "btn_next/root"
   inherit_alpha: true
@@ -654,9 +654,6 @@ nodes {
   }
 }
 nodes {
-  position {
-    y: 3.0
-  }
   scale {
     x: 0.85
     y: 0.85
@@ -692,7 +689,7 @@ nodes {
     y: 76.0
   }
   type: TYPE_BOX
-  texture: "main/btn_collect"
+  texture: "main/btn_accept"
   id: "btn_prev/arrow"
   parent: "btn_prev/root"
   inherit_alpha: true
@@ -704,9 +701,6 @@ nodes {
   }
 }
 nodes {
-  position {
-    y: 3.0
-  }
   rotation {
     z: 180.0
   }
@@ -734,8 +728,4 @@ layers {
 material: "/builtins/materials/gui.material"
 adjust_reference: ADJUST_REFERENCE_PARENT
 max_nodes: 128
-materials {
-  name: "gui_circle"
-  material: "/assets/materials/gui_circle.material"
-}
 max_dynamic_textures: 1

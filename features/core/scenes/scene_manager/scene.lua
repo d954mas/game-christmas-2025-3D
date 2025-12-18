@@ -2,9 +2,9 @@ local CLASS = require "libs.class"
 local CHECKS = require "libs.checks"
 local HASHES = require "libs.hashes"
 local LOG = require "libs.log"
-local SCENE_ENUMS = require "libs.sm.scene_enums"
-local SCENE_LOADER = require "libs.sm.scene_loader"
-local ANALYTICS = require "libs.analytics"
+local SCENE_ENUMS = require "features.core.scenes.scene_manager.scene_enums"
+local SCENE_LOADER = require "features.core.scenes.scene_manager.scene_loader"
+local ANALYTICS = require "features.sdk.analytics.analytics"
 
 local TAG = "SCENE"
 
