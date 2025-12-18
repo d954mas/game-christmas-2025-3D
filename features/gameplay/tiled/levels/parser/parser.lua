@@ -45,9 +45,9 @@ local function log(message)
 	end
 end
 
-local LEVELS_PATH = "features/tiled/levels/levels/lua"
-local TILESETS_PATH = "features/tiled/levels/tilesets"
-local RESULT_PATH = "features/tiled/levels/levels/result"
+local LEVELS_PATH = "features/gameplay/tiled/levels/levels/lua"
+local TILESETS_PATH = "features/gameplay/tiled/levels/tilesets"
+local RESULT_PATH = "features/gameplay/tiled/levels/levels/result"
 local RES_PATH = "assets/custom/levels"
 local NEED_PRETTY = false
 
@@ -405,7 +405,7 @@ local function parse_level_objects(map, layer)
 	for _, obj in ipairs(objects) do
 		assert(obj.tile_id, "only tile object supported")
 		if (obj.properties.type == "player") then
-			assert(map.player,"player already exist")
+			assert(not map.player,"player already exist")
 			map.player = obj
 		else
 			pprint(obj)
@@ -502,7 +502,7 @@ function M.parse_level(path, result_path)
 	end
 
 	data.ground = parse_and_check(get_layer(tiled, "ground"), { assert(TILESETS.tilesets["ground"]) })
-	data.road = parse_and_check(get_layer(tiled, "road"), { assert(TILESETS.tilesets["road"]) })
+	data.road = parse_and_check(get_layer(tiled, "road"), { assert(TILESETS.tilesets["roads"]) })
 
 	--parse physics static geometry
 	data.geometry = parse_geometry(data, assert(get_layer(tiled, "geometry")))

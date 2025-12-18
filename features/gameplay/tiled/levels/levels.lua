@@ -57,15 +57,15 @@ end
 
 function M.update_tiled()
 	if (CONSTANTS.PLATFORM_IS_WINDOWS) then
-		os.execute("cd ./features/tiled/levels && resave_tiled_maps.sh")
+		os.execute("cd ./features/gameplay/tiled/levels && resave_tiled_maps.sh")
 	elseif (CONSTANTS.PLATFORM_IS_MACOS) then
-		os.execute("cd ./features/tiled/levels && resave_tiled_maps_mac.sh")
+		os.execute("cd ./features/gameplay/tiled/levels && resave_tiled_maps_mac.sh")
 	else
-		os.execute("cd ./features/tiled/levels && resave_tiled_maps.sh")
+		os.execute("cd ./features/gameplay/tiled/levels && resave_tiled_maps.sh")
 	end
 	PARSER.parse()
-	M.load_tileset()
-
+	--M.load_tileset()
+	--reopen game to see
 end
 
 local function to_tiles_array(array, max_id)

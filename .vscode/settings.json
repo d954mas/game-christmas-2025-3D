@@ -93,7 +93,8 @@
     "Lua.workspace.library": [
         "~\\AppData\\Roaming\\Code\\User\\globalStorage\\astronachos.defold",
         "~\\AppData\\Roaming\\Code\\User\\workspaceStorage\\73ed56ffb9f79c4039fb91be4f485a58\\astronachos.defold",
-        "~\\AppData\\Roaming\\Code\\User\\workspaceStorage\\07162da921729350939b4171a320150b\\astronachos.defold"
+        "~\\AppData\\Roaming\\Code\\User\\workspaceStorage\\07162da921729350939b4171a320150b\\astronachos.defold",
+        "~\\AppData\\Roaming\\Code\\User\\workspaceStorage\\d8eb0b583d509496ecd912ebfefcd64c\\astronachos.defold"
     ],
     "Lua.workspace.ignoreDir": [
         "editor_scipts"

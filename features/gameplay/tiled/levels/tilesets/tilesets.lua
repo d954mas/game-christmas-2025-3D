@@ -40,6 +40,9 @@ return {
       tiles = {
         {
           id = 1,
+          properties = {
+            ["type"] = "player"
+          },
           image = "../../images/objects/player.png",
           width = 16,
           height = 16
@@ -235,54 +238,81 @@ return {
       tiles = {
         {
           id = 0,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_1.png",
           width = 16,
           height = 16
         },
         {
           id = 1,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_2.png",
           width = 16,
           height = 16
         },
         {
           id = 2,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_3.png",
           width = 16,
           height = 16
         },
         {
           id = 3,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_4.png",
           width = 16,
           height = 16
         },
         {
           id = 4,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_5.png",
           width = 16,
           height = 16
         },
         {
           id = 5,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_6.png",
           width = 16,
           height = 16
         },
         {
           id = 6,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_7.png",
           width = 16,
           height = 16
         },
         {
           id = 7,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/christmas_light_8.png",
           width = 16,
           height = 16
         },
         {
           id = 8,
+          properties = {
+            ["type"] = "object_visual"
+          },
           image = "../../images/objects_visual/snowman1.png",
           width = 16,
           height = 16
