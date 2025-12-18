@@ -88,15 +88,25 @@ nodes {
   template: "/features/debug/debug_gui/debug_button.gui"
 }
 nodes {
+  size {
+    x: 106.0
+    y: 50.0
+  }
   type: TYPE_BOX
   id: "btn_profiler/root"
   parent: "btn_profiler"
+  overridden_fields: 4
   template_node_child: true
 }
 nodes {
+  size {
+    x: 106.0
+    y: 50.0
+  }
   type: TYPE_BOX
   id: "btn_profiler/bg"
   parent: "btn_profiler/root"
+  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -130,15 +140,25 @@ nodes {
   template: "/features/debug/debug_gui/debug_button.gui"
 }
 nodes {
+  size {
+    x: 106.0
+    y: 50.0
+  }
   type: TYPE_BOX
   id: "btn_scene/root"
   parent: "btn_scene"
+  overridden_fields: 4
   template_node_child: true
 }
 nodes {
+  size {
+    x: 106.0
+    y: 50.0
+  }
   type: TYPE_BOX
   id: "btn_scene/bg"
   parent: "btn_scene/root"
+  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -167,15 +187,25 @@ nodes {
   template: "/features/debug/debug_gui/debug_button.gui"
 }
 nodes {
+  size {
+    x: 106.0
+    y: 50.0
+  }
   type: TYPE_BOX
   id: "btn_game/root"
   parent: "btn_game"
+  overridden_fields: 4
   template_node_child: true
 }
 nodes {
+  size {
+    x: 106.0
+    y: 50.0
+  }
   type: TYPE_BOX
   id: "btn_game/bg"
   parent: "btn_game/root"
+  overridden_fields: 4
   template_node_child: true
 }
 nodes {
@@ -506,6 +536,63 @@ nodes {
   type: TYPE_TEXT
   id: "ecs_debug/line/lbl_tmax"
   parent: "ecs_debug/line"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 422.0
+    y: 127.0
+  }
+  scale {
+    x: 0.7
+    y: 0.7
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "buttons"
+  parent: "panel_game"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "panel_game/btn_base"
+  parent: "buttons"
+  inherit_alpha: true
+  template: "/features/debug/debug_gui/debug_button.gui"
+}
+nodes {
+  size {
+    x: 150.0
+    y: 50.0
+  }
+  type: TYPE_BOX
+  id: "panel_game/btn_base/root"
+  parent: "panel_game/btn_base"
+  overridden_fields: 4
+  template_node_child: true
+}
+nodes {
+  size {
+    x: 150.0
+    y: 50.0
+  }
+  type: TYPE_BOX
+  id: "panel_game/btn_base/bg"
+  parent: "panel_game/btn_base/root"
+  overridden_fields: 4
+  template_node_child: true
+}
+nodes {
+  type: TYPE_TEXT
+  text: "btn_1"
+  id: "panel_game/btn_base/lbl"
+  parent: "panel_game/btn_base/root"
+  overridden_fields: 8
   template_node_child: true
 }
 nodes {

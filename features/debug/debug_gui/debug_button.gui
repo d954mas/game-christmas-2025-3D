@@ -8,8 +8,8 @@ textures {
 }
 nodes {
   size {
-    x: 100.0
-    y: 100.0
+    x: 150.0
+    y: 50.0
   }
   type: TYPE_BOX
   texture: "main/empty"
@@ -20,8 +20,8 @@ nodes {
 }
 nodes {
   size {
-    x: 100.0
-    y: 60.0
+    x: 150.0
+    y: 50.0
   }
   color {
     x: 0.302
@@ -41,7 +41,7 @@ nodes {
     y: 0.6
   }
   size {
-    x: 200.0
+    x: 250.0
     y: 35.0
   }
   type: TYPE_TEXT

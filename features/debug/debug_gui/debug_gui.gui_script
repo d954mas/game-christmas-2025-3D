@@ -95,11 +95,29 @@ function Script:add_game_checkbox(title, checked, on_change)
 	view:set_checked(checked)
 end
 
+function Script:add_game_button(title, on_click)
+	local idx = #self.game_buttons + 1
+	local y = (idx - 1) * -50
+	local nodes = gui.clone_tree(gui.get_node("panel_game/btn_base/root"))
+	local template_name = "panel_game/btn_base/btn_" .. idx
+	gui.set_id(nodes["panel_game/btn_base/root"], template_name .. "/root")
+	local label = nodes["panel_game/btn_base/lbl"]
+	gui.set_text(label, title)
+	local view = ButtonScale.new(template_name)
+	gui.set_position(view.root, vmath.vector3(15, y, 0))
+	table.insert(self.game_buttons, view)
+	gui.set_enabled(view.root, true)
+	view:set_input_listener(on_click)
+end
+
+
 function Script:init_gui()
 	self.update_functions = {}
 
 	gui.set_enabled(gui.get_node("panel_game/checkbox_base/root"), false)
+	gui.set_enabled(gui.get_node("panel_game/btn_base/root"), false)
 	self.game_checkboxes = {}
+	self.game_buttons = {}
 
 	self:add_game_checkbox("Debug Info", STORAGE.debug_gui_storage:is_show(), function (checkbox)
 		STORAGE.debug_gui_storage:set_show(checkbox.checked)
@@ -249,6 +267,9 @@ function Script:on_input(action_id, action)
 	end
 	for i=1, #self.game_checkboxes do
 		if (self.game_checkboxes[i]:on_input(action_id, action)) then return true end
+	end
+		for i=1, #self.game_buttons do
+		if (self.game_buttons[i]:on_input(action_id, action)) then return true end
 	end
 end
 
