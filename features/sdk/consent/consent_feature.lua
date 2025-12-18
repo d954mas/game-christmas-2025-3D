@@ -4,6 +4,8 @@ local ConsentStoragePart = require "features.sdk.consent.consent_storage_part"
 ---@class ConsentFeature:Feature
 local M = {}
 
+M.CONSENT_SCENE = "ConsentScene"
+
 function M:on_storage_init(storage)
     self.storage = ConsentStoragePart.new(storage)
 end

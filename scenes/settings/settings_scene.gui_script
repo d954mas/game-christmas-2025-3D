@@ -1,19 +1,20 @@
 local N28S = require "libs.n28s"
 local CLASS = require "libs.class"
 local CONTEXTS = require "libs.contexts_manager"
-local STORAGE = require "libs.storage.storage"
+local STORAGE = require "features.core.storage.storage"
 local CONSTANTS = require "libs.constants"
 local HASHES = require "libs.hashes"
-local SM = require "libs.sm.scene_manager"
-local GAME = require "game.game_world"
-local SDK = require "libs.sdk.sdk"
-local LIVEUPDATE = require "project.liveupdate.liveupdate"
-local SOUNDS = require "libs.sounds"
-local LOCALIZATION = require "libs.localization"
+local SM = require "features.core.scenes.scene_manager.scene_manager"
+local SDK = require "features.sdk.ads.sdk"
+local LIVEUPDATE = require "features.core.liveupdate.liveupdate"
+local SOUNDS = require "features.core.sounds.sounds"
+local SOUNDS_FEATURE = require "features.core.sounds.sounds_feature"
+local LOCALIZATION = require "features.core.localization.localization"
+local LOCALIZATION_FEATURE = require "features.core.localization.localization_feature"
 local AutosizeLabel = require "libs.gui.autosize_label"
 local ButtonScale = require "libs.gui.button_scale"
 local Checkbox = require "libs.gui.checkbox"
-local BaseGuiScript = require "project.base_gui_script"
+local BaseGuiScript = require "features.ui.base_gui_script"
 local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
 local Slider = require "libs.gui.slider"
 
@@ -32,7 +33,7 @@ function Script:new_flag(language)
 	flag.selected_node = gui.get_node(template_name .. "/selected")
 	flag:set_input_listener(function ()
 		SOUNDS:play_sound(SOUNDS.sounds.btn_1)
-		STORAGE.options:language_set(flag.language)
+		LOCALIZATION_FEATURE.storage:language_set(flag.language)
 	end)
 	return flag
 end
@@ -86,15 +87,15 @@ function Script:init_gui()
 	end)
 
 	self.views.slider_music:set_value_max(1)
-	self.views.slider_music:set_value(STORAGE.options:music_get())
+	self.views.slider_music:set_value(SOUNDS_FEATURE.storage:music_get())
 	self.views.slider_music:set_change_listener(function (slider)
-		STORAGE.options:music_set(slider.value)
+		SOUNDS_FEATURE.storage:music_set(slider.value)
 	end)
 
 	self.views.slider_sound:set_value_max(1)
-	self.views.slider_sound:set_value(STORAGE.options:sound_get())
+	self.views.slider_sound:set_value(SOUNDS_FEATURE.storage:sound_get())
 	self.views.slider_sound:set_change_listener(function (slider)
-		STORAGE.options:sound_set(slider.value)
+		SOUNDS_FEATURE.storage:sound_set(slider.value)
 	end)
 
 	self.modal_scene_gui_animator = ModalSceneGuiAnimator.new()
@@ -103,14 +104,6 @@ function Script:init_gui()
 	self.views.btn_close:set_input_listener(function ()
 		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
 		self:close()
-	end)
-
-	local chb_draw_shadows = self.views.checkbox_draw_shadows
-	chb_draw_shadows:set_checked_visual(STORAGE.options:draw_shadows_get())
-	chb_draw_shadows:set_input_listener(function ()
-		--WORLD.sounds:play_sound(WORLD.sounds.sounds.slider)
-		STORAGE.options:draw_shadows_set(chb_draw_shadows.checked)
-		--	WORLD.game.lights:set_enable_shadows(chb_draw_shadows.checked)
 	end)
 
 	self.views.btn_privacy:set_input_listener(function ()
@@ -142,7 +135,6 @@ end
 
 function Script:update(dt)
 	self.modal_scene_gui_animator:update(dt)
-	GAME.ecs.player_camera_system:update_zoom()
 end
 
 function Script:on_input(action_id, action)
@@ -151,9 +143,7 @@ function Script:on_input(action_id, action)
 		return true
 	end
 	if (self.views.btn_close:on_input(action_id, action)) then return true end
-	if (self.views.checkbox_draw_shadows:on_input(action_id, action)) then return true end
 	if (self.views.btn_privacy:on_input(action_id, action)) then return true end
-	if self.views.slider_camera_zoom:on_input(action_id, action) then return true end
 	if self.views.slider_music:on_input(action_id, action) then return true end
 	if self.views.slider_sound:on_input(action_id, action) then return true end
 	for _, flag in pairs(self.views.flags) do
@@ -176,11 +166,8 @@ function Script:on_language_changed()
 	for _, flag in pairs(self.views.flags) do
 		gui.set_enabled(flag.selected_node, locale == flag.language)
 	end
-
 	self.views.music_lbl:set_text(LOCALIZATION:translate("settings_music"))
 	self.views.sound_lbl:set_text(LOCALIZATION:translate("settings_sound"))
-	self.views.shadows_lbl:set_text(LOCALIZATION:translate("settings_shadow"))
-	self.views.camera_zoom_lbl:set_text(LOCALIZATION:translate("settings_camera_zoom"))
 end
 
 N28S.register(CLASS.new_instance(Script))

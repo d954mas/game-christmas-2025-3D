@@ -135,6 +135,7 @@ end
 CONTEXTS.NAMES = {
 	LOADER = "LOADER",
 	LIVEUPDATE_COLLECTION = "LIVEUPDATE_COLLECTION",
+	SETTINGS_GUI = "SETTINGS_GUI",
 }
 
 ---@class ContextDataWrapperLoader:ContextDataWrapper

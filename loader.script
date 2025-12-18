@@ -4,7 +4,7 @@ local LOG = require "libs.log"
 local EVENTS = require "libs.events"
 local N28S = require "libs.n28s"
 local CONTEXTS = require "libs.contexts_manager"
-
+local SM = require "features.core.scenes.scene_manager.scene_manager"
 ---#region FEATURES
 
 ---#region FEATURES BASE
@@ -94,7 +94,7 @@ function Script:init()
 
 
 	CONSENT_FEATURE:check_consent(function ()
-		--SM:show(SM.SCENES.GAME)
+		SM:show(SCENES_FEATURE.SCENES.GAME)
 	end)
 
 	LOG.i("loader.script init function:" .. (chronos.nanotime() - loader_init_time))
@@ -115,6 +115,14 @@ end
 
 function Script:final()
 	FEATURES:final()
+end
+
+function Script:start_game()
+	if SM.stack:peek(0) == nil then
+		SM:show(SCENES_FEATURE.SCENES.GAME)
+	else
+		SM:replace(SCENES_FEATURE.SCENES.GAME)
+	end
 end
 
 N28S.register(Script)

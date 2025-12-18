@@ -1,6 +1,6 @@
 local CLASS = require "libs.class"
 local LUME = require "libs.lume"
-local StoragePart = require "libs.storage.storage_part"
+local StoragePart = require "features.core.storage.storage_part"
 
 ---@class SoundsStoragePart:StoragePart
 local SoundsStoragePart = CLASS.class("SoundsStoragePart", StoragePart)

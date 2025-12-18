@@ -70,7 +70,7 @@ function Animator:hide()
 
     show_parallel:add_action(ACTIONS.TweenGui.new_noctx {
         object = self.vh.root, property = "color",
-        to = COLORS.EMPTY, time = 0.2, easing = TWEEN.easing.outQuad, delay = 0
+        to = CONSTANTS.COLORS.EMPTY, time = 0.2, easing = TWEEN.easing.outQuad, delay = 0
     })
     show_parallel:add_action(ACTIONS.TweenGui.new_noctx {
         object = self.vh.root, property = "scale",

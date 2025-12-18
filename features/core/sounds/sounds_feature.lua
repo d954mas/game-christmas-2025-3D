@@ -1,4 +1,4 @@
-local SOUNDS = require "features.sounds.sounds"
+local SOUNDS = require "features.core.sounds.sounds"
 local SoundsStoragePart = require "features.core.sounds.sounds_storage_part"
 
 ---@class SoundsFeature:Feature
