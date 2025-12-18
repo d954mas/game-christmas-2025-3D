@@ -4,7 +4,7 @@ embedded_instances {
   id: "gui"
   data: "components {\n"
   "  id: \"consent_scene\"\n"
-  "  component: \"/scenes/consent/consent_scene.gui\"\n"
+  "  component: \"/features/sdk/consent/consent/consent_scene.gui\"\n"
   "}\n"
   ""
 }

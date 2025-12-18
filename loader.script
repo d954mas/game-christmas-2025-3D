@@ -20,6 +20,7 @@ local LOCALIZATION_FEATURE = require "features.core.localization.localization_fe
 ---#region FEATURES SDK
 local ANALYTICS_FEATURE = require "features.sdk.analytics.analytics_feature"
 local CONSENT_FEATURE = require "features.sdk.consent.consent_feature"
+local PRIVACY_POLICY_FEATURE = require "features.sdk.privacy_policy.privacy_policy_feature"
 local ADS_FEATURE = require "features.sdk.ads.ads_feature"
 ---#endregion
 
@@ -65,6 +66,7 @@ function Script:init()
 	FEATURES:add_feature(ANALYTICS_FEATURE)
 	FEATURES:add_feature(ADS_FEATURE)
 	FEATURES:add_feature(CONSENT_FEATURE)
+	FEATURES:add_feature(PRIVACY_POLICY_FEATURE)
 
 	--features debug
 	FEATURES:add_feature(IMGUI_FEATURE)

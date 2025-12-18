@@ -1,10 +1,16 @@
 local CONSTANTS = require "libs.constants"
 local ConsentStoragePart = require "features.sdk.consent.consent_storage_part"
-
+local SM = require "features.core.scenes.scene_manager.scene_manager"
 ---@class ConsentFeature:Feature
 local M = {}
 
 M.CONSENT_SCENE = "ConsentScene"
+
+function M:init()
+    SM:register({
+        require "features.sdk.consent.consent.consent_scene".new()
+    })
+end
 
 function M:on_storage_init(storage)
     self.storage = ConsentStoragePart.new(storage)
@@ -30,8 +36,9 @@ function M:check_consent(cb)
         --print("is no_gdpr_languages:", no_gdpr_languages[code])
         need_show_consent = need_show_consent and not no_gdpr_languages[code]
         --print("language:" .. code, "need show:", tostring(need_show_consent))
+        need_show_consent = true
         if need_show_consent then
-            --SM:show(SM.SCENES.CONSENT)
+            SM:show(M.CONSENT_SCENE)
             --show consent scene
         else
             self.storage:accept()

@@ -1,4 +1,4 @@
-local BaseScene = require "libs.sm.scene"
+local BaseScene = require "features.core.scenes.scene_manager.scene"
 local CLASS = require "libs.class"
 
 ---@class GameScene:Scene
@@ -14,7 +14,6 @@ function Scene:initialize()
 end
 
 function Scene:on_resume_done()
-	--POINTER.lock_cursor()
 end
 
 return Scene

@@ -1,4 +1,4 @@
-script: "/scenes/consent/consent_scene.gui_script"
+script: "/features/sdk/consent/consent/consent_scene.gui_script"
 fonts {
   name: "main"
   font: "/assets/fonts/main.font"

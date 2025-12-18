@@ -25,6 +25,9 @@ function Storage:_init_storage()
 		version = 1,
 		debug = {
 
+		},
+		options = {
+
 		}
 	}
 

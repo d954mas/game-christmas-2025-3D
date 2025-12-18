@@ -17,7 +17,7 @@ local M = {
 
 ---@type Scene[]
 local SCENES = {
-   -- require "scenes.game.game_scene",
+    require "scenes.game.game_scene",
     require "scenes.settings.settings_scene",
 }
 

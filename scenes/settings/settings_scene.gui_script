@@ -80,9 +80,9 @@ function Script:init_gui()
 	self.gui_resizer:add_node(self.vh.bottom, 3, { bottom = 0 })
 
 	self.views.slider_camera_zoom:set_value_max(1)
-	self.views.slider_camera_zoom:set_value(STORAGE.options:zoom_get())
+	self.views.slider_camera_zoom:set_value(STORAGE.cameras_storage:get_zoom())
 	self.views.slider_camera_zoom:set_change_listener(function (slider)
-		STORAGE.options:zoom_set(slider.value)
+		STORAGE.cameras_storage:set_zoom(slider.value)
 		--	GAME.ecs.player_camera_system:update_zoom()
 	end)
 
@@ -108,9 +108,7 @@ function Script:init_gui()
 
 	self.views.btn_privacy:set_input_listener(function ()
 		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
-		if LIVEUPDATE:is_ready() then
-			SM:replace(SM.MODALS.PRIVACY)
-		end
+		SM:replace(SM.MODALS.PRIVACY)
 	end)
 	for k, flag in pairs(self.views.flags) do
 		flag.language = k

@@ -3,9 +3,9 @@ local CLASS = require "libs.class"
 local CONTEXTS = require "libs.contexts_manager"
 local CONSTANTS = require "libs.constants"
 local HASHES = require "libs.hashes"
-local SM = require "libs.sm.scene_manager"
+local SM = require "features.core.scenes.scene_manager.scene_manager"
 local ButtonScale = require "libs.gui.button_scale"
-local BaseGuiScript = require "project.base_gui_script"
+local BaseGuiScript = require "features.ui.base_gui_script"
 local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
 
 ---@class PrivacyPolicySceneGuiScript:BaseGuiScript

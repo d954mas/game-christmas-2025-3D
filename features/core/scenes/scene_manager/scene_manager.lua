@@ -35,7 +35,7 @@ local M = {
 
 ---@param scenes Scene[]
 function M:register(scenes)
-	assert(#self.scenes == 0, "register_scenes can be called only once")
+	--assert(#self.scenes == 0, "register_scenes can be called only once")
 	assert(scenes, "scenes can't be nil")
 	assert(#scenes ~= 0, "scenes should have one or more scene")
 	for _, scene in ipairs(scenes) do

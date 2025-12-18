@@ -1,4 +1,4 @@
-script: "/scenes/privacy_policy/privacy_policy_scene.gui_script"
+script: "/features/sdk/privacy_policy/privacy_policy_scene.gui_script"
 fonts {
   name: "main"
   font: "/assets/fonts/main.font"

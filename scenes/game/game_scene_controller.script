@@ -1,15 +1,10 @@
 local N28S = require "libs.n28s"
-local INPUT = require "libs.input"
-local SM = require "libs.sm.scene_manager"
+local INPUT = require "features.core.input.input"
+local SM = require "features.core.scenes.scene_manager.scene_manager"
 local CONTEXTS = require "libs.contexts_manager"
 local GAME = require "game.game_world"
-local DEFS = require "game.balance.defs.defs"
 local HASHES = require "libs.hashes"
-local CONSTANTS = require "libs.constants"
-local SOUNDS = require "libs.sounds"
-local ANALYTICS = require "libs.analytics"
-local STORAGE = require "libs.storage.storage"
-
+local SOUNDS = require "features.core.sounds.sounds"
 ---@class ScriptGame
 local Script = {}
 
@@ -27,12 +22,7 @@ function Script:init()
 			html_utils.focus()
 		end)
 	end
-	--try fixed missed events
-	timer.delay(0.1, false, function ()
-		ANALYTICS:game_loaded()
-		STORAGE.analytics:check_first_play()
-	end)
-	GAME:change_location(DEFS.LOCATIONS.BY_ID.LEVEL_1.id)
+	--GAME:change_location(DEFS.LOCATIONS.BY_ID.LEVEL_1.id)
 	SOUNDS:liveupdate_load_game_sound()
 end
 
@@ -46,23 +36,7 @@ end
 
 function Script:update(dt)
 	self.fixed_updates = 0
-	self:check_pointer_lock()
 	GAME:update(dt)
-end
-
-function Script:check_pointer_lock()
-	if CONSTANTS.IS_MOBILE_DEVICE then return end
-	if SM:is_working() then return end
-	--if GAME.state.editor_visible then
-	--	POINTER.unlock_cursor()
---	 end
-	if SM:get_top()._name == SM.SCENES.GAME then
-		--if html5 and not POINTER.need_locked and not POINTER.locked and not GAME.state.editor_visible then
-		--	SM:show(SM.MODALS.SETTINGS)
-		--end
-	else
-	--	POINTER.unlock_cursor()
-	end
 end
 
 function Script:final()

@@ -1,8 +1,8 @@
 local CLASS = require "libs.class"
-local SM_ENUMS = require "libs.sm.scene_enums"
+local SM_ENUMS = require "features.core.scenes.scene_manager.scene_enums"
 local CONTEXTS = require "libs.contexts_manager"
 local LUME = require "libs.lume"
-local BaseScene = require "libs.sm.scene"
+local BaseScene = require "features.core.scenes.scene_manager.scene"
 
 ---@class PrivacyPolicyScene:Scene
 local Scene = CLASS.class("PrivacyPolicyScene", BaseScene)

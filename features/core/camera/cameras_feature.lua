@@ -1,4 +1,4 @@
-
+local CamerasStoragePart = require "features.core.camera.cameras_storage_part"
 ---@class CamerasFeature:Feature
 local M = {
     CAMERAS = {
@@ -21,6 +21,8 @@ function M:on_resize(width, height)
     end
 end
 
-
+function M:on_storage_init(storage)
+    self.storage = CamerasStoragePart.new(storage)
+end
 
 return M
