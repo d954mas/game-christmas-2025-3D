@@ -64,7 +64,7 @@ function Script:bind_vh()
 		},
 		music_lbl = AutosizeLabel.new("music/title"),
 		sound_lbl = AutosizeLabel.new("sound/title"),
-		camera_zoom_lbl = AutosizeLabel.new("zoom/title1"),
+		camera_zoom_lbl = AutosizeLabel.new("zoom/title"),
 	}
 end
 
@@ -141,6 +141,7 @@ function Script:on_input(action_id, action)
 	if (self.views.btn_privacy:on_input(action_id, action)) then return true end
 	if self.views.slider_music:on_input(action_id, action) then return true end
 	if self.views.slider_sound:on_input(action_id, action) then return true end
+	if self.views.slider_camera_zoom:on_input(action_id, action) then return true end
 	for _, flag in pairs(self.views.flags) do
 		if (flag:on_input(action_id, action)) then return true end
 	end
@@ -163,6 +164,7 @@ function Script:on_language_changed()
 	end
 	self.views.music_lbl:set_text(LOCALIZATION:translate("settings_music"))
 	self.views.sound_lbl:set_text(LOCALIZATION:translate("settings_sound"))
+	self.views.camera_zoom_lbl:set_text(LOCALIZATION:translate("settings_camera_zoom"))
 end
 
 N28S.register(CLASS.new_instance(Script))

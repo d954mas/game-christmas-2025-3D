@@ -638,7 +638,7 @@ nodes {
   type: TYPE_TEXT
   text: "CAMERA ZOOM"
   font: "main"
-  id: "zoom/title1"
+  id: "zoom/title"
   parent: "zoom"
   inherit_alpha: true
   text_tracking: 0.075
@@ -736,8 +736,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_de"
   id: "flag_de/icon"
   parent: "flag_de/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
@@ -765,8 +767,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_ja"
   id: "flag_ja/icon"
   parent: "flag_ja/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
@@ -794,8 +798,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_fr"
   id: "flag_fr/icon"
   parent: "flag_fr/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
@@ -823,8 +829,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_es"
   id: "flag_es/icon"
   parent: "flag_es/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
@@ -852,8 +860,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_it"
   id: "flag_it/icon"
   parent: "flag_it/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
@@ -880,8 +890,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_zh"
   id: "flag_zh/icon"
   parent: "flag_zh/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
@@ -938,8 +950,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_ko"
   id: "flag_ko/icon"
   parent: "flag_ko/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
@@ -967,8 +981,10 @@ nodes {
 }
 nodes {
   type: TYPE_BOX
+  texture: "main/flag_ru"
   id: "flag_ru/icon"
   parent: "flag_ru/root"
+  overridden_fields: 9
   template_node_child: true
 }
 nodes {
