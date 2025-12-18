@@ -1,4 +1,4 @@
-local LOCALIZATION = require "localization.localization"
+local LOCALIZATION = require "features.core.localization.localization"
 
 local HASH_FONT_CHANGED = hash("font_changed")
 local T_OPTIONS = { key = hash("main") }

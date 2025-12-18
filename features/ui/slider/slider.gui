@@ -1,0 +1,136 @@
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+nodes {
+  size {
+    x: 200.0
+    y: 45.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 390.0
+    y: 40.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "bg1"
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    x: 12.0
+    y: 12.0
+    z: 12.0
+    w: 12.0
+  }
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 384.0
+    y: 34.0
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "bg"
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    x: 12.0
+    y: 12.0
+    z: 12.0
+    w: 12.0
+  }
+}
+nodes {
+  size {
+    x: 164.0
+    y: 1.0
+    z: 1.0
+  }
+  type: TYPE_BOX
+  id: "area"
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    z: 2.0
+  }
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    y: -2.0
+  }
+  scale {
+    x: 0.7
+    y: 0.7
+  }
+  color {
+    x: 0.902
+    y: 0.902
+    z: 0.902
+  }
+  type: TYPE_BOX
+  texture: "main/slider_tumbler"
+  id: "slider"
+  parent: "area"
+  layer: "circle"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -96.0
+  }
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 384.0
+    y: 34.0
+  }
+  color {
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "fg"
+  pivot: PIVOT_W
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    x: 12.0
+    y: 12.0
+    z: 12.0
+    w: 12.0
+  }
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "circle"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT

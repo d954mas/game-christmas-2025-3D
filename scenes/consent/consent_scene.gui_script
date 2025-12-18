@@ -1,0 +1,84 @@
+local CLASS = require "libs.class"
+local CONTEXTS = require "libs.contexts_manager"
+local CONSTANTS = require "libs.constants"
+local STORAGE = require "libs.storage.storage"
+local CONTEXT = require "libs.contexts_manager"
+local SM = require "libs.sm.scene_manager"
+local N28S = require "libs.n28s"
+local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
+local ButtonScale = require "libs.gui.button_scale"
+local BaseGuiScript = require "project.base_gui_script"
+
+---@class ConsentScreenGuiScript:BaseGuiScript
+local Script = CLASS.class("ConsentScreenGuiScript", BaseGuiScript)
+
+function Script:init()
+	BaseGuiScript.init(self, { context_name = CONTEXTS.NAMES.CONSENT_GUI })
+end
+
+function Script:bind_vh()
+	self.vh = {
+		root = gui.get_node("root"),
+		root_adjust = gui.get_node("root/adjust"),
+		fader = gui.get_node("fader"),
+	}
+	self.views = {
+		btn_accept = ButtonScale.new("btn_accept"),
+		btn_decline = ButtonScale.new("btn_decline"),
+		btn_privacy = ButtonScale.new("btn_privacy"),
+	}
+end
+
+function Script:init_gui()
+	BaseGuiScript.init_gui(self)
+	gui.set_render_order(CONSTANTS.GUI_ORDER.GAME)
+	self.gui_resizer:add_node(self.vh.root_adjust, 3)
+	self.modal_scene_gui_animator = ModalSceneGuiAnimator.new()
+
+
+	self.fader_color = gui.get_color(self.vh.fader)
+	gui.set_color(self.vh.fader, vmath.vector4(self.fader_color.x, self.fader_color.y, self.fader_color.z, 0))
+
+	self.views.btn_accept:set_input_listener(function()
+		STORAGE.consent:accept()
+		self:close()
+	end)
+
+	self.views.btn_decline:set_input_listener(function()
+		STORAGE.consent:decline()
+		self:close()
+	end)
+
+	self.views.btn_privacy:set_input_listener(function()
+		SM:show(SM.MODALS.PRIVACY)
+	end)
+end
+
+function Script:close()
+	if not SM:is_working() then
+		local ctx = CONTEXT:set_context_top_loader()
+		ctx.data:start_game()
+		ctx:remove()
+	end
+end
+
+function Script:animate_hide()
+	self.modal_scene_gui_animator:hide()
+end
+
+function Script:animate_show()
+	self.modal_scene_gui_animator:show()
+end
+
+function Script:update(dt)
+	self.modal_scene_gui_animator:update(dt)
+end
+
+function Script:on_input(action_id, action)
+	self.views.btn_accept:on_input(action_id, action)
+	self.views.btn_decline:on_input(action_id, action)
+	self.views.btn_privacy:on_input(action_id, action)
+end
+
+
+N28S.register(CLASS.new_instance(Script))

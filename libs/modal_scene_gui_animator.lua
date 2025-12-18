@@ -1,7 +1,7 @@
 local CLASS = require "libs.class"
 local ACTIONS = require "libs.actions.actions"
-local COLORS = require "libs.colors"
 local TWEEN = require "libs.tween"
+local CONSTANTS = require "libs.constants"
 
 local SCALE_START = vmath.vector3(0.01)
 
@@ -33,7 +33,7 @@ function Animator:show()
 
     gui.set_color(self.vh.fader, self.fader_hide_color)
 
-    gui.set_color(self.vh.root, COLORS.EMPTY)
+    gui.set_color(self.vh.root, CONSTANTS.COLORS.EMPTY)
     gui.set_scale(self.vh.root, SCALE_START)
 
     local show_parallel = ACTIONS.Parallel.new(false)
@@ -45,7 +45,7 @@ function Animator:show()
 
     show_parallel:add_action(ACTIONS.TweenGui.new_noctx({
         object = self.vh.root, property = "color",
-        to = COLORS.WHITE, time = 0.2, easing = TWEEN.easing.outCubic, delay = 0
+        to = CONSTANTS.COLORS.WHITE, time = 0.2, easing = TWEEN.easing.outCubic, delay = 0
     }))
     show_parallel:add_action(ACTIONS.TweenGui.new_noctx({
         object = self.vh.root, property = "scale",

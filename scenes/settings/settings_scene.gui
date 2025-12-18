@@ -1,0 +1,1110 @@
+script: "/scenes/settings/settings_scene.gui_script"
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+nodes {
+  position {
+    x: 480.0
+    y: 270.0
+  }
+  size {
+    x: 1280.0
+    y: 720.0
+  }
+  color {
+    x: 0.101960786
+    y: 0.101960786
+    z: 0.101960786
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "fader"
+  adjust_mode: ADJUST_MODE_STRETCH
+  layer: "below"
+  inherit_alpha: true
+  alpha: 0.85
+}
+nodes {
+  position {
+    x: 480.0
+    y: 255.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "root/adjust"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  size {
+    x: 960.0
+    y: 540.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root/adjust"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    y: 25.0
+  }
+  size {
+    x: 250.0
+    y: 300.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "modal"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    y: -10.0
+  }
+  size {
+    x: 394.0
+    y: 404.0
+  }
+  color {
+    x: 0.502
+    y: 0.502
+    z: 0.502
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "modal/bg1"
+  parent: "modal"
+  layer: "below"
+  inherit_alpha: true
+  slice9 {
+    x: 22.0
+    y: 22.0
+    z: 22.0
+    w: 22.0
+  }
+}
+nodes {
+  position {
+    y: 130.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "music"
+  parent: "modal"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: -1.0
+    y: 27.0
+  }
+  scale {
+    x: 0.55
+    y: 0.55
+  }
+  size {
+    x: 380.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "MUSIC"
+  font: "main"
+  id: "music/title"
+  parent: "music"
+  inherit_alpha: true
+  text_tracking: 0.075
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "music/slider"
+  parent: "music"
+  inherit_alpha: true
+  template: "/features/ui/slider/slider.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "music/slider/root"
+  parent: "music/slider"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "music/slider/bg1"
+  parent: "music/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "music/slider/bg"
+  parent: "music/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "music/slider/area"
+  parent: "music/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "music/slider/slider"
+  parent: "music/slider/area"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "music/slider/fg"
+  parent: "music/slider/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -128.0
+  }
+  scale {
+    x: 0.33
+    y: 0.33
+  }
+  type: TYPE_BOX
+  texture: "main/music_off"
+  id: "music/icon_off"
+  parent: "music"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 128.0
+  }
+  scale {
+    x: 0.33
+    y: 0.33
+  }
+  type: TYPE_BOX
+  texture: "main/music_on"
+  id: "music/icon_on"
+  parent: "music"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: -24.0
+  }
+  size {
+    x: 320.0
+    y: 2.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "box"
+  parent: "music"
+  inherit_alpha: true
+  alpha: 0.2
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 44.0
+  }
+  size {
+    x: 320.0
+    y: 2.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "box4"
+  parent: "music"
+  inherit_alpha: true
+  alpha: 0.2
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 65.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "sound"
+  parent: "modal"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: -1.0
+    y: 27.0
+  }
+  scale {
+    x: 0.55
+    y: 0.55
+  }
+  size {
+    x: 380.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "SOUND"
+  font: "main"
+  id: "sound/title"
+  parent: "sound"
+  inherit_alpha: true
+  text_tracking: 0.075
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "sound/slider"
+  parent: "sound"
+  inherit_alpha: true
+  template: "/features/ui/slider/slider.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "sound/slider/root"
+  parent: "sound/slider"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "sound/slider/bg1"
+  parent: "sound/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "sound/slider/bg"
+  parent: "sound/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "sound/slider/area"
+  parent: "sound/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "sound/slider/slider"
+  parent: "sound/slider/area"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "sound/slider/fg"
+  parent: "sound/slider/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -135.0
+  }
+  scale {
+    x: 0.33
+    y: 0.33
+  }
+  type: TYPE_BOX
+  texture: "main/sound"
+  id: "sound/icon_off_base"
+  parent: "sound"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 59.0
+  }
+  rotation {
+    z: 45.0
+  }
+  scale {
+    x: 1.75
+    y: 1.75
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "+"
+  font: "main"
+  id: "zoom/icon_plus_zoom/plus1"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "sound/icon_off_base"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 121.0
+  }
+  scale {
+    x: 0.33
+    y: 0.33
+  }
+  type: TYPE_BOX
+  texture: "main/sound"
+  id: "sound/icon_on_base"
+  parent: "sound"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 50.0
+    y: 31.0
+  }
+  rotation {
+    z: 30.0
+  }
+  scale {
+    x: 1.25
+    y: 1.33
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "-"
+  font: "main"
+  id: "sound/icon_on_base/minus_1"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "sound/icon_on_base"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 56.0
+    y: -20.0
+  }
+  rotation {
+    z: -30.0
+  }
+  scale {
+    x: 1.25
+    y: 1.33
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "-"
+  font: "main"
+  id: "sound/icon_on_base/minus_2"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "sound/icon_on_base"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 60.0
+    y: 6.0
+  }
+  scale {
+    x: 1.6
+    y: 1.33
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "-"
+  font: "main"
+  id: "sound/icon_on_base/minus_3"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "sound/icon_on_base"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: -24.0
+  }
+  size {
+    x: 320.0
+    y: 2.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "box1"
+  parent: "sound"
+  inherit_alpha: true
+  alpha: 0.2
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "zoom"
+  parent: "modal"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  type: TYPE_TEMPLATE
+  id: "zoom/slider"
+  parent: "zoom"
+  inherit_alpha: true
+  template: "/features/ui/slider/slider.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "zoom/slider/root"
+  parent: "zoom/slider"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "zoom/slider/bg1"
+  parent: "zoom/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "zoom/slider/bg"
+  parent: "zoom/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "zoom/slider/area"
+  parent: "zoom/slider/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "zoom/slider/slider"
+  parent: "zoom/slider/area"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "zoom/slider/fg"
+  parent: "zoom/slider/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -128.0
+  }
+  scale {
+    x: 0.33
+    y: 0.33
+  }
+  type: TYPE_BOX
+  texture: "main/zoom"
+  id: "zoom/icon_plus_zoom"
+  parent: "zoom"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -3.0
+    y: 15.0
+  }
+  scale {
+    x: 1.33
+    y: 1.33
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "+"
+  font: "main"
+  id: "zoom/icon_plus_zoom/plus"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "zoom/icon_plus_zoom"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 128.0
+  }
+  scale {
+    x: 0.33
+    y: 0.33
+  }
+  type: TYPE_BOX
+  texture: "main/zoom"
+  id: "zoom/icon_plus_minus"
+  parent: "zoom"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -3.0
+    y: 20.0
+  }
+  scale {
+    x: 1.33
+    y: 1.33
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "-"
+  font: "main"
+  id: "zoom/icon_plus_minus/minus"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "zoom/icon_plus_minus"
+  layer: "text"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: -1.0
+    y: 27.0
+  }
+  scale {
+    x: 0.55
+    y: 0.55
+  }
+  size {
+    x: 380.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "CAMERA ZOOM"
+  font: "main"
+  id: "zoom/title1"
+  parent: "zoom"
+  inherit_alpha: true
+  text_tracking: 0.075
+}
+nodes {
+  position {
+    y: -24.0
+  }
+  size {
+    x: 320.0
+    y: 2.0
+  }
+  color {
+    x: 0.0
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  id: "box3"
+  parent: "zoom"
+  inherit_alpha: true
+  alpha: 0.2
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 187.0
+    y: 180.0
+  }
+  size {
+    x: 60.0
+    y: 60.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "btn_close/root"
+  parent: "modal"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    y: -2.0
+  }
+  type: TYPE_BOX
+  texture: "main/btn_close"
+  id: "btn_close/icon"
+  parent: "btn_close/root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: -20.0
+  }
+  scale {
+    x: 0.85
+    y: 0.85
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "flags"
+  parent: "modal"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 34.0
+    y: -128.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_de"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_de/root"
+  parent: "flag_de"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_de/selected"
+  parent: "flag_de/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_de/icon"
+  parent: "flag_de/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 64.0
+    y: -183.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_ja"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ja/root"
+  parent: "flag_ja"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ja/selected"
+  parent: "flag_ja/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ja/icon"
+  parent: "flag_ja/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -98.0
+    y: -128.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_fr"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_fr/root"
+  parent: "flag_fr"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_fr/selected"
+  parent: "flag_fr/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_fr/icon"
+  parent: "flag_fr/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 98.0
+    y: -128.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_es"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_es/root"
+  parent: "flag_es"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_es/selected"
+  parent: "flag_es/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_es/icon"
+  parent: "flag_es/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -34.0
+    y: -128.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_it"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_it/root"
+  parent: "flag_it"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_it/selected"
+  parent: "flag_it/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_it/icon"
+  parent: "flag_it/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -183.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_zh"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_zh/root"
+  parent: "flag_zh"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_zh/selected"
+  parent: "flag_zh/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_zh/icon"
+  parent: "flag_zh/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -162.0
+    y: -128.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_en"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_en/root"
+  parent: "flag_en"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_en/selected"
+  parent: "flag_en/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_en/icon"
+  parent: "flag_en/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: -64.0
+    y: -183.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_ko"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ko/root"
+  parent: "flag_ko"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ko/selected"
+  parent: "flag_ko/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ko/icon"
+  parent: "flag_ko/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    x: 162.0
+    y: -128.0
+  }
+  type: TYPE_TEMPLATE
+  id: "flag_ru"
+  parent: "flags"
+  inherit_alpha: true
+  template: "/scenes/settings/flag.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ru/root"
+  parent: "flag_ru"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ru/selected"
+  parent: "flag_ru/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "flag_ru/icon"
+  parent: "flag_ru/root"
+  template_node_child: true
+}
+nodes {
+  position {
+    y: -10.0
+  }
+  size {
+    x: 480.0
+    y: 450.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "click_zone"
+  parent: "root"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    x: 960.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "right-bottom"
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_BOTTOM
+  pivot: PIVOT_SE
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: -113.0
+    y: 34.0
+  }
+  size {
+    x: 270.0
+    y: 70.0
+  }
+  type: TYPE_BOX
+  id: "btn_privacy/root"
+  parent: "right-bottom"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    y: 5.0
+  }
+  scale {
+    x: 0.9
+    y: 0.9
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.502
+    y: 0.6
+  }
+  type: TYPE_TEXT
+  text: "Privacy policy"
+  font: "main"
+  id: "textbtn_privacy/text"
+  outline {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "btn_privacy/root"
+  inherit_alpha: true
+  outline_alpha: 0.0
+  shadow_alpha: 0.0
+  text_leading: 0.0
+  text_tracking: 0.02
+}
+nodes {
+  position {
+    x: 1.0
+    y: -17.0
+  }
+  size {
+    x: 216.0
+    y: 3.0
+  }
+  color {
+    x: 0.502
+    y: 0.6
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "btn_privacy/underline"
+  parent: "btn_privacy/root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 480.0
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "bottom"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "circle"
+}
+layers {
+  name: "text"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+max_nodes: 128
+max_dynamic_textures: 0

@@ -13,5 +13,11 @@ embedded_instances {
   "exclude: true\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"collectionproxy\"\n"
+  "  type: \"collectionproxy\"\n"
+  "  data: \"collection: \\\"/scenes/settings/settings_scene.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }

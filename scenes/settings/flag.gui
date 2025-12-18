@@ -1,0 +1,54 @@
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+nodes {
+  size {
+    x: 64.0
+    y: 58.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "root"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  size {
+    x: 62.0
+    y: 50.0
+  }
+  color {
+    x: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "selected"
+  parent: "root"
+  inherit_alpha: true
+  slice9 {
+    x: 12.0
+    y: 12.0
+    z: 12.0
+    w: 12.0
+  }
+}
+nodes {
+  scale {
+    x: 0.66
+    y: 0.66
+  }
+  type: TYPE_BOX
+  texture: "main/flag_en"
+  id: "icon"
+  parent: "root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+layers {
+  name: "below"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+max_dynamic_textures: 1

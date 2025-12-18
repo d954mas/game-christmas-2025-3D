@@ -1,0 +1,186 @@
+local N28S = require "libs.n28s"
+local CLASS = require "libs.class"
+local CONTEXTS = require "libs.contexts_manager"
+local STORAGE = require "libs.storage.storage"
+local CONSTANTS = require "libs.constants"
+local HASHES = require "libs.hashes"
+local SM = require "libs.sm.scene_manager"
+local GAME = require "game.game_world"
+local SDK = require "libs.sdk.sdk"
+local LIVEUPDATE = require "project.liveupdate.liveupdate"
+local SOUNDS = require "libs.sounds"
+local LOCALIZATION = require "libs.localization"
+local AutosizeLabel = require "libs.gui.autosize_label"
+local ButtonScale = require "libs.gui.button_scale"
+local Checkbox = require "libs.gui.checkbox"
+local BaseGuiScript = require "project.base_gui_script"
+local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
+local Slider = require "libs.gui.slider"
+
+---@class SettingsSceneGuiScript:BaseGuiScript
+local Script = CLASS.class("GameSceneGuiScript", BaseGuiScript)
+
+function Script:init()
+	BaseGuiScript.init(self, { context_name = CONTEXTS.NAMES.SETTINGS_GUI })
+end
+
+function Script:new_flag(language)
+	local template_name = "flag_" .. language
+	---@class FlagBtb:BtnScale
+	local flag = ButtonScale.new(template_name)
+	flag.language = language
+	flag.selected_node = gui.get_node(template_name .. "/selected")
+	flag:set_input_listener(function ()
+		SOUNDS:play_sound(SOUNDS.sounds.btn_1)
+		STORAGE.options:language_set(flag.language)
+	end)
+	return flag
+end
+
+function Script:bind_vh()
+	self.vh = {
+		root = gui.get_node("root"),
+		root_adjust = gui.get_node("root/adjust"),
+		click_zone = gui.get_node("click_zone"),
+		right_bottom = gui.get_node("right-bottom"),
+		bottom = gui.get_node("bottom"),
+	}
+	self.views = {
+		btn_close = ButtonScale.new("btn_close"),
+		btn_privacy = ButtonScale.new("btn_privacy"),
+		checkbox_draw_shadows = Checkbox.new("checkbox_draw_shadows"),
+		slider_sound = Slider.new_fg("sound/slider"),
+		slider_music = Slider.new_fg("music/slider"),
+		slider_camera_zoom = Slider.new_fg("zoom/slider"),
+		flags = {
+			en = self:new_flag("en"),
+			fr = self:new_flag("fr"),
+			it = self:new_flag("it"),
+			de = self:new_flag("de"),
+			es = self:new_flag("es"),
+			ru = self:new_flag("ru"),
+			zh = self:new_flag("zh"),
+			ja = self:new_flag("ja"),
+			ko = self:new_flag("ko"),
+		},
+		shadows_lbl = AutosizeLabel.new("checkbox_draw_shadows/lbl"),
+		music_lbl = AutosizeLabel.new("music/title"),
+		sound_lbl = AutosizeLabel.new("sound/title"),
+		camera_zoom_lbl = AutosizeLabel.new("zoom/title1"),
+	}
+end
+
+function Script:init_gui()
+	BaseGuiScript.init_gui(self)
+	gui.set_render_order(CONSTANTS.GUI_ORDER.SETTINGS)
+
+	self.gui_resizer:add_node(self.vh.root_adjust, 3)
+	self.gui_resizer:add_node(self.vh.right_bottom, 3, { bottom = 0, right = 0 })
+	self.gui_resizer:add_node(self.vh.bottom, 3, { bottom = 0 })
+
+	self.views.slider_camera_zoom:set_value_max(1)
+	self.views.slider_camera_zoom:set_value(STORAGE.options:zoom_get())
+	self.views.slider_camera_zoom:set_change_listener(function (slider)
+		STORAGE.options:zoom_set(slider.value)
+		--	GAME.ecs.player_camera_system:update_zoom()
+	end)
+
+	self.views.slider_music:set_value_max(1)
+	self.views.slider_music:set_value(STORAGE.options:music_get())
+	self.views.slider_music:set_change_listener(function (slider)
+		STORAGE.options:music_set(slider.value)
+	end)
+
+	self.views.slider_sound:set_value_max(1)
+	self.views.slider_sound:set_value(STORAGE.options:sound_get())
+	self.views.slider_sound:set_change_listener(function (slider)
+		STORAGE.options:sound_set(slider.value)
+	end)
+
+	self.modal_scene_gui_animator = ModalSceneGuiAnimator.new()
+
+
+	self.views.btn_close:set_input_listener(function ()
+		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
+		self:close()
+	end)
+
+	local chb_draw_shadows = self.views.checkbox_draw_shadows
+	chb_draw_shadows:set_checked_visual(STORAGE.options:draw_shadows_get())
+	chb_draw_shadows:set_input_listener(function ()
+		--WORLD.sounds:play_sound(WORLD.sounds.sounds.slider)
+		STORAGE.options:draw_shadows_set(chb_draw_shadows.checked)
+		--	WORLD.game.lights:set_enable_shadows(chb_draw_shadows.checked)
+	end)
+
+	self.views.btn_privacy:set_input_listener(function ()
+		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
+		if LIVEUPDATE:is_ready() then
+			SM:replace(SM.MODALS.PRIVACY)
+		end
+	end)
+	for k, flag in pairs(self.views.flags) do
+		flag.language = k
+	end
+end
+
+function Script:close()
+	if not SM:is_working() then
+		SDK:ads_commercial(function ()
+			SM:back()
+		end)
+	end
+end
+
+function Script:animate_hide()
+	self.modal_scene_gui_animator:hide()
+end
+
+function Script:animate_show()
+	self.modal_scene_gui_animator:show()
+end
+
+function Script:update(dt)
+	self.modal_scene_gui_animator:update(dt)
+	GAME.ecs.player_camera_system:update_zoom()
+end
+
+function Script:on_input(action_id, action)
+	if (action_id == HASHES.INPUT.ESCAPE and action.pressed) then
+		self:close()
+		return true
+	end
+	if (self.views.btn_close:on_input(action_id, action)) then return true end
+	if (self.views.checkbox_draw_shadows:on_input(action_id, action)) then return true end
+	if (self.views.btn_privacy:on_input(action_id, action)) then return true end
+	if self.views.slider_camera_zoom:on_input(action_id, action) then return true end
+	if self.views.slider_music:on_input(action_id, action) then return true end
+	if self.views.slider_sound:on_input(action_id, action) then return true end
+	for _, flag in pairs(self.views.flags) do
+		if (flag:on_input(action_id, action)) then return true end
+	end
+	if (action_id == HASHES.INPUT.TOUCH and action.pressed and not gui.pick_node(self.vh.click_zone, action.x, action.y)) then
+		self:close()
+		return
+	end
+end
+
+function Script:on_storage_changed()
+
+end
+
+
+function Script:on_language_changed()
+	local locale = LOCALIZATION:locale_get()
+	gui.set_enabled(self.views.flags.en.selected_node, true) --fallback to en
+	for _, flag in pairs(self.views.flags) do
+		gui.set_enabled(flag.selected_node, locale == flag.language)
+	end
+
+	self.views.music_lbl:set_text(LOCALIZATION:translate("settings_music"))
+	self.views.sound_lbl:set_text(LOCALIZATION:translate("settings_sound"))
+	self.views.shadows_lbl:set_text(LOCALIZATION:translate("settings_shadow"))
+	self.views.camera_zoom_lbl:set_text(LOCALIZATION:translate("settings_camera_zoom"))
+end
+
+N28S.register(CLASS.new_instance(Script))

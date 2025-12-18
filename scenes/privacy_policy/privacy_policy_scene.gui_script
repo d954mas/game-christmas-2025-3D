@@ -1,0 +1,105 @@
+local N28S = require "libs.n28s"
+local CLASS = require "libs.class"
+local CONTEXTS = require "libs.contexts_manager"
+local CONSTANTS = require "libs.constants"
+local HASHES = require "libs.hashes"
+local SM = require "libs.sm.scene_manager"
+local ButtonScale = require "libs.gui.button_scale"
+local BaseGuiScript = require "project.base_gui_script"
+local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
+
+---@class PrivacyPolicySceneGuiScript:BaseGuiScript
+local Script = CLASS.class("PrivacyPolicySceneGuiScript", BaseGuiScript)
+
+function Script:init()
+	BaseGuiScript.init(self, { context_name = CONTEXTS.NAMES.PRIVACY_POLICY_GUI })
+end
+
+function Script:bind_vh()
+	self.vh = {
+		root = gui.get_node("root"),
+		root_adjust = gui.get_node("root/adjust"),
+		click_zone = gui.get_node("click_zone")
+	}
+	self.views = {
+		btn_close = ButtonScale.new("btn_close"),
+		btn_prev = ButtonScale.new("btn_prev"),
+		btn_next = ButtonScale.new("btn_next"),
+	}
+end
+
+function Script:init_gui()
+	BaseGuiScript.init_gui(self)
+	gui.set_render_order(CONSTANTS.GUI_ORDER.SETTINGS)
+	self.gui_resizer:add_node(self.vh.root_adjust, 3)
+	--self.animation_action = ACTIONS.Sequence()
+	--self.animation_action.drop_empty = false
+
+	self.modal_scene_gui_animator = ModalSceneGuiAnimator.new()
+
+
+	self.views.btn_close:set_input_listener(function ()
+		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
+		self:close()
+	end)
+
+	self.views.btn_next:set_input_listener(function ()
+		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
+		self:set_page(self.page + 1)
+	end)
+
+	self.views.btn_prev:set_input_listener(function ()
+		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
+		self:set_page(self.page - 1)
+	end)
+
+	self.page = 1
+	self.page_max = 9
+	self:set_page(self.page)
+end
+
+function Script:set_page(page)
+	gui.set_enabled(gui.get_node("page_" .. self.page), false)
+	self.page = page
+	gui.set_enabled(gui.get_node("page_" .. self.page), true)
+	self.views.btn_prev:set_enabled(self.page > 1)
+	self.views.btn_next:set_enabled(self.page < self.page_max)
+end
+
+function Script:close()
+	if not SM:is_working() then
+		if SM.stack:peek(1) and SM.stack:peek(1)._name == SM.SCENES.CONSENT then
+			SM:back()
+		else
+			SM:replace(SM.MODALS.SETTINGS)
+		end
+	end
+end
+
+function Script:animate_hide()
+	self.modal_scene_gui_animator:hide()
+end
+
+function Script:animate_show()
+	self.modal_scene_gui_animator:show()
+end
+
+function Script:update(dt)
+	self.modal_scene_gui_animator:update(dt)
+end
+
+function Script:on_input(action_id, action)
+	if (action_id == HASHES.INPUT.ESCAPE and action.pressed) then
+		self:close()
+		return true
+	end
+	if (self.views.btn_close:on_input(action_id, action)) then return true end
+	if (self.views.btn_next:on_input(action_id, action)) then return true end
+	if (self.views.btn_prev:on_input(action_id, action)) then return true end
+	if (action_id == HASHES.INPUT.TOUCH and action.pressed and not gui.pick_node(self.vh.click_zone, action.x, action.y)) then
+		self:close()
+		return
+	end
+end
+
+N28S.register(CLASS.new_instance(Script))

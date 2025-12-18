@@ -1,0 +1,22 @@
+name: "settings_scene"
+instances {
+  id: "check_font"
+  prototype: "/features/core/localization/check_font.go"
+  component_properties {
+    id: "check_font"
+    properties {
+      id: "target_gui"
+      value: "/root#gui"
+      type: PROPERTY_TYPE_URL
+    }
+  }
+}
+scale_along_z: 1
+embedded_instances {
+  id: "root"
+  data: "components {\n"
+  "  id: \"gui\"\n"
+  "  component: \"/scenes/settings/settings_scene.gui\"\n"
+  "}\n"
+  ""
+}

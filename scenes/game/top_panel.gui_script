@@ -1,0 +1,482 @@
+local CLASS = require "libs.class"
+local CONTEXTS = require "libs.contexts_manager"
+local DEFS = require "game.balance.defs.defs"
+local CONSTANTS = require "libs.constants"
+local EVENTS = require "libs.events"
+local N28S = require "libs.n28s"
+local ACTIONS = require "libs.actions.actions"
+local STORAGE = require "libs.storage.storage"
+local AutosizeLbl = require "libs.gui.autosize_label"
+local TWEEN = require "libs.tween"
+local GUI_RESIZER = require "libs.gui_resizer"
+local ENUMS = require "game.balance.defs.enums"
+local CAMERAS = require "libs.cameras"
+local LUME = require "libs.lume"
+local SmoothDump = require "libs.smooth_dump"
+
+local TEMP_V = vmath.vector3()
+local COLOR_WHITE = vmath.vector4(1, 1, 1, 1)
+local COLOR_INVISIBLE = vmath.vector4(1, 1, 1, 0)
+
+local COLOR_NOTIFICATION_SHOW = vmath.vector4(1, 1, 1, 1)
+
+local FlyObject = require "libs.gui.fly_object"
+local BaseGuiScript = require "project.base_gui_script"
+
+
+local RESOURCES_ORDER_LIST = {
+	DEFS.RESOURCES.BY_ID.WOOD,
+	DEFS.RESOURCES.BY_ID.STONE,
+	DEFS.RESOURCES.BY_ID.GOLD
+}
+
+
+local HASH_RESOURCE_VIEW_ROOT = hash("cell_resource/root")
+local HASH_RESOURCE_VIEW_ICON = hash("cell_resource/icon")
+local HASH_RESOURCE_VIEW_LBL = hash("cell_resource/lbl")
+
+local ResourceView = CLASS.class("ResourceView")
+
+function ResourceView.new()
+	return CLASS.new_instance(ResourceView)
+end
+
+function ResourceView:initialize()
+	local nodes = gui.clone_tree(gui.get_node("cell_resource/root"))
+	self.vh = {
+		root = nodes[HASH_RESOURCE_VIEW_ROOT],
+		lbl = nodes[HASH_RESOURCE_VIEW_LBL],
+		icon = nodes[HASH_RESOURCE_VIEW_ICON],
+	}
+	gui.set_enabled(self.vh.root, false)
+	self.value = 0
+	self.value_visual = 0
+	self.smooth_dump = SmoothDump.new(0.166, math.huge)
+end
+
+function ResourceView:set_resource(resource)
+	self.def = assert(DEFS.RESOURCES.BY_ID[resource])
+	gui.play_flipbook(self.vh.icon, self.def.icon)
+	local font_color = self.def.font_color or COLOR_WHITE
+	local outline_color = self.def.font_outline_color
+	gui.set_color(self.vh.lbl, font_color)
+	if outline_color then
+		gui.set_outline(self.vh.lbl, outline_color)
+	else
+		gui.set_outline(self.vh.lbl, COLOR_INVISIBLE)
+	end
+end
+
+function ResourceView:set_value(value, forced)
+	self.value = value
+	if forced then
+		self.value_visual = value
+		self:refresh_lbl()
+	end
+end
+
+function ResourceView:add_value(value)
+	self:set_value(self.value + value)
+end
+
+function ResourceView:spend_value(value)
+	self:set_value(self.value - value)
+end
+
+function ResourceView:refresh_lbl()
+	local visual = self.value_visual
+	gui.set_text(self.vh.lbl, LUME.formatIdleNumber(visual))
+end
+
+function ResourceView:set_enabled(enabled)
+	gui.set_enabled(self.vh.root, enabled)
+end
+
+function ResourceView:update(dt)
+	self.smooth_dump.maxDelta = math.min(self.value_visual, self.value) * 0.001
+	local new_value = self.smooth_dump:update(self.value_visual, self.value, dt)
+
+	if new_value ~= self.value_visual then
+		self.value_visual = new_value
+		self:refresh_lbl()
+	end
+end
+
+function ResourceView:dispose()
+	gui.delete_node(self.vh.root)
+	self.vh = nil
+end
+
+function ResourceView:set_position(position)
+	gui.set_position(self.vh.root, position)
+end
+
+local ResourcesPanel = CLASS.class("ResourcesPanel")
+
+function ResourcesPanel.new(root_name) return CLASS.new_instance(ResourcesPanel, root_name) end
+
+function ResourcesPanel:initialize(root_name)
+	self.root_name = root_name
+	self.vh = {
+		root = gui.get_node(root_name .. "/root"),
+		content = gui.get_node(root_name .. "/content"),
+		bg = gui.get_node(root_name .. "/bg"),
+		cells = {}
+	}
+	self.resources = {
+
+	}
+	--add views
+	for i = 1, #RESOURCES_ORDER_LIST do
+		local resource = RESOURCES_ORDER_LIST[i].id
+		local view = ResourceView.new()
+		view:set_resource(resource)
+		self.resources[resource] = {
+			visible = false, view = view
+		}
+		table.insert(self.vh.cells, view)
+	end
+	self.objects_per_line = 10
+	self.padding_x = 20
+	self.view_size = 30
+	self.padding_y = 10
+	self.padding_bg = 10
+end
+
+function ResourcesPanel:update(dt)
+	for i = 1, #self.vh.cells do
+		local cell = self.vh.cells[i]
+		cell:update(dt)
+	end
+end
+
+function ResourcesPanel:set_object_per_line(value)
+	self.objects_per_line = value
+	self:refresh_visual()
+end
+
+function ResourcesPanel:set_value(resource, value, forced)
+	self.resources[resource].view:set_value(value, forced)
+	self.resources[resource].visible = value > 0
+end
+
+function ResourcesPanel:add_value(resource, value)
+	if not self.resources[resource].visible then
+		self.resources[resource].visible = true
+		self.resources[resource].view:set_enabled(true)
+		self:refresh_visual()
+	end
+	self.resources[resource].view:add_value(value)
+end
+
+function ResourcesPanel:spend_value(resource, value)
+	self.resources[resource].view:spend_value(value)
+end
+
+function ResourcesPanel:refresh_visual()
+	local idx = 0
+	local position = vmath.vector3(0, 0, 0)
+
+	for i = 1, #RESOURCES_ORDER_LIST do
+		local resource = RESOURCES_ORDER_LIST[i]
+		local data = self.resources[resource.id]
+		local view = data.view
+		if data.visible then
+			idx = idx + 1
+			local dx = (idx - 1) % self.objects_per_line
+			local dy = math.floor((idx - 1) / self.objects_per_line)
+			position.x = self.padding_bg + self.view_size / 2 + dx * (self.view_size + self.padding_x)
+			position.y = -self.padding_bg - self.view_size / 2 - dy * (self.view_size + self.padding_y)
+			view:set_position(position)
+		end
+	end
+	--calculated bg size
+	position.x = (math.min(idx, self.objects_per_line) - 1) * (self.view_size + self.padding_x) + self.padding_bg * 2 + self.view_size
+	position.y = math.floor((idx - 1) / self.objects_per_line) * (self.view_size + self.padding_y) + self.view_size + self.padding_bg * 2
+	gui.set_size(self.vh.bg, position * 4 * 0.25 / 0.34)
+
+	position.y = 0
+	position.x = -position.x / 2
+	gui.set_position(self.vh.content, position)
+end
+
+function ResourcesPanel:get_screen_position_for_resource(resource)
+	return gui.get_screen_position(self.resources[resource].view.vh.root)
+end
+
+function ResourcesPanel:refresh_resources()
+	for _, resource in ipairs(RESOURCES_ORDER_LIST) do
+		local data = self.resources[resource.id]
+		local value = STORAGE.resources:get(resource.id)
+		data.view:set_value(value, true)
+		data.visible = value > 0
+		data.view:set_enabled(data.visible)
+	end
+	self:refresh_visual()
+end
+
+---@class TopPanelGuiScript:BaseGuiScript
+local Script = CLASS.class("TopPanelGuiScript", BaseGuiScript)
+
+function Script:init()
+	BaseGuiScript.init(self, { context_name = CONTEXTS.NAMES.TOP_PANEL, input = false })
+end
+
+function Script:bind_vh()
+	self.vh = {
+		fly_object = gui.get_node("fly_object/root"),
+		top_right = gui.get_node("top_right"),
+		top = gui.get_node("top"),
+		bottom = gui.get_node("bottom"),
+		left = gui.get_node("left"),
+		fly_object_icon = gui.get_node("fly_object/icon"),
+		notification_text = gui.get_node("notification_text/root"),
+		notification_merge_no_space = gui.get_node("notification_merge_no_space/root"),
+		notification_merge_max_level = gui.get_node("notification_merge_max_level/root"),
+		offer_fly_point = gui.get_node("offer_fly_point"),
+		offer_rebirth = gui.get_node("offer_rebirth"),
+
+	}
+	self.views = {
+		resources = ResourcesPanel.new("resources"),
+	}
+end
+
+function Script:init_gui()
+	BaseGuiScript.init_gui(self)
+	gui.set_render_order(CONSTANTS.GUI_ORDER.TOP_PANEL)
+	gui.set_enabled(gui.get_node("cell_resource/root"), false)
+
+	self.gui_resizer:add_node(self.vh.top_right, 2, { top = 0, right = 0 })
+	self.gui_resizer:add_node(self.vh.top, 2, { top = 0 })
+	self.gui_resizer:add_node(self.vh.left, 3, { left = 0 })
+
+	gui.set_enabled(self.vh.notification_text, false)
+	gui.set_enabled(self.vh.notification_merge_no_space, false)
+	gui.set_enabled(self.vh.notification_merge_max_level, false)
+
+	self.notifications = ACTIONS.Sequence.new(false)
+	self.notifications.drop_empty = false
+
+	self.notifications_errors = ACTIONS.Parallel.new(false)
+	self.notifications_errors.drop_empty = false
+
+	gui.set_enabled(self.vh.fly_object, false)
+	self.fly_objects = {}
+	self.fly_objects_pool = {}
+	self.fly_objects_pool_max = 64
+	for _ = 1, self.fly_objects_pool_max do
+		local nodes = gui.clone_tree(self.vh.fly_object)
+		local fly_object = FlyObject.new({ root = nodes["fly_object/root"], icon = nodes["fly_object/icon"] })
+		table.insert(self.fly_objects_pool, fly_object)
+	end
+
+	self.views.resources:refresh_resources()
+
+	table.insert(self.subscriptions, EVENTS.RESOURCE_ADD:subscribe(true, function (_, resource, value, placement, data)
+		if placement == ENUMS.RESOURCE_ADD_PLACEMENT.GAME_OFFER then
+			local from = gui.get_screen_position(self.vh.offer_fly_point)
+			local to = self.views.resources:get_screen_position_for_resource(resource)
+			self:fly_resource(resource, value, from, to, 0, 1.5)
+		elseif placement == ENUMS.RESOURCE_ADD_PLACEMENT.CHEST then
+			local world_pos = data.chest_position
+			local from = CAMERAS.game_camera:world_to_screen(world_pos)
+			local to = self.views.resources:get_screen_position_for_resource(resource)
+			self:fly_resource(resource, value, from, to, 1, 1.5)
+		else
+			self.views.resources:add_value(resource, value)
+		end
+	end))
+
+	table.insert(self.subscriptions, EVENTS.RESOURCE_SPEND:subscribe(true, function (_, resource, value, _, _)
+		self.views.resources:spend_value(resource, value)
+	end))
+
+
+	self:location_changed()
+
+	self.notification_no_merge_space_last_time = 0
+end
+
+function Script:update(dt)
+	for i = #self.fly_objects, 1, -1 do
+		local fly_object = self.fly_objects[i]
+		fly_object:update(dt)
+		if (not fly_object:is_animated()) then
+			table.remove(self.fly_objects, i)
+
+			fly_object:reset()
+			table.insert(self.fly_objects_pool, fly_object)
+		end
+	end
+
+	self.notifications:update(dt)
+	self.notifications_errors:update(dt)
+	if self.views.gold_panel then
+		self.views.gold_panel:update(dt)
+	end
+	self.views.resources:update(dt)
+end
+
+function Script:notification_text(text)
+	local nodes = gui.clone_tree(self.vh.notification_text)
+	local root = assert(nodes["notification_text/root"])
+	local lbl = AutosizeLbl.new(assert(nodes["notification_text/title"]))
+	lbl:set_text(text)
+	self:notification_animate(root)
+end
+
+function Script:notification_merge_no_space()
+	local delay = socket.gettime() - self.notification_no_merge_space_last_time
+	if delay > 0.25 then
+		self.notification_no_merge_space_last_time = socket.gettime()
+		local nodes = gui.clone_tree(self.vh.notification_merge_no_space)
+		local root = assert(nodes["notification_merge_no_space/root"])
+		self:notification_animate(root, true)
+	end
+end
+
+function Script:notification_merge_max_level()
+	local delay = socket.gettime() - self.notification_no_merge_space_last_time
+	if delay > 0.25 then
+		self.notification_no_merge_space_last_time = socket.gettime()
+		local nodes = gui.clone_tree(self.vh.notification_merge_max_level)
+		local root = assert(nodes["notification_merge_max_level/root"])
+		self:notification_animate(root, true)
+	end
+end
+
+function Script:notification_animate(root, error)
+	--	WORLD.sounds:play_sound(WORLD.sounds.sounds.ui_task_completed_popup)
+	gui.set_color(root, COLOR_INVISIBLE)
+	gui.set_enabled(root, true)
+	local action = ACTIONS.Sequence.new()
+	action:add_action(ACTIONS.TweenGui.new_noctx({ object = root, property = "color",
+		from = COLOR_INVISIBLE, to = COLOR_NOTIFICATION_SHOW, time = 0.5,
+		easing = TWEEN.easing.inQuad }))
+	action:add_action(ACTIONS.Wait.new(2))
+	action:add_action(ACTIONS.TweenGui.new_noctx({ object = root, property = "color",
+		from = COLOR_NOTIFICATION_SHOW, to = COLOR_INVISIBLE, time = 1,
+		easing = TWEEN.easing.inQuad }))
+	action:add_action(function ()
+		gui.delete_node(root)
+	end)
+	if error then
+		self.notifications_errors:add_action(action)
+	else
+		self.notifications:add_action(action)
+	end
+end
+
+function Script:create_fly_object()
+	local fly_object = table.remove(self.fly_objects_pool)
+	if not fly_object then return end
+
+	gui.set_adjust_mode(fly_object.vh.icon, GUI_RESIZER.get_mode())
+	table.insert(self.fly_objects, fly_object)
+
+	return fly_object
+end
+
+function Script:fly_resource(resource, money, from, to, delay, speed_scale)
+	local split = 1
+	speed_scale = speed_scale or 1
+	--[[if (money < 10) then
+	elseif (money < 100) then
+		split = 2 + math.random(1, 2)
+	elseif (money < 300) then
+		split = 5 + math.random(1, 5)
+	elseif (money < 1000) then
+		split = 10 + math.random(1, 5)
+	end--]]
+	local pool_a = #self.fly_objects_pool / self.fly_objects_pool_max
+	local max_count = 8
+	if pool_a < 0.25 then
+		max_count = 1
+	elseif pool_a < 0.5 then
+		max_count = 4
+	end
+	split = math.min(money, max_count)
+	local values = {}
+	local split_value = math.floor(money / split)
+
+	for _ = 1, split - 1 do
+		table.insert(values, split_value)
+	end
+	table.insert(values, money - split_value * (split - 1))
+
+	delay = delay or 0
+
+	local screen_scale_x = RENDER.screen_size.w / 960
+	local screen_scale_y = RENDER.screen_size.h / 540
+
+	for _, value in ipairs(values) do
+		local fly_object = self:create_fly_object()
+		if fly_object then
+			gui.play_flipbook(fly_object.vh.icon, DEFS.RESOURCES.BY_ID[resource].icon)
+			local from_v
+			if from then
+				from_v = vmath.vector3(from)
+				local dx = 10
+				from_v.x = from_v.x + (-dx / 2 + math.random() * dx)
+				from_v.y = from_v.y + (-dx / 2 + math.random() * dx)
+				from_v.z = 0
+			end
+			fly_object:fly({
+				from = from_v, to = to, delay = delay, appear = true,
+				speed_x = (450 + math.random() * 60) * screen_scale_x * speed_scale,
+				speed_y = (500 + math.random() * 50) * screen_scale_y * speed_scale,
+				cb = function ()
+					local panel = resource == DEFS.RESOURCES.BY_ID.GOLD.id and self.views.gold_panel or self.views.coin_panel
+					panel:add_value(value)
+				end
+			})
+		else
+			local panel = self.views.resources
+			panel:add_value(resource, value)
+		end
+		delay = delay + math.random() * 0.1
+	end
+end
+
+function Script:on_resize()
+	BaseGuiScript.on_resize(self)
+	xmath.mul(TEMP_V, GUI_RESIZER.get_scale(2).scale, 0.4)
+	local scale_mode = GUI_RESIZER.get_mode()
+
+	for _, fly_object in ipairs(self.fly_objects) do
+		gui.set_adjust_mode(fly_object.vh.icon, scale_mode)
+		gui.set_scale(fly_object.vh.icon, TEMP_V)
+	end
+	for _, fly_object in ipairs(self.fly_objects_pool) do
+		gui.set_adjust_mode(fly_object.vh.icon, scale_mode)
+		gui.set_scale(fly_object.vh.icon, TEMP_V)
+	end
+
+	if RENDER.screen_size.aspect > 1 then
+		self.views.resources:set_object_per_line(10)
+		gui.set_position(self.views.resources.vh.root, vmath.vector3(0, -12, 0))
+		gui.set_parent(self.views.resources.vh.root, self.vh.top)
+	else
+		self.views.resources:set_object_per_line(2)
+		gui.set_position(self.views.resources.vh.root, vmath.vector3(-66, -65, 0))
+		gui.set_parent(self.views.resources.vh.root, self.vh.top_right)
+	end
+end
+
+function Script:location_changed()
+	--do not remove we don't change location_changed
+	--remove all fly objects
+	--[[for i = #self.fly_objects, 1, -1 do
+		local fly_object = self.fly_objects[i]
+		while not fly_object:is_animated() do
+			fly_object:update(10)
+		end
+		table.remove(self.fly_objects, i)
+
+		fly_object:reset()
+		table.insert(self.fly_objects_pool, fly_object)
+	end--]]
+end
+
+N28S.register(CLASS.new_instance(Script))

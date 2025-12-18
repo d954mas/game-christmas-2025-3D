@@ -1,0 +1,370 @@
+script: "/scenes/consent/consent_scene.gui_script"
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  size {
+    x: 1280.0
+    y: 720.0
+  }
+  color {
+    x: 0.529
+    y: 0.808
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "bg"
+  adjust_mode: ADJUST_MODE_STRETCH
+  layer: "below"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    x: 640.0
+    y: 360.0
+  }
+  size {
+    x: 1280.0
+    y: 720.0
+  }
+  color {
+    x: 0.101960786
+    y: 0.101960786
+    z: 0.101960786
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "fader"
+  adjust_mode: ADJUST_MODE_STRETCH
+  layer: "below"
+  inherit_alpha: true
+  alpha: 0.85
+}
+nodes {
+  position {
+    x: 480.0
+    y: 270.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "root/adjust"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  size {
+    x: 960.0
+    y: 540.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root/adjust"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  size {
+    x: 250.0
+    y: 300.0
+  }
+  type: TYPE_BOX
+  id: "modal"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    y: 177.0
+  }
+  scale {
+    x: 0.85
+    y: 0.85
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "CONSENT"
+  font: "main"
+  id: "title"
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "modal"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.1
+}
+nodes {
+  size {
+    x: 504.0
+    y: 430.0
+  }
+  type: TYPE_BOX
+  texture: "main/ui_panel"
+  id: "modal/bg1"
+  parent: "modal"
+  layer: "below"
+  inherit_alpha: true
+  slice9 {
+    x: 22.0
+    y: 22.0
+    z: 22.0
+    w: 22.0
+  }
+}
+nodes {
+  position {
+    x: -220.0
+    y: 145.0
+  }
+  scale {
+    x: 0.55
+    y: 0.55
+  }
+  size {
+    x: 800.0
+    y: 640.0
+  }
+  type: TYPE_TEXT
+  text: "We use data to personalize ads. By clicking \'ACCEPT\' you agree to the collection and processing of your data as described in our Privacy Policy.\n"
+  "You can decline, but ads may be less relevant."
+  font: "main"
+  id: "description"
+  pivot: PIVOT_NW
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  line_break: true
+  parent: "modal"
+  inherit_alpha: true
+  text_tracking: 0.1
+}
+nodes {
+  position {
+    x: -110.0
+    y: -135.0
+  }
+  size {
+    x: 190.0
+    y: 90.0
+  }
+  type: TYPE_BOX
+  id: "btn_accept/root"
+  parent: "modal"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 360.0
+    y: 150.0
+  }
+  type: TYPE_BOX
+  texture: "main/btn_collect"
+  id: "btn_accept/bg"
+  parent: "btn_accept/root"
+  layer: "below"
+  inherit_alpha: true
+  slice9 {
+    x: 15.0
+    y: 12.0
+    z: 15.0
+    w: 20.0
+  }
+}
+nodes {
+  position {
+    y: 2.0
+  }
+  scale {
+    x: 1.6
+    y: 1.6
+  }
+  size {
+    x: 206.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "ACCEPT"
+  font: "main"
+  id: "btn_accept/lbl"
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "btn_accept/bg"
+  inherit_alpha: true
+  text_tracking: 0.1
+}
+nodes {
+  position {
+    x: 110.0
+    y: -135.0
+  }
+  size {
+    x: 190.0
+    y: 90.0
+  }
+  type: TYPE_BOX
+  id: "btn_decline/root"
+  parent: "modal"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 360.0
+    y: 150.0
+  }
+  type: TYPE_BOX
+  texture: "main/btn_fight"
+  id: "btn_decline/bg"
+  parent: "btn_decline/root"
+  layer: "below"
+  inherit_alpha: true
+  slice9 {
+    x: 15.0
+    y: 12.0
+    z: 15.0
+    w: 20.0
+  }
+}
+nodes {
+  position {
+    y: 2.0
+  }
+  scale {
+    x: 1.6
+    y: 1.6
+  }
+  size {
+    x: 206.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "DECLINE"
+  font: "main"
+  id: "btn_decline/lbl"
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "btn_decline/bg"
+  inherit_alpha: true
+  text_tracking: 0.1
+}
+nodes {
+  position {
+    y: -34.0
+  }
+  scale {
+    x: 1.25
+    y: 1.25
+  }
+  size {
+    x: 180.0
+    y: 30.0
+  }
+  type: TYPE_BOX
+  id: "btn_privacy/root"
+  parent: "modal"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    x: 1.0
+    y: -15.0
+  }
+  size {
+    x: 170.0
+    y: 2.0
+  }
+  color {
+    x: 0.502
+    y: 0.6
+  }
+  type: TYPE_BOX
+  texture: "main/white"
+  id: "box"
+  parent: "btn_privacy/root"
+  inherit_alpha: true
+}
+nodes {
+  position {
+    y: 1.0
+  }
+  scale {
+    x: 0.55
+    y: 0.55
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  color {
+    x: 0.502
+    y: 0.6
+  }
+  type: TYPE_TEXT
+  text: "Privacy Policy."
+  font: "main"
+  id: "text"
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "btn_privacy/root"
+  inherit_alpha: true
+  shadow_alpha: 0.0
+  text_leading: 0.0
+  text_tracking: 0.1
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "text_numbers"
+}
+layers {
+  name: "text"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+max_nodes: 32
+max_dynamic_textures: 0

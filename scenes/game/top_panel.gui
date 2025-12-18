@@ -1,0 +1,472 @@
+script: "/scenes/game/top_panel.gui_script"
+fonts {
+  name: "main"
+  font: "/assets/fonts/main.font"
+}
+textures {
+  name: "main"
+  texture: "/assets/main.atlas"
+}
+nodes {
+  position {
+    x: 960.0
+    y: 540.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "top_right"
+  xanchor: XANCHOR_RIGHT
+  yanchor: YANCHOR_TOP
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    x: 480.0
+    y: 540.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "top"
+  yanchor: YANCHOR_TOP
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    y: -50.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "notification_text/root"
+  parent: "top"
+  layer: "top"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 520.0
+    y: 150.0
+  }
+  color {
+    x: 0.102
+    y: 0.2
+    z: 0.6
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "notification_text/bg"
+  parent: "notification_text/root"
+  layer: "top"
+  inherit_alpha: true
+  slice9 {
+    x: 15.0
+    y: 15.0
+    z: 15.0
+    w: 15.0
+  }
+  alpha: 0.75
+}
+nodes {
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  size {
+    x: 420.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "NEW SKIN UNLOCKED"
+  font: "main"
+  id: "notification_text/title"
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "notification_text/root"
+  layer: "top"
+  inherit_alpha: true
+  text_tracking: 0.075
+}
+nodes {
+  position {
+    x: -77.0
+  }
+  scale {
+    x: 0.35
+    y: 0.35
+  }
+  type: TYPE_BOX
+  id: "notification_text/icon"
+  parent: "notification_text/root"
+  layer: "top"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: -50.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "notification_merge_no_space/root"
+  parent: "top"
+  layer: "top"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 600.0
+    y: 150.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "notification_merge_no_space/bg"
+  parent: "notification_merge_no_space/root"
+  layer: "top"
+  inherit_alpha: true
+  slice9 {
+    x: 15.0
+    y: 15.0
+    z: 15.0
+    w: 15.0
+  }
+  alpha: 0.75
+}
+nodes {
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  size {
+    x: 420.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "CAN\'T MERGE. NO SPACE"
+  font: "main"
+  id: "notification_merge_no_space/title"
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "notification_merge_no_space/root"
+  layer: "top"
+  inherit_alpha: true
+  text_tracking: 0.075
+}
+nodes {
+  position {
+    y: -50.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "notification_merge_max_level/root"
+  parent: "top"
+  layer: "top"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 600.0
+    y: 150.0
+  }
+  color {
+    y: 0.0
+    z: 0.0
+  }
+  type: TYPE_BOX
+  texture: "main/bg_rounded"
+  id: "notification_merge_max_level/bg"
+  parent: "notification_merge_max_level/root"
+  layer: "top"
+  inherit_alpha: true
+  slice9 {
+    x: 15.0
+    y: 15.0
+    z: 15.0
+    w: 15.0
+  }
+  alpha: 0.75
+}
+nodes {
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  size {
+    x: 420.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "CAN\'T MERGE. MAX LVL"
+  font: "main"
+  id: "notification_merge_max_level/title"
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "notification_merge_max_level/root"
+  layer: "top"
+  inherit_alpha: true
+  text_tracking: 0.075
+}
+nodes {
+  position {
+    x: -25.0
+    y: -15.0
+  }
+  scale {
+    x: 1.1
+    y: 1.1
+  }
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "resources/root"
+  pivot: PIVOT_W
+  parent: "top"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "resources/content"
+  parent: "resources/root"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.34
+    y: 0.34
+  }
+  size {
+    x: 128.0
+    y: 128.0
+  }
+  type: TYPE_BOX
+  texture: "main/top_panel_1"
+  id: "resources/bg"
+  pivot: PIVOT_NW
+  parent: "resources/content"
+  layer: "below"
+  inherit_alpha: true
+  slice9 {
+    x: 64.0
+    y: 64.0
+    z: 64.0
+    w: 64.0
+  }
+}
+nodes {
+  scale {
+    x: 0.72
+    y: 0.72
+  }
+  size {
+    x: 80.0
+    y: 40.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "cell_resource/root"
+  pivot: PIVOT_E
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "resources/content"
+  layer: "below"
+  inherit_alpha: true
+  slice9 {
+    x: 14.0
+    y: 14.0
+    z: 14.0
+    w: 14.0
+  }
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  type: TYPE_BOX
+  texture: "main/icon_gold_border"
+  id: "cell_resource/icon"
+  parent: "cell_resource/root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 9.722222
+    y: -9.722222
+  }
+  scale {
+    x: 0.6
+    y: 0.6
+  }
+  size {
+    x: 100.0
+    y: 100.0
+  }
+  type: TYPE_TEXT
+  text: "0"
+  font: "main"
+  id: "cell_resource/lbl"
+  outline {
+    x: 0.223
+    y: 0.19
+    z: 0.163
+  }
+  shadow {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+  }
+  parent: "cell_resource/root"
+  layer: "text"
+  inherit_alpha: true
+  text_tracking: 0.1
+}
+nodes {
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "fly_object/root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  layer: "top"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  scale {
+    x: 0.4
+    y: 0.4
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "fly_object/icon"
+  parent: "fly_object/root"
+  layer: "top"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    y: 270.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "left"
+  xanchor: XANCHOR_LEFT
+  pivot: PIVOT_W
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    x: 80.0
+    y: 15.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "offer_fly_point"
+  parent: "left"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 480.0
+    y: 270.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "offer_rebirth"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 480.0
+  }
+  type: TYPE_BOX
+  texture: "main/empty"
+  id: "bottom"
+  yanchor: YANCHOR_BOTTOM
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+layers {
+  name: "ore_text"
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "text_numbers"
+}
+layers {
+  name: "text"
+}
+layers {
+  name: "top"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+max_nodes: 1024
+max_dynamic_textures: 0

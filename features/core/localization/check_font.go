@@ -1,4 +1,4 @@
 components {
   id: "check_font"
-  component: "/localization/check_font.script"
+  component: "/features/core/localization/check_font.script"
 }

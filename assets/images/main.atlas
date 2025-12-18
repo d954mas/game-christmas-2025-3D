@@ -4,4 +4,52 @@ images {
 images {
   image: "/assets/images/white.png"
 }
+images {
+  image: "/assets/images/gui/bg_rounded.png"
+}
+images {
+  image: "/scenes/settings/assets/music_on.png"
+}
+images {
+  image: "/scenes/settings/assets/music_off.png"
+}
+images {
+  image: "/scenes/settings/assets/sound.png"
+}
+images {
+  image: "/features/ui/slider/slider_tumbler.png"
+}
+images {
+  image: "/scenes/settings/assets/zoom.png"
+}
+images {
+  image: "/assets/images/gui/buttons/btn_close.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_de.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_en.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_es.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_fr.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_it.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_ja.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_ko.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_ru.png"
+}
+images {
+  image: "/features/core/localization/flags/flag_zh.png"
+}
 extrude_borders: 2

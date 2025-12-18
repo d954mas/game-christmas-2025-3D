@@ -1,0 +1,8 @@
+name: "gui"
+tags: "gui"
+vertex_program: "/builtins/materials/gui.vp"
+fragment_program: "/features/ui/gui_circle/gui_circle.fp"
+vertex_constants {
+  name: "view_proj"
+  type: CONSTANT_TYPE_VIEWPROJ
+}
