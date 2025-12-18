@@ -1,7 +1,7 @@
 local GAME = require "game.game_world"
 local AutosizeLbl = require "libs.gui.autosize_label"
 
-local StorageDebugEcs = require "features.debug.debug_gui.debug_gui_storage_part"
+local StorageDebugEcs = require "features.core.ecs.ecs_debug_gui_storage_part"
 
 local EcsDebugView = {}
 
@@ -82,6 +82,8 @@ function EcsDebugFeature:on_debug_gui_added(gui_script)
 	end)
 	gui_script:add_game_checkbox("ECS", self.storage:is_show(), function (checkbox)
 		self.storage:set_show(checkbox.checked)
+		EcsDebugView:set_visible(checkbox.checked)
+		print(checkbox.checked)
 	end)
 end
 

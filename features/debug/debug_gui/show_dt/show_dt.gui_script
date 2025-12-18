@@ -32,7 +32,7 @@ function Script:init()
 end
 
 function Script:update(dt)
-	local enabled = false and STORAGE.debug_gui_storage:is_show()
+	local enabled = STORAGE.debug_gui_storage:is_show()
 	if (self.enabled ~= enabled) then
 		self.enabled = enabled
 		gui.set_enabled(self.vh.root, self.enabled)

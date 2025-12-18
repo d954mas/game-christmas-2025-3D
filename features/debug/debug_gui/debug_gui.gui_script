@@ -80,7 +80,7 @@ end
 
 function Script:add_game_checkbox(title, checked, on_change)
 	local idx = #self.game_checkboxes + 1
-	local y = (idx - 1) * -50
+	local y = (idx - 1) * -30
 	local nodes = gui.clone_tree(gui.get_node("panel_game/checkbox_base/root"))
 	local template_name = "panel_game/checkbox_base/checkbox_" .. idx
 	gui.set_id(nodes["panel_game/checkbox_base/root"], template_name .. "/root")
