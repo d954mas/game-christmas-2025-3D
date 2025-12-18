@@ -1,4 +1,4 @@
-local MAP_HELPER = require "features.tiled.levels.parser.map_helper"
+local MAP_HELPER = require "features.gameplay.tiled.levels.parser.map_helper"
 local CLASS = require "libs.class"
 local LUME = require "libs.lume"
 

@@ -121,7 +121,7 @@ function M.global_on_input(action_id, action)
             end
 
             local ok, error = pcall(listener.instance.on_input, listener.instance, action_id, action)
-            if not ok then LOG.e(error) end
+            if not ok then LOG.e(error, nil) end
             if ok and error then return end
 
             if listener.script_instance ~= current_script_instance then

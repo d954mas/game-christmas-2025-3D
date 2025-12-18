@@ -24,7 +24,7 @@ end
 
 local M = {}
 
-local MAP_HELPER = require "assets.levels.parser.map_helper"
+local MAP_HELPER = require "features.gameplay.tiled.levels.parser.map_helper"
 
 local TAG = "LEVEL_PARSER"
 

@@ -1,8 +1,8 @@
 local CONSTANTS = require "libs.constants"
-local PARSER = require "features.tiled.levels.parser.parser"
-local MAP_HELPER = require "features.tiled.levels.parser.map_helper"
+local PARSER = require "features.gameplay.tiled.levels.parser.parser"
+local MAP_HELPER = require "features.gameplay.tiled.levels.parser.map_helper"
 local LOG = require "libs.log"
-local Level = require "game.levels.level"
+local Level = require "features.gameplay.tiled.level"
 
 local TAG = "LEVELS"
 

@@ -24,4 +24,4 @@ for f in $(find ./levels/sources -name '*.tmx'); do
 	"$TILED_PATH" --export-map lua $f ./levels/lua/$newname
 done;
 
-#read -t 3 -p "Press any key or wait 3 second"
+read -t 3 -p "Press any key or wait 3 second"

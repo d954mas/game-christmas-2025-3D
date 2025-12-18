@@ -32,6 +32,7 @@ local ECS_DEBUG_FEATURE = require "features.core.ecs.ecs_debug_feature"
 
 ---#region FEATURES GAME
 local CAMERAS_FEATURE = require "features.core.camera.cameras_feature"
+local TILED_LEVELS_FEATURE = require "features.gameplay.tiled.tiled_levels_feature"
 ---#endregion
 
 ---endregion
@@ -72,6 +73,7 @@ function Script:init()
 
 	---features game
 	FEATURES:add_feature(CAMERAS_FEATURE)
+	FEATURES:add_feature(TILED_LEVELS_FEATURE)
 
 	-- features storage
 	FEATURES:add_feature(STORAGE_FEATURE) --storage last so all features received on_storage_init
