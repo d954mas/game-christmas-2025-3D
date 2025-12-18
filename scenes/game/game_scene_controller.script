@@ -5,12 +5,13 @@ local CONTEXTS = require "libs.contexts_manager"
 local GAME = require "game.game_world"
 local HASHES = require "libs.hashes"
 local SOUNDS = require "features.core.sounds.sounds"
+local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
 ---@class ScriptGame
 local Script = {}
 
 function Script:init()
 	CONTEXTS:register(CONTEXTS.NAMES.GAME, self)
-	INPUT.acquire(self, nil, SM:get_scene_by_name(SM.SCENES.GAME))
+	INPUT.acquire(self, nil, SM:get_scene_by_name(SCENES_FEATURE.SCENES.GAME))
 	self.fixed_updates = 0
 
 
@@ -47,8 +48,8 @@ end
 
 function Script:on_input(action_id, action)
 	if (action_id == HASHES.INPUT.ESCAPE and action.pressed) then
-		if (not SM:is_working() and SM:get_top()._name == SM.SCENES.GAME) then
-			SM:show(SM.MODALS.SETTINGS)
+		if (not SM:is_working() and SM:get_top()._name == SCENES_FEATURE.SCENES.GAME) then
+			SM:show(SCENES_FEATURE.MODALS.SETTINGS)
 		end
 	end
 end

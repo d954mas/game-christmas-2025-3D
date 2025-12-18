@@ -36,7 +36,6 @@ function M:check_consent(cb)
         --print("is no_gdpr_languages:", no_gdpr_languages[code])
         need_show_consent = need_show_consent and not no_gdpr_languages[code]
         --print("language:" .. code, "need show:", tostring(need_show_consent))
-        need_show_consent = true
         if need_show_consent then
             SM:show(M.CONSENT_SCENE)
             --show consent scene

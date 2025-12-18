@@ -27,13 +27,13 @@ function Sounds:initialize()
 			{ name = "step_1", url = msg.url("game_scene:/root#s_step_1") },
 			{ name = "step_2", url = msg.url("game_scene:/root#s_step_2") },
 			{ name = "step_3", url = msg.url("game_scene:/root#s_step_3"),
-				resource = "/assets/sounds/step3.wavc", skip_play = true },
+				resource = "/features/gameplay/footstep/sounds/step3_empty.wavc", skip_play = true },
 			{ name = "step_4", url = msg.url("game_scene:/root#s_step_4"),
-				resource = "/assets/sounds/step3.wavc", skip_play = true },
+				resource = "/features/gameplay/footstep/sounds/step4_empty.wavc", skip_play = true },
 			{ name = "step_5", url = msg.url("game_scene:/root#s_step_5"),
-				resource = "/assets/sounds/step3.wavc", skip_play = true },
+				resource = "/features/gameplay/footstep/sounds/step5_empty.wavc", skip_play = true },
 			{ name = "step_6", url = msg.url("game_scene:/root#s_step_6"),
-				resource = "/assets/sounds/step3.wavc", skip_play = true },
+				resource = "/features/gameplay/footstep/sounds/step6_empty.wavc", skip_play = true },
 		},
 	}
 
@@ -81,10 +81,10 @@ function Sounds:liveupdate_load_game_sound()
 	--game sound replace resource so it will be paused when scene is paused
 	--use different files for every component. Resources with same name will have same content
 	local game_sounds = {
-		{ sound = self.sounds.steps[3],  resource = "/assets/sounds/step3.oggc" },
-		{ sound = self.sounds.steps[4],  resource = "/assets/sounds/step4.oggc" },
-		{ sound = self.sounds.steps[5],  resource = "/assets/sounds/step5.oggc" },
-		{ sound = self.sounds.steps[6],  resource = "/assets/sounds/step6.oggc" },
+		{ sound = self.sounds.steps[3],  resource = "/features/gameplay/footstep/sounds/step3.oggc" },
+		{ sound = self.sounds.steps[4],  resource = "/features/gameplay/footstep/sounds/step4.oggc" },
+		{ sound = self.sounds.steps[5],  resource = "/features/gameplay/footstep/sounds/step5.oggc" },
+		{ sound = self.sounds.steps[6],  resource = "/features/gameplay/footstep/sounds/step6.oggc" },
 	}
 	for _, v in ipairs(game_sounds) do
 		local s = assert(sys.load_resource(v.resource))

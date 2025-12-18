@@ -15,6 +15,7 @@ local STORAGE_FEATURE = require "features.core.storage.storage_feature"
 local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
 local SAFEAREA_FEATURE = require "features.core.safearea.safearea_feature"
 local LOCALIZATION_FEATURE = require "features.core.localization.localization_feature"
+local SOUNDS_FEATURE = require "features.core.sounds.sounds_feature"
 ---#endregion
 
 ---#region FEATURES SDK
@@ -58,9 +59,10 @@ function Script:init()
 	--features base
 	FEATURES:add_feature(INPUT_FEATURE)
 	FEATURES:add_feature(LIVEUPDATE_FEATURE)
-	--FEATURES:add_feature(SCENES_FEATURE)
+	FEATURES:add_feature(SCENES_FEATURE)
 	FEATURES:add_feature(SAFEAREA_FEATURE)
 	FEATURES:add_feature(LOCALIZATION_FEATURE)
+	FEATURES:add_feature(SOUNDS_FEATURE)
 
 	---features sdk
 	FEATURES:add_feature(ANALYTICS_FEATURE)

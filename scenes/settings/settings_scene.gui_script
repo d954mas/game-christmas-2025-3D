@@ -6,17 +6,16 @@ local CONSTANTS = require "libs.constants"
 local HASHES = require "libs.hashes"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local SDK = require "features.sdk.ads.sdk"
-local LIVEUPDATE = require "features.core.liveupdate.liveupdate"
 local SOUNDS = require "features.core.sounds.sounds"
 local SOUNDS_FEATURE = require "features.core.sounds.sounds_feature"
 local LOCALIZATION = require "features.core.localization.localization"
 local LOCALIZATION_FEATURE = require "features.core.localization.localization_feature"
 local AutosizeLabel = require "libs.gui.autosize_label"
 local ButtonScale = require "libs.gui.button_scale"
-local Checkbox = require "libs.gui.checkbox"
 local BaseGuiScript = require "features.ui.base_gui_script"
 local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
 local Slider = require "libs.gui.slider"
+local PrivacyPolicyFeature = require "features.sdk.privacy_policy.privacy_policy_feature"
 
 ---@class SettingsSceneGuiScript:BaseGuiScript
 local Script = CLASS.class("GameSceneGuiScript", BaseGuiScript)
@@ -32,7 +31,7 @@ function Script:new_flag(language)
 	flag.language = language
 	flag.selected_node = gui.get_node(template_name .. "/selected")
 	flag:set_input_listener(function ()
-		SOUNDS:play_sound(SOUNDS.sounds.btn_1)
+		SOUNDS:play_sound(SOUNDS.sounds.btn_click)
 		LOCALIZATION_FEATURE.storage:language_set(flag.language)
 	end)
 	return flag
@@ -49,7 +48,6 @@ function Script:bind_vh()
 	self.views = {
 		btn_close = ButtonScale.new("btn_close"),
 		btn_privacy = ButtonScale.new("btn_privacy"),
-		checkbox_draw_shadows = Checkbox.new("checkbox_draw_shadows"),
 		slider_sound = Slider.new_fg("sound/slider"),
 		slider_music = Slider.new_fg("music/slider"),
 		slider_camera_zoom = Slider.new_fg("zoom/slider"),
@@ -64,7 +62,6 @@ function Script:bind_vh()
 			ja = self:new_flag("ja"),
 			ko = self:new_flag("ko"),
 		},
-		shadows_lbl = AutosizeLabel.new("checkbox_draw_shadows/lbl"),
 		music_lbl = AutosizeLabel.new("music/title"),
 		sound_lbl = AutosizeLabel.new("sound/title"),
 		camera_zoom_lbl = AutosizeLabel.new("zoom/title1"),
@@ -108,7 +105,7 @@ function Script:init_gui()
 
 	self.views.btn_privacy:set_input_listener(function ()
 		--WORLD.sounds:play_sound(WORLD.sounds.sounds.btn_1)
-		SM:replace(SM.MODALS.PRIVACY)
+		SM:replace(PrivacyPolicyFeature.PRIVACY_POLICY_SCENE)
 	end)
 	for k, flag in pairs(self.views.flags) do
 		flag.language = k

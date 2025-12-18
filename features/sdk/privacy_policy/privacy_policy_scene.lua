@@ -6,6 +6,7 @@ local BaseScene = require "features.core.scenes.scene_manager.scene"
 
 ---@class PrivacyPolicyScene:Scene
 local Scene = CLASS.class("PrivacyPolicyScene", BaseScene)
+Scene.CONTEXT_NAME = "PRIVACY_POLICY_GUI"
 
 function Scene.new() return CLASS.new_instance(Scene) end
 
@@ -18,12 +19,12 @@ end
 function Scene:transition(transition)
 	if (transition == SM_ENUMS.TRANSITIONS.ON_HIDE or
 			transition == SM_ENUMS.TRANSITIONS.ON_BACK_HIDE) then
-		local ctx = CONTEXTS:set_context_top_by_name(CONTEXTS.NAMES.PRIVACY_POLICY_GUI)
+		local ctx = CONTEXTS:set_context_top_by_name(Scene.CONTEXT_NAME)
 		ctx.data:animate_hide()
 		ctx:remove()
 		LUME.coroutine_wait(0.15)
 	elseif (transition == SM_ENUMS.TRANSITIONS.ON_SHOW) then
-		local ctx = CONTEXTS:set_context_top_by_name(CONTEXTS.NAMES.PRIVACY_POLICY_GUI)
+		local ctx = CONTEXTS:set_context_top_by_name(Scene.CONTEXT_NAME)
 		ctx.data:animate_show()
 		ctx:remove()
 		LUME.coroutine_wait(0.15)

@@ -1,18 +1,20 @@
 local N28S = require "libs.n28s"
 local CLASS = require "libs.class"
-local CONTEXTS = require "libs.contexts_manager"
 local CONSTANTS = require "libs.constants"
 local HASHES = require "libs.hashes"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local ButtonScale = require "libs.gui.button_scale"
 local BaseGuiScript = require "features.ui.base_gui_script"
 local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
+local PrivacyPolicyScene = require "features.sdk.privacy_policy.privacy_policy_scene"
+local CONSENT_FEATURE = require "features.sdk.consent.consent_feature"
+local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
 
 ---@class PrivacyPolicySceneGuiScript:BaseGuiScript
 local Script = CLASS.class("PrivacyPolicySceneGuiScript", BaseGuiScript)
 
 function Script:init()
-	BaseGuiScript.init(self, { context_name = CONTEXTS.NAMES.PRIVACY_POLICY_GUI })
+	BaseGuiScript.init(self, { context_name = PrivacyPolicyScene.CONTEXT_NAME })
 end
 
 function Script:bind_vh()
@@ -68,10 +70,10 @@ end
 
 function Script:close()
 	if not SM:is_working() then
-		if SM.stack:peek(1) and SM.stack:peek(1)._name == SM.SCENES.CONSENT then
+		if SM.stack:peek(1) and SM.stack:peek(1)._name == CONSENT_FEATURE.CONSENT_SCENE then
 			SM:back()
 		else
-			SM:replace(SM.MODALS.SETTINGS)
+			SM:replace(SCENES_FEATURE.MODALS.SETTINGS)
 		end
 	end
 end

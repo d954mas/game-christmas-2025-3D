@@ -1,5 +1,5 @@
 local SM = require "features.core.scenes.scene_manager.scene_manager"
-local SCENE_LOADER = require "features.core.scenes.scene_manager.scene_enums"
+local SCENE_LOADER = require "features.core.scenes.scene_manager.scene_loader"
 local HASH_PROXY_LOADED = hash("proxy_loaded")
 local LIVEUPDATE_PROXY_URL = msg.url("main:/root#liveupdate")
 local SDK = require "features.sdk.ads.sdk"
@@ -31,7 +31,7 @@ function M:update(dt)
     local top_scene = SM:get_top()
 	if (top_scene and not SM:is_working() and not SDK.show_ad) then
 		local scene_name = top_scene._name
-		if (scene_name ~= SM.SCENES.GAME) then
+		if (scene_name ~= M.SCENES.GAME) then
 			SDK:gameplay_stop()
 		elseif (GAME.state.first_move) then
 			SDK:gameplay_start()
