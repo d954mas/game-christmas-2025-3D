@@ -15,6 +15,15 @@ local Script = CLASS.class("ConsentScreenGuiScript", BaseGuiScript)
 
 function Script:init()
 	BaseGuiScript.init(self, { context_name = ConsentScene.CONTEXT_NAME })
+
+	if (html_utils) then
+		-- Player see loading. So we can collect garbage and user can't see it.
+		collectgarbage("collect")
+		timer.delay(0, false, function ()
+			html_utils.hide_bg()
+			html_utils.focus()
+		end)
+	end
 end
 
 function Script:bind_vh()
@@ -40,17 +49,17 @@ function Script:init_gui()
 	self.fader_color = gui.get_color(self.vh.fader)
 	gui.set_color(self.vh.fader, vmath.vector4(self.fader_color.x, self.fader_color.y, self.fader_color.z, 0))
 
-	self.views.btn_accept:set_input_listener(function()
+	self.views.btn_accept:set_input_listener(function ()
 		STORAGE.consent_storage:accept()
 		self:close()
 	end)
 
-	self.views.btn_decline:set_input_listener(function()
+	self.views.btn_decline:set_input_listener(function ()
 		STORAGE.consent_storage:decline()
 		self:close()
 	end)
 
-	self.views.btn_privacy:set_input_listener(function()
+	self.views.btn_privacy:set_input_listener(function ()
 		SM:show(PRIVACY_POLICY_FEATURE.PRIVACY_POLICY_SCENE)
 	end)
 end
@@ -80,6 +89,5 @@ function Script:on_input(action_id, action)
 	self.views.btn_decline:on_input(action_id, action)
 	self.views.btn_privacy:on_input(action_id, action)
 end
-
 
 N28S.register(CLASS.new_instance(Script))
