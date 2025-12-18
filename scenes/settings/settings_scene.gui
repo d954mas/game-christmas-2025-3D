@@ -694,7 +694,7 @@ nodes {
 }
 nodes {
   position {
-    y: -20.0
+    y: 16.0
   }
   scale {
     x: 0.85

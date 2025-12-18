@@ -1,4 +1,5 @@
 const fs = require('fs');
+const path = require('path');
 const express = require("express");
 const {google} = require('googleapis');
 const gdoc = require("./gdoc");
@@ -95,6 +96,74 @@ function save_file_string(data,path){
     });
 }
 
+function formatFontCharacters(symbols) {
+    const asciiChars = [];
+    const nonAsciiBytes = [];
+
+    for (const char of symbols) {
+        const codePoint = char.codePointAt(0);
+        if (codePoint < 128) {
+            asciiChars.push(char);
+        } else {
+            const utf8Bytes = Buffer.from(char);
+            utf8Bytes.forEach(byte => {
+                nonAsciiBytes.push('\\' + byte.toString(8).padStart(3, '0'));
+            });
+        }
+    }
+
+    const escapedAscii = asciiChars.join('')
+        .replace(/\\/g, '\\\\')
+        .replace(/"/g, '\\"')
+        .replace(/\n/g, '\\n')
+        .replace(/\r/g, '\\r');
+
+    const lines = [`characters: "${escapedAscii}"`];
+    if (nonAsciiBytes.length) {
+        lines.push(`  "${nonAsciiBytes.join('')}"`);
+    }
+    return lines;
+}
+
+function updateFontCharacters(fontPath, symbols) {
+    const absolutePath = path.isAbsolute(fontPath) ? fontPath : path.resolve(__dirname, fontPath);
+    const content = fs.readFileSync(absolutePath, 'utf8');
+    const eol = content.includes('\r\n') ? '\r\n' : '\n';
+    const lines = content.split(/\r?\n/);
+
+    let start = -1;
+    let end = -1;
+    for (let i = 0; i < lines.length; i++) {
+        if (lines[i].trim().startsWith('characters:')) {
+            start = i;
+            end = i + 1;
+            while (end < lines.length && lines[end].trim().startsWith('"')) {
+                end++;
+            }
+            break;
+        }
+    }
+
+    if (start === -1) {
+        throw new Error(`characters block not found in ${absolutePath}`);
+    }
+
+    const formatted = formatFontCharacters(symbols);
+    const newLines = [
+        ...lines.slice(0, start),
+        ...formatted,
+        ...lines.slice(end)
+    ];
+
+    let newContent = newLines.join(eol);
+    if (!newContent.endsWith(eol)) {
+        newContent += eol;
+    }
+
+    fs.writeFileSync(absolutePath, newContent, 'utf8');
+    console.log(`Updated font characters: ${absolutePath}`);
+}
+
 async function download_localization(sheets, range, auth, spreadsheetId) {
     console.log("****** LOCALIZATION PARSE BEGIN ******");
     let rows = await gdoc.get(sheets, auth, spreadsheetId, range);
@@ -174,6 +243,10 @@ async function main(auth) {
     save_file(symbols_list_small,"./localization/symbol_list_small.txt")
 	save_file_string(font_forge_all, "localization/font_forge_all.txt")
 	save_file_string(font_forge_small, "localization/font_forge_small.txt")
+
+    const projectRoot = path.resolve(__dirname, "../../../..");
+    updateFontCharacters(path.join(projectRoot, "assets/fonts/main.font"), symbols_list_small);
+    updateFontCharacters(path.join(projectRoot, "assets/fonts/main_all.font"), symbols_list_all);
 
     console.log("finish");
 
