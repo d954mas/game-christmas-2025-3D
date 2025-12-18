@@ -82,13 +82,8 @@ nodes {
     x: 394.0
     y: 404.0
   }
-  color {
-    x: 0.502
-    y: 0.502
-    z: 0.502
-  }
   type: TYPE_BOX
-  texture: "main/bg_rounded"
+  texture: "main/ui_panel"
   id: "modal/bg1"
   parent: "modal"
   layer: "below"

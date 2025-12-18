@@ -187,7 +187,7 @@ nodes {
     y: 150.0
   }
   type: TYPE_BOX
-  texture: "main/btn_collect"
+  texture: "main/btn_accept"
   id: "btn_accept/bg"
   parent: "btn_accept/root"
   layer: "below"
@@ -200,9 +200,6 @@ nodes {
   }
 }
 nodes {
-  position {
-    y: 2.0
-  }
   scale {
     x: 1.6
     y: 1.6
@@ -250,7 +247,7 @@ nodes {
     y: 150.0
   }
   type: TYPE_BOX
-  texture: "main/btn_fight"
+  texture: "main/btn_cancel"
   id: "btn_decline/bg"
   parent: "btn_decline/root"
   layer: "below"
@@ -263,9 +260,6 @@ nodes {
   }
 }
 nodes {
-  position {
-    y: 2.0
-  }
   scale {
     x: 1.6
     y: 1.6

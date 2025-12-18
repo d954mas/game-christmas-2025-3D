@@ -55,4 +55,19 @@ images {
 images {
   image: "/assets/images/gui/ui_panel.png"
 }
+images {
+  image: "/assets/images/gui/buttons/btn_ads.png"
+}
+images {
+  image: "/assets/images/gui/buttons/btn_accept.png"
+}
+images {
+  image: "/assets/images/gui/buttons/btn_cancel.png"
+}
+images {
+  image: "/assets/images/gui/buttons/btn_gold.png"
+}
+images {
+  image: "/assets/images/gui/buttons/btn_disable.png"
+}
 extrude_borders: 2
