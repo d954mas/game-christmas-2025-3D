@@ -10,6 +10,7 @@ embedded_instances {
   "  id: \"liveupdate\"\n"
   "  type: \"collectionproxy\"\n"
   "  data: \"collection: \\\"/features/core/liveupdate/liveupdate.collection\\\"\\n"
+  "exclude: true\\n"
   "\"\n"
   "}\n"
   ""

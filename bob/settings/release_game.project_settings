@@ -9,4 +9,4 @@ version = release
 target = OTHER
 
 [native_extension]
-app_manifest = project/app_manifest_release.appmanifest
+app_manifest = app_manifest_release.appmanifest

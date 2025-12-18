@@ -1,6 +1,6 @@
 [liveupdate]
 mode = Zip
-publickey = C:\projects\game-club-jam\bob\liveupdate\public.der
-privatekey = C:\projects\game-club-jam\bob\liveupdate\private.der
-zip-filepath = C:\projects\game-club-jam\bob\liveupdate\content
+publickey = \bob\liveupdate\public.der
+privatekey =\bob\liveupdate\private.der
+zip-filepath = \bob\liveupdate\content
 
