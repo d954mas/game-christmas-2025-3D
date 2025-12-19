@@ -82,4 +82,58 @@ images {
 images {
   image: "/assets/images/player.png"
 }
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_1.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_2.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_3.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_4.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_5.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_6.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_7.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_8.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_9.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_10.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_11.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_12.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_13.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_14.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_15.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_ground_16.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_road_1.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/tiles/tile_road_2.png"
+}
 extrude_borders: 2

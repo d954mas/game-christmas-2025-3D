@@ -5,6 +5,15 @@ local LUME = require "libs.lume"
 
 local HASH_POSITION = hash("position")
 local HASH_TEXCOORD0 = hash("texcoord0")
+local HASH_AABB = hash("aabb")
+
+local FACTORY_URL = msg.url("game_scene:/root#factory_tiled_layer")
+local PARTS = {
+    ROOT = hash("/root"),
+    MESH_COMP = hash("mesh"),
+}
+
+local RESOURCE_IDX = 0
 
 
 --   1 Quad == 2 triangles == 6 vertices
@@ -26,22 +35,45 @@ local TILE_UV_IDX = {
     1, 3, 4
 }
 
+
+local function tiled_create_default_native_buffer()
+    return buffer.create(1, {
+        { name = hash("position"),  type = buffer.VALUE_TYPE_FLOAT32, count = 3 },
+        { name = hash("texcoord0"), type = buffer.VALUE_TYPE_FLOAT32, count = 2 },
+    })
+end
+
+local function tiled_create_new_buffer()
+    RESOURCE_IDX = RESOURCE_IDX + 1
+    local name = "/runtime_buffer_tiled_" .. RESOURCE_IDX .. ".bufferc"
+    local new_buffer = resource.create_buffer(name, { buffer = tiled_create_default_native_buffer() })
+
+    ---@class TiledBufferResourceData
+    local buffer_resource = {}
+    buffer_resource.name = name
+    buffer_resource.resource = new_buffer
+
+    return buffer_resource
+end
+
+
 ---@class DrawTileLayerSystem:EcsSystem
 local System = CLASS.class("DrawTileLayerSystem", ECS.System)
 function System.new() return CLASS.new_instance(System) end
 
-local function create_layer(id, tiled_layers, atlas)
-    local url = msg.url(assert(id))
-    local url_vertices = go.get(url, "vertices")
-    ---@diagnostic disable-next-line: param-type-mismatch
-    local buffer = resource.get_buffer(url_vertices)
-    go.set(url, 'texture0', atlas.texture)
+local function create_layer(tiled_layers, atlas)
+    local objects = collectionfactory.create(FACTORY_URL, nil, nil)
+    local root = msg.url(assert(objects[PARTS.ROOT]))
+    local mesh = LUME.url_component_from_url(root, PARTS.MESH_COMP)
+    local resource = tiled_create_new_buffer()
+    go.set(mesh, "vertices", resource.resource)
+    go.set(mesh, 'texture0', atlas.texture)
 
     return {
-        url = url,
-        url_vertices = url_vertices,
+        url = mesh,
+        resource = resource.resource,
         tiled_layers = assert(tiled_layers),
-        buffer = buffer,
+        buffer = nil,
         buffer_size = -1,
         buffer_stream_position = {},
         buffer_stream_texcoord0 = {},
@@ -125,8 +157,6 @@ function System:update_layer_mesh(layer, x1, y1, x2, y2)
 
                         index_p = index_p + 3
 
-
-
                         -- fill UV texture coorinates
                         local u = uv_idx[TILE_UV_IDX[i]] * 2 - 1
                         texcoord0[index_texcoord + 1] = uv[u]
@@ -148,17 +178,17 @@ function System:update_layer_mesh(layer, x1, y1, x2, y2)
     end
 
 
-    game.fill_stream_floats(layer.buffer, HASH_POSITION, 3, positions)
-    game.fill_stream_floats(layer.buffer, HASH_TEXCOORD0, 2, texcoord0)
+    buffer_utils.fill_stream_floats(layer.buffer, HASH_POSITION, 3, positions)
+    buffer_utils.fill_stream_floats(layer.buffer, HASH_TEXCOORD0, 2, texcoord0)
 
-    buffer.set_metadata(layer.buffer, hash("AABB"), { x1 * tile_size, y1 * tile_size, 0, (x2 + 1) * tile_size, (y2 + 1) * tile_size, 0 },
+    buffer.set_metadata(layer.buffer, HASH_AABB, { x1 * tile_size, y1 * tile_size, 0, (x2 + 1) * tile_size, (y2 + 1) * tile_size, 0 },
         buffer.VALUE_TYPE_FLOAT32)
 
-    resource.set_buffer(layer.url_vertices, layer.buffer)
+    resource.set_buffer(layer.resource, layer.buffer, {transfer_ownership = true})
 end
 
 function System:init_atlas()
-    local atlas_path = hash("assets/images/main.atlasc")
+    local atlas_path = hash("/assets/images/main.a.texturesetc")
     local atlas = resource.get_atlas(atlas_path)
     ---@diagnostic disable-next-line: param-type-mismatch
     local texture = hash(atlas.texture)
@@ -207,15 +237,15 @@ function System:on_add_to_world()
     local row_size = math.ceil(self.level.data.size.h / rows)
     local column_size = math.ceil(self.level.data.size.w / columns)
     local x, y = 0, 0
-    local layers_list = { layers.ground, layers.front }
+    local layers_list = { layers.ground, layers.road }
     local tile_idx = 1
     for _ = 1, rows do
         local y2 = math.min(y + row_size - 1, self.level.data.size.h - 1)
         x = 0
         for _ = 1, columns do
             local x2 = math.min(x + column_size - 1, self.level.data.size.w - 1)
-            
-            local layer = create_layer("game_scene:/tiles#tile_" .. tile_idx, layers_list, self.atlas_tile)
+
+            local layer = create_layer(layers_list, self.atlas_tile)
             self:update_layer_mesh(layer, x, y, x2, y2)
             --print(string.format("cell x(%d %d) y(%d %d)", x, x2, y, y2))
             x = x + column_size

@@ -92,5 +92,11 @@ embedded_instances {
   "  data: \"prototype: \\\"/features/gameplay/player/player2d.collection\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_tiled_layer\"\n"
+  "  type: \"collectionfactory\"\n"
+  "  data: \"prototype: \\\"/features/gameplay/tiled/factory_tiled_layer_nearest.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }

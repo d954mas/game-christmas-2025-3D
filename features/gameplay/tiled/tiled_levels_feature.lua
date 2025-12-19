@@ -1,9 +1,13 @@
 local LEVELS = require "features.gameplay.tiled.levels.levels"
+local CONTEXTS = require "libs.contexts_manager"
 ---@class TiledLevelsFeature:Feature
 local M = {}
 
 function M:init()
     LEVELS:load_tileset()
+    local ctx = CONTEXTS:set_context_top_render()
+    self.tile_layer_predicate = render.predicate({"tile_layer"})
+    ctx:remove()
 end
 
 ---@param gui_script DebugGuiScript

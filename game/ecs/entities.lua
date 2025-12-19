@@ -17,10 +17,12 @@ function Entities:initialize(game_world)
 end
 
 ---@param e Entity
+---@diagnostic disable-next-line: unused-local
 function Entities:on_entity_removed(e)
 end
 
 ---@param e Entity
+---@diagnostic disable-next-line: unused-local
 function Entities:on_entity_added(e)
 end
 
@@ -99,7 +101,6 @@ function Entities:create_player(position)
 
     return e
 end
-
 
 ---@param level Level
 ---@param object LevelMapObject
@@ -197,6 +198,5 @@ function Entities:create_physics(physics, fixture_def, body)
         return body:CreateFixture(fixture_def)
     end
 end
-
 
 return Entities

@@ -1,0 +1,15 @@
+name: "tile_mesh"
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  data: "embedded_components {\n"
+  "  id: \"mesh\"\n"
+  "  type: \"mesh\"\n"
+  "  data: \"material: \\\"/features/gameplay/tiled/tile_layer.material\\\"\\n"
+  "vertices: \\\"/features/gameplay/tiled/tile_buffer.buffer\\\"\\n"
+  "position_stream: \\\"position\\\"\\n"
+  "normal_stream: \\\"texcoord0\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+}

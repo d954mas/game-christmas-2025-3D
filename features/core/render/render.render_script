@@ -5,6 +5,8 @@ local CAMERAS = require "features.core.camera.cameras_feature"
 local GAME = require "game.game_world"
 local GUI_RESIZER = require "features.core.gui_resizer"
 local FEATURES = require "features.features"
+local FEATURE_TILED = require "features.gameplay.tiled.tiled_levels_feature"
+local CONTEXTS = require "libs.contexts_manager"
 
 local HASH_WINDOW_RESIZED = hash("window_resized")
 local TAG = "Render"
@@ -14,6 +16,7 @@ local TAG = "Render"
 local Render = {}
 
 function Render:init()
+	CONTEXTS:register(CONTEXTS.NAMES.RENDER, self)
 	self.screen_size = {
 		w = nil, h = nil, aspect = nil
 	}
@@ -116,6 +119,7 @@ function Render:update(_)
 	render.enable_state(graphics.STATE_BLEND)
 	render.set_blend_func(graphics.BLEND_FACTOR_ONE, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
 
+	render.draw(FEATURE_TILED.tile_layer_predicate, self.draw_opts)
 	render.draw(self.predicates.tile, self.draw_opts)
 
 

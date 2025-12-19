@@ -1,5 +1,5 @@
 name: "sprite"
-tags: "tile_mesh"
+tags: "tile_layer"
 vertex_program: "/features/gameplay/tiled/tile_mesh.vp"
 fragment_program: "/features/gameplay/tiled/tile_mesh.fp"
 vertex_space: VERTEX_SPACE_LOCAL

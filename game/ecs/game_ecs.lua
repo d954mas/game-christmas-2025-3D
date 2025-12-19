@@ -6,6 +6,7 @@ local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
 
 local CameraFollowPlayerSystem = require "features.gameplay.player.camera_follow_player_system"
 local Draw2dPlayerSystem = require "features.gameplay.player.draw_2d_player_system"
+local DrawTileLayerSystem = require "features.gameplay.tiled.draw_tile_layer_system"
 
 --#IF DEBUG
 local DrawBox2dDebugSystem = require "features.core.box2d.draw_box2d_debug_system"
@@ -42,6 +43,7 @@ function EcsWorld:add_systems()
 	--#ENDIF
 
 	self.ecs:add_system(CameraFollowPlayerSystem.new())
+	self.ecs:add_system(DrawTileLayerSystem.new())
 	self.ecs:add_system(Draw2dPlayerSystem.new())
 
 	--#IF DEBUG

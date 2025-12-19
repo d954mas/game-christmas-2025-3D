@@ -138,6 +138,7 @@ CONTEXTS.NAMES = {
 	SETTINGS_GUI = "SETTINGS_GUI",
 	GAME_GUI = "GAME_GUI",
 	GAME = "GAME",
+	RENDER = "RENDER",
 }
 
 ---@class ContextDataWrapperLoader:ContextDataWrapper
@@ -146,6 +147,15 @@ CONTEXTS.NAMES = {
 ---@return ContextDataWrapperLoader
 function CONTEXTS:set_context_top_loader()
 	return self:set_context_top_by_name(self.NAMES.LOADER)
+end
+
+
+---@class ContextDataWrapperRender:ContextDataWrapper
+---@field data Render
+
+---@return ContextDataWrapperRender
+function CONTEXTS:set_context_top_render()
+	return self:set_context_top_by_name(self.NAMES.RENDER)
 end
 
 return CONTEXTS

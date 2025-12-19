@@ -164,8 +164,8 @@ function Creator:__create_tiles_layer(data, z)
 end
 
 function Creator:__create_game_objects()
-	for _, obj in ipairs(self.level.data.game_objects) do
-	end
+	--for _, obj in ipairs(self.level.data.game_objects) do
+--	end
 end
 
 function Creator:__create_visual_objects()
@@ -181,7 +181,7 @@ end
 
 function Creator:__create_tiles()
 	self.layers.ground = self:__create_tiles_layer(self.level.data.ground, BALANCE.config.z_order.TILE_GROUND)
-	self.layers.front = self:__create_tiles_layer(self.level.data.road, BALANCE.config.z_order.TILE_ROAD)
+	self.layers.road = self:__create_tiles_layer(self.level.data.road, BALANCE.config.z_order.TILE_ROAD)
 end
 
 return Creator
