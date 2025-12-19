@@ -1,0 +1,27 @@
+name: "sprite"
+tags: "tile_mesh"
+vertex_program: "/features/gameplay/tiled/tile_mesh.vp"
+fragment_program: "/features/gameplay/tiled/tile_mesh.fp"
+vertex_space: VERTEX_SPACE_LOCAL
+vertex_constants {
+  name: "mtx_worldviewproj"
+  type: CONSTANT_TYPE_WORLDVIEWPROJ
+}
+fragment_constants {
+  name: "tint"
+  type: CONSTANT_TYPE_USER
+  value {
+    x: 1.0
+    y: 1.0
+    z: 1.0
+    w: 1.0
+  }
+}
+samplers {
+  name: "DIFFUSE_TEXTURE"
+  wrap_u: WRAP_MODE_REPEAT
+  wrap_v: WRAP_MODE_REPEAT
+  filter_min: FILTER_MODE_MIN_LINEAR
+  filter_mag: FILTER_MODE_MAG_NEAREST
+  max_anisotropy: 0.0
+}

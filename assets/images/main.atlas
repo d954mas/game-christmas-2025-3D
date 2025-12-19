@@ -76,4 +76,10 @@ images {
 images {
   image: "/scenes/settings/assets/icon_settings.png"
 }
+images {
+  image: "/features/gameplay/player/shadow_player.png"
+}
+images {
+  image: "/assets/images/player.png"
+}
 extrude_borders: 2

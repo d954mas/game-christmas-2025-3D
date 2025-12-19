@@ -7,4 +7,9 @@ ENUMS.DIRECTION = {
 	RIGHT = "RIGHT"
 }
 
+ENUMS.PLAYER_ANIMATIONS_2D = {
+	IDLE = "IDLE",
+	RUN = "RUN",
+}
+
 return ENUMS

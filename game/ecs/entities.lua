@@ -1,5 +1,4 @@
 local CLASS = require "libs.class"
-local CONSTANTS = require "libs.constants"
 local ENUMS = require "game.enums"
 local BALANCE = require "game.balance"
 
@@ -30,7 +29,7 @@ function Entities:create_player(position)
     ---@class Entity
     local e = {}
     e.player = { idx = 1 }
-    ---@type PlayerGo
+    ---@type PlayerGo2d
     e.player_go = nil
     e.position = vmath.vector3(position.x, position.y, 0)
     e.direction = vmath.vector3(1, 0, 0)
@@ -112,7 +111,7 @@ function Entities:create_visual_object(level, object)
     e.level_map_object = object
     e.tile_data = level:get_tile(object.tile_id)
 
-    local z = CONSTANTS.Z_ORDER.VISUAL_OBJECT
+    local z = BALANCE.config.z_order.VISUAL_OBJECT
     if (object.properties.dynamic_z) then
         local y = object.y
         if (object.properties.dynamic_z_dy) then
@@ -131,8 +130,6 @@ function Entities:create_visual_object(level, object)
 end
 
 function Entities:create_physics(physics, fixture_def, body)
-    local box2d_world = self.game_world.box2d_world
-
     local physics_scale = BALANCE.config.physics_scale
     for _, shape_cfg in pairs(physics.shapes) do
         if shape_cfg.type == "CIRCLE" then

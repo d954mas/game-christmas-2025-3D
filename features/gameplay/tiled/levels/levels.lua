@@ -20,7 +20,7 @@ M.TILESET = nil
 function M.load_tileset()
 	local content = nil
 	--load tileset from system
-	if (CONSTANTS.PLATFORM_IS_PC and CONSTANTS.VERSION_IS_DEV) then
+	if (false and CONSTANTS.PLATFORM_IS_PC and CONSTANTS.VERSION_IS_DEV) then
 		local status, file = pcall(io.open, "./features/tiled/levels/result/tileset.json", "r")
 		if (not status) then
 			LOG.i("can't open file:" .. tostring(file), TAG)

@@ -4,7 +4,6 @@
 ---@field factory string
 ---@field dy_z number
 ---@field dynamic_z_dy number
----@field filter string
 ---@field b2BodyType string
 ---@field b2FixedRotation boolean
 ---@field b2_fixture_def string

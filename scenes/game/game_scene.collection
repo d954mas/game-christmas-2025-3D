@@ -86,5 +86,11 @@ embedded_instances {
   "gain: 0.25\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_player\"\n"
+  "  type: \"collectionfactory\"\n"
+  "  data: \"prototype: \\\"/features/gameplay/player/player2d.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }

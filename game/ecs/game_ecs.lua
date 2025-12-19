@@ -4,6 +4,8 @@ local ECS = require "libs.ecs"
 
 local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
 
+local Draw2dPlayerSystem = require "features.gameplay.player.draw_2d_player_system"
+
 --#IF DEBUG
 
 --#ENDIF
@@ -36,7 +38,10 @@ end
 function EcsWorld:add_systems()
 	--#IF DEBUG
 
-	--#ENDIF
+--#ENDIF
+
+	self.ecs:add_system(Draw2dPlayerSystem.new())
+
 	--can remove or add new entities. So it should be last
 	self.ecs:add_system(AutoDestroySystem.new())
 end

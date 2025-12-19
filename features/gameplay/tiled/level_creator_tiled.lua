@@ -1,7 +1,6 @@
 local LEVELS = require "features.gameplay.tiled.levels.levels"
 local CAMERAS = require "features.core.camera.cameras_feature"
 local CLASS = require "libs.class"
-local CONSTANTS = require "libs.constants"
 local BALANCE = require "game.balance"
 local DynamicZ = require "features.core.dynamic_z"
 

@@ -9,6 +9,7 @@ function M:init()
         z_order = {
             TILE_GROUND = -25,
             TILE_ROAD = -15,
+            VISUAL_OBJECT = -5,
             TILE_MAP_Z1 = 0,
             TILE_MAP_Z2 = 100,
         },

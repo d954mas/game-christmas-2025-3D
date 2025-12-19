@@ -6,6 +6,7 @@ local GAME = require "game.game_world"
 local HASHES = require "libs.hashes"
 local SOUNDS = require "features.core.sounds.sounds"
 local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
+local LEVELS = require "features.gameplay.tiled.levels.levels"
 ---@class ScriptGame
 local Script = {}
 
@@ -23,7 +24,7 @@ function Script:init()
 			html_utils.focus()
 		end)
 	end
-	--GAME:change_location(DEFS.LOCATIONS.BY_ID.LEVEL_1.id)
+	GAME:game_loaded(LEVELS.LEVELS.LEVEL_1)
 	SOUNDS:liveupdate_load_game_sound()
 end
 
