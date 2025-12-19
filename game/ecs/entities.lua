@@ -72,8 +72,8 @@ function Entities:create_player(position)
 
     local shape = box2d.NewCircleShape()
     fixture_def_interact.shape = shape
-    shape:SetRadius(28 * physics_scale)
-    shape:SetPosition(vmath.vector3(0, 28, 0) * physics_scale)
+    shape:SetRadius(16 * physics_scale)
+    shape:SetPosition(vmath.vector3(0, 12, 0) * physics_scale)
     body:CreateFixture(fixture_def_interact)
     ---#endregion
 
@@ -92,8 +92,8 @@ function Entities:create_player(position)
 
     shape = box2d.NewCircleShape()
     fixture_def_collision.shape = shape
-    shape:SetRadius(16 * physics_scale)
-    shape:SetPosition(vmath.vector3(0, 16, 0) * physics_scale)
+    shape:SetRadius(6 * physics_scale)
+    shape:SetPosition(vmath.vector3(0, 6, 0) * physics_scale)
     body:CreateFixture(fixture_def_collision)
     ---#endregion
 

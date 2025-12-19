@@ -46,6 +46,22 @@ function System:camera_one_player(dt)
 	CAMERAS.current_camera:set_position(CAM_POS_V)
 end
 
+function System:get_zoom()
+    local value = CAMERAS.storage:get_zoom()
+    --return 1 if 0.5 and 0.25 if 0 and 1.5 if 1
+    --create function so it will be easier to change
+    local min = 0.25
+    local max = 1.5
+    local mid = 1
+    if value <= 0.5 then
+        local t = value / 0.5
+        return min + (mid - min) * t
+    else
+        local t = (value - 0.5) / 0.5
+        return mid + (max - mid) * t
+    end
+end
+
 function System:camera_two_player(dt)
 	local p1 = self.world.game_world.level_creator.players[1]
 	local p2 = self.world.game_world.level_creator.players[2]

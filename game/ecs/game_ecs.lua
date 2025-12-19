@@ -8,7 +8,7 @@ local CameraFollowPlayerSystem = require "features.gameplay.player.camera_follow
 local Draw2dPlayerSystem = require "features.gameplay.player.draw_2d_player_system"
 
 --#IF DEBUG
-
+local DrawBox2dDebugSystem = require "features.core.box2d.draw_box2d_debug_system"
 --#ENDIF
 
 ---@class GameEcsWorld
@@ -43,6 +43,10 @@ function EcsWorld:add_systems()
 
 	self.ecs:add_system(CameraFollowPlayerSystem.new())
 	self.ecs:add_system(Draw2dPlayerSystem.new())
+
+	--#IF DEBUG
+	self.ecs:add_system(DrawBox2dDebugSystem.new())
+	--#ENDIF
 
 	--can remove or add new entities. So it should be last
 	self.ecs:add_system(AutoDestroySystem.new())

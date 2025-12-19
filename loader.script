@@ -17,6 +17,7 @@ local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
 local SAFEAREA_FEATURE = require "features.core.safearea.safearea_feature"
 local LOCALIZATION_FEATURE = require "features.core.localization.localization_feature"
 local SOUNDS_FEATURE = require "features.core.sounds.sounds_feature"
+local CAMERAS_FEATURE = require "features.core.camera.cameras_feature"
 ---#endregion
 
 ---#region FEATURES SDK
@@ -34,8 +35,8 @@ local ECS_DEBUG_FEATURE = require "features.core.ecs.ecs_debug_feature"
 ---#endregion
 
 ---#region FEATURES GAME
-local CAMERAS_FEATURE = require "features.core.camera.cameras_feature"
 local TILED_LEVELS_FEATURE = require "features.gameplay.tiled.tiled_levels_feature"
+local BOX_2D_FEATURE = require "features.core.box2d.box2d_feature"
 ---#endregion
 
 ---endregion
@@ -81,6 +82,7 @@ function Script:init()
 	---features game
 	FEATURES:add_feature(CAMERAS_FEATURE)
 	FEATURES:add_feature(TILED_LEVELS_FEATURE)
+	FEATURES:add_feature(BOX_2D_FEATURE)
 
 	-- features storage
 	FEATURES:add_feature(STORAGE_FEATURE) --storage last so all features received on_storage_init
