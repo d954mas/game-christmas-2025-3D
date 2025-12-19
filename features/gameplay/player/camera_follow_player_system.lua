@@ -2,7 +2,6 @@ local ECS = require 'libs.ecs'
 local CLASS = require 'libs.class'
 local CAMERAS = require "features.core.camera.cameras_feature"
 local BALANCE = require "game.balance"
-local STORAGE = require "features.core.storage.storage"
 local SmoothDumpV3 = require "features.core.smoothdump.smooth_dump_v3"
 local SmoothDump = require "features.core.smoothdump.smooth_dump"
 
@@ -28,7 +27,7 @@ function System:initialize()
 end
 
 function System:camera_one_player(dt)
-	CAMERAS.current_camera:set_ortho_scale(STORAGE.cameras_storage:get_zoom())
+	CAMERAS.current_camera:set_ortho_scale(self:get_zoom())
 	local speed = self.world.game_world.level_creator.player.move_speed
 	self.smooth_dump.maxSpeed = speed - 5
 

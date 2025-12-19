@@ -49,14 +49,15 @@ function EcsDebugView:update()
 					lbl_tmax = line_nodes[HASHES.line_lbl_tmax],
 				}
 				table.insert(self.lines, vh)
-				local position = vmath.vector3(0, -i * 13, 0)
-				gui.set_position(vh.root, position)
-				vh.lbl_name:set_text(sys.__class.name)
-				gui.set_text(vh.lbl_entities, #sys.entities_list)
-				gui.set_text(vh.lbl_t, string.format("%.3f", sys.__time.current * 1000))
-				gui.set_text(vh.lbl_tavg, string.format("%.3f", sys.__time.average_value * 1000))
-				gui.set_text(vh.lbl_tmax, string.format("%.3f", sys.__time.max * 1000))
+				line_nodes = vh
 			end
+			local position = vmath.vector3(0, -i * 13, 0)
+			gui.set_position(line_nodes.root, position)
+			line_nodes.lbl_name:set_text(sys.__class.name)
+			gui.set_text(line_nodes.lbl_entities, #sys.entities_list)
+			gui.set_text(line_nodes.lbl_t, string.format("%.3f", sys.__time.current * 1000))
+			gui.set_text(line_nodes.lbl_tavg, string.format("%.3f", sys.__time.average_value * 1000))
+			gui.set_text(line_nodes.lbl_tmax, string.format("%.3f", sys.__time.max * 1000))
 		end
 		for _ = #self.lines, #self.sorted_systems + 1, -1 do
 			local line_nodes = table.remove(self.lines)

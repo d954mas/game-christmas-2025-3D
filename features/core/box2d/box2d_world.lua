@@ -56,7 +56,7 @@ function Box2dWorld:draw_debug_data_set_enabled(enable)
 end
 
 function Box2dWorld:update(dt)
-	self.world:Step(dt, self.config.velocity_iterations, self.config.position_iterations)
+	self.world:Step(self.config.time_step or dt, self.config.velocity_iterations, self.config.position_iterations)
 end
 
 function Box2dWorld:dispose()
