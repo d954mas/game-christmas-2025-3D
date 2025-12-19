@@ -89,7 +89,7 @@ end
 
 ---@return Level
 function M.load_level(name)
-	local time = socket.gettime()
+	local time = chronos.nanotime()
 	LOG.i("load level:" .. name, TAG)
 	assert(name, "no name")
 	local content
@@ -128,7 +128,7 @@ function M.load_level(name)
 	local level = Level.new(level_data, M.TILESET)
 	level.name = name
 
-	LOG.i("lvl:" .. name .. " loaded. Time:" .. (socket.gettime() - time), TAG)
+	LOG.i("lvl:" .. name .. " loaded. Time:" .. (chronos.nanotime() - time), TAG)
 	return level
 end
 

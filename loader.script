@@ -5,6 +5,7 @@ local EVENTS = require "libs.events"
 local N28S = require "libs.n28s"
 local CONTEXTS = require "libs.contexts_manager"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
+local BALANCE = require "balance"
 ---#region FEATURES
 
 ---#region FEATURES BASE

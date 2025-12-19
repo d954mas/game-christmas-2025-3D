@@ -1,5 +1,5 @@
 local CLASS = require "libs.class"
---local Entities = require "game.ecs.entities"
+local Entities = require "game.ecs.entities"
 local ECS = require "libs.ecs"
 
 local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
@@ -21,12 +21,12 @@ function EcsWorld:initialize(game_world)
 	self.ecs = ECS.world()
 	self.ecs.game_world = game_world
 
-	--self.entities = Entities.new(game_world)
+	self.entities = Entities.new(game_world)
 
 	---@diagnostic disable-next-line: duplicate-set-field
---	self.ecs.on_entity_added = function (_, e) self.entities:on_entity_added(e) end
+	self.ecs.on_entity_added = function (_, e) self.entities:on_entity_added(e) end
 	---@diagnostic disable-next-line: duplicate-set-field
---	self.ecs.on_entity_removed = function (_, e) self.entities:on_entity_removed(e) end
+	self.ecs.on_entity_removed = function (_, e) self.entities:on_entity_removed(e) end
 
 	self.performance = {
 		time = { current = 0, max = 0, average = 0, average_count = 0, average_value = 0 }

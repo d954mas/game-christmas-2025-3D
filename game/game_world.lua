@@ -1,4 +1,8 @@
 local ACTIONS = require "libs.actions.actions"
+local ANALYTICS = require "features.sdk.analytics.analytics"
+
+local Box2dWorld = require "features.core.box2d.box2d_world"
+local LevelCreator = require "features.gameplay.tiled.levels.level_creator"
 local GameEcs = require "game.ecs.game_ecs"
 
 ---@class GameWorld
@@ -8,9 +12,20 @@ function GameWorld:init()
     self.game_actions = ACTIONS.Parallel.new(false)
     self.game_actions.drop_empty = false
     self.ecs = GameEcs.new(self)
-    self.ecs:add_systems()
-    self.ecs:fixed_update(1)
     self:reset_state()
+end
+
+function GameWorld:game_loaded(level)
+    assert(not self.box2d_world)
+    self:reset_state()
+    self.box2d_world = Box2dWorld.new({ gravity = vmath.vector3(0),
+        velocity_iterations = 2, position_iterations = 2,
+        time_step = 1 / 60 }, self)
+    self.ecs:add_systems()
+    self.level_creator = LevelCreator.new(self)
+    self.level_creator:load_level(level)
+
+    ANALYTICS:level_loaded(level)
 end
 
 function GameWorld:reset_state()

@@ -80,7 +80,6 @@ function Analytics:ads_result(name, success)
 	})
 end
 
-
 function Analytics:first_play()
 	GAME_ANALYTICS:event("game:first_play")
 	FIREBASE:event("game_first_play")
@@ -97,6 +96,11 @@ function Analytics:event_ads_revenue_yandex(ad_unit_name, data)
 		currency = data.currency
 	}
 	FIREBASE:event_table("ad_impression", event)
+end
+
+function Analytics:level_loaded(level_name)
+	GAME_ANALYTICS:event("game:level:" .. level_name .. ":load")
+	FIREBASE:event_string("game_level_loaded", "level", level_name)
 end
 
 return Analytics
