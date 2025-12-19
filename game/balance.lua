@@ -13,6 +13,7 @@ function M:init()
             TILE_MAP_Z1 = 0,
             TILE_MAP_Z2 = 100,
         },
+        TILE_CHUNK_SIZE = { w = 5, h = 5 },
         camera_dy = 5, --камера немного выше а не по центру
     }
 end

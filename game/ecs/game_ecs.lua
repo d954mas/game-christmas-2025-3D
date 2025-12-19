@@ -10,6 +10,7 @@ local DrawTileLayerSystem = require "features.gameplay.tiled.draw_tile_layer_sys
 
 --#IF DEBUG
 local DrawBox2dDebugSystem = require "features.core.box2d.draw_box2d_debug_system"
+local DrawTiledChunksDebugSystem = require "features.gameplay.tiled.draw_tiled_chunks_debug_system"
 --#ENDIF
 
 ---@class GameEcsWorld
@@ -48,6 +49,7 @@ function EcsWorld:add_systems()
 
 	--#IF DEBUG
 	self.ecs:add_system(DrawBox2dDebugSystem.new())
+	self.ecs:add_system(DrawTiledChunksDebugSystem.new())
 	--#ENDIF
 
 	--can remove or add new entities. So it should be last

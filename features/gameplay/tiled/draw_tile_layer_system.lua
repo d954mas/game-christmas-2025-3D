@@ -2,6 +2,7 @@ local ECS = require 'libs.ecs'
 local CLASS = require 'libs.class'
 local BALANCE = require "game.balance"
 local LUME = require "libs.lume"
+local TILED_CHUNKS = require "features.gameplay.tiled.tiled_chunks"
 
 local HASH_POSITION = hash("position")
 local HASH_TEXCOORD0 = hash("texcoord0")
@@ -231,28 +232,14 @@ function System:on_add_to_world()
 
     local layers = self.world.game_world.level_creator.layers
 
-    local rows = 5
-    local columns = 5
-
-    local row_size = math.ceil(self.level.data.size.h / rows)
-    local column_size = math.ceil(self.level.data.size.w / columns)
-    local x, y = 0, 0
     local layers_list = { layers.ground, layers.road }
     local tile_idx = 1
-    for _ = 1, rows do
-        local y2 = math.min(y + row_size - 1, self.level.data.size.h - 1)
-        x = 0
-        for _ = 1, columns do
-            local x2 = math.min(x + column_size - 1, self.level.data.size.w - 1)
-
-            local layer = create_layer(layers_list, self.atlas_tile)
-            self:update_layer_mesh(layer, x, y, x2, y2)
-            --print(string.format("cell x(%d %d) y(%d %d)", x, x2, y, y2))
-            x = x + column_size
-            tile_idx = tile_idx + 1
-        end
-        y = y + row_size
-    end
+    TILED_CHUNKS.iterate(self.level.data.size.w, self.level.data.size.h, function (x, y, x2, y2)
+        local layer = create_layer(layers_list, self.atlas_tile)
+        self:update_layer_mesh(layer, x, y, x2, y2)
+        --print(string.format("cell x(%d %d) y(%d %d)", x, x2, y, y2))
+        tile_idx = tile_idx + 1
+    end)
 end
 
 return System
