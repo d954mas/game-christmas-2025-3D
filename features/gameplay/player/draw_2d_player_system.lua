@@ -65,29 +65,29 @@ end
 ---@param e Entity
 function System:update_walk_animation(e, dt)
     local player = e.player_go.view
-    local sp = 15
-    e.player_go.config.animation_time = e.player_go.config.animation_time + dt
-    local amp = 0.03
-    if e.moving then amp = 0.06 end
-    local tmp = math.cos(e.player_go.config.animation_time * sp) * amp + 1
+    local speed = e.moving and 22 or 6
+    e.player_go.config.animation_time = e.player_go.config.animation_time + dt * speed
 
-    TEMP_V.x = tmp
-    TEMP_V.y = 1 / tmp
+    local t = e.player_go.config.animation_time
+    local bounce = math.sin(t) * (e.moving and 0.06 or 0.02)
+    local squash = math.cos(t * 2) * (e.moving and 0.03 or 0.01)
+
+    TEMP_V.x = 1 + squash
+    TEMP_V.y = 1 + bounce
     TEMP_V.z = 1
     go.set_scale(TEMP_V, player.body.root)
+
     if e.player_go.config.look_at == ENUMS.DIRECTION.RIGHT then
         go.set(player.root, "scale.x", -1)
     else
         go.set(player.root, "scale.x", 1)
     end
-    --go.set(player.body.root, "scale.x", -1)
-    if e.moving then
-        tmp = math.cos(e.player_go.config.animation_time * sp) * 0.15
-    else
-        tmp = 0
-    end
 
-    xmath.quat_rotation_z(TEMP_Q, tmp)
+    local lean = 0
+    if e.moving then
+        lean = math.cos(t * 0.45) * 0.12
+    end
+    xmath.quat_rotation_z(TEMP_Q, lean)
     go.set_rotation(TEMP_Q, player.body.root)
 end
 

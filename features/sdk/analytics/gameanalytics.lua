@@ -8,7 +8,7 @@ function GA:init()
 	local enableEventSubmission = true
     --Can disable event submission for testing purposes
 	if (CONSTANTS.PLATFORM_IS_PC) then
-		enableEventSubmission = true
+		enableEventSubmission = false
 	end
 	gameanalytics.setEnabledEventSubmission(enableEventSubmission)
 	gameanalytics.setEnabledInfoLog(CONSTANTS.VERSION_IS_DEV)
