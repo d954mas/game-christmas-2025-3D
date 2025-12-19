@@ -14,8 +14,8 @@ local M = {
             far_z = 25,
             ortho_scale = 1,
             ortho_scale_mode = native_camera.SCALE_MODE.FIXEDAREA,
-            view_area_width = 135,
-            view_area_height = 240,
+            view_area_width = 270,
+            view_area_height = 480,
         }),
          GAME_2D_ALBUM = native_camera.new({
             orthographic = true,
@@ -23,8 +23,8 @@ local M = {
             far_z = 25,
             ortho_scale = 1,
             ortho_scale_mode = native_camera.SCALE_MODE.FIXEDAREA,
-            view_area_width = 240,
-            view_area_height = 135,
+            view_area_width = 480,
+            view_area_height = 270,
         }),
     }
 }

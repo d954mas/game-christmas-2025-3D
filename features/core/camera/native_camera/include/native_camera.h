@@ -56,6 +56,8 @@ class Camera {
 	dmVMath::Matrix4 getView();
 	dmVMath::Matrix4 getProj();
 	dmVMath::Matrix4 getFrustum();
+	float getOrthoScale();
+	void getViewAreaNoZoom(float* outWidth, float* outHeight);
 	void worldToScreen(dmVMath::Vector3 worldPos, float *outX, float *outY);
 	void screenToWorld2D(float screenX, float screenY, float *outX, float *outY);
 	void screenToWorldRay(float screenX, float screenY, dmVMath::Vector3 *start, dmVMath::Vector3 *end);

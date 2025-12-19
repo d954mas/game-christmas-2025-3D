@@ -143,6 +143,48 @@ dmVMath::Matrix4 Camera::getFrustum() {
     return getProj() * getView();
 }
 
+float Camera::getOrthoScale() {
+    return orthoScale;
+}
+
+void Camera::getViewAreaNoZoom(float* outWidth, float* outHeight) {
+    float viewAreaCalculatedWidth = viewAreaWidth;
+    float viewAreaCalculatedHeight = viewAreaHeight;
+    float safeScreenWidth = screenWidth > 0.0f ? screenWidth : 1.0f;
+    float safeScreenHeight = screenHeight > 0.0f ? screenHeight : 1.0f;
+    float safeAspect = screenAspectRatio > 0.0f ? screenAspectRatio : (safeScreenWidth / safeScreenHeight);
+
+    switch (orthoScaleMode) {
+    case CameraOrthoScaleMode::EXPANDVIEW: {
+        viewAreaCalculatedWidth = safeScreenWidth;
+        viewAreaCalculatedHeight = safeScreenHeight;
+        break;
+    }
+    case CameraOrthoScaleMode::FIXEDAREA: {
+        float minScale = fmax(viewAreaWidth / safeScreenWidth, viewAreaHeight / safeScreenHeight);
+        viewAreaCalculatedWidth = safeScreenWidth * minScale;
+        viewAreaCalculatedHeight = safeScreenHeight * minScale;
+        break;
+    }
+    case CameraOrthoScaleMode::FIXEDWIDTH: {
+        viewAreaCalculatedWidth = viewAreaWidth;
+        viewAreaCalculatedHeight = viewAreaWidth / safeAspect;
+        break;
+    }
+    case CameraOrthoScaleMode::FIXEDHEIGHT: {
+        viewAreaCalculatedWidth = viewAreaHeight * safeAspect;
+        viewAreaCalculatedHeight = viewAreaHeight;
+        break;
+    }
+    default: {
+        assert(false);
+    }
+    }
+
+    *outWidth = viewAreaCalculatedWidth;
+    *outHeight = viewAreaCalculatedHeight;
+}
+
 // Returns start and end points for a ray from the camera through the supplied screen coordinates
 // Start point is on the camera near plane, end point is on the far plane.
 void Camera::screenToWorldRay(float screenX, float screenY, dmVMath::Vector3 *start, dmVMath::Vector3 *end) {

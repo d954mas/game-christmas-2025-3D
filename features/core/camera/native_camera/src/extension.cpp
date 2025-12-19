@@ -195,6 +195,34 @@ static int LuaCameraGetFarZ(lua_State *L) {
     return 1;
 }
 
+static int LuaCameraGetOrthoScale(lua_State *L) {
+    check_arg_count(L, 1);
+    NativeCamera::Camera *userdata = CameraCheck(L, 1);
+    lua_pushnumber(L, userdata->getOrthoScale());
+    return 1;
+}
+
+static int LuaCameraGetViewAreaNoZoom(lua_State *L) {
+    check_arg_count(L, 1);
+    NativeCamera::Camera *userdata = CameraCheck(L, 1);
+    float width = 0.0f;
+    float height = 0.0f;
+    userdata->getViewAreaNoZoom(&width, &height);
+    dmScript::PushVector3(L, dmVMath::Vector3(width, height, 0.0f));
+    return 1;
+}
+
+static int LuaCameraGetViewAreaNoZoomToVector3(lua_State *L) {
+    check_arg_count(L, 2);
+    NativeCamera::Camera *userdata = CameraCheck(L, 1);
+    dmVMath::Vector3 *out = dmScript::CheckVector3(L, 2);
+    float width = 0.0f;
+    float height = 0.0f;
+    userdata->getViewAreaNoZoom(&width, &height);
+    *out = dmVMath::Vector3(width, height, 0.0f);
+    return 0;
+}
+
 static int LuaCameraGetPosition(lua_State *L) {
     check_arg_count(L, 1);
     NativeCamera::Camera *userdata = CameraCheck(L, 1);
@@ -325,7 +353,7 @@ static int LuaCameraToString(lua_State *L) {
     userdata->toString(buffer, bufferSize);
     lua_pushstring(L, buffer);
     return 1; // Returning one result to Lua, the string
-}
+}   
 
 static const luaL_Reg LuaCameraMethods[] = {
     {"__gc", LuaCameraDestroy},
@@ -356,6 +384,9 @@ static const luaL_Reg LuaCameraMethods[] = {
     {"get_fov", LuaCameraGetFov},
     {"get_near_z", LuaCameraGetNearZ},
     {"get_far_z", LuaCameraGetFarZ},
+    {"get_ortho_scale", LuaCameraGetOrthoScale},
+    {"get_view_area_no_zoom", LuaCameraGetViewAreaNoZoom},
+    {"get_view_area_no_zoom_to_vector3", LuaCameraGetViewAreaNoZoomToVector3},
     {"screen_to_world_ray", LuaCameraScreenToWorldRay},
     {"screen_to_world_ray_to_vector3", LuaCameraScreenToWorldRayToVector3},
     {"screen_to_world_2d", LuaCameraScreenToWorld2D},

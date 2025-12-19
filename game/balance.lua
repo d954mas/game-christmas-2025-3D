@@ -13,7 +13,7 @@ function M:init()
             TILE_MAP_Z1 = 0,
             TILE_MAP_Z2 = 100,
         },
-        camera_dy = 80, --камера немного выше а не по центру
+        camera_dy = 5, --камера немного выше а не по центру
     }
 end
 

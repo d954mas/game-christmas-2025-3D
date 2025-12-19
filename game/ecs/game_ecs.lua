@@ -4,6 +4,7 @@ local ECS = require "libs.ecs"
 
 local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
 
+local CameraFollowPlayerSystem = require "features.gameplay.player.camera_follow_player_system"
 local Draw2dPlayerSystem = require "features.gameplay.player.draw_2d_player_system"
 
 --#IF DEBUG
@@ -38,8 +39,9 @@ end
 function EcsWorld:add_systems()
 	--#IF DEBUG
 
---#ENDIF
+	--#ENDIF
 
+	self.ecs:add_system(CameraFollowPlayerSystem.new())
 	self.ecs:add_system(Draw2dPlayerSystem.new())
 
 	--can remove or add new entities. So it should be last

@@ -54,6 +54,8 @@ function M:late_init()
     for i = 1, #self.late_init_list do
         self.late_init_list[i]:late_init()
     end
+    --on resize is called before loader and feature init
+    M:on_resize(RENDER.screen_size.w, RENDER.screen_size.h)
 end
 
 function M:update(dt)

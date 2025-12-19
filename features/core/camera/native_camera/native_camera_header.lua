@@ -34,12 +34,21 @@ function NativeCamera:set_orthographic(orthographic) end
 ---@param orthoScale number
 function NativeCamera:set_ortho_scale(orthoScale) end
 
+---@return number
+function NativeCamera:get_ortho_scale() end
+
 ---@param scaleMode integer
 function NativeCamera:set_scale_mode(scaleMode) end
 
 ---@param viewAreaWidth number
 ---@param viewAreaHeight number
 function NativeCamera:set_view_area(viewAreaWidth, viewAreaHeight) end
+
+---@return vector3
+function NativeCamera:get_view_area_no_zoom() end
+
+---@param result vector3
+function NativeCamera:get_view_area_no_zoom_to_vector3(result) end
 
 ---@param screenWidth number
 ---@param screenHeight number
