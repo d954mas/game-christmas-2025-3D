@@ -45,6 +45,12 @@ function NativeCamera:set_scale_mode(scaleMode) end
 function NativeCamera:set_view_area(viewAreaWidth, viewAreaHeight) end
 
 ---@return vector3
+function NativeCamera:get_view_area() end
+
+---@param result vector3
+function NativeCamera:get_view_area_to_vector3(result) end
+
+---@return vector3
 function NativeCamera:get_view_area_no_zoom() end
 
 ---@param result vector3

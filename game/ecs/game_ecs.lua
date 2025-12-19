@@ -4,6 +4,7 @@ local ECS = require "libs.ecs"
 
 local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
 
+local CameraTiledLevelBordersSystem = require "features.gameplay.tiled.camera_border_tile_level_system"
 local CameraFollowPlayerSystem = require "features.gameplay.player.camera_follow_player_system"
 local PlayerMoveBox2dSystem = require "features.core.box2d.player_move_box2d_system"
 local PlayerInputSystem = require "features.gameplay.player.player_movement2d_input_system"
@@ -52,6 +53,7 @@ function EcsWorld:add_systems()
 	self.ecs:add_system(PlayerInputSystem.new())
 	self.ecs:add_system(PlayerMoveBox2dSystem.new())
 	self.ecs:add_system(CameraFollowPlayerSystem.new())
+	self.ecs:add_system(CameraTiledLevelBordersSystem.new())
 
 	self.ecs:add_system(Box2dUpdateSystem.new())
 	self.ecs:add_system(Box2dUpdatePositionSystem.new())

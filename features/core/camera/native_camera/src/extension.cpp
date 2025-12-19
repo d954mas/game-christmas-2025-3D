@@ -202,6 +202,29 @@ static int LuaCameraGetOrthoScale(lua_State *L) {
     return 1;
 }
 
+static int LuaCameraGetViewArea(lua_State *L) {
+    check_arg_count(L, 1);
+    NativeCamera::Camera *userdata = CameraCheck(L, 1);
+    float width = 0.0f;
+    float height = 0.0f;
+    userdata->getViewAreaNoZoom(&width, &height);
+    float scale = userdata->getOrthoScale();
+    dmScript::PushVector3(L, dmVMath::Vector3(width * scale, height * scale, 0.0f));
+    return 1;
+}
+
+static int LuaCameraGetViewAreaToVector3(lua_State *L) {
+    check_arg_count(L, 2);
+    NativeCamera::Camera *userdata = CameraCheck(L, 1);
+    dmVMath::Vector3 *out = dmScript::CheckVector3(L, 2);
+    float width = 0.0f;
+    float height = 0.0f;
+    userdata->getViewAreaNoZoom(&width, &height);
+    float scale = userdata->getOrthoScale();
+    *out = dmVMath::Vector3(width * scale, height * scale, 0.0f);
+    return 0;
+}
+
 static int LuaCameraGetViewAreaNoZoom(lua_State *L) {
     check_arg_count(L, 1);
     NativeCamera::Camera *userdata = CameraCheck(L, 1);
@@ -385,6 +408,8 @@ static const luaL_Reg LuaCameraMethods[] = {
     {"get_near_z", LuaCameraGetNearZ},
     {"get_far_z", LuaCameraGetFarZ},
     {"get_ortho_scale", LuaCameraGetOrthoScale},
+    {"get_view_area", LuaCameraGetViewArea},
+    {"get_view_area_to_vector3", LuaCameraGetViewAreaToVector3},
     {"get_view_area_no_zoom", LuaCameraGetViewAreaNoZoom},
     {"get_view_area_no_zoom_to_vector3", LuaCameraGetViewAreaNoZoomToVector3},
     {"screen_to_world_ray", LuaCameraScreenToWorldRay},
