@@ -181,8 +181,8 @@ function Creator:__create_visual_objects()
 end
 
 function Creator:__create_tiles()
-	self.layers.ground = self:__create_tiles_layer(self.level.data.ground, CONSTANTS.Z_ORDER.TILE_GROUND)
-	self.layers.front = self:__create_tiles_layer(self.level.data.front, CONSTANTS.Z_ORDER.TILE_FRONT)
+	self.layers.ground = self:__create_tiles_layer(self.level.data.ground, BALANCE.config.z_order.TILE_GROUND)
+	self.layers.front = self:__create_tiles_layer(self.level.data.road, BALANCE.config.z_order.TILE_ROAD)
 end
 
 return Creator

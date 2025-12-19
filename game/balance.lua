@@ -1,3 +1,4 @@
+---@class Balance
 local M = {}
 
 function M:init()
@@ -6,6 +7,8 @@ function M:init()
         tile_size = 16,
         player_speed = 100,
         z_order = {
+            TILE_GROUND = -25,
+            TILE_ROAD = -15,
             TILE_MAP_Z1 = 0,
             TILE_MAP_Z2 = 100,
         },

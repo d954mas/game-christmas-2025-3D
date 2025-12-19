@@ -5,7 +5,7 @@ local EVENTS = require "libs.events"
 local N28S = require "libs.n28s"
 local CONTEXTS = require "libs.contexts_manager"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
-local BALANCE = require "balance"
+local BALANCE = require "game.balance"
 ---#region FEATURES
 
 ---#region FEATURES BASE
@@ -56,6 +56,8 @@ function Script:init()
 
 	math.randomseed(os.time()); math.random(); math.random(); math.random()
 	CONTEXTS:register(CONTEXTS.NAMES.LOADER, self)
+
+	BALANCE:init()
 
 	--features base
 	FEATURES:add_feature(INPUT_FEATURE)

@@ -3,6 +3,7 @@ local CLASS = require "libs.class"
 ---@class DynamicZ
 local DynamicZ = CLASS.class("DynamicZ")
 
+---@return DynamicZ
 function DynamicZ.new(y1,y2,z1,z2)
     return CLASS.new_instance(DynamicZ, y1,y2,z1,z2)
 end
@@ -16,6 +17,7 @@ function DynamicZ:init(y1,y2,z1,z2)
 end
 
 function DynamicZ:count_z_pos(y, dz)
-    dz = dz or 0
-    return self.z2 - (y - self.y1) * self.z_per_y + dz
+    return self.z2 - (y - self.y1) * self.z_per_y + (dz or 0)
 end
+
+return DynamicZ

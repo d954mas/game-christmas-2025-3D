@@ -2,7 +2,7 @@ local ACTIONS = require "libs.actions.actions"
 local ANALYTICS = require "features.sdk.analytics.analytics"
 
 local Box2dWorld = require "features.core.box2d.box2d_world"
-local LevelCreator = require "features.gameplay.tiled.levels.level_creator"
+local LevelCreator = require "features.gameplay.tiled.level_creator_tiled"
 local GameEcs = require "game.ecs.game_ecs"
 
 ---@class GameWorld

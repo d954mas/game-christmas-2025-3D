@@ -1,7 +1,7 @@
 local CLASS = require "libs.class"
-local BOX2D_UTILS = require "native.box2d.utils"
+local BOX2D_UTILS = require "features.core.box2d.utils"
 local CHECKS = require "libs.checks"
-local BALANCE = require "game.balance.balance"
+local BALANCE = require "game.balance"
 
 ---@class Box2dWorldWrapper
 local Box2dWorld = CLASS.class("Box2dWorldWrapper")

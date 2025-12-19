@@ -1,6 +1,6 @@
 local CLASS = require "libs.class"
 local CONSTANTS = require "libs.constants"
-local ENUMS = require "features.core.balance.enums"
+local ENUMS = require "game.enums"
 local BALANCE = require "game.balance"
 
 ---@class Entity
@@ -57,7 +57,7 @@ function Entities:create_player(position)
     e.body = body
 
 
-    --#region player interactive fixture
+    ---#region player interactive fixture
     ---@type Box2dFixtureDef
     local fixture_def_interact = {
         filter = {
@@ -76,9 +76,9 @@ function Entities:create_player(position)
     shape:SetRadius(28 * physics_scale)
     shape:SetPosition(vmath.vector3(0, 28, 0) * physics_scale)
     body:CreateFixture(fixture_def_interact)
-    --#endregion
+    ---#endregion
 
-    --#region player collision.
+    ---#region player collision.
     ---@type Box2dFixtureDef
     local fixture_def_collision = {
         filter = {
@@ -96,7 +96,7 @@ function Entities:create_player(position)
     shape:SetRadius(16 * physics_scale)
     shape:SetPosition(vmath.vector3(0, 16, 0) * physics_scale)
     body:CreateFixture(fixture_def_collision)
-    --#endregion
+    ---#endregion
 
     return e
 end
@@ -118,7 +118,7 @@ function Entities:create_visual_object(level, object)
         if (object.properties.dynamic_z_dy) then
             y = y + object.properties.dynamic_z_dy
         end
-        z = self.game_world:count_z_pos(y)
+        z = self.game_world.level_creator.dynamic_z:count_z_pos(y)
     end
 
     e.position = vmath.vector3(object.center_x, object.y, z)
