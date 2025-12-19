@@ -5,7 +5,7 @@ function M:init()
     self.config = {
         physics_scale = 2 / 16, --tile is 2 meter
         tile_size = 16,
-        player_speed = 100,
+        player_speed = 10,
         z_order = {
             TILE_GROUND = -25,
             TILE_ROAD = -15,

@@ -34,11 +34,18 @@ function Entities:create_player(position)
     ---@type PlayerGo2d
     e.player_go = nil
     e.position = vmath.vector3(position.x, position.y, 0)
-    e.direction = vmath.vector3(1, 0, 0)
     e.look_at = ENUMS.DIRECTION.LEFT
 
-    e.move_speed = BALANCE.config.player_speed
-    e.movement_max_speed_limit = 1 --[0,1] for virtual pad interpolation
+    e.movement = {
+		input = vmath.vector3(0, 0, 0),
+		velocity = vmath.vector3(0, 0, 0),
+		direction = vmath.vector3(0, 0, 0),
+		max_speed = BALANCE.config.player_speed,
+		max_speed_limit = 1, --[0,1] for virtual pad to make movement more easy  
+		accel = 8 * 0.016,
+		deaccel = 15 * 0.016,
+		deaccel_stop = 0.5,
+	}
     e.moving = false
     e.dynamic_z = {
         dz = 0

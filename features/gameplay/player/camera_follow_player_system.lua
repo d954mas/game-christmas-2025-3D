@@ -28,7 +28,7 @@ end
 
 function System:camera_one_player(dt)
 	CAMERAS.current_camera:set_ortho_scale(self:get_zoom())
-	local speed = self.world.game_world.level_creator.player.move_speed
+	local speed = self.world.game_world.level_creator.player.movement.max_speed
 	self.smooth_dump.maxSpeed = speed - 5
 
 	local world = self.world.game_world
