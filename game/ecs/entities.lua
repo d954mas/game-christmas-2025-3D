@@ -14,6 +14,7 @@ function Entities.new(game_world) return CLASS.new_instance(Entities, game_world
 ---@param game_world GameWorld
 function Entities:initialize(game_world)
     self.game_world = assert(game_world)
+    self.go_position_setter = go_position_setter.new()
 end
 
 ---@param e Entity
@@ -205,5 +206,6 @@ function Entities:create_physics(physics, fixture_def, body)
         return body:CreateFixture(fixture_def)
     end
 end
+
 
 return Entities

@@ -53,6 +53,7 @@ function System:on_add(e)
         },
     }
     e.player_go = player_go
+    self.world.game_world.ecs.entities.go_position_setter:add(player_go.view.root, e.position)
 end
 
 ---@param e Entity
@@ -99,7 +100,7 @@ function System:update(dt)
             player.player_go.config.look_at = player.look_at
             go.set(player.player_go.view.root, "scale.x", player.player_go.config.look_at == ENUMS.DIRECTION.RIGHT and -1 or 1)
         end
-        go.set_position(player.position, player.player_go.view.root)
+      --  go.set_position(player.position, player.player_go.view.root)
         self:update_walk_animation(player, dt)
     end
 end

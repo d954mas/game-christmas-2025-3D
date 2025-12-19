@@ -19,7 +19,7 @@ function System:initialize()
 	self.velocity = vmath.vector3()
 	self.smooth_dump = SmoothDumpV3.new()
 	self.smooth_dump.maxDistance = 120
-	self.smooth_dump.smoothTime = 0.33
+	self.smooth_dump.smoothTime = 0.2
 	self.smooth_dump_zoom = SmoothDump.new()
 	self.smooth_dump_zoom.maxDelta = 0.001
 	self.smooth_dump_zoom.smoothTime = 0.1
@@ -28,8 +28,8 @@ end
 
 function System:camera_one_player(dt)
 	CAMERAS.current_camera:set_ortho_scale(self:get_zoom())
-	local speed = self.world.game_world.level_creator.player.movement.max_speed
-	self.smooth_dump.maxSpeed = speed - 5
+	--local speed = self.world.game_world.level_creator.player.movement.max_speed
+	self.smooth_dump.maxSpeed = 500
 
 	local world = self.world.game_world
 	local player = world.level_creator.player

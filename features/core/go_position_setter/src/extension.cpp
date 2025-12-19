@@ -32,14 +32,15 @@ void PositionSetterUserdata::addInstance(dmGameObject::HInstance rootInstance, d
     instanceVector.rootInstance = rootInstance;
     instanceVector.position = position;
     if (instances.Full()) {
-        instances.OffsetCapacity(32);
+        uint32_t growBy = instances.Capacity() > 0 ? instances.Capacity() : 32u;
+        instances.OffsetCapacity(growBy);
     }
     instances.Push(instanceVector);
 }
 
 void PositionSetterUserdata::update() {
     for (int i = 0; i < instances.Size(); ++i) {
-        InstancePositionData instancePositionData = instances[i];
+        InstancePositionData &instancePositionData = instances[i];
         dmGameObject::SetPosition(instancePositionData.rootInstance, dmVMath::Point3(*instancePositionData.position));
     }
 }
@@ -85,11 +86,18 @@ static int LuaPositionSetterUserdataGC(lua_State *L) {
     return 0;
 }
 
+static int LuaPositionSetterUserdataClear(lua_State *L) {
+    PositionSetterUserdata *userdata = PositionSetterUserdataCheck(L, 1);
+    userdata->instances.SetSize(0);
+    return 0;
+}
+
 static const luaL_Reg LuaPositionSetterUserdataMethods[] = {
     {"__gc", LuaPositionSetterUserdataGC},
     {"add", LuaPositionSetterUserdataAddInstance},
     {"remove", LuaPositionSetterUserdataRemoveInstance},
     {"update", LuaPositionSetterUserdataUpdate},
+    {"clear", LuaPositionSetterUserdataClear},
     {0, 0}};
 
 int NewPositionSetterUserdataLua(lua_State *L) {
