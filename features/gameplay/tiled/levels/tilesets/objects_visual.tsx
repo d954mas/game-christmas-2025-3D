@@ -51,6 +51,7 @@
  </tile>
  <tile id="8">
   <properties>
+   <property name="dynamic_z" type="float" value="0"/>
    <property name="type" value="object_visual"/>
   </properties>
   <image source="../../images/objects_visual/snowman1.png" width="16" height="16"/>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="18">
+<map version="1.10" tiledversion="1.11.0" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="8" nextobjectid="19">
  <tileset firstgid="1" source="../../tilesets/ground.tsx"/>
  <tileset firstgid="17" source="../../tilesets/roads.tsx"/>
  <tileset firstgid="19" source="../../tilesets/pathfinding.tsx"/>
@@ -113,19 +113,19 @@
  </objectgroup>
  <objectgroup id="4" name="objects_visual">
   <object id="1" gid="28" x="176" y="228" width="16" height="16"/>
-  <object id="2" gid="2147483676" x="276" y="264" width="16" height="16"/>
+  <object id="2" gid="2147483676" x="268" y="296" width="16" height="16"/>
   <object id="3" gid="22" x="208" y="232" width="16" height="16"/>
   <object id="4" gid="22" x="224" y="232" width="16" height="16"/>
   <object id="6" gid="21" x="200" y="240" width="16" height="16"/>
   <object id="7" gid="26" x="208" y="248" width="16" height="16"/>
   <object id="8" gid="26" x="224" y="248" width="16" height="16"/>
   <object id="9" gid="2147483669" x="232" y="240" width="16" height="16"/>
-  <object id="11" gid="23" x="168.686" y="251.976" width="16" height="16" rotation="45.1192"/>
-  <object id="12" gid="28" x="180" y="304" width="16" height="16"/>
+  <object id="11" gid="23" x="192" y="220" width="16" height="16" rotation="45.1192"/>
+  <object id="12" gid="28" x="200" y="312" width="16" height="16"/>
   <object id="13" gid="28" x="192" y="304" width="16" height="16"/>
-  <object id="14" gid="28" x="208" y="304" width="16" height="16"/>
-  <object id="15" gid="2147483676" x="236" y="304" width="16" height="16"/>
-  <object id="16" gid="1073741852" x="252" y="304" width="16" height="16"/>
-  <object id="17" gid="3221225500" x="268" y="304" width="16" height="16"/>
+  <object id="14" gid="28" x="204" y="296" width="16" height="16"/>
+  <object id="15" gid="2147483676" x="240" y="300" width="16" height="16"/>
+  <object id="17" gid="28" x="256" y="304" width="16" height="16"/>
+  <object id="18" gid="3221225495" x="204" y="224" width="16" height="16" rotation="156.643"/>
  </objectgroup>
 </map>

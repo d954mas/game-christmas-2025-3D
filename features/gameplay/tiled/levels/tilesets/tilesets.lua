@@ -311,6 +311,7 @@ return {
         {
           id = 8,
           properties = {
+            ["dynamic_z"] = 0,
             ["type"] = "object_visual"
           },
           image = "../../images/objects_visual/snowman1.png",

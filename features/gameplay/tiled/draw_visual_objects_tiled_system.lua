@@ -40,7 +40,6 @@ function System:on_add(e)
         }
         visual_object_go.sprite.sprite = LUME.url_component_from_url(visual_object_go.sprite.root, PARTS.SPRITE_COMP)
         e.visual_object_go = visual_object_go
-        pprint(e.level_map_object)
         if (e.level_map_object.tile_fv) then
             sprite.set_vflip(visual_object_go.sprite.sprite, true)
         end

@@ -8,7 +8,7 @@ function DynamicZ.new(y1,y2,z1,z2)
     return CLASS.new_instance(DynamicZ, y1,y2,z1,z2)
 end
 
-function DynamicZ:init(y1,y2,z1,z2)
+function DynamicZ:initialize(y1,y2,z1,z2)
     self.y1 = y1
     self.y2 = y2
     self.z1 = z1

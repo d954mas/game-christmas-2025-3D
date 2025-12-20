@@ -301,10 +301,10 @@ local function prepare_objects(array, tiled, _)
 
 		-- Not used in that project.
 		if (object.text) then
-			v_to_center.y = -v_to_center.y --fixed bad texts positions.
+		--	v_to_center.y = -v_to_center.y --fixed bad texts positions.
 		end
 		if (object.shape == "rectangle") then
-			v_to_center.y = -v_to_center.y --fixed bad texts positions.
+			--v_to_center.y = -v_to_center.y --fixed bad texts positions.
 		end
 
 		local cosa = math.cos(angle_rad);
