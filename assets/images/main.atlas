@@ -136,4 +136,7 @@ images {
 images {
   image: "/features/gameplay/tiled/images/tiles/tile_road_2.png"
 }
+images {
+  image: "/features/core/virtual_pad/pad/pad_2.png"
+}
 extrude_borders: 2

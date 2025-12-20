@@ -1,0 +1,190 @@
+textures {
+  name: "gui_circle"
+  texture: "/features/ui/gui_circle/gui_circle.atlas"
+}
+textures {
+  name: "main"
+  texture: "/assets/images/main.atlas"
+}
+nodes {
+  size {
+    x: 200.0
+    y: 100.0
+  }
+  type: TYPE_BOX
+  id: "anchor"
+  xanchor: XANCHOR_LEFT
+  yanchor: YANCHOR_BOTTOM
+  adjust_mode: ADJUST_MODE_STRETCH
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+  visible: false
+}
+nodes {
+  position {
+    x: 95.0
+    y: 95.0
+  }
+  scale {
+    x: 0.75
+    y: 0.75
+  }
+  size {
+    x: 200.0
+    y: 200.0
+  }
+  type: TYPE_BOX
+  id: "root"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "anchor"
+  layer: "below"
+  inherit_alpha: true
+  alpha: 0.6
+  visible: false
+}
+nodes {
+  type: TYPE_BOX
+  id: "center"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 440.0
+    y: 440.0
+  }
+  type: TYPE_BOX
+  texture: "gui_circle/white"
+  id: "bg"
+  parent: "root"
+  inherit_alpha: true
+  material: "gui_circle"
+}
+nodes {
+  scale {
+    x: 0.5
+    y: 0.5
+  }
+  size {
+    x: 420.0
+    y: 420.0
+  }
+  color {
+    x: 0.288
+    y: 0.288
+    z: 0.288
+  }
+  type: TYPE_BOX
+  texture: "gui_circle/white"
+  id: "bg2"
+  parent: "root"
+  inherit_alpha: true
+  material: "gui_circle"
+}
+nodes {
+  type: TYPE_BOX
+  texture: "main/pad_2"
+  id: "drag"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: -100.0
+    y: -100.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "left_bottom"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 100.0
+    y: 100.0
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "right_top"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  size {
+    x: 270.0
+    y: 270.0
+  }
+  type: TYPE_BOX
+  id: "click_area"
+  adjust_mode: ADJUST_MODE_STRETCH
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  visible: false
+}
+nodes {
+  position {
+    x: -126.5
+    y: -126.5
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "left_bottom_all"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+nodes {
+  position {
+    x: 126.5
+    y: 126.5
+  }
+  size {
+    x: 1.0
+    y: 1.0
+  }
+  type: TYPE_BOX
+  id: "right_top_all"
+  parent: "root"
+  layer: "below"
+  inherit_alpha: true
+  size_mode: SIZE_MODE_AUTO
+}
+layers {
+  name: "below"
+}
+layers {
+  name: "tooltip_pointer"
+}
+material: "/builtins/materials/gui.material"
+adjust_reference: ADJUST_REFERENCE_PARENT
+materials {
+  name: "gui_circle"
+  material: "/features/ui/gui_circle/gui_circle.material"
+}

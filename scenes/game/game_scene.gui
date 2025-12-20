@@ -158,6 +158,78 @@ nodes {
   size_mode: SIZE_MODE_AUTO
   visible: false
 }
+nodes {
+  type: TYPE_TEMPLATE
+  id: "virtual_pad"
+  inherit_alpha: true
+  template: "/features/core/virtual_pad/virtual_pad.gui"
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/anchor"
+  parent: "virtual_pad"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/root"
+  parent: "virtual_pad/anchor"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/center"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/bg"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/bg2"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/drag"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/left_bottom"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/right_top"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/click_area"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/left_bottom_all"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
+nodes {
+  type: TYPE_BOX
+  id: "virtual_pad/right_top_all"
+  parent: "virtual_pad/root"
+  template_node_child: true
+}
 layers {
   name: "gui_circle"
 }

@@ -7,6 +7,7 @@ local N28S = require "libs.n28s"
 local ButtonScale = require "libs.gui.button_scale"
 local ACTIONS = require "libs.actions.actions"
 local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
+local FEATURES = require "features.features"
 
 
 ---@class GameSceneGuiScript:BaseGuiScript
@@ -32,7 +33,6 @@ function Script:bind_vh()
 	}
 end
 
-
 function Script:init_gui()
 	BaseGuiScript.init_gui(self)
 	gui.set_render_order(CONSTANTS.GUI_ORDER.GAME)
@@ -52,16 +52,20 @@ function Script:init_gui()
 	self.views.btn_settings:set_input_listener(function ()
 		SM:show(SCENES_FEATURE.MODALS.SETTINGS)
 	end)
+
+	FEATURES:on_game_gui_init(self)
 end
 
 function Script:on_input(action_id, action)
 	if (self.views.btn_settings:on_input(action_id, action)) then
 		return true
 	end
+	if FEATURES:on_game_gui_on_input(self, action_id, action) then return true end
 end
 
 function Script:update(dt)
 	self.actions:update(dt)
+	FEATURES:on_game_gui_update(self, dt)
 end
 
 function Script:on_resize()
@@ -74,10 +78,8 @@ end
 function Script:on_storage_changed()
 end
 
-
 function Script:on_language_changed()
 
 end
-
 
 N28S.register(CLASS.new_instance(Script))

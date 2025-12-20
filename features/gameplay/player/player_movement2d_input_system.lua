@@ -4,6 +4,8 @@ local INPUT = require "features.core.input.input"
 local CLASS = require "libs.class"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local SDK = require "features.sdk.ads.sdk"
+local VirtualPadFeature = require "features.core.virtual_pad.virtual_pad_feature"
+
 
 local HASHES_INPUT = HASHES.INPUT
 
@@ -40,22 +42,11 @@ function System:draw(_)
 	movement.input.y = self.move_up - self.move_down
 	movement.max_speed_limit = 1
 
-    --[[
-	if (CONTEXTS:exist(CONTEXTS.NAMES.GAME_GUI)) then
-		local ctx = CONTEXTS:set_context_top_game_gui()
-		local pad = ctx.data.views.virtual_pad
-		if (pad:visible_is()) then
-			if (not pad:is_safe()) then
-				movement.input.x, movement.input.z = pad:get_data()
-				movement.input.z = -movement.input.z
-				movement.input.y = 0
-
-				local min = 0.2
-				local a = math.max(math.abs(movement.input.z), math.abs(movement.input.x))
-				movement.max_speed_limit = min + (1 - min) * TWEEN.easing.outQuad(a, 0, 1, 1)
-			end
-		end
-    end--]]
+	local x,y, speed_limit = VirtualPadFeature:get_data()
+	if x then
+		movement.input.x, movement.input.y = x, y
+		movement.max_speed_limit = speed_limit
+	end
 end
 
 return System

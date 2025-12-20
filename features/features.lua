@@ -26,6 +26,9 @@ local M = {
     late_init_list = {},
     on_resize_list = {},
     on_debug_gui_added_list = {},
+    on_game_gui_init_list = {},
+    on_game_gui_update_list = {},
+    on_game_gui_on_input_list = {},
 }
 
 function M:add_feature(feature)
@@ -41,6 +44,9 @@ function M:add_feature(feature)
     if feature.late_init then table.insert(self.late_init_list, feature) end
     if feature.on_resize then table.insert(self.on_resize_list, feature) end
     if feature.on_debug_gui_added then table.insert(self.on_debug_gui_added_list, feature) end
+    if feature.on_game_gui_init then table.insert(self.on_game_gui_init_list, feature) end
+    if feature.on_game_gui_update then table.insert(self.on_game_gui_update_list, feature) end
+    if feature.on_game_gui_on_input then table.insert(self.on_game_gui_on_input_list, feature) end
 end
 
 function M:init()
@@ -99,6 +105,25 @@ end
 function M:on_debug_gui_added(gui)
     for i = 1, #self.on_debug_gui_added_list do
         self.on_debug_gui_added_list[i]:on_debug_gui_added(gui)
+    end
+end
+
+---@param gui_script GameSceneGuiScript
+function M:on_game_gui_init(gui_script)
+    for i = 1, #self.on_game_gui_init_list do
+        self.on_game_gui_init_list[i]:on_game_gui_init(gui_script)
+    end
+end
+
+function M:on_game_gui_update(gui_script, dt)
+    for i = 1, #self.on_game_gui_update_list do
+        self.on_game_gui_update_list[i]:on_game_gui_update(gui_script, dt)
+    end
+end
+
+function M:on_game_gui_on_input(gui_script, action_id, action)
+    for i = 1, #self.on_game_gui_on_input_list do
+        if self.on_game_gui_on_input_list[i]:on_game_gui_on_input(gui_script, action_id, action) then return true end
     end
 end
 

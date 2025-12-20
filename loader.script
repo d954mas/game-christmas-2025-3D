@@ -18,6 +18,7 @@ local SAFEAREA_FEATURE = require "features.core.safearea.safearea_feature"
 local LOCALIZATION_FEATURE = require "features.core.localization.localization_feature"
 local SOUNDS_FEATURE = require "features.core.sounds.sounds_feature"
 local CAMERAS_FEATURE = require "features.core.camera.cameras_feature"
+local VIRTUAL_PAD_FEATURE = require "features.core.virtual_pad.virtual_pad_feature"
 ---#endregion
 
 ---#region FEATURES SDK
@@ -67,6 +68,8 @@ function Script:init()
 	FEATURES:add_feature(SAFEAREA_FEATURE)
 	FEATURES:add_feature(LOCALIZATION_FEATURE)
 	FEATURES:add_feature(SOUNDS_FEATURE)
+	FEATURES:add_feature(CAMERAS_FEATURE)
+	FEATURES:add_feature(VIRTUAL_PAD_FEATURE)
 
 	---features sdk
 	FEATURES:add_feature(ANALYTICS_FEATURE)
@@ -80,7 +83,6 @@ function Script:init()
 	FEATURES:add_feature(ECS_DEBUG_FEATURE)
 
 	---features game
-	FEATURES:add_feature(CAMERAS_FEATURE)
 	FEATURES:add_feature(TILED_LEVELS_FEATURE)
 	FEATURES:add_feature(BOX_2D_FEATURE)
 
