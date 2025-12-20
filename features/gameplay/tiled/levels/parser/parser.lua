@@ -119,7 +119,7 @@ local function parse_tilesets(path)
 	local id_to_tile = {}
 	local tilesets = {}
 	for _, tileset in ipairs(tiled.tilesets) do
-			log("parse tileset:" .. tileset.name)
+		log("parse tileset:" .. tileset.name)
 		assert(not tilesets[tileset.name], "tileset with name:" .. tileset.name .. " already created")
 		tilesets[tileset.name] = { first_gid = tileset.firstgid, end_gid = tileset.firstgid + tileset.tiles[#tileset.tiles].id, name = tileset.name,
 			properties = tileset.properties or {} }
@@ -171,7 +171,7 @@ local function check_tilesets(tiled)
 	local layers_new_data = {}
 	for _, tileset in ipairs(tiled.tilesets) do
 		if tileset.firstgid ~= TILESETS.tilesets[tileset.name].first_gid then
-				log("update tileset:" .. tileset.name)
+			log("update tileset:" .. tileset.name)
 			local end_gid = tileset.firstgid + TILESETS.tilesets[tileset.name].end_gid - TILESETS.tilesets[tileset.name].first_gid
 			for _, layer in ipairs(tiled.layers) do
 				local new_data = layers_new_data[layer] or {}
@@ -192,9 +192,16 @@ local function check_tilesets(tiled)
 				end
 				if layer.objects then
 					for _, obj in ipairs(layer.objects) do
-						if obj.gid and not obj._tileset_processed and obj.gid >= tileset.firstgid and obj.gid <= end_gid then
-							obj.gid = obj.gid + firstgid_delta
-							obj._tileset_processed = true
+						if obj.gid and not obj._tileset_processed then
+							local tile = MAP_HELPER.tile_to_data(obj.gid)
+							if tile.id >= tileset.firstgid and tile.id <= end_gid then
+								tile.id = tile.id + firstgid_delta
+								if (tile.fd) then tile.id = bit.bor(tile.id, MAP_HELPER.FLIPPED_DIAGONALLY_FLAG) end
+								if (tile.fh) then tile.id = bit.bor(tile.id, MAP_HELPER.FLIPPED_HORIZONTALLY_FLAG) end
+								if (tile.fv) then tile.id = bit.bor(tile.id, MAP_HELPER.FLIPPED_VERTICALLY_FLAG) end
+								obj.gid = tile.id
+								obj._tileset_processed = true
+							end
 						end
 					end
 				end
@@ -279,10 +286,13 @@ local function prepare_objects(array, tiled, _)
 		}
 		if object.gid then
 			local tile_data = MAP_HELPER.tile_to_data(object.gid)
-			object_data.tile_id = tile_data.id
+			print("parse object:" .. object.name .. " gid:" .. object.gid .. " tile_data:" .. tostring(tile_data))
+			object_data.tile_id = tile_data.id --i have no idea but objects here is 1 less then needed. WTF
 			object_data.tile_fv = tile_data.fv
 			object_data.tile_fh = tile_data.fh
 			object_data.tile_fd = tile_data.fd
+			print("tile_id:" .. object_data.tile_id,
+				" tile_fv:" .. tostring(object_data.tile_fv) .. " tile_fh:" .. tostring(object_data.tile_fh) .. " tile_fd:" .. tostring(object_data.tile_fd))
 			assert(not object_data.tile_fd, "diagonal flip not supported")
 		end
 
@@ -405,7 +415,7 @@ local function parse_level_objects(map, layer)
 	for _, obj in ipairs(objects) do
 		assert(obj.tile_id, "only tile object supported")
 		if (obj.properties.type == "player") then
-			assert(not map.player,"player already exist")
+			assert(not map.player, "player already exist")
 			map.player = obj
 		else
 			pprint(obj)
@@ -520,7 +530,7 @@ function M.parse_level(path, result_path)
 	--save file
 	local json = NEED_PRETTY and pretty(data, nil, "  ", "") or json.encode(data)
 	local file = assert(io.open(result_path, "w+"))
-		log("save_file:" .. result_path)
+	log("save_file:" .. result_path)
 	file:write(json)
 	file:close()
 end
@@ -559,14 +569,14 @@ M.parse = function ()
 
 	for file in lfs.dir(lfs.currentdir() .. path_symbol .. LEVELS_PATH) do
 		if file ~= "." and file ~= ".." and file ~= "level_tim_rules.lua" then
-				log("parse level:" .. file)
+			log("parse level:" .. file)
 			local status, error_str = pcall(M.parse_level, lfs.currentdir() .. path_symbol .. LEVELS_PATH .. path_symbol .. file,
 				lfs.currentdir() .. path_symbol .. RESULT_PATH .. path_symbol)
 			if not status then
-					log("*********ERROR*********")
-					log(file)
-					log(error_str)
-					log("***********************")
+				log("*********ERROR*********")
+				log(file)
+				log(error_str)
+				log("***********************")
 				error(file, error_str)
 			end
 		end
@@ -579,7 +589,7 @@ M.parse = function ()
 
 			local name = current_file:match("^.+" .. path_symbol .. "(.+)....")
 			local result_file = lfs.currentdir() .. path_symbol .. RES_PATH .. path_symbol .. name .. "json"
-				log("copy level:" .. current_file .. "->" .. result_file)
+			log("copy level:" .. current_file .. "->" .. result_file)
 			CopyFile(current_file, result_file)
 		end
 	end

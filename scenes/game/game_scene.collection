@@ -98,5 +98,11 @@ embedded_instances {
   "  data: \"prototype: \\\"/features/gameplay/tiled/factory_tiled_layer_nearest.collection\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_tiled_visual_object\"\n"
+  "  type: \"collectionfactory\"\n"
+  "  data: \"prototype: \\\"/features/gameplay/tiled/tiled_visual_object_nearest.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }

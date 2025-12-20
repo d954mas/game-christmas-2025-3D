@@ -105,4 +105,12 @@ function System:update(dt)
     end
 end
 
+function System:on_remove(e)
+    if e.player_go and e.player_go.view then
+        self.world.game_world.ecs.entities.go_position_setter:remove(e.player_go.view.root)
+        go.delete(e.player_go.view.root, true)
+        e.player_go = nil
+    end
+end
+
 return System

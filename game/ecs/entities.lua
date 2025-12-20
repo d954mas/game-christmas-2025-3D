@@ -129,7 +129,7 @@ function Entities:create_visual_object(level, object)
         z = self.game_world.level_creator.dynamic_z:count_z_pos(y)
     end
 
-    e.position = vmath.vector3(object.center_x, object.y, z)
+    e.position = vmath.vector3(object.center_x, object.center_y, z)
 
     if object.properties.b2BodyType then
         e.body = self:create_body(object)

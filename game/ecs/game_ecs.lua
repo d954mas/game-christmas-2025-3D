@@ -9,6 +9,8 @@ local CameraFollowPlayerSystem = require "features.gameplay.player.camera_follow
 local PlayerMoveBox2dSystem = require "features.core.box2d.player_move_box2d_system"
 local PlayerInputSystem = require "features.gameplay.player.player_movement2d_input_system"
 
+local DrawVisualObjectSystem = require "features.gameplay.tiled.draw_visual_objects_tiled_system"
+
 local GoPositionSetterUpdateSystem = require "features.core.go_position_setter.update_go_position_setter"
 local Box2dUpdatePositionSystem = require "features.core.box2d.box2d_update_position"
 local Box2dUpdateSystem = require "features.core.box2d.box2d_update_system"
@@ -59,6 +61,7 @@ function EcsWorld:add_systems()
 	self.ecs:add_system(Box2dUpdatePositionSystem.new())
 	self.ecs:add_system(GoPositionSetterUpdateSystem.new())
 
+	self.ecs:add_system(DrawVisualObjectSystem.new())
 	self.ecs:add_system(Draw2dPlayerSystem.new())
 	self.ecs:add_system(DrawTileLayerSystem.new())
 	--#IF DEBUG

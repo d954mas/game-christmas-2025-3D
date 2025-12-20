@@ -139,4 +139,31 @@ images {
 images {
   image: "/features/core/virtual_pad/pad/pad_2.png"
 }
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_1.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_2.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_3.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_4.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_5.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_6.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_7.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/christmas_light_8.png"
+}
+images {
+  image: "/features/gameplay/tiled/images/objects_visual/snowman1.png"
+}
 extrude_borders: 2
