@@ -1,13 +1,16 @@
-# Welcome to Defold
+# Demo: 2D Game with Box2D and Tiled Levels
 
-This project was created from the "empty" project template.
+A small Defold example project. The goal is to showcase a basic 2D game with Box2D physics and loading a level exported from Tiled.
 
-The settings in ["game.project"](defold://open?path=/game.project) are all the default. A bootstrap empty ["main.collection"](defold://open?path=/main/main.collection) is included.
+## What's inside
+- 2D scene with Box2D physics
+- level export from Tiled
 
-Check out [the documentation pages](https://defold.com/learn) for examples, tutorials, manuals and API docs.
 
-If you run into trouble, help is available in [our forum](https://forum.defold.com).
+## Windows note
+I work on Windows. The Tiled export uses `.bat`/`.sh` scripts. It should work, but it is untested and paths might need adjustments.
 
-Happy Defolding!
-
----
+## Links
+- Defold: https://defold.com
+- Box2D: https://box2d.org
+- Tiled: https://www.mapeditor.org
