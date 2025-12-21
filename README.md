@@ -5,7 +5,7 @@ A small Defold example project. The goal is to showcase a basic 2D game with Box
 ## What's inside
 - 2D scene with Box2D physics
 - level export from Tiled
-
+- Tilemap mesh renderer
 
 ## Windows note
 I work on Windows. The Tiled export uses `.bat`/`.sh` scripts. It should work, but it is untested and paths might need adjustments.
