@@ -12,6 +12,7 @@ Thumbs.db
 .cproject
 builtins
 imgui.ini
+assets/bundle/android/res/values/google-services.xml
 
 
 /bob/build/*
