@@ -114,7 +114,7 @@ function Creator:__create_geometry()
 			obj.radius = obj.radius
 		end
 		if (obj.shape == "rectangle") then
-			body_def.position = vmath.vector3((obj.x + obj.w / 2) * physics_scale, (obj.y + obj.h / 2) * physics_scale, 0)
+			body_def.position = vmath.vector3((obj.x + obj.w / 2) * physics_scale, (obj.y - obj.h / 2) * physics_scale, 0)
 			fixture_def.shape = box2d.NewPolygonShape()
 			fixture_def.shape:SetAsBox(obj.w / 2 * physics_scale, obj.h / 2 * physics_scale)
 			body = box2d_world.world:CreateBody(body_def)

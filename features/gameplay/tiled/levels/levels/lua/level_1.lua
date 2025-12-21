@@ -10,7 +10,7 @@ return {
   tilewidth = 16,
   tileheight = 16,
   nextlayerid = 8,
-  nextobjectid = 21,
+  nextobjectid = 28,
   properties = {},
   tilesets = {
     {
@@ -103,42 +103,7 @@ return {
       parallaxx = 1,
       parallaxy = 1,
       properties = {},
-      objects = {
-        {
-          id = 19,
-          name = "",
-          type = "",
-          shape = "polygon",
-          x = 56,
-          y = 156,
-          width = 0,
-          height = 0,
-          rotation = 0,
-          visible = true,
-          polygon = {
-            { x = 0, y = 0 },
-            { x = 60, y = -56 },
-            { x = 164, y = -76 },
-            { x = 100, y = 40 },
-            { x = -12, y = 108 },
-            { x = -28, y = 28 }
-          },
-          properties = {}
-        },
-        {
-          id = 20,
-          name = "",
-          type = "",
-          shape = "rectangle",
-          x = 168,
-          y = 264,
-          width = 92,
-          height = 72,
-          rotation = 0,
-          visible = true,
-          properties = {}
-        }
-      }
+      objects = {}
     },
     {
       type = "tilelayer",
