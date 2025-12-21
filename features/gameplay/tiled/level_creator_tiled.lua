@@ -104,15 +104,17 @@ function Creator:__create_geometry()
 	body:CreateFixture(fixture_def)
 
 	for _, obj in ipairs(self.level.data.geometry) do
-		obj.x = obj.x * tiles_to_meters
-		obj.y = obj.y * tiles_to_meters
-		obj.w = obj.w * tiles_to_meters
-		obj.h = obj.h * tiles_to_meters
+		obj.x = obj.x
+		obj.y = obj.y
+		if obj.w then
+			obj.w = obj.w
+			obj.h = obj.h 
+		end
 		if (obj.radius) then
-			obj.radius = obj.radius * tiles_to_meters
+			obj.radius = obj.radius
 		end
 		if (obj.shape == "rectangle") then
-			body_def.position = vmath.vector3((obj.x + obj.w / 2) * physics_scale, (obj.y - obj.h / 2) * physics_scale, 0)
+			body_def.position = vmath.vector3((obj.x + obj.w / 2) * physics_scale, (obj.y + obj.h / 2) * physics_scale, 0)
 			fixture_def.shape = box2d.NewPolygonShape()
 			fixture_def.shape:SetAsBox(obj.w / 2 * physics_scale, obj.h / 2 * physics_scale)
 			body = box2d_world.world:CreateBody(body_def)

@@ -286,13 +286,10 @@ local function prepare_objects(array, tiled, _)
 		}
 		if object.gid then
 			local tile_data = MAP_HELPER.tile_to_data(object.gid)
-			print("parse object:" .. object.name .. " gid:" .. object.gid .. " tile_data:" .. tostring(tile_data))
 			object_data.tile_id = tile_data.id --i have no idea but objects here is 1 less then needed. WTF
 			object_data.tile_fv = tile_data.fv
 			object_data.tile_fh = tile_data.fh
 			object_data.tile_fd = tile_data.fd
-			print("tile_id:" .. object_data.tile_id,
-				" tile_fv:" .. tostring(object_data.tile_fv) .. " tile_fh:" .. tostring(object_data.tile_fh) .. " tile_fd:" .. tostring(object_data.tile_fd))
 			assert(not object_data.tile_fd, "diagonal flip not supported")
 		end
 
