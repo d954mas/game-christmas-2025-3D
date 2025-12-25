@@ -28,6 +28,9 @@ function Storage:_init_storage()
 		},
 		options = {
 
+		},
+		player = {
+
 		}
 	}
 

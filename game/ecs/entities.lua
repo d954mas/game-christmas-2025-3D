@@ -1,8 +1,17 @@
 local CLASS = require "libs.class"
 local ENUMS = require "game.enums"
+local PLAYER_SKINS_3D_FEATURE = require "features.meta.skins.player_skin3d_feature"
+local LUME = require "libs.lume"
+local SmoothDumpV3 = require "features.core.smoothdump.smooth_dump_v3"
 
 local FACTORY_URL_PLAYER = msg.url("game_scene:/root#factory_player")
 local FACTORY_URL_ROOT_EMPTY = msg.url("game_scene:/root#factory_root_empty")
+
+local PARTS = {
+	ROOT = hash("/root"),
+	COLLISION = hash("/collision"),
+	PARTICLES = hash("/particles"),
+}
 
 ---@class Entity
 ---@field auto_destroy_delay number
@@ -40,7 +49,7 @@ function Entities:create_player(position)
 	e.player = true
 	e.position = vmath.vector3(position)
 	e.look_dir = vmath.vector3(0, 0, -1)
-	e.skin = STORAGE.game:get_skin()
+	e.skin = PLAYER_SKINS_3D_FEATURE.storage:get_skin()
 	---@type Entity|nil
 	e.current_interact_aabb = nil
 	---@type Entity|nil
@@ -89,12 +98,6 @@ function Entities:create_player(position)
 			animation = nil,
 			look_dir = vmath.vector3(0, 0, -1),
 			look_dir_smooth_dump = SmoothDumpV3.new(0.05),
-			punch = {
-				state = ENUMS.PUNCH_STATE.READY,
-				frame = -1,
-				blend_duration = 0.1,
-				blend = 0,
-			}
 		},
 	}
 	e.player_go.physics.collision = LUME.url_component_from_url(e.player_go.physics.root, "collision")

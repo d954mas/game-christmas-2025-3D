@@ -59,7 +59,7 @@ function M:load(id)
         self.object_by_id[object.id] = object
     end
     self:trigger_location_changed()
-    STORAGE.task:check_current_task(self)
+  --  STORAGE.task:check_current_task(self)
 end
 
 function M:is_collected(id)
@@ -88,113 +88,6 @@ function M:trigger_location_changed()
     self:refresh_location_progress()
     self:recalculate_params()
     self:refresh_location_progress()
-    self:refresh_terrain_status()
-end
-
-function M:refresh_terrain_status()
-    local grid = self:get_terrain_grid_info()
-    if not grid or not self.data or not self.data.terrain then return end
-    local total = grid.columns * grid.rows
-    local visible = self.visible_terrain_cells or {}
-    self.visible_terrain_cells = visible
-    for i = 1, total do
-        visible[i] = self.show_all_terrain_cells and true or false
-    end
-    if not self.show_all_terrain_cells and self.data.objects then
-        for _, object in ipairs(self.data.objects) do
-            if self:_is_island_ground_visible(object) then
-                self:_mark_island_ground_cells(object, visible, grid)
-            end
-        end
-    end
-    for i = total + 1, #visible do
-        visible[i] = nil
-    end
-    for index = 1, total do
-        local entry = visible[index] and self.data.terrain[index] or 0
-        self:_apply_terrain_entry(index, entry)
-    end
-    self:_update_cells_walkable(visible)
-end
-
-function M:_is_island_ground_visible(object)
-    if not object or not object.is_island then return false end
-    return self:is_build(object.id)
-end
-
-local function clamp_cell_coord(value, min_value, max_value)
-    if not value then return nil end
-    value = math.floor(value)
-    if value < min_value then value = min_value end
-    if value > max_value then value = max_value end
-    return value
-end
-
-function M:_mark_island_ground_cells(object, visible, grid)
-    if not object then return end
-    local columns = grid.columns
-    local rows = grid.rows
-    local total = columns * rows
-
-    local function mark_index(index)
-        index = tonumber(index)
-        if not index then return end
-        index = math.floor(index)
-        if index < 1 or index > total then return end
-        visible[index] = true
-    end
-
-    local ground_cells = object.ground_cells
-    if type(ground_cells) == "table" and #ground_cells > 0 then
-        for i = 1, #ground_cells do
-            local entry = ground_cells[i]
-            if type(entry) == "table" then
-                local column = tonumber(entry.column or entry.x or entry[1])
-                local row = tonumber(entry.row or entry.y or entry[2])
-                if column ~= nil and row ~= nil then
-                    column = clamp_cell_coord(column, 0, columns - 1)
-                    row = clamp_cell_coord(row, 0, rows - 1)
-                    if column and row then
-                        local index = row * columns + column + 1
-                        mark_index(index)
-                    end
-                else
-                    mark_index(entry.index or entry[1])
-                end
-            else
-                mark_index(entry)
-            end
-        end
-        return
-    end
-
-    if object.ground_min_x == nil or object.ground_max_x == nil
-        or object.ground_min_y == nil or object.ground_max_y == nil then
-        return
-    end
-    local min_x = clamp_cell_coord(math.min(object.ground_min_x, object.ground_max_x), 0, columns - 1)
-    local max_x = clamp_cell_coord(math.max(object.ground_min_x, object.ground_max_x), 0, columns - 1)
-    local min_y = clamp_cell_coord(math.min(object.ground_min_y, object.ground_max_y), 0, rows - 1)
-    local max_y = clamp_cell_coord(math.max(object.ground_min_y, object.ground_max_y), 0, rows - 1)
-    if not min_x or not max_x or not min_y or not max_y then return end
-    for row = min_y, max_y do
-        local base = row * columns
-        for column = min_x, max_x do
-            local index = base + column + 1
-            visible[index] = true
-        end
-    end
-end
-
-function M:set_show_all_terrain_cells(value)
-    local flag = not not value
-    if self.show_all_terrain_cells == flag then return end
-    self.show_all_terrain_cells = flag
-    self:refresh_terrain_status()
-end
-
-function M:get_show_all_terrain_cells()
-    return self.show_all_terrain_cells
 end
 
 function M:editor_add_object(object)
@@ -224,15 +117,15 @@ end
 
 --remove from storage objects that don't have need_button or cost == 0
 function M:clear_location_storage()
-    local location_storage = assert(STORAGE.locations.locations[self.data.id], "no location:" .. self.data.id)
+    --local location_storage = assert(STORAGE.locations.locations[self.data.id], "no location:" .. self.data.id)
 
-    for k, _ in pairs(location_storage.objects) do
-        local object = self.object_by_id[k]
-        if not object or not object.need_button or object.cost == 0 and not (object.requirements[1] or object.requirements[2] or object.requirements[3]) then
-            location_storage.objects[k] = nil
-            print("object removed:" .. k)
-        end
-    end
+   -- for k, _ in pairs(location_storage.objects) do
+       -- local object = self.object_by_id[k]
+--if not object or not object.need_button or object.cost == 0 and not (object.requirements[1] or object.requirements[2] or object.requirements[3]) then
+         --   location_storage.objects[k] = nil
+        --    print("object removed:" .. k)
+      --  end
+   -- end
 end
 
 function M:is_build(id)

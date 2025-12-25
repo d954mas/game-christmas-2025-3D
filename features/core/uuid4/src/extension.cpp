@@ -52,7 +52,7 @@ dmExtension::Result Initializeuuid4(dmExtension::Params *params)
     // Init Lua
     LuaInit(params->m_L);
     dmLogInfo("Registered %s Extension", MODULE_NAME);
-    dmLogInfo("%s Extension Seeded\n", MODULE_NAME);
+    dmLogInfo("%s Extension Seeded", MODULE_NAME);
     uuid4_seed(&state);
     return dmExtension::RESULT_OK;
 }

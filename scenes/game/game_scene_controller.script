@@ -2,10 +2,11 @@ local N28S = require "libs.n28s"
 local INPUT = require "features.core.input.input"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local CONTEXTS = require "libs.contexts_manager"
-local GAME = require "game.game_world"
+local GAME = require "game.game_world_3D"
 local HASHES = require "libs.hashes"
 local SOUNDS = require "features.core.sounds.sounds"
 local SCENES_FEATURE = require "features.core.scenes.scenes_feature"
+local LOCATIONS = require "features.gameplay.3d_level.location_def"
 
 ---@class ScriptGame
 local Script = {}
@@ -25,6 +26,7 @@ function Script:init()
 		end)
 	end
 	--GAME:game_loaded(LEVELS.LEVELS.LEVEL_1)
+	GAME:change_location(LOCATIONS.BY_ID.LEVEL_1.id)
 	SOUNDS:liveupdate_load_game_sound()
 end
 
