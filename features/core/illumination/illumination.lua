@@ -264,7 +264,7 @@ function Lights:initialize()
 		NEAR = 0.001,
 		FAR = 200,
 		--add some value to project.Avoid light_matrix recreation.
-		--This is needed to avoid shadow artifacts when move camert
+		--This is needed to avoid shadow artifacts when move camera
 
 		INCREASED_PROJECTION = 2,
 		pred = nil,
@@ -305,7 +305,7 @@ function Lights:initialize()
 	self.need_reset = 0
 end
 
---reser 3 frames(3 updates) to reset shadows
+--reset 3 frames(3 updates) to reset shadows
 --reset worked on next frame
 function Lights:reset_shadows()
 	self.need_reset = 3

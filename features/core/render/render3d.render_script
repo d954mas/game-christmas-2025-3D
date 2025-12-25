@@ -6,9 +6,13 @@ local GAME = require "game.game_world_3D"
 local GUI_RESIZER = require "features.core.gui_resizer"
 local FEATURES = require "features.features"
 local CONTEXTS = require "libs.contexts_manager"
+local IlluminationFeature = require "features.core.illumination.illumination_feature"
 
 local HASH_WINDOW_RESIZED = hash("window_resized")
 local TAG = "Render"
+
+local TEMP_V = vmath.vector4()
+local TEMP_MATRIX4 = vmath.matrix4()
 
 
 ---@class Render3D
@@ -35,7 +39,7 @@ function Render:init()
 	GAME.lights:set_render(self)
 	self:init_predicates()
 	self:init_draw_opts()
-	self.clear = { [graphics.BUFFER_TYPE_COLOR0_BIT] = vmath.vector4(0, 0, 0, 0), [graphics.BUFFER_TYPE_DEPTH_BIT] = 1, [graphics.BUFFER_TYPE_STENCIL_BIT] = 0 }
+	self.clear = { [graphics.BUFFER_TYPE_COLOR0_BIT] = GAME.lights.fog_color, [graphics.BUFFER_TYPE_DEPTH_BIT] = 1, [graphics.BUFFER_TYPE_STENCIL_BIT] = 0 }
 	self.clear_rt = { [graphics.BUFFER_TYPE_COLOR0_BIT] = vmath.vector4(0, 0, 0, 0), [graphics.BUFFER_TYPE_DEPTH_BIT] = 1, [graphics.BUFFER_TYPE_STENCIL_BIT] = 0 }
 	self:calculate_screen_size()
 	self:window_size_changed()
@@ -59,6 +63,16 @@ function Render:init_predicates()
 	self.predicates = {
 		tile = render.predicate({ "tile" }),
 		gui = render.predicate({ "gui" }),
+		gui_world = render.predicate({ "gui_world" }),
+		gui_world_font = render.predicate({ "gui_world_font" }),
+		model = render.predicate({ "model" }),
+		char = render.predicate({ "char" }),
+		model_transparent = render.predicate({ "model_transparent" }),
+		model_no_shadow = render.predicate({ "model_no_shadow" }),
+		arrow = render.predicate({ "arrow" }),
+		particles_world = render.predicate({ "particles_world" }),
+		sprite_3d = render.predicate({ "sprite_3d" }),
+		sprite_glow = render.predicate({ "sprite_glow" }),
 	}
 end
 
@@ -99,6 +113,72 @@ function Render:update(_)
 	self.constants.time.x = GAME.state.time
 	---@diagnostic disable-next-line: inject-field
 	self.draw_opts.constants.time = self.constants.time
+
+	---#region constants for model player clip
+	if GAME.level_creator.player then
+		-- Obtain the view matrix
+		CAMERAS.current_camera:get_view_to_matrix(TEMP_MATRIX4)
+
+		local player_pos = GAME.level_creator.player.position
+		xmath.vector4_set_components(self.constants.player_pos_world, player_pos.x, player_pos.y, player_pos.z, 1)
+		-- Set the components of the player's world position into TEMP_V
+		xmath.vector4_set_components(TEMP_V, player_pos.x, player_pos.y + 1.5, player_pos.z, 1)
+
+		-- Transform the player's position from world space to view space
+		xmath.matrix_mul_v4(TEMP_V, TEMP_MATRIX4, TEMP_V)
+		xmath.vector4_set_components(self.constants.player_pos_view, TEMP_V.x, TEMP_V.y, TEMP_V.z, TEMP_V.w)
+		---@diagnostic disable-next-line: inject-field
+		self.draw_opts.constants.player_pos_view = self.constants.player_pos_view
+		local player_view_pos = vmath.vector4(self.constants.player_pos_view)
+
+		-- Obtain the projection matrix
+		CAMERAS.current_camera:get_proj_to_matrix(TEMP_MATRIX4);
+		-- Transform the player's position from view space to clip space
+		xmath.matrix_mul_v4(TEMP_V, TEMP_MATRIX4, TEMP_V)
+		local clip_w = TEMP_V.w ~= 0 and TEMP_V.w or 1
+		local inv_w = 1 / clip_w
+		local ndc_x = TEMP_V.x * inv_w
+		local ndc_y = TEMP_V.y * inv_w
+		local ndc_z = TEMP_V.z * inv_w
+		xmath.vector4_set_components(self.constants.player_pos_clip, ndc_x, ndc_y, ndc_z, 1)
+		-- Calculate clip radius in screen space based on projected player size
+		local player_radius_world = 0.6
+		local padding = 1.0
+
+		local offset_view_x = vmath.vector4(player_view_pos)
+		offset_view_x.x = offset_view_x.x + player_radius_world
+		xmath.matrix_mul_v4(offset_view_x, TEMP_MATRIX4, offset_view_x)
+		local offset_x_w = offset_view_x.w ~= 0 and offset_view_x.w or 1
+		local offset_ndc_x = offset_view_x.x / offset_x_w
+		local radius_ndc_x = math.abs((offset_ndc_x - ndc_x) * self.screen_size.aspect)
+
+		local offset_view_y = vmath.vector4(player_view_pos)
+		offset_view_y.y = offset_view_y.y + player_radius_world
+		xmath.matrix_mul_v4(offset_view_y, TEMP_MATRIX4, offset_view_y)
+		local offset_y_w = offset_view_y.w ~= 0 and offset_view_y.w or 1
+		local offset_ndc_y = offset_view_y.y / offset_y_w
+		local radius_ndc_y = math.abs(offset_ndc_y - ndc_y)
+
+		local clip_radius = math.max(radius_ndc_x, radius_ndc_y) * padding
+		self.constants.clip.x = math.max(clip_radius * 0.95 + 0.01, 0)
+		self.constants.clip.y = 0.18
+		self.constants.clip.z = 0
+		---@diagnostic disable-next-line: inject-field
+		self.draw_opts.constants.clip = self.constants.clip
+	else
+		xmath.vector4_set_components(self.constants.player_pos_clip, 0, 0, -1, 1)
+		xmath.vector4_set_components(self.constants.player_pos_view, 0, 0, 0, 1)
+		---@diagnostic disable-next-line: inject-field
+		self.draw_opts.constants.player_pos_view = self.constants.player_pos_view
+		self.constants.clip.x = 0
+		self.constants.clip.y = 0
+		self.constants.clip.z = 0
+		---@diagnostic disable-next-line: inject-field
+		self.draw_opts.constants.clip = self.constants.clip
+	end
+	---#endregion
+
+	GAME.lights:set_enable_shadows(IlluminationFeature.storage:draw_shadows_get())
 
 	CAMERAS.current_camera:get_view_to_matrix(self.view)
 	CAMERAS.current_camera:get_proj_to_matrix(self.proj)

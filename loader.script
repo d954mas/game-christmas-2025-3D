@@ -35,6 +35,10 @@ local DEBUG_GUI_FEATURE = require "features.debug.debug_gui.debug_gui_feature"
 local ECS_DEBUG_FEATURE = require "features.core.ecs.ecs_debug_feature"
 ---#endregion
 
+---#region FEATURES 3D
+local IlluminationFeature = require "features.core.illumination.illumination_feature"
+---#endregion
+
 ---#region FEATURES GAME
 
 ---#endregion
@@ -80,6 +84,9 @@ function Script:init()
 	FEATURES:add_feature(IMGUI_FEATURE)
 	FEATURES:add_feature(DEBUG_GUI_FEATURE)
 	FEATURES:add_feature(ECS_DEBUG_FEATURE)
+
+	--features 3d
+	FEATURES:add_feature(IlluminationFeature)
 
 	---features game
 
