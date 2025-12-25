@@ -29,6 +29,8 @@ bundle_resources = assets/bundle
 version = 1.0
 dependencies#0 = https://github.com/AGulev/GA-SDK-DEFOLD/archive/dc620dcd895e400adf2e416f9db770eeed7da276.zip
 dependencies#1 = https://github.com/d954mas/defold-openssl/archive/refs/heads/master.zip
+dependencies#2 = https://github.com/britzl/extension-imgui/archive/master.zip
+dependencies#3 = https://github.com/d954mas/defold-imgui-gizmo/archive/master.zip
 
 [html5]
 heap_size = 64

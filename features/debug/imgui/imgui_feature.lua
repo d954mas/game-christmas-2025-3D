@@ -1,5 +1,7 @@
 local INPUT = require "features.core.input.input"
+local ImguiStoragePart = require "features.debug.imgui.imgui_storage_part"
 
+---@class ImguiFeature:Feature
 local M = {
 	w = 960,
 	h = 540
@@ -127,6 +129,10 @@ function M:init()
 	--imgui.scale_all_sizes(1.5)
 	--imgui.set_global_font_scale(1.5)
 
+	if imgui_gizmo then
+		imgui_gizmo.set_context()
+	end
+
 	INPUT.acquire({ on_input =
 		function (_, action_id, action)
 			local consumed = self:on_input(action_id, action)
@@ -136,7 +142,7 @@ end
 
 function M:is_imgui_handled_input()
 	if not imgui then return false end
-	return imgui.want_mouse_input() or imgui.want_keyboard_input() or imgui.want_text_input() or imgui.gizmo_is_using_any()
+	return imgui.want_mouse_input() or imgui.want_keyboard_input() or imgui.want_text_input() or (imgui_gizmo and imgui_gizmo.is_using_any())
 end
 
 function M:on_input(action_id, action)
@@ -199,11 +205,22 @@ function M:on_input(action_id, action)
 	return M:is_imgui_handled_input()
 end
 
-function M.on_resize(w, h)
+function M:on_resize(w, h)
 	if not imgui then return end
 	M.w = assert(w)
 	M.h = assert(h)
 	imgui.set_display_size(w, h)
+end
+
+function M:on_storage_init(storage)
+	self.storage = ImguiStoragePart.new(storage)
+end
+
+---@param gui_script DebugGuiScript
+function M:on_debug_gui_added(gui_script)
+	gui_script:add_game_checkbox("Imgui Debug", self.storage:is_show_debug(), function ()
+		self.storage:set_show_debug(not self.storage:is_show_debug())
+	end)
 end
 
 return M
