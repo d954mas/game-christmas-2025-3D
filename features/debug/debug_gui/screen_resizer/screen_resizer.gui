@@ -1,4 +1,4 @@
-script: "/features/debug/debug_gui/resizer/resizer.gui_script"
+script: "/features/debug/debug_gui/screen_resizer/screen_resizer.gui_script"
 nodes {
   scale {
     x: 2.0

@@ -1,0 +1,80 @@
+local HASH_RIGHT_CLICK = hash("mouse_button_right")
+local RESIZER = require "features.debug.debug_gui.screen_resizer.resizer"
+
+local CONFIG = {
+	resolution_scale_album = 1.5,
+	resolution_scale_portrait = 1,
+	lock_width = true,
+	resolutions = {
+		{ 16,   9 },
+		{ 19.5, 9 },
+		{ 4,    3 },
+	},
+}
+
+function init(self)
+	if not screen_resizer then
+		msg.post("#", "disable")
+		return
+	end
+
+	msg.post(".", "acquire_input_focus")
+	gui.set_render_order(15)
+	local display_width = sys.get_config_int("display.width", 960)
+	local display_height = sys.get_config_int("display.height", 540)
+	--change order for album and portrait
+	if (display_width < display_height) then
+		for _, r in ipairs(CONFIG.resolutions) do
+			local r1 = r[1]
+			r[1] = r[2]
+			r[2] = r1
+		end
+		CONFIG.lock_width = not CONFIG.lock_width
+	end
+
+	for _, size in ipairs(CONFIG.resolutions) do
+		local w, h
+		local aspect = size[1] / size[2]
+		if CONFIG.lock_width then
+			w = display_width
+			h = display_width / aspect
+		else
+			w = display_height * aspect
+			h = display_height
+		end
+
+		local tag = string.format("%.1fx%.1f %dx%d", size[1], size[2], w, h)
+		RESIZER:add_size(math.floor(w), math.floor(h), tag, w >= h and CONFIG.resolution_scale_album or
+			CONFIG.resolution_scale_portrait)
+	end
+
+
+	for _, size in ipairs(CONFIG.resolutions) do
+		local w, h
+		local aspect = size[2] / size[1]
+		if not CONFIG.lock_width then
+			w = display_height
+			h = display_height / aspect
+		else
+			w = display_width * aspect
+			h = display_width
+		end
+
+		local tag = string.format("%.1fx%.1f %dx%d", size[2], size[1], w, h)
+		RESIZER:add_size(math.floor(w), math.floor(h), tag, w >= h and CONFIG.resolution_scale_album or
+			CONFIG.resolution_scale_portrait)
+	end
+
+
+	self.resize_node = gui.get_node("resize_node")
+	RESIZER:set_size_by_idx(1)
+end
+
+function on_input(self, action_id, action)
+	if action_id == HASH_RIGHT_CLICK and action.released and
+		gui.pick_node(self.resize_node, action.x, action.y) then
+		local _, _, _, h = screen_resizer.get_view_size()
+		RESIZER:show_menu(action.screen_x, h - action.screen_y)
+		return true
+	end
+end

@@ -8,7 +8,7 @@ embedded_instances {
   "}\n"
   "components {\n"
   "  id: \"resize-corner\"\n"
-  "  component: \"/features/debug/debug_gui/resizer/resize-corner.gui\"\n"
+  "  component: \"/features/debug/debug_gui/screen_resizer/screen_resizer.gui\"\n"
   "}\n"
   "components {\n"
   "  id: \"debug_gui\"\n"
