@@ -14,6 +14,7 @@ function Storage:initialize(...)
     if not self.illumination then
         self.illumination = {
             debug_lights = false,
+            debug_shadow = false,
             draw_shadows = not CONSTANTS.IS_MOBILE_DEVICE
         }
         self.storage.data.illumination = self.illumination
@@ -26,6 +27,15 @@ end
 
 function Storage:set_debug_lights(debug)
 	self.illumination.debug_lights = debug
+    self:save()
+end
+
+function Storage:is_debug_shadow()
+	return self.illumination.debug_shadow
+end
+
+function Storage:set_debug_shadow(debug)
+	self.illumination.debug_shadow = debug
     self:save()
 end
 

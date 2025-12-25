@@ -2,6 +2,8 @@ name: "main"
 scale_along_z: 0
 embedded_instances {
   id: "root"
+  children: "illumination_debug_light"
+  children: "illumination_debug_shadow"
   data: "components {\n"
   "  id: \"loader\"\n"
   "  component: \"/loader.script\"\n"
@@ -56,4 +58,48 @@ embedded_instances {
   "\"\n"
   "}\n"
   ""
+}
+embedded_instances {
+  id: "illumination_debug_shadow"
+  data: "embedded_components {\n"
+  "  id: \"mesh\"\n"
+  "  type: \"mesh\"\n"
+  "  data: \"material: \\\"/features/core/illumination/assets/materials/shadow_debug_shadowmap_mesh.material\\\"\\n"
+  "vertices: \\\"/features/core/buffer/plane.buffer\\\"\\n"
+  "textures: \\\"/assets/textures/rgb/shadow.png\\\"\\n"
+  "position_stream: \\\"position\\\"\\n"
+  "normal_stream: \\\"normal\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 318.0
+    y: 99.0
+  }
+  scale3 {
+    x: 90.0
+    y: 90.0
+  }
+}
+embedded_instances {
+  id: "illumination_debug_light"
+  data: "embedded_components {\n"
+  "  id: \"mesh\"\n"
+  "  type: \"mesh\"\n"
+  "  data: \"material: \\\"/features/core/illumination/assets/materials/data_lights_debug.material\\\"\\n"
+  "vertices: \\\"/features/core/buffer/plane.buffer\\\"\\n"
+  "textures: \\\"/assets/textures/rgb/data.png\\\"\\n"
+  "position_stream: \\\"position\\\"\\n"
+  "normal_stream: \\\"normal\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    x: 104.0
+    y: 99.0
+  }
+  scale3 {
+    x: 90.0
+    y: 90.0
+  }
 }

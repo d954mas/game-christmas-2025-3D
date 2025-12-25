@@ -73,6 +73,7 @@ function Render:init_predicates()
 		particles_world = render.predicate({ "particles_world" }),
 		sprite_3d = render.predicate({ "sprite_3d" }),
 		sprite_glow = render.predicate({ "sprite_glow" }),
+		rect_area = render.predicate({ "rect_area" }),
 	}
 end
 
@@ -210,14 +211,9 @@ function Render:update(_)
 	GAME.lights:set_frustum(self.frustum)
 	GAME.lights:update_lights()
 
-
 	GAME.lights:set_frustum(shadowFrustum)
 	GAME.lights:render_shadows()
 
-
-
-	--[[render.set_viewport(CAMERAS.game_camera.viewport.x, CAMERAS.game_camera.viewport.y,
-		CAMERAS.game_camera.viewport.width, CAMERAS.game_camera.viewport.height)--]]
 	render.set_viewport(0, 0, self.screen_size.w, self.screen_size.h)
 	render.set_view(self.view)
 	render.set_projection(self.proj)
@@ -225,16 +221,42 @@ function Render:update(_)
 	render.set_stencil_mask(0xff)
 	render.clear(self.clear)
 
-	render.disable_state(graphics.STATE_DEPTH_TEST)
-	render.disable_state(graphics.STATE_CULL_FACE)
+	render.enable_state(graphics.STATE_DEPTH_TEST)
+	render.enable_state(graphics.STATE_CULL_FACE)
 	render.disable_state(graphics.STATE_STENCIL_TEST)
-	render.enable_state(graphics.STATE_BLEND)
+	render.disable_state(graphics.STATE_BLEND)
 	render.set_blend_func(graphics.BLEND_FACTOR_ONE, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
 
+	--render.disable_state(graphics.STATE_CULL_FACE)
+	render.draw(self.predicates.char, self.draw_opts)
+	--render.enable_state(graphics.STATE_CULL_FACE)
 	render.draw(self.predicates.tile, self.draw_opts)
+	render.draw(self.predicates.model_no_shadow, self.draw_opts)
 
+	GAME.lights:draw_begin()
+	render.draw(self.predicates.model, self.draw_opts)
+	GAME.lights:draw_finish()
+
+	render.enable_state(graphics.STATE_BLEND)
+	render.disable_state(graphics.STATE_CULL_FACE)
+	render.draw(self.predicates.arrow, self.draw_opts)
+	render.set_depth_mask(false)
+	render.draw(self.predicates.particles_world, self.draw_opts)
+	render.set_depth_mask(true)
+	--render.set_depth_mask(false)
+	render.disable_state(graphics.STATE_DEPTH_TEST)
+	render.draw(self.predicates.gui_world, self.draw_opts)
+	render.draw(self.predicates.gui_world_font, self.draw_opts)
+	render.set_depth_mask(false)
+	render.enable_state(graphics.STATE_DEPTH_TEST)
+	render.draw(self.predicates.rect_area, self.draw_opts)
+	--render.draw(self.predicates.model_area_glow, self.draw_opts)
+	render.draw(self.predicates.model_transparent, self.draw_opts)
+	render.draw(self.predicates.sprite_3d, self.draw_opts)
+	render.draw(self.predicates.sprite_glow, self.draw_opts)
 
 	render.draw_debug3d()
+
 
 	-- GUI Rendering
 	render.set_depth_mask(false)
@@ -247,6 +269,15 @@ function Render:update(_)
 	render.set_projection(self.gui_proj)
 	render.draw(self.predicates.gui)
 	render.disable_state(graphics.STATE_STENCIL_TEST)
+
+	if IlluminationFeature.storage:is_debug_shadow() then
+		GAME.lights:draw_shadow_debug()
+	end
+
+	if IlluminationFeature.storage:is_debug_lights() then
+		GAME.lights:draw_data_lights_debug()
+		GAME.lights:draw_debug_planes()
+	end
 end
 
 N28S.register(Render)
