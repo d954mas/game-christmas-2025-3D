@@ -3,7 +3,7 @@ local ANALYTICS = require "features.sdk.analytics.analytics"
 
 local Box2dWorld = require "features.core.box2d.box2d_world"
 local LevelCreator = require "features.gameplay.tiled.level_creator_tiled"
-local GameEcs = require "game.ecs.game_ecs"
+local GameEcs = require "game.ecs.game_ecs_3d"
 
 ---@class GameWorld2D
 local GameWorld = {}

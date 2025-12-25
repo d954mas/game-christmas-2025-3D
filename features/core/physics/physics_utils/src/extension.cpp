@@ -3,9 +3,17 @@
 #define MODULE_NAME "physics_utils"
 
 #include <dmsdk/sdk.h>
+#include "physics_object_userdata.h"
+#include "physics_utils.h"
 
 // Functions exposed to Lua
 static const luaL_reg Module_methods[] = {
+    {"new_physics_object", d954masPhysicsUtils::LuaCreatePhysicsObject},
+    {"physics_objects_update_variables", d954masPhysicsUtils::LuaPhysicsObjectsUpdateVariables},
+    {"physics_objects_update_linear_velocity", d954masPhysicsUtils::LuaPhysicsObjectsUpdateLinearVelocity},
+    {"physics_raycast_single_exist", d954masPhysicsUtils::LuaPhysicsUtilsRayCastSingleExist},
+    {"physics_raycast_single", d954masPhysicsUtils::LuaPhysicsUtilsRayCastSingle},
+    {"physics_count_mask", d954masPhysicsUtils::LuaPhysicsUtilsCountMask},
     {0, 0}
 };
 

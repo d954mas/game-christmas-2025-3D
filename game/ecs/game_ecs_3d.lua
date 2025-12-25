@@ -1,10 +1,12 @@
 local CLASS = require "libs.class"
-local Entities = require "game.ecs.entities"
+local Entities = require "game.ecs.entities_3d"
 local ECS = require "libs.ecs"
 
 local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
 local GoPositionSetterUpdateSystem = require "features.core.go_position_setter.update_go_position_setter"
 
+local UpdatePhysicsObjectsSystem = require "features.core.physics.update_physics_objects_system"
+local UpdatePhysicsObjectsLinearVelocitySystem = require "features.core.physics.update_physics_objects_linear_velocity_system"
 
 --#IF DEBUG
 
@@ -40,8 +42,10 @@ function EcsWorld:add_systems()
 
 	--#ENDIF
 
-
+	self.ecs:add_system(UpdatePhysicsObjectsSystem.new())
 	self.ecs:add_system(GoPositionSetterUpdateSystem.new())
+
+	self.ecs:add_system(UpdatePhysicsObjectsLinearVelocitySystem.new())
 
 	--#IF DEBUG
 

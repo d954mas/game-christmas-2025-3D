@@ -35,6 +35,10 @@ end
 ---@param e Entity
 ---@diagnostic disable-next-line: unused-local
 function Entities:on_entity_removed(e)
+	if (e.physics_object) then
+		e.physics_object:destroy()
+		e.physics_object = nil
+	end
 end
 
 ---@param e Entity
@@ -117,7 +121,7 @@ function Entities:create_player(position)
 	}
 	e.moving = false
 	e.physics_linear_velocity = vmath.vector3()
-	e.physics_object = game.new_physics_object(e.player_go.physics.root, e.player_go.physics.collision, e.position,
+	e.physics_object = physics_utils.new_physics_object(e.player_go.physics.root, e.player_go.physics.collision, e.position,
 		e.physics_linear_velocity)
 
 	e.grounded = {

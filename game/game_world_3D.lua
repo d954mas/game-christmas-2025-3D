@@ -1,7 +1,7 @@
 local ACTIONS = require "libs.actions.actions"
 local ANALYTICS = require "features.sdk.analytics.analytics"
 
-local GameEcs = require "game.ecs.game_ecs"
+local GameEcs = require "game.ecs.game_ecs_3d"
 local Lights = require "features.core.illumination.illumination"
 local LevelCreator3d = require "features.gameplay.3d_level.level_creator"
 

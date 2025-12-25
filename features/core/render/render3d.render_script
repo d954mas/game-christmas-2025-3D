@@ -120,7 +120,6 @@ function Render:update(_)
 		CAMERAS.current_camera:get_view_to_matrix(TEMP_MATRIX4)
 
 		local player_pos = GAME.level_creator.player.position
-		xmath.vector4_set_components(self.constants.player_pos_world, player_pos.x, player_pos.y, player_pos.z, 1)
 		-- Set the components of the player's world position into TEMP_V
 		xmath.vector4_set_components(TEMP_V, player_pos.x, player_pos.y + 1.5, player_pos.z, 1)
 
