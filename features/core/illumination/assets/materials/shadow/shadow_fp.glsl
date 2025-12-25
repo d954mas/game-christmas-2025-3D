@@ -1,7 +1,7 @@
 #ifndef shadow_fp
 #define shadow_fp
 
-#include "/assets/materials/includes/float_rgba_utils.glsl"
+#include "/features/core/materials/includes/float_rgba_utils.glsl"
 
 uniform lowp vec4 shadow_params;//x is texture size y depth_bias
 uniform lowp vec4 shadow_color;

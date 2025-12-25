@@ -1,85 +1,85 @@
 platforms:
     armv7-ios:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     arm64-ios:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     x86_64-ios:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     armv7-android:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     arm64-android:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     arm64-osx:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     x86_64-osx:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     x86_64-linux:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     arm64-linux:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     x86-win32:
         context:
-            excludeLibs: [libBox2D, librecord, vpx, libimage, libbox2d, libscript_box2d, libphysics, libLinearMath, libBulletDynamics, libBulletCollision, libbox2d_defold, libscript_box2d_defold]
+            excludeLibs: [libBox2D, librecord, vpx, libimage, libbox2d, libscript_box2d, libphysics, libbox2d_defold, libscript_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [librecord_null.lib, libimage_null.lib, libphysics_null.lib]
+            libs: [librecord_null.lib, libimage_null.lib, libphysics_3d.lib]
     x86_64-win32:
         context:
-            excludeLibs: [libBox2D, librecord, vpx, libimage, libbox2d, libscript_box2d, libphysics, libLinearMath, libBulletDynamics, libBulletCollision, libbox2d_defold, libscript_box2d_defold]
+            excludeLibs: [libBox2D, librecord, vpx, libimage, libbox2d, libscript_box2d, libphysics, libbox2d_defold, libscript_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [librecord_null.lib, libimage_null.lib, libphysics_null.lib]
+            libs: [librecord_null.lib, libimage_null.lib, libphysics_3d.lib]
     js-web:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     wasm-web:
         context:
-            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [Box2D, record, vpx, image, box2d, script_box2d, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]
     wasm_pthread-web:
         context:
-            excludeLibs: [record, vpx, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold]
+            excludeLibs: [record, vpx, image, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [record_null, image_null, physics_null]
+            libs: [record_null, image_null, physics_3d]

@@ -1,85 +1,85 @@
 platforms:
     armv7-ios:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     arm64-ios:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     x86_64-ios:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     armv7-android:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     arm64-android:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     arm64-osx:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     x86_64-osx:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     x86_64-linux:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     arm64-linux:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_remotery, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     x86-win32:
         context:
-            excludeLibs: [libBox2D, libprofilerext, libbox2d, libscript_box2d, libprofile, libprofiler_remotery, libimage, libphysics, libLinearMath, libBulletDynamics, libBulletCollision, libbox2d_defold, libscript_box2d_defold, librecord, vpx]
+            excludeLibs: [libBox2D, libprofilerext, libbox2d, libscript_box2d, libprofile, libprofiler_remotery, libimage, librecord, vpx, libphysics, libbox2d_defold, libscript_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [libprofilerext_null.lib, libprofile_null.lib, libimage_null.lib, libphysics_null.lib, librecord_null.lib]
+            libs: [libprofilerext_null.lib, libprofile_null.lib, libimage_null.lib, librecord_null.lib, libphysics_3d.lib]
     x86_64-win32:
         context:
-            excludeLibs: [libBox2D, libprofilerext, libbox2d, libscript_box2d, libprofile, libprofiler_remotery, libimage, libphysics, libLinearMath, libBulletDynamics, libBulletCollision, libbox2d_defold, libscript_box2d_defold, librecord, vpx]
+            excludeLibs: [libBox2D, libprofilerext, libbox2d, libscript_box2d, libprofile, libprofiler_remotery, libimage, librecord, vpx, libphysics, libbox2d_defold, libscript_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [libprofilerext_null.lib, libprofile_null.lib, libimage_null.lib, libphysics_null.lib, librecord_null.lib]
+            libs: [libprofilerext_null.lib, libprofile_null.lib, libimage_null.lib, librecord_null.lib, libphysics_3d.lib]
     js-web:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_js, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_js, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerJS, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     wasm-web:
         context:
-            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_js, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [Box2D, profilerext, box2d, script_box2d, profile, profiler_js, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerExt, ProfilerBasic, ProfilerJS, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profilerext_null, profile_null, image_null, physics_null, record_null]
+            libs: [profilerext_null, profile_null, image_null, record_null, physics_3d]
     wasm_pthread-web:
         context:
-            excludeLibs: [profile, profilerext, profiler_js, image, physics, LinearMath, BulletDynamics, BulletCollision, box2d_defold, script_box2d_defold, record, vpx]
+            excludeLibs: [profile, profilerext, profiler_js, image, record, vpx, physics, box2d_defold, script_box2d_defold]
             excludeSymbols: [ProfilerBasic, ProfilerJS, ProfilerRemotery, ScriptImageExt, ScriptBox2DExt]
             symbols: []
-            libs: [profile_null, profilerext_null, image_null, physics_null, record_null]
+            libs: [profile_null, profilerext_null, image_null, record_null, physics_3d]

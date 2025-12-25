@@ -1,7 +1,7 @@
 #ifndef shadow_fp_functions
 #define shadow_fp_functions
 
-#include "/assets/materials/includes/float_rgba_utils.glsl"
+#include "/features/core/materials/includes/float_rgba_utils.glsl"
 
 //mobile
 float shadow_calculation(highp vec4 depth_data){

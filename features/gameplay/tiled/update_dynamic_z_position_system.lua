@@ -1,6 +1,11 @@
 local ECS = require 'libs.ecs'
 local CLASS = require 'libs.class'
 
+---@class DynamicZEntity
+---@field dz number
+
+---@class Entity
+---@field dynamic_z DynamicZEntity
 
 ---@class UpdateDynamicZSystem:EcsSystem
 local System = CLASS.class("UpdateDynamicZSystem", ECS.System)

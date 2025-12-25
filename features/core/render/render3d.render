@@ -1,1 +1,9 @@
 script: "/features/core/render/render3d.render_script"
+render_resources {
+  name: "shadow"
+  path: "/features/core/illumination/assets/materials/shadow/shadow.material"
+}
+render_resources {
+  name: "shadow_bones"
+  path: "/features/core/illumination/materials/shadow_bones.material"
+}
