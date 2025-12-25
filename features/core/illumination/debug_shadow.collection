@@ -1,0 +1,10 @@
+name: "debug_shadow"
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  data: ""
+  scale3 {
+    x: 100.0
+    y: 100.0
+  }
+}

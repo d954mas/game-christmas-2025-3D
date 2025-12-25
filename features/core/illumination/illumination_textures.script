@@ -1,0 +1,7 @@
+local GAME = require "game.game_world"
+
+go.property("data_texture", resource.texture("/assets/textures/rgb/data.png"))
+
+function init(_)
+	GAME.lights:init(go.get(msg.url(), "data_texture"))
+end

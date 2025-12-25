@@ -1,0 +1,16 @@
+#version 140
+
+in highp vec4 position;
+in mediump vec2 texcoord0;
+in mediump vec3 normal;
+
+uniform vertex_uniforms {
+     mediump mat4 mtx_worldviewproj;
+}
+
+out mediump vec2 texture_coord;
+
+void main() {
+    texture_coord = texcoord0;
+    gl_Position = mtx_worldviewproj * vec4(position.xyz, 1.0);
+}

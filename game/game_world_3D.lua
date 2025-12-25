@@ -1,9 +1,9 @@
 local ACTIONS = require "libs.actions.actions"
 local ANALYTICS = require "features.sdk.analytics.analytics"
 
-local Box2dWorld = require "features.core.box2d.box2d_world"
-local LevelCreator = require "features.gameplay.tiled.level_creator_tiled"
 local GameEcs = require "game.ecs.game_ecs"
+local Lights = require "features.core.illumination.illumination"
+local LevelCreator3d = require "features.gameplay.3d_level.level_creator"
 
 ---@class GameWorld3D
 local GameWorld = {}
@@ -11,25 +11,31 @@ local GameWorld = {}
 function GameWorld:init()
     self.game_actions = ACTIONS.Parallel.new(false)
     self.game_actions.drop_empty = false
+    self.lights = Lights.new()
     self.ecs = GameEcs.new(self)
+    self.level_creator = LevelCreator3d.new(self)
     self:reset_state()
 end
 
 function GameWorld:game_loaded(level)
-    assert(not self.box2d_world)
     self:reset_state()
-    self.box2d_world = Box2dWorld.new({ gravity = vmath.vector3(0),
-        velocity_iterations = 2, position_iterations = 2,
-        time_step = 1 / 60 }, self)
     self.ecs:add_systems()
-    self.level_creator = LevelCreator.new(self)
-    self.level_creator:load_level(level)
 
     ANALYTICS:level_loaded(level)
 end
 
+function GameWorld:change_location(location_id)
+    self.game_actions:clear()
+    self.ecs:clear()
+    self.ecs:refresh()
+    self.ecs:add_systems()
+    self.level_creator:create_location(location_id)
+    self.level_creator:create_player(self.level_creator.location_data.data.spawn_position)
+    ANALYTICS.location_loaded(self, location_id)
+end
+
 function GameWorld:reset_state()
-     self.state = {
+    self.state = {
         time = 0,
         first_move = false,
         can_show_ads = false
@@ -44,6 +50,16 @@ end
 function GameWorld:update(dt)
     self.game_actions:update(dt)
     self.ecs.ecs:draw(dt)
+
+    local show_ads = self:can_show_ads()
+    if self.state.can_show_ads ~= show_ads then
+        self.state.can_show_ads = show_ads
+        self.level_creator.location_data:trigger_location_changed()
+    end
+end
+
+function GameWorld:can_show_ads()
+    return false
 end
 
 function GameWorld:final()

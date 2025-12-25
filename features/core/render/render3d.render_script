@@ -2,7 +2,7 @@ local N28S = require "libs.n28s"
 local LOG = require "libs.log"
 local EVENTS = require "libs.events"
 local CAMERAS = require "features.core.camera.cameras_feature"
-local GAME = require "game.game_world"
+local GAME = require "game.game_world_3D"
 local GUI_RESIZER = require "features.core.gui_resizer"
 local FEATURES = require "features.features"
 local CONTEXTS = require "libs.contexts_manager"
@@ -27,9 +27,12 @@ function Render:init()
 
 	self.constants = {
 		time = vmath.vector4(),
+		player_pos_clip = vmath.vector4(),
+		player_pos_view = vmath.vector4(),
+		clip = vmath.vector4()
 	}
 
-
+	GAME.lights:set_render(self)
 	self:init_predicates()
 	self:init_draw_opts()
 	self.clear = { [graphics.BUFFER_TYPE_COLOR0_BIT] = vmath.vector4(0, 0, 0, 0), [graphics.BUFFER_TYPE_DEPTH_BIT] = 1, [graphics.BUFFER_TYPE_STENCIL_BIT] = 0 }

@@ -103,4 +103,9 @@ function Analytics:level_loaded(level_name)
 	FIREBASE:event_string("game_level_loaded", "level", level_name)
 end
 
+function Analytics:location_loaded(level_name)
+	GAME_ANALYTICS:event("game:location:" .. level_name .. ":load")
+	FIREBASE:event_string("game_location_loaded", "level", level_name)
+end
+
 return Analytics
