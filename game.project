@@ -1,6 +1,6 @@
 [bootstrap]
 main_collection = /loader.collectionc
-render = /features/core/render/render.renderc
+render = /features/core/render/render3d.renderc
 
 [script]
 shared_state = 1
@@ -29,7 +29,6 @@ bundle_resources = assets/bundle
 version = 1.0
 dependencies#0 = https://github.com/AGulev/GA-SDK-DEFOLD/archive/dc620dcd895e400adf2e416f9db770eeed7da276.zip
 dependencies#1 = https://github.com/d954mas/defold-openssl/archive/refs/heads/master.zip
-dependencies#2 = https://github.com/britzl/defold-lfs/archive/refs/tags/1.3.0.zip
 
 [html5]
 heap_size = 64

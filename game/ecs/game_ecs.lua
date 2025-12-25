@@ -3,24 +3,11 @@ local Entities = require "game.ecs.entities"
 local ECS = require "libs.ecs"
 
 local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
-
-local CameraTiledLevelBordersSystem = require "features.gameplay.tiled.camera_border_tile_level_system"
-local CameraFollowPlayerSystem = require "features.gameplay.player.camera_follow_player_system"
-local PlayerMoveBox2dSystem = require "features.core.box2d.player_move_box2d_system"
-local PlayerInputSystem = require "features.gameplay.player.player_movement2d_input_system"
-local UpdateDynamicZPositionSystem = require "features.gameplay.tiled.update_dynamic_z_position_system"
-
-local DrawVisualObjectSystem = require "features.gameplay.tiled.draw_visual_objects_tiled_system"
-
 local GoPositionSetterUpdateSystem = require "features.core.go_position_setter.update_go_position_setter"
-local Box2dUpdatePositionSystem = require "features.core.box2d.box2d_update_position"
-local Box2dUpdateSystem = require "features.core.box2d.box2d_update_system"
-local Draw2dPlayerSystem = require "features.gameplay.player.draw_2d_player_system"
-local DrawTileLayerSystem = require "features.gameplay.tiled.draw_tile_layer_system"
+
 
 --#IF DEBUG
-local DrawBox2dDebugSystem = require "features.core.box2d.draw_box2d_debug_system"
-local DrawTiledChunksDebugSystem = require "features.gameplay.tiled.draw_tiled_chunks_debug_system"
+
 --#ENDIF
 
 ---@class GameEcsWorld
@@ -53,22 +40,11 @@ function EcsWorld:add_systems()
 
 	--#ENDIF
 
-	self.ecs:add_system(PlayerInputSystem.new())
-	self.ecs:add_system(PlayerMoveBox2dSystem.new())
-	self.ecs:add_system(CameraFollowPlayerSystem.new())
-	self.ecs:add_system(CameraTiledLevelBordersSystem.new())
 
-	self.ecs:add_system(Box2dUpdateSystem.new())
-	self.ecs:add_system(Box2dUpdatePositionSystem.new())
-	self.ecs:add_system(UpdateDynamicZPositionSystem.new())
 	self.ecs:add_system(GoPositionSetterUpdateSystem.new())
 
-	self.ecs:add_system(DrawVisualObjectSystem.new())
-	self.ecs:add_system(Draw2dPlayerSystem.new())
-	self.ecs:add_system(DrawTileLayerSystem.new())
 	--#IF DEBUG
-	self.ecs:add_system(DrawBox2dDebugSystem.new())
-	self.ecs:add_system(DrawTiledChunksDebugSystem.new())
+
 	--#ENDIF
 
 	--can remove or add new entities. So it should be last

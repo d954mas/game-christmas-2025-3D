@@ -1,0 +1,139 @@
+local N28S = require "libs.n28s"
+local LOG = require "libs.log"
+local EVENTS = require "libs.events"
+local CAMERAS = require "features.core.camera.cameras_feature"
+local GAME = require "game.game_world"
+local GUI_RESIZER = require "features.core.gui_resizer"
+local FEATURES = require "features.features"
+local CONTEXTS = require "libs.contexts_manager"
+
+local HASH_WINDOW_RESIZED = hash("window_resized")
+local TAG = "Render"
+
+
+---@class Render3D
+local Render = {}
+
+function Render:init()
+	CONTEXTS:register(CONTEXTS.NAMES.RENDER, self)
+	self.screen_size = {
+		w = nil, h = nil, aspect = nil
+	}
+	self.config_size = {
+		w = render.get_width(),
+		h = render.get_height(),
+	}
+	self.config_size.aspect = self.config_size.w / self.config_size.h
+
+	self.constants = {
+		time = vmath.vector4(),
+	}
+
+
+	self:init_predicates()
+	self:init_draw_opts()
+	self.clear = { [graphics.BUFFER_TYPE_COLOR0_BIT] = vmath.vector4(0, 0, 0, 0), [graphics.BUFFER_TYPE_DEPTH_BIT] = 1, [graphics.BUFFER_TYPE_STENCIL_BIT] = 0 }
+	self.clear_rt = { [graphics.BUFFER_TYPE_COLOR0_BIT] = vmath.vector4(0, 0, 0, 0), [graphics.BUFFER_TYPE_DEPTH_BIT] = 1, [graphics.BUFFER_TYPE_STENCIL_BIT] = 0 }
+	self:calculate_screen_size()
+	self:window_size_changed()
+
+	self.view = vmath.matrix4()
+	self.proj = vmath.matrix4()
+	self.frustum = vmath.matrix4()
+
+	_G.RENDER = self
+end
+
+function Render:init_draw_opts()
+	self.draw_opts = {
+		constants = render.constant_buffer(),
+		frustum = self.frustum,
+		frustum_planes = render.FRUSTUM_PLANES_ALL,
+	}
+end
+
+function Render:init_predicates()
+	self.predicates = {
+		tile = render.predicate({ "tile" }),
+		gui = render.predicate({ "gui" }),
+	}
+end
+
+function Render:window_size_changed()
+	self.gui_proj = vmath.matrix4_orthographic(0, self.screen_size.w, 0, self.screen_size.h, -1, 1)
+	self.empty_view = vmath.matrix4()
+	FEATURES:on_resize(self.screen_size.w, self.screen_size.h)
+	GUI_RESIZER.update_screen_size(self.screen_size, self.config_size)
+
+end
+
+function Render:calculate_screen_size()
+	self.screen_size.w = render.get_window_width()
+	self.screen_size.h = render.get_window_height()
+	if (self.screen_size.w == 0) then self.screen_size.w = 1 end
+	if (self.screen_size.h == 0) then self.screen_size.h = 1 end
+	self.screen_size.aspect = self.screen_size.w / self.screen_size.h
+	---@diagnostic disable-next-line: inject-field
+	self.draw_opts.constants.screen_size_game = vmath.vector4(self.screen_size.w, self.screen_size.h, self.screen_size.aspect, 0)
+end
+
+function Render:on_message(message_id)
+	if message_id == HASH_WINDOW_RESIZED then
+		local prev_w = self.screen_size.w
+		local prev_h = self.screen_size.h
+		self:calculate_screen_size()
+
+		if (prev_w ~= self.screen_size.w or prev_h ~= self.screen_size.h) then
+			LOG.i("screen size changed. from " .. "w:" .. prev_w .. " h:" .. prev_h
+				.. " to w:" .. self.screen_size.w .. " h:" .. self.screen_size.h, TAG)
+			self:window_size_changed()
+			EVENTS.WINDOW_RESIZED:trigger(self.screen_size.w, self.screen_size.h)
+		end
+	end
+end
+
+function Render:update(_)
+	self.constants.time.x = GAME.state.time
+	---@diagnostic disable-next-line: inject-field
+	self.draw_opts.constants.time = self.constants.time
+
+	CAMERAS.current_camera:get_view_to_matrix(self.view)
+	CAMERAS.current_camera:get_proj_to_matrix(self.proj)
+	CAMERAS.current_camera:get_frustum_to_matrix(self.frustum)
+
+
+
+	--[[render.set_viewport(CAMERAS.game_camera.viewport.x, CAMERAS.game_camera.viewport.y,
+		CAMERAS.game_camera.viewport.width, CAMERAS.game_camera.viewport.height)--]]
+	render.set_viewport(0, 0, self.screen_size.w, self.screen_size.h)
+	render.set_view(self.view)
+	render.set_projection(self.proj)
+	render.set_depth_mask(false)
+	render.set_stencil_mask(0xff)
+	render.clear(self.clear)
+
+	render.disable_state(graphics.STATE_DEPTH_TEST)
+	render.disable_state(graphics.STATE_CULL_FACE)
+	render.disable_state(graphics.STATE_STENCIL_TEST)
+	render.enable_state(graphics.STATE_BLEND)
+	render.set_blend_func(graphics.BLEND_FACTOR_ONE, graphics.BLEND_FACTOR_ONE_MINUS_SRC_ALPHA)
+
+	render.draw(self.predicates.tile, self.draw_opts)
+
+
+	render.draw_debug3d()
+
+	-- GUI Rendering
+	render.set_depth_mask(false)
+	render.disable_state(graphics.STATE_DEPTH_TEST)
+	render.enable_state(graphics.STATE_BLEND)
+	render.disable_state(graphics.STATE_CULL_FACE)
+
+	render.enable_state(graphics.STATE_STENCIL_TEST)
+	render.set_view(self.empty_view)
+	render.set_projection(self.gui_proj)
+	render.draw(self.predicates.gui)
+	render.disable_state(graphics.STATE_STENCIL_TEST)
+end
+
+N28S.register(Render)
