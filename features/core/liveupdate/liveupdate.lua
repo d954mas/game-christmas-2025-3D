@@ -27,6 +27,8 @@ function M.load(cb)
 		return
 	end
 
+	--we don't use mount on start
+	--[[
 	local old_mounts = {}
 	for i = 1, M.VERSION - 1 do
 		old_mounts["liveupdate_resources" .. i .. ".zip"] = true
@@ -46,7 +48,7 @@ function M.load(cb)
 		LOG.i("ALREADY MOUNTED. SKIP", TAG)
 		cb()
 		return
-	end
+	end--]]
 	M.cb = cb
 	--if html_utils then html_utils.liveupdate_load() end
 	M.__request_data()

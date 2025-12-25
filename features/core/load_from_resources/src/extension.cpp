@@ -51,7 +51,7 @@ static void LuaInit(lua_State *L) {
 static dmExtension::Result InitializeMyExtension(dmExtension::Params *params) {
     // Init Lua
     LuaInit(params->m_L);
-    printf("Registered %s Extension", MODULE_NAME);
+    printf("Registered %s Extension\n", MODULE_NAME);
     return dmExtension::RESULT_OK;
 }
 

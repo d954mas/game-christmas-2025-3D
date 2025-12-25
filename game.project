@@ -138,6 +138,7 @@ enable_event_submission = 0
 
 [liveupdate]
 settings = /features/core/liveupdate/liveupdate.settings
+mount_on_start = 0
 
 [native_extension]
 app_manifest = /app_manifest_debug.appmanifest
