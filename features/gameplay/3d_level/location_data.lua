@@ -42,7 +42,7 @@ function M:load(id)
         ---@diagnostic disable-next-line: assign-type-mismatch
         self.data = json.decode(data)
     else
-        self.data = game.load_json_from_resources(self.def.path)
+        self.data = load_from_resources.load_json(self.def.path)
     end
 
     self.data.spawn_position = v3_from_array(self.data.spawn_position)
