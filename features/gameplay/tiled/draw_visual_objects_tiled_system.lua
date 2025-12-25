@@ -1,6 +1,5 @@
 local ECS = require 'libs.ecs'
 local CLASS = require 'libs.class'
-local HASHES = require "libs.hashes"
 local LOG = require "libs.log"
 local LUME = require "libs.lume"
 
@@ -39,6 +38,7 @@ function System:on_add(e)
             },
         }
         visual_object_go.sprite.sprite = LUME.url_component_from_url(visual_object_go.sprite.root, PARTS.SPRITE_COMP)
+---@diagnostic disable-next-line: inject-field
         e.visual_object_go = visual_object_go
         if (e.level_map_object.tile_fv) then
             sprite.set_vflip(visual_object_go.sprite.sprite, true)

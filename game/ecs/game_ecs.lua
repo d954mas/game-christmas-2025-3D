@@ -15,7 +15,7 @@ local EcsWorld = CLASS.class("EcsWorld")
 
 function EcsWorld.new(game_world) return CLASS.new_instance(EcsWorld, game_world) end
 
----@param game_world GameWorld
+---@param game_world GameWorld2D|GameWorld3D
 function EcsWorld:initialize(game_world)
 	self.game_world = assert(game_world)
 

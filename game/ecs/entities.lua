@@ -5,13 +5,16 @@ local BALANCE = require "game.balance"
 ---@class Entity
 ---@field auto_destroy_delay number
 ---@field auto_destroy bool
+---@field body Box2dBody
+---@field level_map_object LevelMapObject
+---@field tile_data LevelMapTile
 
 
 local Entities = CLASS.class("Entities")
 
 function Entities.new(game_world) return CLASS.new_instance(Entities, game_world) end
 
----@param game_world GameWorld
+---@param game_world GameWorld2D|GameWorld3D
 function Entities:initialize(game_world)
     self.game_world = assert(game_world)
     self.go_position_setter = go_position_setter.new()

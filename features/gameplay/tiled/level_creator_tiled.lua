@@ -11,7 +11,7 @@ function Creator.new(game_world)
 	return CLASS.new_instance(Creator, game_world)
 end
 
----@param game_world GameWorld
+---@param game_world GameWorld2D
 function Creator:initialize(game_world)
 	self.game_world = game_world
 	self.ecs = game_world.ecs
@@ -108,7 +108,7 @@ function Creator:__create_geometry()
 		obj.y = obj.y
 		if obj.w then
 			obj.w = obj.w
-			obj.h = obj.h 
+			obj.h = obj.h
 		end
 		if (obj.radius) then
 			obj.radius = obj.radius

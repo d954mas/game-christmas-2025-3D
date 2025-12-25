@@ -5,7 +5,7 @@ local Box2dWorld = require "features.core.box2d.box2d_world"
 local LevelCreator = require "features.gameplay.tiled.level_creator_tiled"
 local GameEcs = require "game.ecs.game_ecs"
 
----@class GameWorld2D
+---@class GameWorld3D
 local GameWorld = {}
 
 function GameWorld:init()

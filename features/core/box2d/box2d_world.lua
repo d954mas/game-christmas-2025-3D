@@ -10,7 +10,7 @@ function Box2dWorld.new(config, game)
 	return CLASS.new_instance(Box2dWorld, config, game)
 end
 
----@param game GameWorld
+---@param game GameWorld2D
 function Box2dWorld:initialize(config, game)
 	CHECKS("?", {
 		gravity = "userdata",
