@@ -21,7 +21,7 @@ minimum_sdk_version = 21
 manifest = /features/platform/android/AndroidManifest.xml
 
 [project]
-title = Christmas 2025 2d
+title = Christmas 2025 3D
 publisher = d954mas
 developer = d954mas
 custom_resources = assets/custom
