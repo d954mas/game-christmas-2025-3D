@@ -1,4 +1,4 @@
-local GAME = require "game.game_world"
+local GAME = require "game.game_world_3D"
 
 go.property("data_texture", resource.texture("/assets/textures/rgb/data.png"))
 
