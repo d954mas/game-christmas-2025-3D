@@ -88,7 +88,8 @@
         "init",
         "update",
         "final",
-        "fixed_update"
+        "fixed_update",
+        "on_input"
     ],
     "Lua.workspace.library": [
         "~\\AppData\\Roaming\\Code\\User\\globalStorage\\astronachos.defold",
