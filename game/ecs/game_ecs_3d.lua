@@ -8,6 +8,7 @@ local GoPositionSetterUpdateSystem = require "features.core.go_position_setter.u
 local UpdatePhysicsObjectsSystem = require "features.core.physics.update_physics_objects_system"
 local UpdatePhysicsObjectsLinearVelocitySystem = require "features.core.physics.update_physics_objects_linear_velocity_system"
 
+local DrawPlayer3dSystem = require "features.gameplay.player3d.draw_3d_player_system"
 --#IF DEBUG
 
 --#ENDIF
@@ -46,6 +47,8 @@ function EcsWorld:add_systems()
 	self.ecs:add_system(GoPositionSetterUpdateSystem.new())
 
 	self.ecs:add_system(UpdatePhysicsObjectsLinearVelocitySystem.new())
+
+	self.ecs:add_system(DrawPlayer3dSystem.new())
 
 	--#IF DEBUG
 

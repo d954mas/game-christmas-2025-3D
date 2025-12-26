@@ -17,6 +17,7 @@ M.BY_ID.UNKNOWN = {
 		IDLE = { ANIM.BY_ID.LOOK_AROUND },
 		RUN = { ANIM.BY_ID.RUN_BASE },
 	}
+	--hat = hash("hat_boxer"),
 }
 
 M.BY_ID.BASE = {

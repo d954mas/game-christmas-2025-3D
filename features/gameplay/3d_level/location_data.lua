@@ -235,7 +235,6 @@ function M:button_can_build(id)
 end
 
 function M:recalculate_params()
-    print("recalculate_params")
     --reset is build cache
     for i = 1, #self.data.objects do
         local object = self.data.objects[i]

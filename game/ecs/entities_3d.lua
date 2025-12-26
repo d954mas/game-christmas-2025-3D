@@ -1,6 +1,7 @@
 local CLASS = require "libs.class"
 local ENUMS = require "game.enums"
 local PLAYER_SKINS_3D_FEATURE = require "features.meta.skins.player_skin3d_feature"
+local PUNCH_ATTACKS_DEF = require "features.gameplay.punch.punch_attacks_def"
 local LUME = require "libs.lume"
 local SmoothDumpV3 = require "features.core.smoothdump.smooth_dump_v3"
 
@@ -93,15 +94,21 @@ function Entities:create_player(position)
 		hat = {
 			root = nil,
 		},
-		hand_item = {
+		hand_right_item = {
 			root = nil,
 		},
 		config = {
 			skin = nil,
-			hand_item = nil,
+			hand_right_item = nil,
 			animation = nil,
 			look_dir = vmath.vector3(0, 0, -1),
 			look_dir_smooth_dump = SmoothDumpV3.new(0.05),
+			punch = {
+				state = ENUMS.PUNCH_STATE.READY,
+				frame = -1,
+				blend_duration = 0.1,
+				blend = 0,
+			}
 		},
 	}
 	e.player_go.physics.collision = LUME.url_component_from_url(e.player_go.physics.root, "collision")
@@ -136,6 +143,17 @@ function Entities:create_player(position)
 		power = 15000,
 		idx = 0, -- for double jump
 		max_jumps = 1,
+	}
+
+	e.punch = {
+		power = 10,
+		state = ENUMS.PUNCH_STATE.READY,
+		time = 0,
+		time_total = 0,
+		combo = 0,
+		attack = nil,
+		sound = nil,
+		attack_base = PUNCH_ATTACKS_DEF.BY_ID.RESOURCE_OBJECT.id,
 	}
 
 	e.position_setter_root = e.player_go.root

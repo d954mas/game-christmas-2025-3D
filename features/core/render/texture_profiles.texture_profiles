@@ -15,6 +15,10 @@ path_settings {
   profile: "RGBA MIPS"
 }
 path_settings {
+  path: "/assets/textures/chars"
+  profile: "RGB_UNCOMPRESSED"
+}
+path_settings {
   path: "**"
   profile: "RGBA"
 }

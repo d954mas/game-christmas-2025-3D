@@ -1,4 +1,4 @@
-local GAME = require "game.game_world"
+local GAME = require "game.game_world_3D"
 local AutosizeLbl = require "libs.gui.autosize_label"
 
 local StorageDebugEcs = require "features.core.ecs.ecs_debug_gui_storage_part"

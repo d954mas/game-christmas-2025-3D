@@ -1,0 +1,38 @@
+name: "char_mine"
+scale_along_z: 0
+embedded_instances {
+  id: "root"
+  children: "mesh"
+  data: ""
+}
+embedded_instances {
+  id: "mesh"
+  children: "origin"
+  data: ""
+}
+embedded_instances {
+  id: "origin"
+  data: "embedded_components {\n"
+  "  id: \"mesh\"\n"
+  "  type: \"mesh\"\n"
+  "  data: \"material: \\\"/features/core/mesh_char/materials/char.material\\\"\\n"
+  "vertices: \\\"/features/core/mesh_char/buffers/dummy.buffer\\\"\\n"
+  "textures: \\\"/assets/textures/chars/new_char_banan_3.png\\\"\\n"
+  "textures: \\\"/assets/textures/rgb/data.png\\\"\\n"
+  "textures: \\\"/assets/textures/rgb/shadow.png\\\"\\n"
+  "textures: \\\"/assets/textures/rgb/white.png\\\"\\n"
+  "position_stream: \\\"position\\\"\\n"
+  "normal_stream: \\\"normal\\\"\\n"
+  "\"\n"
+  "}\n"
+  ""
+  position {
+    y: -0.02
+  }
+  rotation {
+    x: -4.3297803E-17
+    y: 0.70710677
+    z: 0.70710677
+    w: 4.3297803E-17
+  }
+}

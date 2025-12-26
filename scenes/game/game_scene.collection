@@ -110,5 +110,11 @@ embedded_instances {
   "  data: \"prototype: \\\"/game/root_empty.collection\\\"\\n"
   "\"\n"
   "}\n"
+  "embedded_components {\n"
+  "  id: \"factory_char_base\"\n"
+  "  type: \"collectionfactory\"\n"
+  "  data: \"prototype: \\\"/features/core/mesh_char/bin/mincraft/char_base.collection\\\"\\n"
+  "\"\n"
+  "}\n"
   ""
 }

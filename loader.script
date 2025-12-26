@@ -43,6 +43,7 @@ local MeshCharFeature = require "features.core.mesh_char.mesh_char_feature"
 ---#region FEATURES META
 local Skin3dFeature = require "features.meta.skins.skins3d_feature"
 local PlayerSkin3dFeature = require "features.meta.skins.player_skin3d_feature"
+local PlayerItemsInHandFeature = require "features.gameplay.player.player_items_in_hand_feature"
 ---#endregion
 
 ---#region FEATURES GAME
@@ -96,6 +97,7 @@ function Script:init()
 	FEATURES:add_feature(MeshCharFeature)
 
 	--features game
+	FEATURES:add_feature(PlayerItemsInHandFeature)
 
 	--features meta
 	FEATURES:add_feature(Skin3dFeature)
