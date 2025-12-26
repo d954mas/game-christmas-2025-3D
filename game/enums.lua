@@ -36,4 +36,8 @@ ENUMS.ATTACK_TYPE = {
 	COMBO = "COMBO",
 }
 
+ENUMS.OBJECT_TYPE = {
+	OBJECT = "OBJECT",
+}
+
 return ENUMS

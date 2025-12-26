@@ -55,7 +55,6 @@ function M:load(id)
 
         object.tint = object.tint and v4_from_array(object.tint) or vmath.vector4(1, 1, 1, 1)
         object.requirements = object.requirements or {}
-        object.location_percent = object.location_percent or 0
         self.object_by_id[object.id] = object
     end
     self:trigger_location_changed()

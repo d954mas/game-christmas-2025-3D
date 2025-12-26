@@ -162,4 +162,24 @@ function Entities:create_player(position)
 end
 
 
+function Entities:create_object(object)
+	local def = assert(DEFS.OBJECTS.BY_ID[object.type])
+	---@class Entity
+	---@field spawner_e Entity
+	local e = {}
+	e.object_config = object
+	e.object_def = def
+	e.position = vmath.vector3(0, 0, 0)
+	e.rotation = vmath.quat_rotation_z(0)
+	e.scale = vmath.vector3(1, 1, 1)
+
+	local matrix = self.game_world.level_creator.location_data:get_world_transform(object.id)
+	xmath.matrix_get_transforms(matrix, e.position, e.scale, e.rotation)
+	e.object = true
+	---@type Entity
+	e.object_entity = nil
+	return e
+end
+
+
 return Entities
