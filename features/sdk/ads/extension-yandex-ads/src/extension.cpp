@@ -228,10 +228,6 @@ namespace dmYandexAds {
 			case dmExtension::EVENT_ID_ACTIVATEAPP:
 				ActivateApp();
 				break;
-			case dmExtension::EVENT_ID_DEACTIVATEAPP:
-			case dmExtension::EVENT_ID_ICONIFYAPP:
-			case dmExtension::EVENT_ID_DEICONIFYAPP:
-				break;
 		}
 	}
 }

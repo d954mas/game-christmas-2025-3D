@@ -54,7 +54,8 @@ function M.init_buffer(mesh)
 			normals[count] = n.x
 			normals[count + 1] = n.y
 			normals[count + 2] = n.z
-			--TOFIX: not correct for blendshaped face normals
+			--(no idea what that means)
+			--TOFIX: not correct for blendshaped face normals)
 
 			count = count + 3
 

@@ -1,11 +1,9 @@
 #version 140
 
-// Самплеры (вне uniform-блока)
 uniform mediump sampler2D DIFFUSE_TEXTURE;
 #include "/features/core/illumination/assets/materials/shadow/shadow_fp_texture.glsl"
 #include "/features/core/illumination/assets/materials/light_fp_texture.glsl"
 
-// Входящие varyings
 in mediump vec2 var_texcoord0;
 in highp vec3 var_world_position;
 in mediump vec3 var_world_normal;
@@ -24,7 +22,6 @@ uniform fs_uniforms {
     #include "/features/core/illumination/assets/materials/shadow/shadow_fp_uniforms.glsl"
 };
 
-// Функции (декод, освещение и тени)
 #include "/features/core/illumination/assets/materials/light_fp_functions.glsl"
 #include "/features/core/illumination/assets/materials/shadow/shadow_fp_functions.glsl"
 

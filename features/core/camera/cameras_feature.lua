@@ -29,7 +29,7 @@ local M = {
     }
 }
 
-M.current_camera = M.CAMERAS.GAME_2D_ALBUM
+M.current_camera = M.CAMERAS.GAME_3D
 
 function M:on_resize(width, height)
     for _, v in pairs(self.CAMERAS) do
