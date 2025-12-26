@@ -62,7 +62,7 @@ function System:update(_)
 
 
 	local zoom_value = CAMERA_FEATURE.storage:get_zoom()
-	if SM:get_top() and SM:get_top()._name == SM.SCENES.GAME then
+	if SM:get_top() and SM:get_top()._name == "GameScene" then
 		if socket.gettime() - INPUT.get_key_data(HASHES.INPUT.SCROLL_UP).pressed_time < 0.05 then
 			local a = (0.05 - (socket.gettime() - INPUT.get_key_data(HASHES.INPUT.SCROLL_UP).pressed_time)) / 0.05
 			zoom_value = math.min(zoom_value - 0.5 / 18 * a, 1)
@@ -160,7 +160,7 @@ function System:update_zoom()
 		camera.position.y = -0.5
 	end
 
-	CAMERAS.CAMERAS.GAME:set_position(camera.position)
+	CAMERAS.CAMERAS.GAME_3D:set_position(camera.position)
 end
 
 return System

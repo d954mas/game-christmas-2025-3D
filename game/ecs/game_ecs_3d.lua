@@ -4,7 +4,7 @@ local ECS = require "libs.ecs"
 
 local AutoDestroySystem = require "game.ecs.systems.auto_destroy_system"
 local GoPositionSetterUpdateSystem = require "features.core.go_position_setter.update_go_position_setter"
-
+local PlayerCameraSystem = require "features.core.camera.player_3d_camera_system"
 local UpdatePhysicsObjectsSystem = require "features.core.physics.update_physics_objects_system"
 local UpdatePhysicsObjectsLinearVelocitySystem = require "features.core.physics.update_physics_objects_linear_velocity_system"
 
@@ -42,6 +42,9 @@ function EcsWorld:add_systems()
 	--#IF DEBUG
 
 	--#ENDIF
+
+	self.player_camera_system = PlayerCameraSystem.new()
+	self.ecs:add_system(self.player_camera_system)
 
 	self.ecs:add_system(UpdatePhysicsObjectsSystem.new())
 	self.ecs:add_system(GoPositionSetterUpdateSystem.new())

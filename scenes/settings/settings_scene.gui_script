@@ -17,6 +17,8 @@ local ModalSceneGuiAnimator = require "libs.modal_scene_gui_animator"
 local Slider = require "libs.gui.slider"
 local PrivacyPolicyFeature = require "features.sdk.privacy_policy.privacy_policy_feature"
 
+local GAME_3D = require "game.game_world_3D"
+
 ---@class SettingsSceneGuiScript:BaseGuiScript
 local Script = CLASS.class("GameSceneGuiScript", BaseGuiScript)
 
@@ -130,6 +132,9 @@ end
 
 function Script:update(dt)
 	self.modal_scene_gui_animator:update(dt)
+	if GAME_3D.ecs then
+		GAME_3D.ecs.player_camera_system:update_zoom()
+	end
 end
 
 function Script:on_input(action_id, action)
@@ -154,7 +159,6 @@ end
 function Script:on_storage_changed()
 
 end
-
 
 function Script:on_language_changed()
 	local locale = LOCALIZATION:locale_get()
