@@ -1,6 +1,5 @@
 #define LIB_NAME "xmath"
 #define MODULE_NAME "xmath"
-#define DLIB_LOG_DOMAIN "xMath"
 
 #include <dmsdk/dlib/transform.h>
 #include <dmsdk/sdk.h>

@@ -2,7 +2,6 @@
 #define LIB_NAME "YandexAds"
 #define MODULE_NAME "yandexads"
 
-#define DLIB_LOG_DOMAIN LIB_NAME
 #include <dmsdk/sdk.h>
 
 #if defined(DM_PLATFORM_ANDROID) ||  defined(DM_PLATFORM_IOS)

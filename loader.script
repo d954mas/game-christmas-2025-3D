@@ -37,10 +37,11 @@ local ECS_DEBUG_FEATURE = require "features.core.ecs.ecs_debug_feature"
 
 ---#region FEATURES 3D
 local IlluminationFeature = require "features.core.illumination.illumination_feature"
+local MeshCharFeature = require "features.core.mesh_char.mesh_char_feature"
 ---#endregion
 
 ---#region FEATURES META
-local SkinFeature = require "features.meta.skins.skins_feature"
+local Skin3dFeature = require "features.meta.skins.skins3d_feature"
 local PlayerSkin3dFeature = require "features.meta.skins.player_skin3d_feature"
 ---#endregion
 
@@ -92,11 +93,12 @@ function Script:init()
 
 	--features 3d
 	FEATURES:add_feature(IlluminationFeature)
+	FEATURES:add_feature(MeshCharFeature)
 
 	--features game
 
 	--features meta
-	FEATURES:add_feature(SkinFeature)
+	FEATURES:add_feature(Skin3dFeature)
 	FEATURES:add_feature(PlayerSkin3dFeature)
 
 	-- features storage

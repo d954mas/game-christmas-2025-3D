@@ -1,6 +1,5 @@
 #define LIB_NAME "diags"
 #define MODULE_NAME LIB_NAME
-#define DLIB_LOG_DOMAIN LIB_NAME
 
 // include the Defold SDK
 #include <dmsdk/sdk.h>

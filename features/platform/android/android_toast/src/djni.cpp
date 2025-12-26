@@ -1,6 +1,5 @@
 #if defined(DM_PLATFORM_ANDROID)
 
-#define DLIB_LOG_DOMAIN "JNI"
 #include <dmsdk/sdk.h>
 
 #include <cstdlib>

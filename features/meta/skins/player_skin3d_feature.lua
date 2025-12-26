@@ -10,7 +10,7 @@ function PlayerSkinStoragePart:initialize(storage)
     StoragePart.initialize(self, storage)
     self.player = self.storage.data.player
     if not self.player.skin then
-        self.player.skin = SKIN_DEF.PLAYER_LIST_SKINS[1]
+        self.player.skin = SKIN_DEF.PLAYER_LIST_SKINS[1].id
     end
 end
 

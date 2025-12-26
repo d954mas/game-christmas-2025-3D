@@ -1,4 +1,4 @@
-local StoragePart = require "features.meta.skins.skins_storage_part"
+local StoragePart = require "features.meta.skins.skins3d_storage_part"
 
 ---@class SkinFeature:Feature
 local SkinFeature = {}
