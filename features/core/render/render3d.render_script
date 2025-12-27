@@ -57,6 +57,7 @@ function Render:init_draw_opts()
 		frustum = self.frustum,
 		frustum_planes = render.FRUSTUM_PLANES_ALL,
 	}
+	GAME.lights:add_constants(self.draw_opts.constants)
 end
 
 function Render:init_predicates()

@@ -8,7 +8,7 @@ local M = {
             near_z = 0.01,
             far_z = 350,
         }),
-        GAME_2D_PORTRAIT = native_camera.new({
+      --[[  GAME_2D_PORTRAIT = native_camera.new({
             orthographic = true,
             near_z = -300,
             far_z = 25,
@@ -25,7 +25,7 @@ local M = {
             ortho_scale_mode = native_camera.SCALE_MODE.FIXEDAREA,
             view_area_width = 480,
             view_area_height = 270,
-        }),
+        }),--]]
     }
 }
 
