@@ -35,7 +35,6 @@ function Creator:create_location(location_id)
 	print("Start load location:" .. location_id)
 	local time = chronos.nanotime()
 	self.location_data:load(location_id)
-	self.location_data:clear_location_storage()
 	self:spawn_objects()
 	print("Load location time:" .. (chronos.nanotime() - time))
 end

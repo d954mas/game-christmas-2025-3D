@@ -48,7 +48,7 @@ local LevelEditor3dFeature = require "features.gameplay.3d_level.level_editor_3d
 ---#endregion
 
 ---#region FEATURES GAME
-
+local LocationsFeature = require "features.gameplay.3d_level.locations_feature"
 ---#endregion
 
 ---endregion
@@ -100,6 +100,7 @@ function Script:init()
 	--features game
 	FEATURES:add_feature(PlayerItemsInHandFeature)
 	FEATURES:add_feature(LevelEditor3dFeature)
+	FEATURES:add_feature(LocationsFeature)
 
 	--features meta
 	FEATURES:add_feature(Skin3dFeature)

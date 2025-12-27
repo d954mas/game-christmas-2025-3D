@@ -15,7 +15,7 @@ local function get_collision_config(shapes_num)
     end
     local collisions = { root = HASH_URL_ROOT, collision = hash("collisionobject"), shapes = {} }
     for i = 1, shapes_num do
-        collisions.shapes[i] = { "shape_" .. i }
+        collisions.shapes[i] =  hash("shape_" .. i)
     end
     COLLISIONS_GO_CONFIGS_COLLISIONS[shapes_num] = collisions
     return { collisions }

@@ -30,8 +30,9 @@ function Entities.new(game_world) return CLASS.new_instance(Entities, game_world
 
 ---@param game_world GameWorld2D|GameWorld3D
 function Entities:initialize(game_world)
-    self.game_world = assert(game_world)
-    self.go_position_setter = go_position_setter.new()
+	self.game_world = assert(game_world)
+	self.go_position_setter = go_position_setter.new()
+	self.collision_to_object = {}
 end
 
 ---@param e Entity
@@ -46,6 +47,7 @@ end
 ---@param e Entity
 ---@diagnostic disable-next-line: unused-local
 function Entities:on_entity_added(e)
+	pprint(e)
 end
 
 ---@return Entity
@@ -162,17 +164,20 @@ function Entities:create_player(position)
 	return e
 end
 
-
 function Entities:create_object(object)
 	local def = assert(LEVEL_OBJECTS_DEF.BY_ID[object.type])
 	---@class Entity
 	---@field spawner_e Entity
 	local e = {}
 	e.object_config = object
-	e.object_def = def
 	e.position = vmath.vector3(0, 0, 0)
 	e.rotation = vmath.quat_rotation_z(0)
 	e.scale = vmath.vector3(1, 1, 1)
+
+	e.tint = vmath.vector4(object.tint)
+	if def.tint then
+		xmath.mul_per_elem(e.tint, e.tint, def.tint)
+	end
 
 	local matrix = self.game_world.level_creator.location_data:get_world_transform(object.id)
 	xmath.matrix_get_transforms(matrix, e.position, e.scale, e.rotation)
@@ -182,5 +187,44 @@ function Entities:create_object(object)
 	return e
 end
 
+---@param object Entity
+function Entities:create_object_entity(object)
+	assert(object.object_config)
+	assert(not object.object_entity)
+	local def = assert(LEVEL_OBJECTS_DEF.BY_ID[object.object_config.type])
+
+	---@class Entity
+	local e = {}
+	e.object_config_entity = object
+	e.position = vmath.vector3(object.position)
+	e.scale = vmath.vector3(object.scale)
+	e.rotation = vmath.quat(object.rotation)
+	e.tint = vmath.vector4(object.tint)
+
+	if not def.no_object_entity_default then
+		e.object_entity_default = true
+	end
+	if def.entity_type then
+		e[def.entity_type] = true
+	end
+
+	object.object_entity = e
+
+	return e
+end
+
+function Entities:object_add_collision(e, obj)
+	for i = 1, #obj.collisions do
+		local collision = obj.collisions[i]
+		self.collision_to_object[collision.root.path] = e
+	end
+end
+
+function Entities:object_remove_collision(obj)
+	for i = 1, #obj.collisions do
+		local collision = obj.collisions[i]
+		self.collision_to_object[collision.root.path] = nil
+	end
+end
 
 return Entities

@@ -108,4 +108,12 @@ function Analytics:location_loaded(level_name)
 	FIREBASE:event_string("game_location_loaded", "level", level_name)
 end
 
+function Analytics:building_build(location_id, building_id)
+	GAME_ANALYTICS:event("building:" .. location_id .. ":" .. building_id .. ":build")
+	FIREBASE:event_table("building_build", {
+		location_id = location_id,
+		building_id = building_id
+	})
+end
+
 return Analytics

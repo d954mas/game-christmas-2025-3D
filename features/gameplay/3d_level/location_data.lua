@@ -1,8 +1,9 @@
 local CONSTANTS = require "libs.constants"
 local LUME = require "libs.lume"
 local CLASS = require "libs.class"
-local ANALYTICS = require "features.sdk.analytics.analytics_feature"
 local LOCATIONS = require "features.gameplay.3d_level.location_def"
+local LOCATIONS_FEATURE = require "features.gameplay.3d_level.locations_feature"
+local EVENTS = require "libs.events"
 
 ---@class LocationDataConfig
 ---@field objects LevelObjectData[]
@@ -62,31 +63,19 @@ function M:load(id)
 end
 
 function M:is_collected(id)
-    return STORAGE.locations:is_collected(self.data.id, id)
+    return LOCATIONS_FEATURE.storage:is_collected(self.data.id, id)
 end
 
 function M:collect_object(id)
-    if STORAGE.locations:is_collected(self.data.id, id) then return end
-    local object = assert(self.object_by_id[id], "no object:" .. id)
-    if object.type == DEFS.OBJECTS.TYPES.OBJECT.OBJECTS.STAR.id then
-        self.stars_collected = self.stars_collected + 1
-    end
-    if object.type == DEFS.OBJECTS.TYPES.OBJECT.OBJECTS.SKIN_PICKUP.id then
-        STORAGE.skins:unlocked(object.skin)
-    end
-    STORAGE.locations:collect(self.data.id, id)
-    STORAGE.task:check_current_task(self)
+    if LOCATIONS_FEATURE.storage:is_collected(self.data.id, id) then return end
+   assert(self.object_by_id[id], "no object:" .. id)
+    EVENTS.LOCATION_COLLECTED:trigger(self.data.id, id)
+    LOCATIONS_FEATURE.storage:collect(self.data.id, id)
 end
 
 function M:trigger_location_changed()
     self.location_changed = true
     self:recalculate_params()
-    self:refresh_location_progress()
-    ----count again because objects with location percent >0 not count
-    self:recalculate_params()
-    self:refresh_location_progress()
-    self:recalculate_params()
-    self:refresh_location_progress()
 end
 
 function M:editor_add_object(object)
@@ -101,7 +90,7 @@ function M:editor_set_build(object_id, value)
     if value then
         self:build(object_id, true)
     else
-        self:destroy(object_id)
+        self:destroy_building(object_id)
     end
     self:trigger_location_changed()
 end
@@ -114,19 +103,6 @@ function M:editor_remove_object(object)
     self:trigger_location_changed()
 end
 
---remove from storage objects that don't have need_button or cost == 0
-function M:clear_location_storage()
-    --local location_storage = assert(STORAGE.locations.locations[self.data.id], "no location:" .. self.data.id)
-
-   -- for k, _ in pairs(location_storage.objects) do
-       -- local object = self.object_by_id[k]
---if not object or not object.need_button or object.cost == 0 and not (object.requirements[1] or object.requirements[2] or object.requirements[3]) then
-         --   location_storage.objects[k] = nil
-        --    print("object removed:" .. k)
-      --  end
-   -- end
-end
-
 function M:is_build(id)
     local object = self.object_by_id[id]
     if not object then return true end
@@ -137,10 +113,10 @@ function M:is_build(id)
         object.is_build_cache = false
         return false
     end
-    if object.location_percent and object.location_percent > self.location_progress_percent then
-        object.is_build_cache = false
-        return false
-    end
+   -- if object.location_percent and object.location_percent > self.location_progress_percent then
+      --  object.is_build_cache = false
+    --    return false
+ --   end
     if object.is_ads then
         if not self.game:can_show_ads() then
             object.is_build_cache = false
@@ -152,60 +128,25 @@ function M:is_build(id)
 end
 
 function M:build(id, forced)
-    local object = assert(self.object_by_id[id], "no object:" .. id)
+    assert(self.object_by_id[id], "no object:" .. id)
     if not forced then
         assert(not self:is_build(id))
         assert(self:object_have_all_requirments(id))
-        assert(STORAGE.resources:can_spend(DEFS.RESOURCES.BY_ID.GOLD.id, object.cost))
-        STORAGE.resources:spend(DEFS.RESOURCES.BY_ID.GOLD.id, object.cost)
-        self.location_progress_value = self.location_progress_value + 1
-        self.location_progress_percent = self.location_progress_value / self.location_progress_max
-        ANALYTICS:location_build_value(self.data.id, self.location_progress_value)
-        ANALYTICS:location_build_percent(self.data.id, self.location_progress_percent)
+       -- assert(STORAGE.resources:can_spend(DEFS.RESOURCES.BY_ID.GOLD.id, object.cost))
+       -- STORAGE.resources:spend(DEFS.RESOURCES.BY_ID.GOLD.id, object.cost)
+       -- self.location_progress_value = self.location_progress_value + 1
+      --  self.location_progress_percent = self.location_progress_value / self.location_progress_max
+      --  ANALYTICS:location_build_value(self.data.id, self.location_progress_value)
+       -- ANALYTICS:location_build_percent(self.data.id, self.location_progress_percent)
     end
-    STORAGE.locations:build(self.data.id, id)
-   -- STORAGE.task:build(id)
-    STORAGE.task:check_current_task(self)
+    LOCATIONS_FEATURE.storage:build(self.data.id, id)
     self:recalculate_params()
     self.location_changed = true
-    if object.is_island then
-        self:refresh_terrain_status()
-    end
 end
 
-function M:destroy(id)
-    print("destroy object:" .. id)
-    STORAGE.locations:destroy(self.data.id, id)
-    self:refresh_location_progress()
-    local object = self.object_by_id[id]
-    if object and object.is_island then
-        self:refresh_terrain_status()
-    end
-end
-
-function M:refresh_location_progress()
-    local max = 0
-    local value = 0
-    for i = 1, #self.data.objects do
-        local object = self.data.objects[i]
-        if object.need_button and object.cost > 0 then
-            max = max + 1
-            if self:is_build(object.id) then
-                value = value + 1
-            end
-        end
-    end
-    self.location_progress_max = max
-    self.location_progress_value = value
-    self.location_progress_percent = self.location_progress_value / self.location_progress_max
-end
-
-function M:get_location_progress()
-    return self.location_progress_value, self.location_progress_max
-end
-
-function M:is_location_builded()
-    return self.location_progress_value >= self.location_progress_max
+function M:destroy_building(id)
+    print("destroy_building object:" .. id)
+    LOCATIONS_FEATURE.storage:destroy_building(self.data.id, id)
 end
 
 function M:object_have_all_requirments(id)
@@ -216,20 +157,12 @@ function M:object_have_all_requirments(id)
         parent = self.object_by_id[parent].parent
     end
 
-    if object.location_percent > self.location_progress_percent then return false end
+ --   if object.location_percent > self.location_progress_percent then return false end
 
     for i = 1, 3 do
         local requirement = object.requirements[i]
         if requirement and not self:is_build(requirement) then return false end
     end
-    return true
-end
-
-function M:button_can_build(id)
-    local object = assert(self.object_by_id[id], "no object:" .. id)
-    --  if self:is_build(id) then return false end
-    --  if not self:object_have_all_requirments(id) then return false end
-    if not STORAGE.resources:can_spend(DEFS.RESOURCES.BY_ID.GOLD.id, object.cost) then return false end
     return true
 end
 

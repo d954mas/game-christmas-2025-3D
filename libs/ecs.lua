@@ -288,7 +288,7 @@ function World:manage_entities()
                 end
             end
         end
-        e2c[i] = nil
+       --e2c[i] = nil
     end
 end
 
