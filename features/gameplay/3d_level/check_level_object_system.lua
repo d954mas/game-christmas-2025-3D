@@ -31,7 +31,6 @@ function System:update(_)
     for i = 1, #entities_list do
         self:check_object(entities_list[i])
     end
-    
 
     location_data.location_changed = false
 end

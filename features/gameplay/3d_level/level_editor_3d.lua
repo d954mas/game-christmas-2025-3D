@@ -25,10 +25,6 @@ local COLOR_RAY_TO_SELECTED = vmath.vector4(0, 0, 1, 1)
 
 local TINT_SELECTED = vmath.vector4(0.3, 0.3, 1, 1)
 
-local function is_uniform_scale(object_cfg)
-	return
-end
-
 --region Command
 ---@class EditorCommand:BaseClass
 local Command = CLASS.class("Command")

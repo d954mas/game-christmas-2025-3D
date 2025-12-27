@@ -158,4 +158,12 @@ function CONTEXTS:set_context_top_render()
 	return self:set_context_top_by_name(self.NAMES.RENDER)
 end
 
+---@class ContextDataWrapperGameGui:ContextDataWrapper
+---@field data GameSceneGuiScript
+
+---@return ContextDataWrapperGameGui
+function CONTEXTS:set_context_top_game_gui()
+	return self:set_context_top_by_name(self.NAMES.RENDER)
+end
+
 return CONTEXTS

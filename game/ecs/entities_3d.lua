@@ -31,7 +31,6 @@ function Entities.new(game_world) return CLASS.new_instance(Entities, game_world
 ---@param game_world GameWorld2D|GameWorld3D
 function Entities:initialize(game_world)
 	self.game_world = assert(game_world)
-	self.go_position_setter = go_position_setter.new()
 	self.collision_to_object = {}
 end
 
