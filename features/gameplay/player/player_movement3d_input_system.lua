@@ -2,9 +2,7 @@ local ECS = require 'libs.ecs'
 local HASHES = require "libs.hashes"
 local INPUT = require "features.core.input.input"
 local CLASS = require "libs.class"
-local CONTEXTS = require "libs.contexts_manager"
 local VirtualPadFeature = require "features.core.virtual_pad.virtual_pad_feature"
-local TWEEN = require "libs.tween"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local SDK = require "features.sdk.ads.sdk"
 
