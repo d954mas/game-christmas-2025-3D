@@ -48,11 +48,12 @@ function System:on_add(e)
         local model_go = {
             root = root_url,
             model = LUME.url_component_from_url(root_url, assert(model.model)),
-            tint = vmath.vector4(e.tint),
+            tint = vmath.vector4(e.tint),   
         }
         xmath.mul_per_elem(model_go.tint, e.tint, model.tint)
         e.object_entity_default_go.models[i] = model_go
         go.set(model_go.model, HASHES.TINT, model_go.tint)
+
 
         local need_animate = self.world.game_world.state.time > 0.2
         if need_animate then

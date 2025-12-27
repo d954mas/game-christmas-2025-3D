@@ -236,7 +236,7 @@ function Lights:initialize()
 	self.sunlight_color = vmath.vector4()
 	self.shadow_color = vmath.vector4()
 	self.fog = vmath.vector4()
-	self.fog_color = vmath.vector4(0,0,0,1)
+	self.fog_color = vmath.vector4(0, 0, 0, 1)
 	self.frustum = nil
 	self.frustum_inv = vmath.matrix4()
 	self.view = vmath.matrix4()
@@ -381,7 +381,7 @@ function Lights:draw_debug()
 end
 
 function Lights:draw_shadow_debug()
----@diagnostic disable-next-line: param-type-mismatch
+	---@diagnostic disable-next-line: param-type-mismatch
 	render.enable_texture(0, self.shadow.rt or self.shadow.rt_no_shadow, graphics.BUFFER_TYPE_COLOR0_BIT)
 	render.draw(self.debug_shadow_predicate)
 	render.disable_texture(0)

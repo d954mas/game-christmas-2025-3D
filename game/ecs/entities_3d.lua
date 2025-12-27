@@ -47,7 +47,7 @@ end
 ---@param e Entity
 ---@diagnostic disable-next-line: unused-local
 function Entities:on_entity_added(e)
-	pprint(e)
+
 end
 
 ---@return Entity
