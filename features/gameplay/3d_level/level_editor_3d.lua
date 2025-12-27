@@ -709,7 +709,7 @@ end
 
 
 ---@class EditorGuiSystem:EcsSystem
-local System = CLASS.class("RaycastChooseObjectSystem", ECS.System)
+local System = CLASS.class("LevelEditor3dSystem", ECS.System)
 
 function System.new() return CLASS.new_instance(System) end
 
