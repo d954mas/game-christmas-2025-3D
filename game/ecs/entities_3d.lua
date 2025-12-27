@@ -2,6 +2,7 @@ local CLASS = require "libs.class"
 local ENUMS = require "game.enums"
 local PLAYER_SKINS_3D_FEATURE = require "features.meta.skins.player_skin3d_feature"
 local PUNCH_ATTACKS_DEF = require "features.gameplay.punch.punch_attacks_def"
+local LEVEL_OBJECTS_DEF = require "features.gameplay.3d_level.level_objects_def"
 local LUME = require "libs.lume"
 local SmoothDumpV3 = require "features.core.smoothdump.smooth_dump_v3"
 
@@ -163,7 +164,7 @@ end
 
 
 function Entities:create_object(object)
-	local def = assert(DEFS.OBJECTS.BY_ID[object.type])
+	local def = assert(LEVEL_OBJECTS_DEF.BY_ID[object.type])
 	---@class Entity
 	---@field spawner_e Entity
 	local e = {}

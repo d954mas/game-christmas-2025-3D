@@ -26,18 +26,18 @@ function physics_utils.physics_objects_update_linear_velocity() end
 ---Check if a physics raycast hits anything.
 ---@param from vector3
 ---@param to vector3
----@param groups hash[]|string[]|nil
+---@param groups number
 ---@return boolean
 function physics_utils.physics_raycast_single_exist(from, to, groups) end
 
 ---Perform a physics raycast and return the hit.
 ---@param from vector3
 ---@param to vector3
----@param groups hash[]|string[]|nil
+---@param groups number
 ---@return table|nil
 function physics_utils.physics_raycast_single(from, to, groups) end
 
 ---Count bits in a collision mask.
----@param mask number
+---@param mask hash[]
 ---@return number
 function physics_utils.physics_count_mask(mask) end

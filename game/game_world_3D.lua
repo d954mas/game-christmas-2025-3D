@@ -1,5 +1,6 @@
 local ACTIONS = require "libs.actions.actions"
 local ANALYTICS = require "features.sdk.analytics.analytics"
+local HASHES = require "libs.hashes"
 
 local GameEcs = require "game.ecs.game_ecs_3d"
 local Lights = require "features.core.illumination.illumination"
@@ -64,6 +65,17 @@ end
 
 function GameWorld:final()
     self.ecs:clear()
+end
+
+function GameWorld:teleport(obj, position, cb)
+    assert(obj)
+    msg.post(assert(obj.physics.collision), HASHES.DISABLE)
+    timer.delay(2/60, false, function ()
+        go.set(assert(obj.physics.collision), HASHES.PHYSICS.LINEAR_VELOCITY, vmath.vector3(0, 0, 0))
+        go.set_position(position, assert(obj.physics.collision))
+        msg.post(obj.physics.collision, HASHES.ENABLE)
+        if cb then cb() end
+    end)
 end
 
 GameWorld:init()
