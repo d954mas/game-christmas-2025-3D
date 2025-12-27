@@ -1,1 +1,1 @@
-{"objects":[{"type":"COMMON_CUBE_1","id":"cube_1","position":[2,0,0]}],"id":"LEVEL_1","spawn_position":[0,1,0]}
+{"spawn_position":[0,1,0],"objects":[{"type":"COMMON_CUBE_1","scale":[5,1,5],"id":"cube_1"}],"id":"LEVEL_1"}

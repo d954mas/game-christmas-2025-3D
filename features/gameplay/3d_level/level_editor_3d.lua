@@ -1350,6 +1350,11 @@ function System:draw_object_ui()
 			end
 		end
 
+		if imgui_gizmo and RENDER then
+			imgui_gizmo.set_rect(0, 0, RENDER.screen_size.w, RENDER.screen_size.h)
+			imgui_gizmo.set_drawlist_foreground()
+		end
+
 		local delta_matrix
 		local gizmo_operation = self.gizmo.operation
 		if gizmo_operation == imgui_gizmo.OPERATION_SCALE and uniform_scale then
