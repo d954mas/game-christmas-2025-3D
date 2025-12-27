@@ -5,6 +5,7 @@ local INPUT = require "features.core.input.input"
 local HASHES = require "libs.hashes"
 local CAMERAS = require "features.core.camera.cameras_feature"
 local IMGUI = require "features.debug.imgui.imgui_feature"
+local ENUMS = require "game.enums"
 local LevelEditor3dFeature = require "features.gameplay.3d_level.level_editor_3d_feature"
 
 local DEF_OBJECTS = require "features.gameplay.3d_level.level_objects_def"
@@ -23,6 +24,10 @@ local MATRIX_IDENTITY = vmath.matrix4()
 local COLOR_RAY_TO_SELECTED = vmath.vector4(0, 0, 1, 1)
 
 local TINT_SELECTED = vmath.vector4(0.3, 0.3, 1, 1)
+
+local function is_uniform_scale(object_cfg)
+	return
+end
 
 --region Command
 ---@class EditorCommand:BaseClass
@@ -1320,6 +1325,8 @@ function System:draw_object_ui()
 
 	if selected_object then
 		local object_cfg = selected_object
+		local def = DEF_OBJECTS.BY_ID[object_cfg.type]
+		local uniform_scale = (def.scale_type or ENUMS.SCALE_TYPE.UNIFORM) == ENUMS.SCALE_TYPE.UNIFORM
 		local selection_signature = self:get_selection_signature()
 		local selection_count = #self.selected_objects
 		local parent_matrix = object_cfg.parent and location_data:get_world_transform(object_cfg.parent) or MATRIX_IDENTITY
@@ -1344,7 +1351,11 @@ function System:draw_object_ui()
 		end
 
 		local delta_matrix
-		changed, delta_matrix = imgui_gizmo.manipulate(RENDER.view, RENDER.proj, self.gizmo.operation, self.gizmo.mode, base_matrix)
+		local gizmo_operation = self.gizmo.operation
+		if gizmo_operation == imgui_gizmo.OPERATION_SCALE and uniform_scale then
+			gizmo_operation = imgui_gizmo.OPERATION_SCALEU
+		end
+		changed, delta_matrix = imgui_gizmo.manipulate(RENDER.view, RENDER.proj, gizmo_operation, self.gizmo.mode, base_matrix)
 		if changed then
 			local target_matrix = delta_matrix * base_matrix
 			self.gizmo_matrix = target_matrix
@@ -1410,6 +1421,7 @@ function System:draw_object_ui()
 	end
 
 	local object_cfg = selected_object
+	local def = DEF_OBJECTS.BY_ID[object_cfg.type]
 	local text, x, y, z, w = "", 0, 0, 0, 0
 
 	imgui.same_line()
@@ -1458,7 +1470,7 @@ function System:draw_object_ui()
 	---@diagnostic disable-next-line: cast-local-type
 	changed, x, y, z = imgui.input_float3("Position##ObjectPosition", object_cfg.position.x, object_cfg.position.y, object_cfg.position.z)
 	if changed then
----@diagnostic disable-next-line: param-type-mismatch
+		---@diagnostic disable-next-line: param-type-mismatch
 		self:execute_command(ChangePositionObjectCommand.new(self, selected_object, vmath.vector3(x, y, z)))
 	end
 
@@ -1466,18 +1478,27 @@ function System:draw_object_ui()
 	---@diagnostic disable-next-line: cast-local-type
 	changed, x, y, z = imgui.input_float3("Rotation##ObjectRotation", TEMP_V.x, TEMP_V.y, TEMP_V.z)
 	if changed then
----@diagnostic disable-next-line: param-type-mismatch
+		---@diagnostic disable-next-line: param-type-mismatch
 		xmath.vector3_set_components(TEMP_V, x, y, z)
 		local quat = vmath.quat_rotation_x(0)
 		xmath.euler_to_quat(quat, TEMP_V)
 		self:execute_command(ChangeRotationObjectCommand.new(self, selected_object, quat))
 	end
-
-	---@diagnostic disable-next-line: cast-local-type
-	changed, x, y, z = imgui.input_float3("Scale##ObjectScale", object_cfg.scale.x, object_cfg.scale.y, object_cfg.scale.z)
-	if changed and x > 0 and y > 0 and z > 0 then
----@diagnostic disable-next-line: param-type-mismatch
-		self:execute_command(ChangeScaleObjectCommand.new(self, selected_object, vmath.vector3(x, y, z)))
+	local uniform_scale = (def.scale_type or ENUMS.SCALE_TYPE.UNIFORM) == ENUMS.SCALE_TYPE.UNIFORM
+	if uniform_scale then
+		---@diagnostic disable-next-line: cast-local-type
+		changed, x = imgui.input_float("Scale##ObjectScaleUniform", object_cfg.scale.x)
+		if changed and x > 0 then
+			---@diagnostic disable-next-line: param-type-mismatch
+			self:execute_command(ChangeScaleObjectCommand.new(self, selected_object, vmath.vector3(x, x, x)))
+		end
+	else
+		---@diagnostic disable-next-line: cast-local-type
+		changed, x, y, z = imgui.input_float3("Scale##ObjectScale", object_cfg.scale.x, object_cfg.scale.y, object_cfg.scale.z)
+		if changed and x > 0 and y > 0 and z > 0 then
+			---@diagnostic disable-next-line: param-type-mismatch
+			self:execute_command(ChangeScaleObjectCommand.new(self, selected_object, vmath.vector3(x, y, z)))
+		end
 	end
 
 	---@diagnostic disable-next-line: cast-local-type
@@ -1537,13 +1558,13 @@ function System:select_object_raycast()
 		self.touch_action = nil
 		local time = socket.gettime() - INPUT.get_key_data(HASHES.INPUT.TOUCH).pressed_time
 		if time < 0.15 then
-			CAMERAS.CAMERAS.GAME:screen_to_world_ray_to_vector3(action.screen_x, action.screen_y, RAYCAST_FROM, RAYCAST_TO)
----@diagnostic disable-next-line: unused-local
+			CAMERAS.current_camera:screen_to_world_ray_to_vector3(action.screen_x, action.screen_y, RAYCAST_FROM, RAYCAST_TO)
+			---@diagnostic disable-next-line: unused-local
 			local hit, hx, hy, hz, _, _, _, id = physics_utils.physics_raycast_single(RAYCAST_FROM, RAYCAST_TO, self.raycast_mask)
 			if hit and id then
 				local e = self.world.game_world.ecs.entities.collision_to_object[id]
-				if e and e.object_config_e then
-					e = e.object_config_e
+				if e then
+					e = e.object_config_entity
 				end
 				if e then
 					local additive = self:is_multi_select_modifier_active()

@@ -40,4 +40,9 @@ ENUMS.OBJECT_TYPE = {
 	OBJECT = "OBJECT",
 }
 
+ENUMS.SCALE_TYPE = {
+	ALL = "ALL",
+	UNIFORM = "UNIFORM",
+}
+
 return ENUMS

@@ -32,7 +32,8 @@ M.TYPES = {
             },
             CUBE_1 = {
                 type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/root#factory_common_cube_1"),
-                models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0)
+                models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                scale_type = ENUMS.SCALE_TYPE.ALL, scale_set_shape_size = true
             },
         },
     },

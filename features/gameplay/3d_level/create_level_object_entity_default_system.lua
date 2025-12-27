@@ -48,7 +48,7 @@ function System:on_add(e)
         local model_go = {
             root = root_url,
             model = LUME.url_component_from_url(root_url, assert(model.model)),
-            tint = vmath.vector4(e.tint),   
+            tint = vmath.vector4(e.tint),
         }
         xmath.mul_per_elem(model_go.tint, e.tint, model.tint)
         e.object_entity_default_go.models[i] = model_go
@@ -77,6 +77,7 @@ function System:on_add(e)
 
     local uniform_scale = scale_x == scale_y and scale_x == scale_z
 
+
     for i = 1, #def.collisions do
         local collision = def.collisions[i]
         local root_url = msg.url(assert(urls[collision.root]))
@@ -85,7 +86,7 @@ function System:on_add(e)
             collision = LUME.url_component_from_url(root_url, assert(collision.collision))
         }
         e.object_entity_default_go.collisions[i] = collision_obj
-        --[[if not uniform_scale and collision.shapes then
+        if def.scale_set_shape_size and not uniform_scale and collision.shapes then
             for j = 1, #collision.shapes do
                 local shape_name = collision.shapes[j]
                 local shape = physics.get_shape(collision_obj.collision, shape_name)
@@ -109,7 +110,7 @@ function System:on_add(e)
                     --can't scale hull
                 end
             end
-        end--]]
+        end
     end
 
 
