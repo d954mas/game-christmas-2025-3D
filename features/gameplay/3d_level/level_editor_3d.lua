@@ -5,6 +5,7 @@ local INPUT = require "features.core.input.input"
 local HASHES = require "libs.hashes"
 local CAMERAS = require "features.core.camera.cameras_feature"
 local IMGUI = require "features.debug.imgui.imgui_feature"
+local LevelEditor3dFeature = require "features.gameplay.3d_level.level_editor_3d_feature"
 
 local DEF_OBJECTS = require "features.gameplay.3d_level.level_objects_def"
 
@@ -372,7 +373,7 @@ function NewObjectCommand:execute()
 	---@field is_build_cache bool|nil
 	local object = {
 		id = self.system:new_id_for_object(),
-		type = DEF_OBJECTS.TYPES.COMMON.BASE.CUBE_1.id,
+		type = DEF_OBJECTS.TYPES.COMMON.OBJECTS.CUBE_1.id,
 		scale = vmath.vector3(1, 1, 1),
 		position = self.object and vmath.vector3(0) or vmath.vector3(self.system.world.game_world.level_creator.player.position) + vmath.vector3(0, 0, -1),
 		rotation = vmath.quat_rotation_z(0),
@@ -1324,7 +1325,7 @@ function System:draw_object_ui()
 		local parent_matrix = object_cfg.parent and location_data:get_world_transform(object_cfg.parent) or MATRIX_IDENTITY
 		local base_matrix
 		if selection_count > 1 then
-			if self.gizmo.id ~= selection_signature or not imgui_gizmo.is_using_any()() then
+			if self.gizmo.id ~= selection_signature or not imgui_gizmo.is_using_any() then
 				self.gizmo.id = selection_signature
 				self.gizmo_matrix = self:calculate_group_matrix()
 			end
@@ -1496,9 +1497,10 @@ function System:object_changed(id)
 
 	location_data:transform_changed(id)
 	local entity = self:find_entity_by_id(id)
-	print("no entity with id:" .. id)
 	if entity then
 		self.world:remove_entity(entity)
+	else
+		print("no entity with id:" .. id)
 	end
 	--entity is not added to world. So don't need to create it again
 	---@class Entity
@@ -1560,7 +1562,7 @@ function System:select_object_raycast()
 end
 
 function System:draw()
-	if not self.world.game_world.state.editor_visible then return end
+	if not LevelEditor3dFeature.storage:is_editor_visible() then return end
 	if not self.world then return end
 	if not imgui then return end
 	if INPUT.get_key_data(HASHES.INPUT.T).pressed then

@@ -1,0 +1,43 @@
+#version 140
+
+in highp vec4 position;
+in mediump vec2 texcoord0;
+in mediump vec3 normal;
+in highp mat4 mtx_world;
+
+out mediump vec2 var_texcoord0;
+
+out highp vec3 var_world_position;
+out mediump vec3 var_world_normal;
+out highp vec3 var_camera_position;
+out highp vec3 var_view_position;
+out highp vec4 var_clip_position;
+#include "/features/core/illumination/assets/materials/shadow/shadow_vp_out.glsl"
+
+#include "/features/core/materials/includes/matrix_utils.glsl"
+
+uniform vertex_uniforms {
+    highp mat4 mtx_view;
+    highp mat4 mtx_proj;
+    #include "/features/core/illumination/assets/materials/shadow/shadow_vp_uniforms.glsl"
+};
+
+void main() {
+    highp vec4 world_position = mtx_world * vec4(position.xyz, 1.0);
+    var_world_position = world_position.xyz;
+
+    highp vec4 view_position = mtx_view * world_position;
+    var_view_position = view_position.xyz;
+
+    var_clip_position = mtx_proj * view_position;
+
+    var_world_normal = normalize(mat33_transpose(mat43_inverse(mtx_world)) * normal.xyz);
+
+    #include "/features/core/illumination/assets/materials/shadow/shadow_vp_calculation.glsl"
+
+    mat4 mtx_inv_view = mat4_inverse(mtx_view);
+    var_camera_position = (mtx_inv_view * vec4(0.0, 0.0, 0.0, 1.0)).xyz;
+
+    var_texcoord0 = texcoord0;
+    gl_Position = mtx_proj * view_position;
+}

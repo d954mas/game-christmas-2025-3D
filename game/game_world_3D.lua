@@ -39,7 +39,7 @@ function GameWorld:reset_state()
     self.state = {
         time = 0,
         first_move = false,
-        can_show_ads = false
+        can_show_ads = false,
     }
 end
 

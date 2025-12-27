@@ -7,6 +7,7 @@
 ---@field late_init fun(self)
 ---@field on_resize fun(self, w, h)
 ---@field on_debug_gui_added fun(self, gui:DebugGuiScript)
+---@field on_imgui_debug_window fun(self)
 
 
 ---lifecycle
@@ -26,6 +27,7 @@ local M = {
     late_init_list = {},
     on_resize_list = {},
     on_debug_gui_added_list = {},
+    on_imgui_debug_window_list = {},
     on_game_gui_init_list = {},
     on_game_gui_update_list = {},
     on_game_gui_on_input_list = {},
@@ -44,6 +46,7 @@ function M:add_feature(feature)
     if feature.late_init then table.insert(self.late_init_list, feature) end
     if feature.on_resize then table.insert(self.on_resize_list, feature) end
     if feature.on_debug_gui_added then table.insert(self.on_debug_gui_added_list, feature) end
+    if feature.on_imgui_debug_window then table.insert(self.on_imgui_debug_window_list, feature) end
     if feature.on_game_gui_init then table.insert(self.on_game_gui_init_list, feature) end
     if feature.on_game_gui_update then table.insert(self.on_game_gui_update_list, feature) end
     if feature.on_game_gui_on_input then table.insert(self.on_game_gui_on_input_list, feature) end
@@ -105,6 +108,12 @@ end
 function M:on_debug_gui_added(gui)
     for i = 1, #self.on_debug_gui_added_list do
         self.on_debug_gui_added_list[i]:on_debug_gui_added(gui)
+    end
+end
+
+function M:imgui_debug_window()
+    for i = 1, #self.on_imgui_debug_window_list do
+        self.on_imgui_debug_window_list[i]:on_imgui_debug_window()
     end
 end
 

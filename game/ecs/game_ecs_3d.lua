@@ -10,7 +10,7 @@ local UpdatePhysicsObjectsLinearVelocitySystem = require "features.core.physics.
 
 local DrawPlayer3dSystem = require "features.gameplay.player3d.draw_3d_player_system"
 --#IF DEBUG
-
+local LevelEditor3dSystem = require "features.gameplay.3d_level.level_editor_3d"
 --#ENDIF
 
 ---@class GameEcsWorld
@@ -54,7 +54,7 @@ function EcsWorld:add_systems()
 	self.ecs:add_system(DrawPlayer3dSystem.new())
 
 	--#IF DEBUG
-
+	self.ecs:add_system(LevelEditor3dSystem.new())
 	--#ENDIF
 
 	--can remove or add new entities. So it should be last

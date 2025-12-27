@@ -5,6 +5,7 @@ local INPUT = require "features.core.input.input"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local CheckboxDebug = require "features.debug.debug_gui.debug_checkbox"
 local FEATURES = require "features.features"
+local IMGUI_FEATURE = require "features.debug.imgui.imgui_feature"
 
 --@class SceneDebugView
 local SceneDebugView = {}
@@ -246,6 +247,14 @@ function Script:update(dt)
 		self.views.scene_debug_view:update()
 	end
 	self:update_player_info()
+
+	if IMGUI_FEATURE.storage and IMGUI_FEATURE.storage:is_show_debug() then
+		if imgui then
+			imgui.begin_window("Debug Settings##imgui_debug_settings", false)
+			FEATURES:imgui_debug_window()
+			imgui.end_window()
+		end
+	end
 end
 
 function Script:final()

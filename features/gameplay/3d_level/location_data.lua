@@ -137,7 +137,7 @@ function M:is_build(id)
         object.is_build_cache = false
         return false
     end
-    if object.location_percent > self.location_progress_percent then
+    if object.location_percent and object.location_percent > self.location_progress_percent then
         object.is_build_cache = false
         return false
     end

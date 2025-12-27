@@ -218,9 +218,10 @@ end
 
 ---@param gui_script DebugGuiScript
 function M:on_debug_gui_added(gui_script)
-	gui_script:add_game_checkbox("Imgui Debug", self.storage:is_show_debug(), function ()
-		self.storage:set_show_debug(not self.storage:is_show_debug())
+	gui_script:add_game_checkbox("Imgui Debug", self.storage:is_show_debug(), function (checkbox)
+		self.storage:set_show_debug(checkbox.checked)
 	end)
 end
+
 
 return M
