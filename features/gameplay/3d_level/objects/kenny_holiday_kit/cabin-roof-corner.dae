@@ -1,0 +1,337 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.2.2 commit date:2022-08-02, commit time:18:15, hash:bcfdb14560e7</authoring_tool>
+    </contributor>
+    <created>2025-12-28T14:59:32</created>
+    <modified>2025-12-28T14:59:32</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="MI_COL-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0 0.5 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color sid="alpha">0 0 0 0.5</color>
+            </transparent>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="MI_COL-material" name="MI_COL">
+      <instance_effect url="#MI_COL-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="cabinroofcorner_041007-mesh" name="cabinroofcorner.041007">
+      <mesh>
+        <source id="cabinroofcorner_041007-mesh-positions">
+          <float_array id="cabinroofcorner_041007-mesh-positions-array" count="48">0.684463 0.3185859 0.1997295 0.8014289 -0.7925902 0.04377496 0.8014289 0.3185859 -0.01470792 0.6259801 0.3185859 -0.1511681 0.2945767 -0.2662436 0.1997295 0.6649687 -0.65613 -0.1511681 0.8014289 0.3185859 0.1022579 0.684463 -0.6366356 0.1997295 0.2945767 0.3185859 0.1997295 0.8014289 -0.7925902 -0.01470792 0.6649687 0.3185859 -0.1511681 0.5480028 -0.65613 -0.1511681 0.7624403 0.3185859 0.1412466 0.8014289 -0.6951186 0.1022579 0.2945767 0.3185859 0.1802352 0.5480028 -0.7536015 -0.03420221</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041007-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041007-mesh-normals">
+          <float_array id="cabinroofcorner_041007-mesh-normals-array" count="66">0 1 0 1 0 0 0 0 1 0 0 1 0 1 0 0.7071068 0 -0.7071067 1 0 0 0 0 -1 0.707107 0 -0.7071067 0 -0.7071065 -0.7071071 0.6 0 0.8000001 0.4159004 -0.4678871 0.7798132 0.6386913 -0.005029082 0.7694468 0.7071067 0 0.7071069 -0.7059782 0.0564782 -0.7059782 -0.8204576 -0.0190463 -0.5713901 -1 0 0 -0.5472286 -0.57603 0.6072317 -0.9002932 -0.3343945 -0.2786618 -0.2912998 -0.7767998 0.5583249 -0.0687797 -0.7664023 -0.6386681 -0.1520572 -0.9883717 0</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041007-mesh-normals-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041007-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041007-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041007-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041007-mesh-normals" offset="1"/>
+          <p>0 0 2 0 3 0 6 1 1 1 2 1 6 0 2 0 0 0 7 2 0 2 4 2 8 3 4 3 0 3 8 4 0 4 3 4 9 5 5 5 2 5 9 6 2 6 1 6 10 7 5 7 3 7 10 0 3 0 2 0 10 8 2 8 5 8 11 7 3 7 5 7 11 9 5 9 9 9 12 0 6 0 0 0 12 10 0 10 7 10 13 11 7 11 1 11 13 6 1 6 6 6 13 12 12 12 7 12 13 13 6 13 12 13 14 0 8 0 3 0 14 14 3 14 11 14 14 15 11 15 4 15 14 16 4 16 8 16 15 17 7 17 4 17 15 18 4 18 11 18 15 19 1 19 7 19 15 20 11 20 9 20 15 21 9 21 1 21</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cabinroofcorner_041006-mesh" name="cabinroofcorner.041006">
+      <mesh>
+        <source id="cabinroofcorner_041006-mesh-positions">
+          <float_array id="cabinroofcorner_041006-mesh-positions-array" count="48">-0.2707585 0.3185859 1.154951 0.255588 -0.2272549 0.5896159 0.1971051 0.3185859 0.5116387 -0.3097472 -0.2077606 0.2582125 -0.3097472 -0.1492776 0.7650648 0.2165994 -0.2272549 0.2582125 -0.3097472 0.3185859 0.7845591 0.1581164 0.3185859 0.7455704 0.1386221 -0.1492776 0.7650648 -0.3097472 -0.2272549 0.6091102 0.255588 -0.1297833 0.3361898 0.2165994 -0.1297833 0.2777068 -0.03682672 0.3185859 0.5116387 -0.3097472 0.2795973 1.154951 0.1971051 0.3185859 0.6286045 -0.2122756 0.3185859 1.115962</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041006-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041006-mesh-normals">
+          <float_array id="cabinroofcorner_041006-mesh-normals-array" count="81">0 1 1.50232e-7 -1 1.26282e-7 0 0 1 0 0.8296692 -0.01131349 0.5581406 -1 0 0 0 -0.8944273 0.4472136 0.01427698 -0.9101514 0.4140297 0 -1 0 -0.03695476 -0.9977784 -0.05543214 0.9502696 -0.2906706 -0.1117964 0.007263362 0.196111 -0.9805548 0.8269773 0.1102634 -0.5513173 0.7911719 0.3095893 -0.5274483 0 1 -4.66793e-7 -0.5773503 0.5773503 -0.5773503 -0.0331971 0.4474982 -0.8936685 0 0.462566 -0.8865849 -1 0 0 -0.7051565 0.7051558 0.07422691 0.3762875 -0.3762885 0.8466491 0 -0.6726728 0.7399402 0.9457325 0.07881098 0.3152443 0.9916005 0.129339 0 0.9938167 0.1036334 0.03985893 0.7071069 0 0.7071067 0 1 -4.12742e-6 0.543075 -0.2036539 0.8146134</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041006-mesh-normals-array" count="27" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041006-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041006-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041006-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041006-mesh-normals" offset="1"/>
+          <p>6 0 0 0 2 0 6 1 3 1 4 1 7 2 2 2 0 2 8 3 1 3 7 3 9 4 4 4 3 4 9 5 8 5 4 5 9 6 1 6 8 6 9 7 5 7 1 7 9 8 3 8 5 8 10 9 1 9 5 9 11 10 5 10 3 10 11 11 10 11 5 11 11 12 2 12 10 12 12 13 6 13 2 13 12 14 3 14 6 14 12 15 11 15 3 15 12 16 2 16 11 16 13 17 6 17 4 17 13 18 0 18 6 18 13 19 8 19 0 19 13 20 4 20 8 20 14 21 7 21 1 21 14 2 2 2 7 2 14 22 10 22 2 22 14 23 1 23 10 23 15 24 8 24 7 24 15 25 7 25 0 25 15 26 0 26 8 26</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cabinroofcorner_041005-mesh" name="cabinroofcorner.041005">
+      <mesh>
+        <source id="cabinroofcorner_041005-mesh-positions">
+          <float_array id="cabinroofcorner_041005-mesh-positions-array" count="48">0.684463 -0.6366356 0.1997295 0.8014289 -0.7925902 0.1022579 0.5480028 -0.4027038 -0.05369657 -0.1537926 -0.6366356 -0.1511681 -0.3097472 -0.7925902 0.1217523 0.5480028 -0.65613 -0.1511681 0.8014289 -0.6951186 0.1022579 0.684463 -0.6756243 0.1997295 0.255588 -0.3442208 0.1997295 0.5480028 -0.6171413 -0.1511681 -0.1537926 -0.7925902 -0.01470792 0.7624403 -0.6951186 0.1412466 0.5480028 -0.4027038 0.08276361 0.8014289 -0.6951186 0.04377496 0.7819346 -0.7925902 0.1217523 0.255588 -0.3442208 0.1217523</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041005-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041005-mesh-normals">
+          <float_array id="cabinroofcorner_041005-mesh-normals-array" count="84">-0.6263144 0.7749313 0.0849238 1.67091e-7 0 1 -0.06765013 -0.08754724 0.9938607 0 0 -1 -0.01149374 0.4137757 -0.9103063 -0.5499719 -0.5499718 -0.6285396 -0.01828873 -0.6583945 -0.7524509 0.06390881 -0.8505961 -0.5219215 0 -1 8.02264e-7 0.6882461 0.2294174 0.6882478 0.6000015 0 0.799999 0.755689 0.6549307 0 0.6657675 0.6060192 0.4353095 0.3992909 0.5856265 0.7054138 0.1961162 0.9805807 0 1 0 0 0.5020138 -0.4449658 -0.7416115 0.6097116 0 -0.7926235 0.6375766 0.3187882 -0.7013345 0.7556894 0.6549304 0 0 -0.5547004 0.8320502 0 -1 -5.60152e-6 0.5926669 -0.04233288 0.8043344 0.7071072 0 0.7071065 0.7071066 0 0.707107 0.196116 0.9805807 0 -0.1857053 0.7967357 -0.5750876 -0.5812383 0.8137335 0</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041005-mesh-normals-array" count="28" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041005-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041005-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041005-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041005-mesh-normals" offset="1"/>
+          <p>8 0 3 0 4 0 8 1 7 1 0 1 8 2 4 2 7 2 9 3 5 3 3 3 9 4 3 4 2 4 10 5 4 5 3 5 10 6 3 6 5 6 10 7 5 7 1 7 10 8 1 8 4 8 11 9 6 9 0 9 11 10 0 10 7 10 12 11 6 11 2 11 12 12 0 12 6 12 12 13 8 13 0 13 12 14 2 14 8 14 13 15 6 15 1 15 13 16 1 16 5 16 13 17 5 17 9 17 13 18 9 18 2 18 13 19 2 19 6 19 14 20 7 20 4 20 14 21 4 21 1 21 14 22 11 22 7 22 14 23 1 23 6 23 14 24 6 24 11 24 15 25 8 25 2 25 15 26 2 26 3 26 15 27 3 27 8 27</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cabinroofcorner_041004-mesh" name="cabinroofcorner.041004">
+      <mesh>
+        <source id="cabinroofcorner_041004-mesh-positions">
+          <float_array id="cabinroofcorner_041004-mesh-positions-array" count="48">0.2360937 0.3185859 0.6091102 0.4700255 -0.3442208 0.4336614 0.4700255 0.3185859 0.4336614 0.2750824 0.3185859 0.1997295 -0.01733237 0.006676852 0.4921443 0.4700255 0.3185859 0.1997295 0.4310369 0.3185859 0.47265 0.1971051 -0.1492776 0.6091102 -0.01733237 0.3185859 0.4921443 0.3335653 -0.2857379 0.1997295 0.4310369 -0.4221981 0.47265 -0.01733237 0.3185859 0.5116387 0.2750824 -0.2272549 0.1997295 0.4700255 -0.2857379 0.1997295 0.2360937 -0.1492776 0.6091102 0.372554 -0.4221981 0.47265</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041004-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041004-mesh-normals">
+          <float_array id="cabinroofcorner_041004-mesh-normals-array" count="69">0 1 0 1 0 0 0.707107 0 0.7071067 0 1 0 -0.7071069 0 -0.7071068 0 0 -1 0.5734621 0 0.8192321 0.7071065 0 0.7071071 -0.3588185 0.0299015 0.9329284 -1 0 0 -0.5079944 -0.05373018 0.859683 -0.7071068 0 -0.7071068 4.66794e-7 0 -1 0 -0.8944272 -0.4472138 0.8616401 -0.4923667 -0.1230913 0.5734626 0 0.8192319 0 0 1 0 -0.4472134 0.8944274 0 -0.447214 0.8944271 -0.6713644 -0.6282054 0.3932277 0 -0.8944274 -0.4472133 -0.6855831 -0.6855829 -0.2448508 -0.7286816 -0.6530637 -0.2062306</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041004-mesh-normals-array" count="23" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041004-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041004-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041004-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041004-mesh-normals" offset="1"/>
+          <p>0 0 2 0 3 0 5 1 2 1 1 1 5 0 3 0 2 0 6 2 1 2 2 2 6 0 2 0 0 0 8 3 0 3 3 3 8 4 3 4 4 4 9 5 3 5 5 5 10 6 6 6 0 6 10 7 1 7 6 7 11 8 7 8 0 8 11 0 0 0 8 0 11 9 8 9 4 9 11 10 4 10 7 10 12 11 4 11 3 11 12 12 3 12 9 12 13 5 9 5 5 5 13 1 5 1 1 1 13 13 10 13 9 13 13 14 1 14 10 14 14 15 10 15 0 15 14 16 0 16 7 16 14 17 7 17 10 17 15 18 10 18 7 18 15 19 7 19 4 19 15 20 9 20 10 20 15 21 12 21 9 21 15 22 4 22 12 22</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cabinroofcorner_041003-mesh" name="cabinroofcorner.041003">
+      <mesh>
+        <source id="cabinroofcorner_041003-mesh-positions">
+          <float_array id="cabinroofcorner_041003-mesh-positions-array" count="48">0.255588 -0.2857379 0.1997295 0.255588 -0.6366356 0.1997295 -0.01733237 -0.6366356 -0.1511681 -0.3097472 -0.6171413 -0.1511681 -0.3097472 -0.2857379 0.1997295 -0.3097472 -0.7925902 0.04377496 0.255588 -0.4221981 0.04377496 -0.1537926 -0.7925902 -0.01470792 -0.3097472 -0.6756243 0.1997295 -0.01733237 -0.6171413 -0.1511681 0.255588 -0.2857379 0.1802352 0.255588 -0.6366356 0.04377496 -0.1537926 -0.7925902 0.04377496 -0.3097472 -0.7925902 -0.01470792 -0.3097472 -0.2857379 0.1802352 -0.1537926 -0.6951186 0.1802352</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041003-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041003-mesh-normals">
+          <float_array id="cabinroofcorner_041003-mesh-normals-array" count="63">0 0 1 -1 0 0 1 0 0 0.5812377 0 -0.8137339 0 0 -1 0 0.7071068 -0.7071069 0 1 0 1 -2.80076e-6 0 0.5812383 0 -0.8137335 0.3683548 -0.7735451 -0.5156964 0.3559954 -0.9344878 0 0.3559952 -0.9344878 0 0 -1 0 -0.0408951 -0.6134273 -0.7886917 0 -0.6585045 -0.7525768 -1 2.30651e-6 0 0 0.7071068 -0.7071068 -0.0249921 -0.7997505 0.5998123 0 -0.8137335 0.5812383 0.08822423 -0.8105604 0.5789718 0.03733271 -0.5413247 0.8399845</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041003-mesh-normals-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041003-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041003-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041003-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041003-mesh-normals" offset="1"/>
+          <p>4 0 1 0 0 0 5 1 4 1 3 1 6 2 0 2 1 2 8 0 1 0 4 0 8 1 4 1 5 1 9 3 6 3 2 3 9 4 2 4 3 4 9 5 3 5 6 5 10 6 4 6 0 6 10 7 0 7 6 7 11 2 6 2 1 2 11 8 2 8 6 8 11 9 7 9 2 9 11 10 1 10 7 10 12 11 7 11 1 11 12 12 5 12 7 12 13 12 7 12 5 12 13 1 5 1 3 1 13 13 3 13 2 13 13 14 2 14 7 14 14 15 3 15 4 15 14 6 4 6 10 6 14 5 10 5 6 5 14 16 6 16 3 16 15 17 8 17 5 17 15 18 5 18 12 18 15 19 12 19 1 19 15 20 1 20 8 20</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cabinroofcorner_041002-mesh" name="cabinroofcorner.041002">
+      <mesh>
+        <source id="cabinroofcorner_041002-mesh-positions">
+          <float_array id="cabinroofcorner_041002-mesh-positions-array" count="48">0.255588 -0.2272549 0.5896159 0.4700255 -0.4806811 0.4336614 0.3530596 -0.2662436 0.1412466 -0.3097472 -0.2662436 0.1997295 -0.3097472 -0.4806811 0.4336614 -0.3097472 -0.2272549 0.2387182 0.4700255 -0.3442208 0.4336614 0.2750824 -0.2857379 0.5701216 0.4310369 -0.4221981 0.1997295 0.3335653 -0.2272549 0.1997295 0.3335653 -0.2662436 0.1412466 -0.3097472 -0.2272549 0.5896159 0.372554 -0.3052322 0.5116387 0.4505312 -0.4611868 0.4531556 0.4700255 -0.4806811 0.3361898 0.4700255 -0.3442208 0.2972011</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041002-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041002-mesh-normals">
+          <float_array id="cabinroofcorner_041002-mesh-normals-array" count="81">-1 0 0 -0.1533547 -0.7284346 -0.6677316 0 1 -1.20278e-7 0.5349471 0.8380841 0.1069895 -0.06415003 0.7056504 -0.7056503 -0.08317101 -0.3950624 -0.9148817 0 -0.3511227 -0.9363295 0 0.8320501 -0.5547007 -0.03359919 0.8315805 -0.554387 -1 0 0 0 1 0 0 -0.3162271 0.9486835 -0.02401411 -0.5239464 0.8514127 0.6666663 0.3333348 0.6666663 -0.006906807 -0.5594595 0.8288291 0 -0.7071075 0.7071062 0.4423261 -0.1474409 0.8846519 0.5292567 -0.05292624 0.8468095 0.7071061 0 0.7071076 0.6304068 0.02424615 0.7758863 0 -1 0 -0.04773944 -0.9229634 -0.3819157 1 0 0 0.830116 0.2234925 -0.510841 0.9471734 -0.08810901 -0.3083822 0.6507913 0.7592568 0 0.7172414 0.6660107 -0.204926</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041002-mesh-normals-array" count="27" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041002-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041002-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041002-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041002-mesh-normals" offset="1"/>
+          <p>5 0 3 0 4 0 8 1 4 1 3 1 9 2 5 2 0 2 9 3 0 3 6 3 10 4 3 4 5 4 10 5 8 5 3 5 10 6 2 6 8 6 10 7 9 7 2 7 10 8 5 8 9 8 11 9 5 9 4 9 11 10 0 10 5 10 11 11 7 11 0 11 11 12 4 12 7 12 12 13 6 13 0 13 13 14 7 14 4 14 13 15 4 15 1 15 13 16 0 16 7 16 13 17 12 17 0 17 13 18 1 18 6 18 13 19 6 19 12 19 14 20 1 20 4 20 14 21 4 21 8 21 14 22 6 22 1 22 15 23 8 23 2 23 15 24 14 24 8 24 15 22 6 22 14 22 15 25 9 25 6 25 15 26 2 26 9 26</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cabinroofcorner_041001-mesh" name="cabinroofcorner.041001">
+      <mesh>
+        <source id="cabinroofcorner_041001-mesh-positions">
+          <float_array id="cabinroofcorner_041001-mesh-positions-array" count="48">0.5090142 0.3185859 0.3166955 0.6454744 -0.65613 0.2192239 0.6454744 0.3185859 0.1997295 0.4700255 0.3185859 0.1997295 0.4700255 -0.4611868 0.3166955 0.6259801 -0.65613 0.1997295 0.6259801 0.3185859 0.2387182 0.5090142 -0.4611868 0.3166955 0.4700255 0.3185859 0.3166955 0.6454744 -0.65613 0.1997295 0.4700255 -0.2857379 0.1997295 0.5285085 -0.5586584 0.2777068 0.6454744 0.3185859 0.2192239 0.6259801 -0.5196697 0.2387182 0.6259801 -0.65613 0.2192239 0.5285085 -0.5586584 0.2582125</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041001-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041001-mesh-normals">
+          <float_array id="cabinroofcorner_041001-mesh-normals-array" count="66">0 1 3.63062e-7 0 0 -1 0 1 -2.45066e-6 0 0 1 0.5547004 0 0.8320502 0 1 0 -1 0 0 1 0 0 0 -1 0 3.16215e-7 0 -1 0 -0.3713908 0.9284766 0.1849325 -0.3328763 0.9246585 0.7071078 0 0.7071058 0.5391638 -0.04313343 0.8410957 0.7071056 0 0.7071079 0.5547003 0 0.8320503 -0.7071076 -0.7071061 0 0 -0.5144977 0.8574917 -0.6886993 -0.2899785 -0.6645342 -0.7071061 -0.7071075 0 -0.8574938 -0.5144943 0 -0.8690398 -0.2744337 -0.4116505</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041001-mesh-normals-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041001-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041001-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041001-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041001-mesh-normals" offset="1"/>
+          <p>0 0 2 0 3 0 5 1 3 1 2 1 6 2 2 2 0 2 7 3 0 3 4 3 7 4 6 4 0 4 8 3 4 3 0 3 8 5 0 5 3 5 8 6 3 6 4 6 9 1 5 1 2 1 9 7 2 7 1 7 9 8 1 8 5 8 10 6 4 6 3 6 10 9 3 9 5 9 11 10 7 10 4 10 11 11 1 11 7 11 12 12 6 12 1 12 12 7 1 7 2 7 12 5 2 5 6 5 13 13 7 13 1 13 13 14 1 14 6 14 13 15 6 15 7 15 14 16 11 16 5 16 14 8 5 8 1 8 14 17 1 17 11 17 15 18 10 18 5 18 15 19 5 19 11 19 15 20 11 20 4 20 15 21 4 21 10 21</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="cabinroofcorner_041000-mesh" name="cabinroofcorner.041000">
+      <mesh>
+        <source id="cabinroofcorner_041000-mesh-positions">
+          <float_array id="cabinroofcorner_041000-mesh-positions-array" count="48">0.4700255 -0.4221981 0.3361898 0.6259801 -0.65613 0.2192239 0.4505312 -0.4221981 0.1997295 -0.3097471 -0.4221981 0.1997295 -0.3097471 -0.4806811 0.3361898 0.6259801 -0.65613 0.1997295 0.4700255 -0.4806811 0.3361898 -0.3097471 -0.4221981 0.3361898 -0.3097471 -0.65613 0.1997295 0.6259801 -0.5196697 0.2387182 -0.3097471 -0.65613 0.2192239 0.6259801 -0.6171413 0.2387182 0.5090142 -0.5001754 0.3166955 0.6259801 -0.5196697 0.1997295 0.5869914 -0.597647 0.2582125 0.5090142 -0.4611868 0.3166955</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041000-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="cabinroofcorner_041000-mesh-normals">
+          <float_array id="cabinroofcorner_041000-mesh-normals-array" count="63">0 1 -5.74515e-7 0 0 -1 0 0 1 0 1 0 -1 0 0 0 -1 0 1 0 0 0.4472154 0 0.8944264 0.5546999 0 0.8320505 0.3015133 -0.3015103 0.9045339 -3.11196e-7 0 -1 0.4844785 0.8720611 -0.06921118 0.5299988 0.8479984 0 0.3015118 -0.3015148 0.9045327 0.2182164 -0.4364359 0.8728719 0 -0.5547003 0.8320503 0 -0.5546994 0.832051 0 -0.5547002 0.8320504 0.5547004 0 0.8320502 0.6201741 0.2480701 0.7442079 0.4472137 0 0.8944273</float_array>
+          <technique_common>
+            <accessor source="#cabinroofcorner_041000-mesh-normals-array" count="21" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="cabinroofcorner_041000-mesh-vertices">
+          <input semantic="POSITION" source="#cabinroofcorner_041000-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#cabinroofcorner_041000-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#cabinroofcorner_041000-mesh-normals" offset="1"/>
+          <p>0 0 2 0 3 0 5 1 3 1 2 1 6 2 0 2 4 2 7 2 4 2 0 2 7 3 0 3 3 3 7 4 3 4 4 4 8 4 4 4 3 4 8 1 3 1 5 1 8 5 5 5 1 5 9 6 1 6 5 6 10 5 8 5 1 5 10 4 4 4 8 4 11 6 1 6 9 6 12 7 0 7 6 7 12 8 11 8 9 8 12 9 6 9 11 9 13 6 9 6 5 6 13 10 5 10 2 10 13 11 2 11 0 11 13 12 0 12 9 12 14 13 11 13 6 13 14 14 1 14 11 14 14 15 6 15 4 15 14 16 10 16 1 16 14 17 4 17 10 17 15 18 12 18 9 18 15 19 9 19 0 19 15 20 0 20 12 20</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UBX_cabin-roof-corner_data-mesh" name="UBX_cabin-roof-corner_data">
+      <mesh>
+        <source id="UBX_cabin-roof-corner_data-mesh-positions">
+          <float_array id="UBX_cabin-roof-corner_data-mesh-positions-array" count="24">-0.2749999 0.525 0 -0.2749999 0.275 0 -0.525 0.275 0 -0.525 0.525 0 -0.2749999 0.525 1.482843 -0.2749999 0.275 1.482843 -0.525 0.275 1.482843 -0.525 0.525 1.482843</float_array>
+          <technique_common>
+            <accessor source="#UBX_cabin-roof-corner_data-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UBX_cabin-roof-corner_data-mesh-normals">
+          <float_array id="UBX_cabin-roof-corner_data-mesh-normals-array" count="18">0 0 -1 0 0 1 1 0 0 0 -1 0 -1 0 0 0 1 0</float_array>
+          <technique_common>
+            <accessor source="#UBX_cabin-roof-corner_data-mesh-normals-array" count="6" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UBX_cabin-roof-corner_data-mesh-vertices">
+          <input semantic="POSITION" source="#UBX_cabin-roof-corner_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="12">
+          <input semantic="VERTEX" source="#UBX_cabin-roof-corner_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UBX_cabin-roof-corner_data-mesh-normals" offset="1"/>
+          <p>1 0 3 0 0 0 7 1 5 1 4 1 4 2 1 2 0 2 5 3 2 3 1 3 6 4 3 4 2 4 0 5 7 5 4 5 1 0 2 0 3 0 7 1 6 1 5 1 4 2 5 2 1 2 5 3 6 3 2 3 6 4 7 4 3 4 0 5 3 5 7 5</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene"/>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
