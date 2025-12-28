@@ -582,6 +582,49 @@ local M = {
                 },
             }
         },
+        TREE = {
+            skins = {
+                {
+                    id = "decorated",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#tree-decorated"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "decorated_snow",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#tree-decorated-snow"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow_a",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#tree-snow-a"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow_b",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#tree-snow-b"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow_c",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#tree-snow-c"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
+        WREATH = {
+            skins = {
+                {
+                    id = "default",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#wreath"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "decorated",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#wreath-decorated"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
     }
 }
 
