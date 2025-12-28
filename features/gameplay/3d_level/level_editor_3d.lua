@@ -1503,7 +1503,7 @@ function System:draw_object_ui()
 		end
 	end
 	if imgui.begin_combo("type##items_id", current_name) then
-		local current_type = self.object_type_filter .. "_"
+		local current_type = self.object_type_filter
 		local type_list = DEF_OBJECTS.TYPES_LIST[current_type]
 		for i = 1, #type_list do
 			local name = type_list[i]
