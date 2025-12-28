@@ -485,6 +485,103 @@ local M = {
                 },
             }
         },
+        SOCKS = {
+            skins = {
+                {
+                    id = "green",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#sock-green"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "green_cane",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#sock-green-cane"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "red",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#sock-red"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "red_cane",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#sock-red-cane"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
+        TRAIN = {
+            skins = {
+                {
+                    id = "locomotive",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#train-locomotive"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "tender",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#train-tender"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wagon",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#train-wagon"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wagon_short",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#train-wagon-short"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wagon_flat",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#train-wagon-flat"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wagon_flat_short",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#train-wagon-flat-short"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wagon_logs",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#train-wagon-logs"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
+        TRAINSET_RAIL = {
+            skins = {
+                {
+                    id = "straight",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#trainset-rail-straight"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "bend",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#trainset-rail-bend"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "corner",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#trainset-rail-corner"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "detailed_straight",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#trainset-rail-detailed-straight"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "detailed_bend",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#trainset-rail-detailed-bend"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "detailed_corner",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#trainset-rail-detailed-corner"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
     }
 }
 
