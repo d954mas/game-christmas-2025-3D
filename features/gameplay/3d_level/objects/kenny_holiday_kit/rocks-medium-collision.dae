@@ -1,0 +1,529 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.2.2 commit date:2022-08-02, commit time:18:15, hash:bcfdb14560e7</authoring_tool>
+    </contributor>
+    <created>2025-12-28T23:41:50</created>
+    <modified>2025-12-28T23:41:50</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="MI_COL-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0 0.5 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color sid="alpha">0 0 0 0.5</color>
+            </transparent>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="MI_COL-material" name="MI_COL">
+      <instance_effect url="#MI_COL-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="UCX_rocks-medium_015_data-mesh" name="UCX_rocks-medium.015_data">
+      <mesh>
+        <source id="UCX_rocks-medium_015_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_015_data-mesh-positions-array" count="24">0.1899664 0.8409588 0 0.09008502 0.8360894 0 0.1948358 0.7410775 0 0.1780899 0.827865 0.04999995 0.1068309 0.7493019 0.04999995 0.1031789 0.824213 0.04999995 0.09495437 0.7362081 0 0.1817419 0.752954 0.04999995</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_015_data-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_015_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_015_data-mesh-normals-array" count="33">0.9689917 0.04723942 0.2425355 0 0 -1 -0.04724013 0.9689926 0.2425318 -0.04723984 0.9689904 0.2425409 0 0 1 0 0 1 0.9689916 0.04724007 0.2425358 0.04723989 -0.9689913 0.2425372 0.04724013 -0.9689924 0.2425326 -0.9689918 -0.04723978 0.2425351 -0.9689916 -0.0472396 0.2425363</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_015_data-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_015_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_015_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="12">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_015_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_015_data-mesh-normals" offset="1"/>
+          <p>3 0 2 0 0 0 2 1 6 1 1 1 2 1 1 1 0 1 1 2 3 2 0 2 1 3 5 3 3 3 5 4 4 4 7 4 5 5 7 5 3 5 7 6 2 6 3 6 7 7 4 7 2 7 4 8 6 8 2 8 6 9 4 9 1 9 4 10 5 10 1 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_142_data-mesh" name="UCX_rocks-medium.142_data">
+      <mesh>
+        <source id="UCX_rocks-medium_142_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_142_data-mesh-positions-array" count="54">-0.4865157 -0.1246402 0.3251852 -0.4903229 -0.1531531 0.3524658 -0.3760039 -0.3928352 0.3251852 -0.4878195 -0.1344048 0.2979046 -0.380435 -0.2377949 0.3524658 -0.3987931 -0.3752816 0.3524658 -0.5270391 -0.4281264 0.3524658 -0.6544151 -0.3506906 0.2979046 -0.6635235 -0.3544437 0.3251852 -0.6335536 -0.1944557 0.2979046 -0.636927 -0.3434845 0.3524658 -0.3838084 -0.3868237 0.2979046 -0.5295425 -0.4468746 0.2979046 -0.5308463 -0.4566392 0.3251852 -0.3538385 -0.2268357 0.3251852 -0.3629469 -0.2305889 0.2979046 -0.6413581 -0.1884442 0.3251852 -0.6185689 -0.2059978 0.3524658</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_142_data-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_142_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_142_data-mesh-normals-array" count="93">-0.731941 0.09773409 0.6743223 -0.7319414 0.0977329 0.674322 -0.9460213 0.126319 -0.2984752 -0.9460205 0.1263185 -0.298478 -0.5824053 -0.756118 -0.298479 -0.5824069 -0.756119 -0.2984735 -0.4506098 -0.5850132 0.6743223 -0.4506103 -0.5850127 0.6743223 0 0 1 4.4716e-7 0 1 -3.3537e-7 0 1 -0.2813308 0.6827461 0.6743226 -0.281331 0.6827459 0.6743227 -0.3636146 0.8824375 -0.2984769 -0.3636155 0.8824378 -0.2984752 3.46281e-7 0 -1 -1.7314e-7 0 -1 1.73141e-7 0 -1 -3.46281e-7 0 -1 0.3636153 -0.8824375 -0.2984763 0.3636149 -0.8824375 -0.2984767 0.2813308 -0.6827461 0.6743226 0.2813301 -0.6827459 0.674323 0.450609 0.5850138 0.6743223 0.4506101 0.5850119 0.6743232 0.5824056 0.756119 -0.2984759 0.5824058 0.7561182 -0.2984775 0.9460206 -0.1263183 -0.2984774 0.946021 -0.126319 -0.2984756 0.7319412 -0.09773355 0.6743221 0.7319411 -0.09773337 0.6743223</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_142_data-mesh-normals-array" count="31" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_142_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_142_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="32">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_142_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_142_data-mesh-normals" offset="1"/>
+          <p>10 0 17 0 8 0 17 1 16 1 8 1 16 2 9 2 8 2 9 3 7 3 8 3 7 4 12 4 8 4 12 5 13 5 8 5 13 6 10 6 8 6 13 7 6 7 10 7 6 8 5 8 4 8 6 9 4 9 1 9 6 10 1 10 17 10 6 8 17 8 10 8 1 11 0 11 17 11 0 12 16 12 17 12 0 13 9 13 16 13 0 14 3 14 9 14 3 15 15 15 11 15 3 16 11 16 12 16 3 17 12 17 7 17 3 18 7 18 9 18 11 19 13 19 12 19 11 20 2 20 13 20 2 21 5 21 13 21 5 22 6 22 13 22 4 23 0 23 1 23 4 24 14 24 0 24 14 25 3 25 0 25 14 26 15 26 3 26 15 27 14 27 11 27 14 28 2 28 11 28 14 29 5 29 2 29 14 30 4 30 5 30</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_129_data-mesh" name="UCX_rocks-medium.129_data">
+      <mesh>
+        <source id="UCX_rocks-medium_129_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_129_data-mesh-positions-array" count="54">0.4027361 0.03600591 0.3373671 0.3709947 -0.5614426 0.285143 0.3699395 -0.5813046 0.311255 0.3730208 -0.5233076 0.3373671 0.1382597 -0.3706121 0.3373671 0.4047622 0.07414096 0.285143 0.6715361 -0.09937661 0.285143 0.6546524 -0.4171685 0.285143 0.1044311 -0.05928832 0.311255 0.4058174 0.0940029 0.311255 0.1211045 -0.07013314 0.285143 0.6713258 -0.4280133 0.311255 0.6892647 -0.0903595 0.311255 0.6226395 -0.3963463 0.3373671 0.6374972 -0.1166896 0.3373671 0.1042208 -0.387925 0.285143 0.08649218 -0.3969421 0.311255 0.1531174 -0.09095525 0.3373671</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_129_data-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_129_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_129_data-mesh-normals-array" count="96">-0.4601079 0.02444481 0.8875266 -0.4601101 0.02444481 0.8875253 -0.8335614 0.04428571 -0.5506491 -0.8335611 0.04428565 -0.5506495 -0.455133 -0.6997431 -0.5506483 -0.2512248 -0.3862442 0.8875254 -0.2512242 -0.3862437 0.8875259 2.19389e-7 0 1 -1.64542e-7 0 1 0 0 1 0 0 1 -0.2088847 0.4106888 0.8875258 -0.2088847 0.410689 0.8875257 -0.378428 0.7440289 -0.5506482 -0.3784286 0.7440281 -0.5506488 -1.69895e-7 0 -1 0 0 -1 0 0 -1 -1.69895e-7 0 -1 -0.455134 -0.6997427 -0.550648 0.3784279 -0.7440288 -0.5506483 0.2088853 -0.4106893 0.8875254 0.2088848 -0.4106885 0.8875259 0.2512241 0.386244 0.8875258 0.2512246 0.3862441 0.8875256 0.4551332 0.6997423 -0.5506492 0.4551339 0.6997426 -0.5506482 0.3784281 -0.744027 -0.5506504 0.8335609 -0.04428595 -0.5506497 0.4601091 -0.02444475 0.8875259 0.4601101 -0.02444493 0.8875253 0.8335613 -0.04428535 -0.5506491</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_129_data-mesh-normals-array" count="32" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_129_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_129_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="32">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_129_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_129_data-mesh-normals" offset="1"/>
+          <p>4 0 17 0 16 0 17 1 8 1 16 1 8 2 10 2 16 2 10 3 15 3 16 3 15 4 2 4 16 4 2 5 4 5 16 5 2 6 3 6 4 6 3 7 13 7 14 7 3 8 14 8 0 8 3 9 0 9 17 9 3 10 17 10 4 10 0 11 8 11 17 11 0 12 9 12 8 12 9 13 5 13 8 13 5 14 10 14 8 14 5 15 6 15 7 15 5 16 7 16 1 16 5 17 1 17 15 17 5 18 15 18 10 18 1 19 2 19 15 19 1 20 11 20 2 20 11 21 3 21 2 21 11 22 13 22 3 22 14 23 9 23 0 23 14 24 12 24 9 24 12 25 6 25 9 25 6 26 5 26 9 26 7 27 11 27 1 27 7 28 12 28 11 28 12 29 13 29 11 29 12 30 14 30 13 30 7 31 6 31 12 31</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_116_data-mesh" name="UCX_rocks-medium.116_data">
+      <mesh>
+        <source id="UCX_rocks-medium_116_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_116_data-mesh-positions-array" count="54">-0.5962079 0.04872399 0.5622784 0.005049407 0.1923822 0.5187584 -0.243993 0.3822367 0.5622784 -0.4145402 -0.1912317 0.4752384 -0.6333512 0.03984934 0.4752384 -0.6526967 0.03522711 0.5187584 -0.05143934 0.1788854 0.5622784 -0.4036542 -0.1546273 0.5622784 -0.1312699 -0.08954668 0.5622784 -0.01429599 0.1877599 0.4752384 -0.1050126 -0.1172764 0.4752384 -0.09133696 -0.1317189 0.5187584 -0.5426346 0.3448858 0.4752384 -0.233107 0.4188411 0.4752384 -0.42021 -0.2102965 0.5187584 -0.5563103 0.3593283 0.5187584 -0.2274372 0.4379059 0.5187584 -0.5163773 0.3171561 0.5622784</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_116_data-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_116_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_116_data-mesh-normals-array" count="93">-0.2160786 0.9043619 -0.3680214 -0.152056 0.6364046 0.7562197 0.475115 0.4498861 0.7562196 0.6751602 0.6393114 -0.3680213 0.675161 0.6393101 -0.3680222 0 0 -1 0 0 -1 0 0 -1 -0.216079 0.9043618 -0.3680214 -0.6271696 0.1865178 0.7562205 -0.1520557 0.6364048 0.7562196 -0.8912388 0.2650519 -0.368023 0.4751134 0.4498863 0.7562206 6.58167e-7 0 1 0 0 1 -2.19389e-7 0 1 0 0 1 0.627171 -0.1865177 0.7562195 0.6271694 -0.1865181 0.7562206 0.8912394 -0.2650512 -0.3680222 0.8912401 -0.2650505 -0.3680207 -0.8912402 0.2650501 -0.368021 -0.675161 -0.6393104 -0.3680217 -0.6751605 -0.639311 -0.3680216 -0.4751146 -0.4498865 0.7562199 -0.4751144 -0.449886 0.7562202 -0.6271718 0.1865173 0.7562189 0.1520557 -0.6364041 0.7562202 0.1520557 -0.6364043 0.7562199 0.2160785 -0.9043614 -0.3680226 0.2160791 -0.9043616 -0.368022</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_116_data-mesh-normals-array" count="31" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_116_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_116_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="32">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_116_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_116_data-mesh-normals" offset="1"/>
+          <p>13 0 15 0 16 0 15 1 2 1 16 1 2 2 1 2 16 2 1 3 13 3 16 3 1 4 9 4 13 4 9 5 10 5 3 5 9 6 3 6 4 6 9 6 4 6 12 6 9 7 12 7 13 7 12 8 15 8 13 8 5 9 17 9 15 9 17 10 2 10 15 10 12 11 5 11 15 11 6 12 1 12 2 12 17 13 0 13 7 13 17 14 7 14 8 14 17 15 8 15 6 15 17 16 6 16 2 16 6 17 8 17 1 17 8 18 11 18 1 18 11 19 10 19 1 19 10 20 9 20 1 20 4 21 5 21 12 21 4 22 3 22 5 22 3 23 14 23 5 23 14 24 7 24 5 24 7 25 0 25 5 25 0 26 17 26 5 26 7 27 11 27 8 27 7 28 14 28 11 28 14 29 3 29 11 29 3 30 10 30 11 30</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_103_data-mesh" name="UCX_rocks-medium.103_data">
+      <mesh>
+        <source id="UCX_rocks-medium_103_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_103_data-mesh-positions-array" count="54">0.0893017 0.2498424 0.8105601 -0.02052599 -0.3972739 0.74256 -0.02385407 -0.4168835 0.8105601 -0.01413601 -0.3596235 0.8785601 -0.2298182 -0.1809902 0.8785601 -0.1829584 0.09511274 0.8785601 0.08597362 0.2302328 0.74256 0.3310671 0.02724039 0.74256 0.2778173 -0.2865129 0.74256 0.07958364 0.1925824 0.8785601 0.2952659 0.01394909 0.8785601 -0.2123696 0.1194718 0.74256 0.2931356 -0.2991999 0.8105601 0.248406 -0.2621538 0.8785601 0.3497135 0.03416293 0.8105601 -0.2656195 -0.1942815 0.74256 -0.2842659 -0.201204 0.8105601 -0.227688 0.1321588 0.8105601</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_103_data-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_103_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_103_data-mesh-normals-array" count="93">-0.7926341 0.1345246 0.5946717 -0.7926329 0.1345248 0.5946731 -0.9557154 0.1622032 -0.2455569 -0.9557157 0.1622028 -0.2455559 -0.6183304 -0.7465721 -0.2455558 -0.6183297 -0.7465727 -0.2455559 -0.5128184 -0.6191782 0.5946729 -0.5128186 -0.6191783 0.5946725 -4.38778e-7 0 1 0 0 1 2.19389e-7 0 1 -0.2798151 0.7537029 0.5946725 -0.2798143 0.753703 0.5946729 -0.3373855 0.9087757 -0.2455564 -0.337386 0.9087756 -0.2455559 -6.79579e-7 0 -1 0 0 -1 1.69895e-7 0 -1 -3.39789e-7 0 -1 0.337386 -0.9087755 -0.2455565 0.3373857 -0.9087755 -0.2455571 0.2798141 -0.7537033 0.5946725 0.2798153 -0.7537025 0.5946731 0.5128186 0.6191784 0.5946725 0.5128186 0.6191782 0.5946727 0.6183288 0.7465731 -0.2455567 0.6183304 0.7465722 -0.2455555 0.9557159 -0.1622027 -0.2455556 0.9557157 -0.1622028 -0.2455565 0.7926327 -0.1345249 0.5946735 0.7926341 -0.1345246 0.5946716</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_103_data-mesh-normals-array" count="31" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_103_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_103_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="32">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_103_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_103_data-mesh-normals" offset="1"/>
+          <p>4 0 5 0 16 0 5 1 17 1 16 1 17 2 11 2 16 2 11 3 15 3 16 3 15 4 1 4 16 4 1 5 2 5 16 5 2 6 3 6 16 6 3 7 4 7 16 7 3 8 13 8 10 8 3 9 10 9 9 9 3 10 9 10 5 10 3 9 5 9 4 9 9 11 0 11 5 11 0 12 17 12 5 12 0 13 11 13 17 13 0 14 6 14 11 14 6 15 7 15 8 15 6 16 8 16 1 16 6 17 1 17 15 17 6 18 15 18 11 18 8 19 2 19 1 19 8 20 12 20 2 20 12 21 13 21 2 21 13 22 3 22 2 22 10 23 14 23 9 23 14 24 0 24 9 24 14 25 6 25 0 25 14 26 7 26 6 26 7 27 14 27 8 27 14 28 12 28 8 28 14 29 13 29 12 29 14 30 10 30 13 30</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_090_data-mesh" name="UCX_rocks-medium.090_data">
+      <mesh>
+        <source id="UCX_rocks-medium_090_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_090_data-mesh-positions-array" count="54">0.4442935 0.3779162 0.5187584 0.1122352 -0.2112059 0.5187584 0.4345271 0.360589 0.4752384 0.4157755 0.3273209 0.5622784 0.5583006 0.08624982 0.5622784 -0.001771867 0.08046036 0.5622784 -0.03995859 0.0800656 0.4752384 0.116304 0.3572996 0.4752384 0.1407532 -0.1606107 0.5622784 0.4402247 -0.1905893 0.4752384 0.1220016 -0.1938788 0.4752384 0.6163763 0.08685016 0.5187584 0.4503472 -0.2077109 0.5187584 0.1061816 0.3744211 0.5187584 0.1357393 0.3244262 0.5622784 -0.05984753 0.07986003 0.5187584 0.5964874 0.08664458 0.4752384 0.4207894 -0.157716 0.5622784</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_090_data-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_090_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_090_data-mesh-normals-array" count="93">-0.009611189 0.9297673 -0.3680223 -0.00961095 0.9297667 -0.3680238 -0.006763398 0.6542821 0.7562204 -0.006763458 0.6542823 0.7562202 0.5632433 0.3329986 0.7562202 0.5632444 0.3329984 0.7562195 0.800396 0.4732083 -0.3680222 0.8003977 0.4732065 -0.3680209 0 0 -1 0 0 -1 1.69895e-7 0 -1 -2.65461e-7 0 -1 -0.8100079 0.45656 -0.3680222 -0.8100075 0.4565606 -0.3680222 -0.5700072 0.3212839 0.75622 -0.5700078 0.3212839 0.7562194 -1.43974e-7 0 1 0 0 1 1.95393e-7 0 1 0.5700064 -0.3212847 0.7562202 0.5700069 -0.3212836 0.7562202 0.8100075 -0.4565604 -0.3680226 0.8100088 -0.4565595 -0.3680205 -0.8003975 -0.4732065 -0.3680212 -0.8003965 -0.4732074 -0.3680223 -0.5632437 -0.3329985 0.7562199 -0.5632432 -0.3329986 0.7562204 0.006763458 -0.6542822 0.7562204 0.006763398 -0.6542826 0.75622 0.00961101 -0.9297674 -0.368022 0.009611129 -0.9297675 -0.3680219</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_090_data-mesh-normals-array" count="31" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_090_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_090_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="32">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_090_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_090_data-mesh-normals" offset="1"/>
+          <p>2 0 7 0 0 0 7 1 13 1 0 1 13 2 14 2 0 2 14 3 3 3 0 3 3 4 4 4 0 4 4 5 11 5 0 5 11 6 16 6 0 6 16 7 2 7 0 7 16 8 9 8 10 8 16 9 10 9 6 9 16 10 6 10 7 10 16 11 7 11 2 11 6 12 15 12 7 12 15 13 13 13 7 13 15 14 14 14 13 14 15 15 5 15 14 15 5 16 8 16 17 16 5 17 17 17 4 17 5 17 4 17 3 17 5 18 3 18 14 18 17 19 11 19 4 19 17 20 12 20 11 20 12 21 9 21 11 21 9 22 16 22 11 22 10 23 1 23 6 23 1 24 15 24 6 24 1 25 5 25 15 25 1 26 8 26 5 26 8 27 1 27 17 27 1 28 12 28 17 28 1 29 9 29 12 29 1 30 10 30 9 30</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_077_data-mesh" name="UCX_rocks-medium.077_data">
+      <mesh>
+        <source id="UCX_rocks-medium_077_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_077_data-mesh-positions-array" count="36">-0.4669581 0.02182996 0 -0.2172128 -0.170538 0 -0.8001492 -0.4107415 0 -0.7584262 -0.09827172 0 -0.6544151 -0.3506906 0.2979046 -0.4878195 -0.1344048 0.2979046 -0.550404 -0.6031095 0 -0.6335536 -0.1944557 0.2979046 -0.3629469 -0.2305889 0.2979046 -0.3838084 -0.3868237 0.2979046 -0.5295425 -0.4468746 0.2979046 -0.2589358 -0.4830077 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_077_data-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_077_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_077_data-mesh-normals-array" count="42">-0.5547556 -0.7202218 0.4165654 -0.9011082 0.1203219 0.4165655 -0.9011082 0.1203219 0.4165654 0 0 -1 0.3463525 -0.8405433 0.4165657 0.3463522 -0.8405435 0.4165655 -0.5547562 -0.7202212 0.4165658 0 0 1 -0.3463525 0.8405434 0.4165657 -0.3463525 0.8405435 0.4165655 0.9011082 -0.1203219 0.4165655 0.9011083 -0.1203213 0.4165655 0.5547559 0.7202216 0.4165655 0.5547558 0.7202217 0.4165654</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_077_data-mesh-normals-array" count="14" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_077_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_077_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="20">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_077_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_077_data-mesh-normals" offset="1"/>
+          <p>6 0 4 0 2 0 4 1 7 1 2 1 7 2 3 2 2 2 3 3 0 3 1 3 3 3 1 3 11 3 3 3 11 3 6 3 3 3 6 3 2 3 11 4 9 4 6 4 9 5 10 5 6 5 10 6 4 6 6 6 10 7 9 7 8 7 10 7 8 7 5 7 10 7 5 7 7 7 10 7 7 7 4 7 5 8 3 8 7 8 5 9 0 9 3 9 1 10 9 10 11 10 1 11 8 11 9 11 8 12 1 12 5 12 1 13 0 13 5 13</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_064_data-mesh" name="UCX_rocks-medium.064_data">
+      <mesh>
+        <source id="UCX_rocks-medium_064_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_064_data-mesh-positions-array" count="36">-0.1794369 -0.5321992 0 0.4216459 0.3919328 0 0.354111 -0.8792344 0 0.4047622 0.07414096 0.285143 0.6715361 -0.09937661 0.285143 0.9214263 -0.5906862 0 0.9551938 0.04489749 0 0.6546524 -0.4171685 0.285143 0.3709947 -0.5614426 0.285143 0.1042208 -0.387925 0.285143 0.1211045 -0.07013314 0.285143 -0.1456694 0.1033844 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_064_data-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_064_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_064_data-mesh-normals-array" count="51">-0.3920459 -0.6027492 0.6949773 -0.7180191 0.03814709 0.6949774 -0.718019 0.03814709 0.6949774 0 0 -1 -0.3920459 -0.602749 0.6949775 0.325973 -0.6408963 0.6949774 0.325973 -0.6408964 0.6949773 0 0 1 1.69895e-7 0 1 -1.27421e-7 0 1 1.69895e-7 0 1 -0.3259731 0.6408963 0.6949773 -0.325973 0.6408963 0.6949774 0.718019 -0.03814709 0.6949774 0.718019 -0.03814697 0.6949774 0.3920459 0.6027492 0.6949774 0.392046 0.6027491 0.6949774</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_064_data-mesh-normals-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_064_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_064_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="20">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_064_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_064_data-mesh-normals" offset="1"/>
+          <p>2 0 9 0 0 0 9 1 10 1 0 1 10 2 11 2 0 2 11 3 1 3 6 3 11 3 6 3 5 3 11 3 5 3 2 3 11 3 2 3 0 3 8 4 9 4 2 4 5 5 7 5 2 5 7 6 8 6 2 6 8 7 7 7 4 7 8 8 4 8 3 8 8 9 3 9 10 9 8 10 10 10 9 10 3 11 1 11 10 11 1 12 11 12 10 12 6 13 7 13 5 13 6 14 4 14 7 14 4 15 1 15 3 15 4 16 6 16 1 16</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_051_data-mesh" name="UCX_rocks-medium.051_data">
+      <mesh>
+        <source id="UCX_rocks-medium_051_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_051_data-mesh-positions-array" count="36">-0.9428789 -0.03410595 0 -0.1423904 0.7238776 0 -0.4145402 -0.1912317 0.4752384 -0.5052569 -0.4962682 0 -0.01429599 0.1877599 0.4752384 -0.1050126 -0.1172764 0.4752384 -0.6333512 0.03984934 0.4752384 0.1137983 -0.3483576 0 -0.5426346 0.3448858 0.4752384 -0.233107 0.4188411 0.4752384 -0.7614456 0.5759669 0 0.2952316 0.2617153 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_051_data-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_051_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_051_data-mesh-normals-array" count="51">0.628138 0.5947846 0.5016712 0.6281379 0.5947846 0.5016713 0 0 -1 -0.2010295 0.8413755 0.5016716 -0.2010296 0.8413758 0.5016713 -5.09684e-7 0 1 2.54842e-7 0 1 0 0 1 -1.69895e-7 0 1 0.8291675 -0.2465911 0.5016713 0.8291676 -0.2465911 0.5016714 -0.8291675 0.246591 0.5016713 -0.8291674 0.2465912 0.5016714 0.2010294 -0.8413757 0.5016713 0.2010295 -0.8413757 0.5016714 -0.6281381 -0.5947844 0.5016714 -0.6281379 -0.5947846 0.5016714</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_051_data-mesh-normals-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_051_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_051_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="20">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_051_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_051_data-mesh-normals" offset="1"/>
+          <p>9 0 4 0 11 0 9 1 11 1 1 1 11 2 7 2 3 2 11 2 3 2 0 2 11 2 0 2 10 2 11 2 10 2 1 2 10 3 9 3 1 3 10 4 8 4 9 4 8 5 6 5 2 5 8 6 2 6 5 6 8 7 5 7 4 7 8 8 4 8 9 8 4 9 5 9 11 9 5 10 7 10 11 10 0 11 8 11 10 11 0 12 6 12 8 12 2 13 7 13 5 13 2 14 3 14 7 14 3 15 2 15 6 15 3 16 6 16 0 16</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_038_data-mesh" name="UCX_rocks-medium.038_data">
+      <mesh>
+        <source id="UCX_rocks-medium_038_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_038_data-mesh-positions-array" count="36">-0.5639628 -0.3050425 0 0.1392235 0.5439862 0 0.2778173 -0.2865129 0.74256 0.3310671 0.02724039 0.74256 0.5229107 -0.4895053 0 -0.07377582 -0.7110273 0 -0.2656195 -0.1942815 0.74256 0.6294104 0.1380014 0 -0.02052599 -0.3972739 0.74256 -0.2123696 0.1194718 0.74256 0.08597362 0.2302328 0.74256 -0.4574631 0.3224642 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_038_data-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_038_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_038_data-mesh-normals-array" count="51">-0.5979991 -0.7220256 0.3479601 -0.5979991 -0.7220255 0.3479601 -0.9242921 0.1568696 0.3479601 -0.924292 0.1568697 0.3479602 0 0 -1 0.3262929 -0.8788952 0.3479601 0.3262929 -0.8788952 0.3479602 6.79579e-7 0 1 0 0 1 1.69895e-7 0 1 -3.39789e-7 0 1 -0.3262929 0.8788952 0.3479602 -0.3262929 0.8788952 0.3479601 0.924292 -0.1568697 0.3479601 0.924292 -0.1568697 0.3479601 0.5979991 0.7220256 0.3479602 0.5979992 0.7220255 0.3479602</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_038_data-mesh-normals-array" count="17" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_038_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_038_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="20">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_038_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_038_data-mesh-normals" offset="1"/>
+          <p>5 0 8 0 0 0 8 1 6 1 0 1 6 2 9 2 0 2 9 3 11 3 0 3 11 4 1 4 7 4 11 4 7 4 4 4 11 4 4 4 5 4 11 4 5 4 0 4 4 5 8 5 5 5 4 6 2 6 8 6 2 7 3 7 10 7 2 8 10 8 9 8 2 9 9 9 6 9 2 10 6 10 8 10 10 11 1 11 9 11 1 12 11 12 9 12 7 13 3 13 4 13 3 14 2 14 4 14 3 15 1 15 10 15 3 16 7 16 1 16</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_025_data-mesh" name="UCX_rocks-medium.025_data">
+      <mesh>
+        <source id="UCX_rocks-medium_025_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_025_data-mesh-positions-array" count="36">0.5907898 0.6378231 0 0.9147104 0.08993405 0 -0.03426104 -0.4711128 0 -0.3581816 0.07677608 0 0.116304 0.3572996 0.4752384 -0.03995859 0.0800656 0.4752384 0.5964874 0.08664458 0.4752384 -0.0456562 0.6312441 0 0.4345271 0.3605891 0.4752384 0.4402247 -0.1905894 0.4752384 0.1220016 -0.1938788 0.4752384 0.602185 -0.4645338 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_025_data-mesh-positions-array" count="12" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_025_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_025_data-mesh-normals-array" count="48">0.7446517 0.4402498 0.5016713 0 0 -1 -0.00894165 0.8650122 0.5016713 -0.008941769 0.8650121 0.5016714 3.39789e-7 0 1 0 0 1 -3.39789e-7 0 1 3.39789e-7 0 1 0.7535934 -0.4247621 0.5016713 0.7535933 -0.4247624 0.5016713 -0.7535933 0.4247623 0.5016713 -0.7535934 0.4247623 0.5016714 0.00894159 -0.8650123 0.5016711 0.00894165 -0.8650121 0.5016713 -0.7446517 -0.4402498 0.5016713 -0.7446516 -0.4402499 0.5016714</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_025_data-mesh-normals-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_025_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_025_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="20">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_025_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_025_data-mesh-normals" offset="1"/>
+          <p>8 0 6 0 0 0 6 0 1 0 0 0 1 1 11 1 2 1 1 1 2 1 3 1 1 1 3 1 7 1 1 1 7 1 0 1 7 2 8 2 0 2 7 3 4 3 8 3 4 4 5 4 10 4 4 5 10 5 9 5 4 6 9 6 6 6 4 7 6 7 8 7 9 8 11 8 6 8 11 9 1 9 6 9 3 10 5 10 7 10 5 11 4 11 7 11 10 12 11 12 9 12 10 13 2 13 11 13 2 14 10 14 3 14 10 15 5 15 3 15</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_020_data-mesh" name="UCX_rocks-medium.020_data">
+      <mesh>
+        <source id="UCX_rocks-medium_020_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_020_data-mesh-positions-array" count="24">1.02252 0.2100009 0.04999995 0.9829442 0.1309675 0 0.9797923 0.1483619 0.04999995 0.900759 0.1879376 0 0.9577291 0.2701228 0 0.9181534 0.1910895 0.04999995 1.039914 0.2131528 0 0.9608809 0.2527284 0.04999995</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_020_data-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_020_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_020_data-mesh-normals-array" count="33">-0.5526913 -0.7973136 0.2425358 -0.7973136 0.5526912 0.2425358 -0.7973143 0.5526902 0.2425358 0 0 -1 -0.5526905 -0.7973142 0.2425354 0.7973142 -0.5526901 0.2425361 0 0 1 0 0 1 0.5526905 0.7973141 0.2425358 0.5526906 0.7973141 0.2425353 0.7973128 -0.5526925 0.2425353</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_020_data-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_020_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_020_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="12">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_020_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_020_data-mesh-normals" offset="1"/>
+          <p>1 0 5 0 3 0 5 1 7 1 3 1 7 2 4 2 3 2 4 3 6 3 1 3 4 3 1 3 3 3 2 4 5 4 1 4 6 5 2 5 1 5 2 6 0 6 7 6 2 7 7 7 5 7 0 8 4 8 7 8 0 9 6 9 4 9 6 10 0 10 2 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_010_data-mesh" name="UCX_rocks-medium.010_data">
+      <mesh>
+        <source id="UCX_rocks-medium_010_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_010_data-mesh-positions-array" count="24">0.4209332 -0.3378414 0.337367 0.4382055 -0.341605 0.387367 0.505077 -0.2838061 0.337367 0.5591123 -0.3679499 0.337367 0.5013135 -0.3010784 0.387367 0.54184 -0.3641864 0.387367 0.4787321 -0.4047128 0.387367 0.4749685 -0.4219852 0.337367</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_010_data-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_010_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_010_data-mesh-normals-array" count="33">0.8163149 0.5242198 0.2425357 0.8163152 0.5242196 0.2425353 0 0 -1 -0.5242199 0.8163151 0.2425351 -0.5242195 0.8163151 0.2425362 0 0 1 6.62274e-7 0 1 0.5242196 -0.8163154 0.2425348 0.5242196 -0.8163152 0.2425353 -0.8163154 -0.5242192 0.2425358 -0.8163149 -0.5242198 0.2425357</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_010_data-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_010_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_010_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="12">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_010_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_010_data-mesh-normals" offset="1"/>
+          <p>4 0 5 0 2 0 5 1 3 1 2 1 3 2 7 2 0 2 3 2 0 2 2 2 0 3 4 3 2 3 0 4 1 4 4 4 1 5 6 5 5 5 1 6 5 6 4 6 6 7 3 7 5 7 6 8 7 8 3 8 7 9 1 9 0 9 7 10 6 10 1 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_005_data-mesh" name="UCX_rocks-medium.005_data">
+      <mesh>
+        <source id="UCX_rocks-medium_005_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_005_data-mesh-positions-array" count="24">-0.5022411 -0.7768432 0.04999995 -0.5611161 -0.7303809 0.04999995 -0.5146538 -0.6715059 0.04999995 -0.4382227 -0.7158995 0 -0.5001724 -0.7943994 0 -0.4557788 -0.7179682 0.04999995 -0.5786723 -0.7324497 0 -0.5167226 -0.6539497 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_005_data-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_005_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_005_data-mesh-normals-array" count="30">-0.7615609 0.6009998 0.2425371 -0.7615607 0.6010009 0.2425352 0 0 -1 -0.6010006 -0.7615609 0.2425353 -0.6010006 -0.7615608 0.2425358 0 0 1 0.6010011 0.7615604 0.2425355 0.6010005 0.7615607 0.2425357 0.7615608 -0.601001 0.2425346 0.7615617 -0.6009995 0.2425354</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_005_data-mesh-normals-array" count="10" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_005_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_005_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="12">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_005_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_005_data-mesh-normals" offset="1"/>
+          <p>1 0 2 0 6 0 2 1 7 1 6 1 7 2 3 2 4 2 7 2 4 2 6 2 4 3 0 3 6 3 0 4 1 4 6 4 0 5 5 5 2 5 0 5 2 5 1 5 5 6 3 6 2 6 3 7 7 7 2 7 3 8 0 8 4 8 3 9 5 9 0 9</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_rocks-medium_data-mesh" name="UCX_rocks-medium_data">
+      <mesh>
+        <source id="UCX_rocks-medium_data-mesh-positions">
+          <float_array id="UCX_rocks-medium_data-mesh-positions-array" count="24">-0.3464221 -0.653812 0.04999995 -0.3619174 -0.6453035 0 -0.2659021 -0.6173562 0 -0.3339701 -0.7413188 0 -0.25345 -0.704863 0.04999995 -0.3254616 -0.7258235 0.04999995 -0.2379547 -0.7133715 0 -0.2744106 -0.6328515 0.04999995</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_data-mesh-positions-array" count="8" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_rocks-medium_data-mesh-normals">
+          <float_array id="UCX_rocks-medium_data-mesh-normals-array" count="33">0.9314856 0.2711297 0.2425352 0.9314859 0.2711285 0.2425354 0 0 -1 -0.2711288 0.9314854 0.242537 -0.2711288 0.9314861 0.2425342 0 0 1 0 0 1 0.2711289 -0.9314858 0.2425354 0.2711287 -0.9314859 0.2425354 -0.9314859 -0.2711288 0.2425349 -0.9314858 -0.2711291 0.2425354</float_array>
+          <technique_common>
+            <accessor source="#UCX_rocks-medium_data-mesh-normals-array" count="11" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_rocks-medium_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_rocks-medium_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="12">
+          <input semantic="VERTEX" source="#UCX_rocks-medium_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_rocks-medium_data-mesh-normals" offset="1"/>
+          <p>7 0 4 0 6 0 7 1 6 1 2 1 6 2 3 2 1 2 6 2 1 2 2 2 1 3 0 3 7 3 1 4 7 4 2 4 0 5 5 5 4 5 0 6 4 6 7 6 4 7 5 7 3 7 4 8 3 8 6 8 3 9 5 9 0 9 3 10 0 10 1 10</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene"/>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

@@ -53,7 +53,7 @@ function M:load(id)
         object.position = object.position and v3_from_array(object.position) or vmath.vector3()
         object.scale = object.scale and v3_from_array(object.scale) or vmath.vector3(1, 1, 1)
         object.rotation = object.rotation and quat_from_array(object.rotation) or vmath.quat_rotation_z(0)
-        object.skin = "default"
+        object.skin = object.skin or "default"
 
         object.tint = object.tint and v4_from_array(object.tint) or vmath.vector4(1, 1, 1, 1)
         object.requirements = object.requirements or {}

@@ -395,9 +395,24 @@ local M = {
             type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#reindeer"),
             models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
         },
-        ROCKS_LARGE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#rocks-large"),
-            models = MODELS, collisions = get_collision_convex_config(27), phong = vmath.vector4(2, 0.1, 0, 0),
+        ROCKS = {
+            skins = {
+                {
+                    id = "large",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#rocks-large"),
+                    models = MODELS, collisions = get_collision_convex_config(27), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "medium",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#rocks-medium"),
+                    models = MODELS, collisions = get_collision_convex_config(15), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "small",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#rocks-small"),
+                    models = MODELS, collisions = get_collision_convex_config(15), phong = vmath.vector4(2, 0.1, 0, 0),
+                }
+            }
         },
     }
 }
