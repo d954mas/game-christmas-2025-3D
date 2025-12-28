@@ -414,6 +414,77 @@ local M = {
                 }
             }
         },
+        SLED = {
+            skins = {
+                {
+                    id = "short",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#sled"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "long",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#sled-long"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
+        SNOW = {
+            skins = {
+                {
+                    id = "bunker",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snow-bunker"),
+                    models = MODELS, collisions = get_collision_convex_config(6), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "flat_large",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snow-flat-large"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "flat",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snow-flat"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "pile",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snow-pile"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
+        SNOWFLAKE = {
+            skins = {
+                {
+                    id = "a",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snowflake-a"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "b",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snowflake-b"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "c",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snowflake-c"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
+        SNOWMAN = {
+            skins = {
+                {
+                    id = "default",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snowman"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "hat",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#snowman-hat"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
+        },
     }
 }
 

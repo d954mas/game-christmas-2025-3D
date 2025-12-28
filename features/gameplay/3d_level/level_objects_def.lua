@@ -110,8 +110,8 @@ M.TYPES_LIST = {}
 M.TYPES_LIST["ALL"] = M.ALL_OBJECTS_LIST
 for k, v in pairs(M.TYPES) do
     local result = {}
-    for k, v in pairs(v.OBJECTS) do
-        table.insert(result, v.id)
+    for _, obj in pairs(v.OBJECTS) do
+        table.insert(result, obj.id)
     end
     table.sort(result)
     M.TYPES_LIST[k] = result

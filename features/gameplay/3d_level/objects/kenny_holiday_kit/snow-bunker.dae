@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.2.2 commit date:2022-08-02, commit time:18:15, hash:bcfdb14560e7</authoring_tool>
+    </contributor>
+    <created>2025-12-28T23:58:43</created>
+    <modified>2025-12-28T23:58:43</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="MI_COL-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0 0.5 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color sid="alpha">0 0 0 0.5</color>
+            </transparent>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="MI_COL-material" name="MI_COL">
+      <instance_effect url="#MI_COL-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="UCX_snow-bunker_003_data-mesh" name="UCX_snow-bunker.003_data">
+      <mesh>
+        <source id="UCX_snow-bunker_003_data-mesh-positions">
+          <float_array id="UCX_snow-bunker_003_data-mesh-positions-array" count="48">-0.1644453 0.06268435 0 -0.4693498 -0.67342 0 -0.4693498 0.1889799 0 -0.03814971 -0.24222 0 -0.1644453 -0.5471245 0 -0.347388 -0.3641818 0.1381648 -0.2968698 -0.24222 0.1381648 -0.347388 -0.1202582 0.1381648 -0.4693498 -0.06973999 0.1381648 -0.4693498 -0.4147 0.1381648 -0.5913115 -0.1202582 0.1381648 -0.6418297 -0.24222 0.1381648 -0.5913115 -0.3641818 0.1381648 -0.7742542 -0.5471245 0 -0.9005498 -0.24222 0 -0.7742542 0.06268435 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_003_data-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_snow-bunker_003_data-mesh-normals">
+          <float_array id="UCX_snow-bunker_003_data-mesh-normals-array" count="60">0.1915112 0.4623488 0.8657696 0 0 -1 -0.1915112 0.4623488 0.8657697 0.1915111 0.4623487 0.8657698 -0.1915111 0.462349 0.8657696 0 0 1 0 0 1 0 0 1 0.4623488 0.1915113 0.8657697 0.4623488 0.1915111 0.8657697 -0.4623488 0.1915112 0.8657697 -0.4623488 0.1915107 0.8657699 0.4623487 -0.1915111 0.8657696 0.4623491 -0.1915113 0.8657695 -0.4623486 -0.1915111 0.8657698 -0.4623491 -0.1915107 0.8657696 0.1915111 -0.4623486 0.8657699 0.1915112 -0.4623489 0.8657696 -0.1915112 -0.4623488 0.8657697 -0.191511 -0.4623489 0.8657697</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_003_data-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_snow-bunker_003_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_snow-bunker_003_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#UCX_snow-bunker_003_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_snow-bunker_003_data-mesh-normals" offset="1"/>
+          <p>8 0 0 0 2 0 0 1 3 1 4 1 0 1 4 1 1 1 0 1 1 1 13 1 0 1 13 1 14 1 0 1 14 1 15 1 0 1 15 1 2 1 15 2 8 2 2 2 7 3 0 3 8 3 15 4 10 4 8 4 10 5 11 5 12 5 10 6 12 6 9 6 10 7 9 7 5 7 10 5 5 5 6 5 10 5 6 5 7 5 10 5 7 5 8 5 7 8 6 8 0 8 6 9 3 9 0 9 14 10 11 10 15 10 11 11 10 11 15 11 6 12 4 12 3 12 5 13 4 13 6 13 13 14 11 14 14 14 13 15 12 15 11 15 5 16 9 16 4 16 9 17 1 17 4 17 1 18 9 18 13 18 9 19 12 19 13 19</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_snow-bunker_005_data-mesh" name="UCX_snow-bunker.005_data">
+      <mesh>
+        <source id="UCX_snow-bunker_005_data-mesh-positions">
+          <float_array id="UCX_snow-bunker_005_data-mesh-positions-array" count="48">-0.1305904 0.2726991 0 -0.4482795 0.141108 0 0.1870985 0.141108 0 -0.1305904 -0.6258609 0 -0.4482795 -0.4942699 0 -0.5798705 -0.1765809 0 -0.2576661 -0.3036565 0.413642 -0.1305904 -0.3562929 0.413642 -0.003514885 -0.3036565 0.413642 -0.1305904 0.003131091 0.413642 -0.2576661 -0.04950529 0.413642 -0.3103025 -0.1765809 0.413642 -0.003514885 -0.04950529 0.413642 0.04912149 -0.1765809 0.413642 0.1870985 -0.4942699 0 0.3186895 -0.1765809 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_005_data-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_snow-bunker_005_data-mesh-normals">
+          <float_array id="UCX_snow-bunker_005_data-mesh-normals-array" count="66">0.3278461 0.7914907 0.5158097 0 0 -1 -0.3278461 0.7914907 0.5158097 0.3278461 0.7914905 0.5158097 -0.3278462 0.7914906 0.5158097 5.56944e-7 0 1 -9.22775e-7 0 1 6.52501e-7 0 1 -1.63125e-7 0 1 0 0 1 0.7914906 0.3278461 0.5158097 0.7914906 0.327846 0.5158097 -0.7914906 0.3278461 0.5158098 -0.7914905 0.3278463 0.5158097 0.7914907 -0.327846 0.5158097 0.7914905 -0.3278461 0.5158098 -0.7914906 -0.3278461 0.5158097 -0.7914904 -0.3278463 0.5158099 0.3278461 -0.7914906 0.5158096 0.327846 -0.7914906 0.5158096 -0.327846 -0.7914906 0.5158096 -0.3278461 -0.7914907 0.5158097</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_005_data-mesh-normals-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_snow-bunker_005_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_snow-bunker_005_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#UCX_snow-bunker_005_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_snow-bunker_005_data-mesh-normals" offset="1"/>
+          <p>9 0 2 0 0 0 2 1 15 1 14 1 2 1 14 1 3 1 2 1 3 1 4 1 2 1 4 1 5 1 2 1 5 1 1 1 2 1 1 1 0 1 1 2 9 2 0 2 12 3 2 3 9 3 1 4 10 4 9 4 10 5 11 5 6 5 10 6 6 6 7 6 10 7 7 7 8 7 10 8 8 8 13 8 10 9 13 9 12 9 10 9 12 9 9 9 12 10 13 10 2 10 13 11 15 11 2 11 5 12 11 12 1 12 11 13 10 13 1 13 13 14 14 14 15 14 8 15 14 15 13 15 4 16 11 16 5 16 4 17 6 17 11 17 8 18 7 18 14 18 7 19 3 19 14 19 3 20 7 20 4 20 7 21 6 21 4 21</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_snow-bunker_004_data-mesh" name="UCX_snow-bunker.004_data">
+      <mesh>
+        <source id="UCX_snow-bunker_004_data-mesh-positions">
+          <float_array id="UCX_snow-bunker_004_data-mesh-positions-array" count="48">0.8587469 -0.1675439 0 0.7324513 -0.4724484 0 0.7324513 0.1373605 0 0.6000269 -0.1675439 0.1381648 0.5495086 -0.2895057 0.1381648 0.5495086 -0.04558211 0.1381648 0.4275469 0.004936039 0.1381648 0.4275469 -0.3400239 0.1381648 0.3055851 -0.04558211 0.1381648 0.4275469 0.2636561 0 0.1226424 0.1373605 0 -0.003653109 -0.1675439 0 0.1226424 -0.4724484 0 0.4275469 -0.5987439 0 0.3055851 -0.2895057 0.1381648 0.2550669 -0.1675439 0.1381648</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_004_data-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_snow-bunker_004_data-mesh-normals">
+          <float_array id="UCX_snow-bunker_004_data-mesh-normals-array" count="66">0.1915112 0.4623488 0.8657697 0 0 -1 -0.1915112 0.4623488 0.8657697 0.191511 0.4623489 0.8657696 -0.1915111 0.4623488 0.8657698 -3.02314e-7 0 1 -2.1914e-7 0 1 1.54955e-7 0 1 0 0 1 0 0 1 0.4623488 0.1915111 0.8657698 0.4623488 0.1915112 0.8657697 -0.4623488 0.1915112 0.8657697 -0.4623488 0.1915111 0.8657697 0.4623488 -0.1915111 0.8657697 0.4623488 -0.1915111 0.8657697 -0.4623488 -0.1915111 0.8657697 -0.4623486 -0.1915111 0.8657698 0.1915111 -0.4623489 0.8657697 0.1915111 -0.4623487 0.8657697 -0.1915111 -0.4623487 0.8657697 -0.1915111 -0.4623488 0.8657698</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_004_data-mesh-normals-array" count="22" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_snow-bunker_004_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_snow-bunker_004_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#UCX_snow-bunker_004_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_snow-bunker_004_data-mesh-normals" offset="1"/>
+          <p>6 0 2 0 9 0 2 1 0 1 1 1 2 1 1 1 13 1 2 1 13 1 12 1 2 1 12 1 11 1 2 1 11 1 10 1 2 1 10 1 9 1 10 2 6 2 9 2 5 3 2 3 6 3 10 4 8 4 6 4 8 5 15 5 14 5 8 6 14 6 7 6 8 7 7 7 4 7 8 8 4 8 3 8 8 9 3 9 5 9 8 9 5 9 6 9 5 10 3 10 2 10 3 11 0 11 2 11 11 12 15 12 10 12 15 13 8 13 10 13 3 14 1 14 0 14 4 15 1 15 3 15 12 16 15 16 11 16 12 17 14 17 15 17 4 18 7 18 1 18 7 19 13 19 1 19 13 20 7 20 12 20 7 21 14 21 12 21</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_snow-bunker_002_data-mesh" name="UCX_snow-bunker.002_data">
+      <mesh>
+        <source id="UCX_snow-bunker_002_data-mesh-positions">
+          <float_array id="UCX_snow-bunker_002_data-mesh-positions-array" count="48">-0.6038384 0.4587322 0 -0.2560205 0.2361371 0 -0.9250168 0.3975188 0 -0.0853101 -0.1398732 0 -0.191707 -0.4490371 0 -0.3691412 -0.07140481 0.3051612 -0.4374253 0.07899934 0.3051612 -0.5765525 0.1680373 0.3051612 -0.7050238 0.143552 0.3051612 -0.4117 -0.1950703 0.3051612 -0.7475826 0.01988643 0.3051612 -1.031414 0.08835482 0 -0.6792985 -0.1305177 0.3051612 -0.5128854 -0.5102506 0 -0.5401713 -0.2195557 0.3051612 -0.8607033 -0.2876555 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_002_data-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_snow-bunker_002_data-mesh-normals">
+          <float_array id="UCX_snow-bunker_002_data-mesh-normals-array" count="60">-0.684687 0.2356309 0.6896969 0 0 -1 -0.7269896 -0.3300565 0.6021204 -0.6846869 0.2356309 0.689697 -0.7269897 -0.3300563 0.6021203 1.25469e-7 0 1 0 0 1 2.59856e-7 0 1 -5.01877e-7 0 1 -0.1355658 0.7112947 0.6896969 -0.4303718 -0.6724814 0.6021204 -0.4303718 -0.6724814 0.6021204 -0.1355656 0.7112949 0.6896968 0.4303718 0.6724813 0.6021205 0.1355658 -0.7112948 0.6896968 0.1355658 -0.7112949 0.6896967 0.4303718 0.6724813 0.6021204 0.7269896 0.3300565 0.6021203 0.684687 -0.2356311 0.6896969 0.6846868 -0.2356312 0.6896969</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_002_data-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_snow-bunker_002_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_snow-bunker_002_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#UCX_snow-bunker_002_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_snow-bunker_002_data-mesh-normals" offset="1"/>
+          <p>10 0 2 0 11 0 2 1 0 1 1 1 2 1 1 1 3 1 2 1 3 1 4 1 2 1 4 1 13 1 2 1 13 1 15 1 2 1 15 1 11 1 15 2 10 2 11 2 8 3 2 3 10 3 15 4 12 4 10 4 12 5 14 5 9 5 12 6 9 6 5 6 12 6 5 6 6 6 12 6 6 6 7 6 12 7 7 7 8 7 12 8 8 8 10 8 8 9 0 9 2 9 13 10 14 10 15 10 14 11 12 11 15 11 7 12 0 12 8 12 7 13 1 13 0 13 4 14 9 14 13 14 9 15 14 15 13 15 6 16 1 16 7 16 6 17 5 17 1 17 5 17 3 17 1 17 3 18 5 18 4 18 5 19 9 19 4 19</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_snow-bunker_001_data-mesh" name="UCX_snow-bunker.001_data">
+      <mesh>
+        <source id="UCX_snow-bunker_001_data-mesh-positions">
+          <float_array id="UCX_snow-bunker_001_data-mesh-positions-array" count="48">0.5083619 0.67342 0 0.2255191 0.5562627 0 0.7912046 0.5562627 0 0.5083619 -0.1265799 0 0.2255191 -0.009422719 0 0.1083618 0.27342 0 0.3483619 0.27342 0.244129 0.3952248 0.1602829 0.244129 0.3952248 0.3865571 0.244129 0.5083619 0.43342 0.244129 0.5083619 0.11342 0.244129 0.621499 0.1602829 0.244129 0.621499 0.3865571 0.244129 0.6683619 0.27342 0.244129 0.9083619 0.27342 0 0.7912046 -0.009422719 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_001_data-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_snow-bunker_001_data-mesh-normals">
+          <float_array id="UCX_snow-bunker_001_data-mesh-normals-array" count="60">0.2832808 0.6839007 0.6723332 0 0 -1 -0.2832808 0.6839005 0.6723334 0.2832807 0.6838998 0.6723341 -0.2832807 0.6839002 0.6723337 0 0 1 1.45519e-7 0 1 0 0 1 0.6839003 0.2832809 0.6723335 0.6839004 0.2832809 0.6723335 -0.6839004 0.2832807 0.6723335 -0.6839003 0.2832806 0.6723337 0.6839004 -0.2832809 0.6723335 0.6839003 -0.2832809 0.6723335 -0.6839004 -0.2832807 0.6723335 -0.6839004 -0.2832807 0.6723335 0.2832809 -0.6839001 0.6723337 0.2832807 -0.6839004 0.6723334 -0.2832807 -0.6839004 0.6723334 -0.2832808 -0.6839003 0.6723336</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_001_data-mesh-normals-array" count="20" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_snow-bunker_001_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_snow-bunker_001_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#UCX_snow-bunker_001_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_snow-bunker_001_data-mesh-normals" offset="1"/>
+          <p>9 0 2 0 0 0 2 1 14 1 15 1 2 1 15 1 3 1 2 1 3 1 4 1 2 1 4 1 5 1 2 1 5 1 1 1 2 1 1 1 0 1 1 2 9 2 0 2 12 3 2 3 9 3 1 4 8 4 9 4 8 5 6 5 7 5 8 6 7 6 10 6 8 7 10 7 11 7 8 5 11 5 13 5 8 5 13 5 12 5 8 5 12 5 9 5 12 8 13 8 2 8 13 9 14 9 2 9 5 10 6 10 1 10 6 11 8 11 1 11 13 12 15 12 14 12 11 13 15 13 13 13 4 14 6 14 5 14 4 15 7 15 6 15 11 16 10 16 15 16 10 17 3 17 15 17 3 18 10 18 4 18 10 19 7 19 4 19</p>
+        </triangles>
+      </mesh>
+    </geometry>
+    <geometry id="UCX_snow-bunker_data-mesh" name="UCX_snow-bunker_data">
+      <mesh>
+        <source id="UCX_snow-bunker_data-mesh-positions">
+          <float_array id="UCX_snow-bunker_data-mesh-positions-array" count="48">0.7506917 0.03462135 0 0.2298135 -0.5479491 0 -0.08891624 -0.4800795 0 -0.01879024 0.198473 0 0.2595655 -0.2600636 0.3051612 0.09088355 -0.1092445 0.3051612 0.160124 0.03850519 0.3051612 0.3289868 0.4116691 0 0.6477167 0.3437995 0 -0.1918913 -0.1709013 0 0.5775906 -0.334753 0 0.2992348 0.1237836 0.3051612 0.3986763 -0.1747851 0.3051612 0.1320736 -0.2329158 0.3051612 0.4267268 0.09663575 0.3051612 0.4679168 -0.02703541 0.3051612</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_data-mesh-positions-array" count="16" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_snow-bunker_data-mesh-normals">
+          <float_array id="UCX_snow-bunker_data-mesh-normals-array" count="69">-0.6902568 -0.2298974 0.6860705 -0.7232402 0.3389344 0.6017036 0 0 -1 -0.1515225 -0.7115817 0.6860703 -0.690257 -0.2298973 0.6860703 0 0 1 4.21347e-7 0 1 -1.48969e-7 0 1 -1.86211e-7 0 1 4.21347e-7 0 1 -5.08611e-7 0 1 -0.7232401 0.3389344 0.6017037 -0.417441 0.6809523 0.6017036 -0.417441 0.6809523 0.6017035 0.417441 -0.6809523 0.6017035 -0.1515225 -0.7115818 0.6860703 0.1515225 0.7115816 0.6860704 0.1515226 0.7115814 0.6860706 0.417441 -0.6809524 0.6017034 0.7232402 -0.3389343 0.6017036 0.7232401 -0.3389347 0.6017035 0.6902568 0.229898 0.6860703 0.690257 0.2298973 0.6860705</float_array>
+          <technique_common>
+            <accessor source="#UCX_snow-bunker_data-mesh-normals-array" count="23" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_snow-bunker_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_snow-bunker_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="28">
+          <input semantic="VERTEX" source="#UCX_snow-bunker_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_snow-bunker_data-mesh-normals" offset="1"/>
+          <p>2 0 5 0 9 0 5 1 3 1 9 1 3 2 7 2 8 2 3 2 8 2 0 2 3 2 0 2 10 2 3 2 10 2 1 2 3 2 1 2 2 2 3 2 2 2 9 2 1 3 13 3 2 3 13 4 5 4 2 4 13 5 4 5 12 5 13 6 12 6 15 6 13 7 15 7 14 7 13 8 14 8 11 8 13 9 11 9 6 9 13 10 6 10 5 10 6 11 3 11 5 11 6 12 11 12 3 12 11 13 7 13 3 13 10 14 4 14 1 14 4 15 13 15 1 15 14 16 7 16 11 16 14 17 8 17 7 17 12 18 4 18 10 18 0 19 15 19 10 19 15 20 12 20 10 20 15 21 8 21 14 21 15 22 0 22 8 22</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene"/>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>
