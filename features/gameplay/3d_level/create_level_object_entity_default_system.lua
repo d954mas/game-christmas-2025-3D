@@ -28,8 +28,17 @@ function System:on_add(e)
     local def = LEVEL_OBJECTS_DEF.BY_ID[e.object_config_entity.object_config.type]
     local skin = assert(def.skins_by_id[e.object_config_entity.object_config.skin], "no skin:" .. e.object_config_entity.object_config.skin)
 
+    local final_scale = e.scale
+    if skin.scale then
+        if type(skin.scale) == "number" then
+            final_scale = vmath.vector3(final_scale.x * skin.scale, final_scale.y * skin.scale, final_scale.z * skin.scale)
+        else
+            final_scale = vmath.mul_per_elem(final_scale, skin.scale)
+        end
+    end
+
     ---@diagnostic disable-next-line: param-type-mismatch
-    local urls = collectionfactory.create(assert(skin.factory), e.position, e.rotation, nil, e.scale)
+    local urls = collectionfactory.create(assert(skin.factory), e.position, e.rotation, nil, final_scale)
     e.object_entity_default_urls = urls
     assert(not e.object_entity_default_go)
     ---@class ObjectEntityDefaultGo
@@ -70,11 +79,11 @@ function System:on_add(e)
 
 
 
-    local scale = math.min(e.scale.x, e.scale.y, e.scale.z)
+    local scale = math.min(final_scale.x, final_scale.y, final_scale.z)
 
-    local scale_x = e.scale.x / scale
-    local scale_y = e.scale.y / scale
-    local scale_z = e.scale.z / scale
+    local scale_x = final_scale.x / scale
+    local scale_y = final_scale.y / scale
+    local scale_z = final_scale.z / scale
 
     local uniform_scale = scale_x == scale_y and scale_x == scale_z
 

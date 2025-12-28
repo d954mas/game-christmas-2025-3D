@@ -70,7 +70,7 @@ for type_name, type in pairs(M.TYPES) do
                 {
                     id = "default",
                     type = v.type, factory = v.factory,
-                    models = v.models, collisions = v.collisions, phong = v.phong,
+                    models = v.models, collisions = v.collisions, phong = v.phong, scale = v.scale,
                 }
             }
             v.type = nil
@@ -113,6 +113,7 @@ for k, v in pairs(M.TYPES) do
     for k, v in pairs(v.OBJECTS) do
         table.insert(result, v.id)
     end
+    table.sort(result)
     M.TYPES_LIST[k] = result
 end
 

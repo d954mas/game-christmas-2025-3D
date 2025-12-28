@@ -566,7 +566,7 @@ function ChangeTypeObjectCommand:execute()
 
 	local def = DEF_OBJECTS.BY_ID[self.value]
 	local found = def.skins_by_id[self.value_saved.skin]
-	self.object.skin = found or def.skins[1].id
+	self.object.skin = found and self.value_saved.skin or def.skins[1].id
 
 	self.system:trigger_need_update()
 	self.system:object_changed(self.object.id)

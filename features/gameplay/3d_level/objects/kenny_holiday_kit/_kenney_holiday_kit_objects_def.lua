@@ -1,12 +1,13 @@
 local ENUMS = require "game.enums"
 
+local DEFAULT_SCALE = 2
+
 local MODEL = { root = hash("/model"), model = hash("model"), tint = vmath.vector4(1, 1, 1, 1) }
 local MODELS = {
     MODEL
 }
 
 local HASH_URL_ROOT = hash("/root")
-local HASH_URL_COLLISION = hash("/collision")
 
 local COLLISIONS_GO_CONFIGS_COLLISIONS = {}
 local function get_collision_config(shapes_num)
@@ -29,7 +30,7 @@ local function get_collision_convex_config(shapes_num)
     end
     local collisions = {}
     for i = 1, shapes_num do
-        collisions[i] = { root = HASH_URL_COLLISION, collision = hash("collisionobject_" .. i), shapes = {} }
+        collisions[i] = { root = HASH_URL_ROOT, collision = hash("collisionobject_" .. i), shapes = {} }
     end
     COLLISIONS_GO_CONVEX_CONFIGS_COLLISIONS[shapes_num] = collisions
     return collisions
@@ -46,13 +47,13 @@ local M = {
                     id = "base", type = ENUMS.OBJECT_TYPE.OBJECT,
                     factory = msg.url("game_scene:/_kenney_holiday_kit/root#bench"),
                     models = MODELS, collisions = get_collision_config(2),
-                    phong = vmath.vector4(2, 0.1, 0, 0),
+                    phong = vmath.vector4(2, 0.1, 0, 0), scale = DEFAULT_SCALE,
                 },
                 {
                     id = "short", type = ENUMS.OBJECT_TYPE.OBJECT,
                     factory = msg.url("game_scene:/_kenney_holiday_kit/root#bench-short"),
                     models = MODELS, collisions = get_collision_config(2),
-                    phong = vmath.vector4(2, 0.1, 0, 0),
+                    phong = vmath.vector4(2, 0.1, 0, 0), scale = DEFAULT_SCALE,
                 },
             }
         },
@@ -294,6 +295,19 @@ local M = {
         },
     }
 }
+
+for _, object in pairs(M.OBJECTS) do
+    if object.skins then
+        for i = 1, #object.skins do
+            local skin = object.skins[i]
+            if skin.scale == nil then
+                skin.scale = DEFAULT_SCALE
+            end
+        end
+    elseif object.scale == nil then
+        object.scale = DEFAULT_SCALE
+    end
+end
 
 
 
