@@ -5,8 +5,8 @@ local MODELS = {
     MODEL
 }
 
-local HASH_URL_ROOT = hash("/root")
-local HASH_URL_COLLISION = hash("/collision")
+local HASH_URL_ROOT = hash("/_kenney_holiday_kit/root")
+local HASH_URL_COLLISION = hash("_kenney_holiday_kit/collision")
 
 local COLLISIONS_GO_CONFIGS_COLLISIONS = {}
 local function get_collision_config(shapes_num)
