@@ -40,12 +40,21 @@ end
 local M = {
     OBJECTS = {
         BENCH_SHORT = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#bench-short"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        BENCH = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#bench"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+            type = ENUMS.OBJECT_TYPE.OBJECT,
+            skins = {
+                {
+                    id = "base", type = ENUMS.OBJECT_TYPE.OBJECT,
+                    factory = msg.url("game_scene:/_kenney_holiday_kit/root#bench"),
+                    models = MODELS, collisions = get_collision_config(2),
+                    phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "short", type = ENUMS.OBJECT_TYPE.OBJECT,
+                    factory = msg.url("game_scene:/_kenney_holiday_kit/root#bench-short"),
+                    models = MODELS, collisions = get_collision_config(2),
+                    phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
         CABIN_CORNER_BOTTOM = {
             type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-corner-bottom"),

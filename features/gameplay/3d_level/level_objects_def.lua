@@ -64,6 +64,19 @@ for type_name, type in pairs(M.TYPES) do
         M.BY_ID[v.id] = v
         v.asset_pack = type_name
         table.insert(M.ALL_OBJECTS_LIST, v.id)
+        --if not skins use default
+        if not v.skins then
+            v.skins = {
+                id = "default",
+                type = v.type, factory = v.factory,
+                models = v.models, collisions = v.collisions, phong = v.phong,
+            }
+            v.type = nil
+            v.factory = nil
+            v.models = nil
+            v.collisions = nil
+            v.phong = nil
+        end
     end
 end
 table.sort(M.ALL_OBJECTS_LIST)
@@ -95,9 +108,5 @@ for k, v in pairs(M.TYPES) do
     end
     M.TYPES_LIST[k] = result
 end
-
-
-
-
 
 return M
