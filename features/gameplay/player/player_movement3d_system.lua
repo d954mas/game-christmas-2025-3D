@@ -117,9 +117,8 @@ function System:update()
         --if (e.moving) then PHYSICS_WAKEUP(e.player_go.collision) end
         physics.wakeup(e.player_go.physics.collision)
 
-        if (e.grounded.on_ground and delta_ground_time < 0.1) then
+        if (e.grounded.on_ground and delta_ground_time < 0.1 and not e.jump.in_jump) then
             e.jump.idx = 0
-            print("reset jump")
         end
 
         if (e.moving) then
@@ -142,7 +141,6 @@ function System:update()
             local on_ground = (e.grounded.on_ground and delta_ground_time > (0.167 * 2))
                 or delta_ground_time < 0.1                --coyote time
                 or (e.jump.idx > 0 and e.jump.idx < e.jump.max_jumps) --second jump worked on air
-                print("jump idx", e.jump.idx , "max", e.jump.max_jumps)
             if (on_ground and ((e.jump.idx == 0 and (time - e.jump.last_time > 0.5)) or (e.jump.idx > 0 and (time - e.jump.last_time > 0.1)))) then
                 e.jump.last_time = time
                 e.jump.in_jump = true
@@ -152,7 +150,6 @@ function System:update()
                 e.physics_linear_velocity.y = 0
                 e.movement.physics_reset_y_velocity = time
                 need_force = true
-                print("jump.", e.jump.idx)
             end
         end
 
@@ -162,7 +159,6 @@ function System:update()
             FORCE_TABLE.force = IMPULSE_V
             FORCE_TABLE.position = e.position
             msg.post(e.player_go.physics.collision, HASHES.PHYSICS.APPLY_FORCE, FORCE_TABLE)
-            print("jump")
         end
 
         if e.moving then

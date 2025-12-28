@@ -102,7 +102,6 @@ table.sort(M.TYPES_ORDER, function (a, b)
     end
     return order_a > order_b
 end)
-pprint(M.TYPES_ORDER)
 table.insert(M.TYPES_ORDER, 1, "ALL")
 
 
