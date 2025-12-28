@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<COLLADA xmlns="http://www.collada.org/2005/11/COLLADASchema" version="1.4.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <asset>
+    <contributor>
+      <author>Blender User</author>
+      <authoring_tool>Blender 3.2.2 commit date:2022-08-02, commit time:18:15, hash:bcfdb14560e7</authoring_tool>
+    </contributor>
+    <created>2025-12-28T15:21:17</created>
+    <modified>2025-12-28T15:21:17</modified>
+    <unit name="meter" meter="1"/>
+    <up_axis>Z_UP</up_axis>
+  </asset>
+  <library_effects>
+    <effect id="MI_COL-effect">
+      <profile_COMMON>
+        <technique sid="common">
+          <lambert>
+            <emission>
+              <color sid="emission">0 0 0 1</color>
+            </emission>
+            <diffuse>
+              <color sid="diffuse">0 0.5 1 1</color>
+            </diffuse>
+            <reflectivity>
+              <float sid="specular">0.5</float>
+            </reflectivity>
+            <transparent opaque="A_ONE">
+              <color sid="alpha">0 0 0 0.5</color>
+            </transparent>
+          </lambert>
+        </technique>
+      </profile_COMMON>
+    </effect>
+  </library_effects>
+  <library_images/>
+  <library_materials>
+    <material id="MI_COL-material" name="MI_COL">
+      <instance_effect url="#MI_COL-effect"/>
+    </material>
+  </library_materials>
+  <library_geometries>
+    <geometry id="UCX_cabin-wall-roof-center_data-mesh" name="UCX_cabin-wall-roof-center_data">
+      <mesh>
+        <source id="UCX_cabin-wall-roof-center_data-mesh-positions">
+          <float_array id="UCX_cabin-wall-roof-center_data-mesh-positions-array" count="54">0.25 -0.35 0.5 -0.25 -0.35 0.5 0.04999995 -0.35 0.9 -0.04999995 -0.35 0.9 0.25 -0.65 0.5 -0.25 -0.65 0.5 0.5 -0.6 0 -0.5 -0.6 0 0.04999995 -0.65 0.9 -0.45 -0.35 0.09999996 0.45 -0.35 0.09999996 -0.45 -0.65 0.09999996 0 -0.4 1 0 -0.6 1 -0.04999995 -0.65 0.9 -0.5 -0.4 0 0.45 -0.65 0.09999996 0.5 -0.4 0</float_array>
+          <technique_common>
+            <accessor source="#UCX_cabin-wall-roof-center_data-mesh-positions-array" count="18" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <source id="UCX_cabin-wall-roof-center_data-mesh-normals">
+          <float_array id="UCX_cabin-wall-roof-center_data-mesh-normals-array" count="87">0 0 -1 0 0.8944272 -0.4472138 0.8944272 0 0.4472137 0.8944272 0 0.4472136 0.8944272 0 0.4472137 0.8944273 0 0.4472136 0 -0.8944274 -0.4472135 0 -0.8944274 -0.4472132 0.8944273 0 0.4472137 0.8944275 -3.33201e-7 0.4472131 -0.8944272 0 0.4472138 0 0.8944274 -0.4472133 0 0.8320503 0.5547002 0 1 -2.79397e-7 0 1 0 0 1 0 0.8944274 0 0.4472132 0 0.8944272 0.4472137 -0.8944274 0 0.4472132 -0.8944273 0 0.4472135 -0.8944272 0 0.4472137 0 -1 7.45058e-7 0 -1 -1.49012e-7 0 -1 1.49012e-7 0 -1 0 -0.8944272 0 0.4472137 -0.8944273 0 0.4472137 0 -0.8944274 0.4472132 -0.8944273 0 0.4472137</float_array>
+          <technique_common>
+            <accessor source="#UCX_cabin-wall-roof-center_data-mesh-normals-array" count="29" stride="3">
+              <param name="X" type="float"/>
+              <param name="Y" type="float"/>
+              <param name="Z" type="float"/>
+            </accessor>
+          </technique_common>
+        </source>
+        <vertices id="UCX_cabin-wall-roof-center_data-mesh-vertices">
+          <input semantic="POSITION" source="#UCX_cabin-wall-roof-center_data-mesh-positions"/>
+        </vertices>
+        <triangles material="MI_COL-material" count="32">
+          <input semantic="VERTEX" source="#UCX_cabin-wall-roof-center_data-mesh-vertices" offset="0"/>
+          <input semantic="NORMAL" source="#UCX_cabin-wall-roof-center_data-mesh-normals" offset="1"/>
+          <p>6 0 15 0 17 0 15 1 10 1 17 1 10 2 0 2 17 2 0 3 12 3 17 3 12 4 13 4 6 4 12 5 6 5 17 5 16 6 11 6 7 6 16 7 7 7 6 7 7 0 15 0 6 0 13 8 4 8 6 8 4 9 16 9 6 9 7 10 9 10 15 10 9 11 10 11 15 11 9 12 1 12 3 12 9 13 3 13 2 13 9 14 2 14 0 14 9 15 0 15 10 15 2 16 12 16 0 16 2 17 3 17 12 17 3 18 1 18 12 18 1 19 7 19 12 19 7 20 13 20 12 20 4 21 8 21 14 21 4 22 14 22 5 22 4 23 5 23 11 23 4 24 11 24 16 24 1 25 9 25 7 25 11 26 5 26 7 26 5 26 13 26 7 26 14 27 8 27 13 27 8 8 4 8 13 8 5 28 14 28 13 28</p>
+        </triangles>
+      </mesh>
+    </geometry>
+  </library_geometries>
+  <library_visual_scenes>
+    <visual_scene id="Scene" name="Scene"/>
+  </library_visual_scenes>
+  <scene>
+    <instance_visual_scene url="#Scene"/>
+  </scene>
+</COLLADA>

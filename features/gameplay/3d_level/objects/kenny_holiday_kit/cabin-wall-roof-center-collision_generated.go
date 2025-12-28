@@ -1,0 +1,16 @@
+embedded_components {
+  id: "collisionobject1"
+  type: "collisionobject"
+  data: "collision_shape: \"/features/gameplay/3d_level/objects/kenny_holiday_kit/cabin-wall-roof-center-collision_1.convexshape\"\n"
+  "type: COLLISION_OBJECT_TYPE_STATIC\n"
+  "mass: 0.0\n"
+  "friction: 0.1\n"
+  "restitution: 0.5\n"
+  "group: \"geometry\"\n"
+  "mask: \"player, enemy, money, geometry, obstacle\"\n"
+  "linear_damping: 0.0\n"
+  "angular_damping: 0.0\n"
+  "locked_rotation: false\n"
+  "bullet: false\n"
+  ""
+}
