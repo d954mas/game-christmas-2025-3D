@@ -40,8 +40,7 @@ end
 
 local M = {
     OBJECTS = {
-        BENCH_SHORT = {
-            type = ENUMS.OBJECT_TYPE.OBJECT,
+        BENCH = {
             skins = {
                 {
                     id = "base", type = ENUMS.OBJECT_TYPE.OBJECT,
@@ -57,233 +56,340 @@ local M = {
                 },
             }
         },
-        CABIN_CORNER_BOTTOM = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-corner-bottom"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+        CORNER = {
+            type = ENUMS.OBJECT_TYPE.OBJECT,
+            skins = {
+                {
+                    id = "default",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-corner"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "bottom",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-corner-bottom"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "logs",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-corner-logs"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                }
+            },
         },
-        CABIN_CORNER_LOGS = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-corner-logs"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_CORNER = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-corner"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_DOOR_ROTATE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-door-rotate"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_DOORWAY_CENTER = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway-center"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_DOORWAY_LEFT = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway-left"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_DOORWAY_RIGHT = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway-right"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_DOORWAY = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway"),
-            models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_FENCE = {
+        FENCE = {
             type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-fence"),
             models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
         },
-        CABIN_OVERHANG_DOOR_ROTATE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-overhang-door-rotate"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+        DOOR = {
+            skins = {
+                {
+                    id = "door",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-door-rotate"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "doorway_center",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway-center"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "doorway_left",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway-left"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "doorway_right",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway-right"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "doorway",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-doorway"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "overhang_door",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-overhang-door-rotate"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "overhang_doorway",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-overhang-doorway"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                }
+            }
         },
-        CABIN_OVERHANG_DOORWAY = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-overhang-doorway"),
-            models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+        ROOF = {
+            skins = {
+                {
+                    id = "chimney",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-chimney"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "corner",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-corner"),
+                    models = MODELS, collisions = get_collision_convex_config(9), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "dormer",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-dormer"),
+                    models = MODELS, collisions = get_collision_config(5), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "point",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-point"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow_chimney",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-chimney"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow_corner",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-corner"),
+                    models = MODELS, collisions = get_collision_convex_config(9), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow_dormer",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-dormer"),
+                    models = MODELS, collisions = get_collision_config(5), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow_point",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-point"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "snow",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "top",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-top"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "roof",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
-        CABIN_ROOF_CHIMNEY = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-chimney"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+        WALL = {
+            skins = {
+                {
+                    id = "default",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "low",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-low"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "roof_center",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-roof-center"),
+                    models = MODELS, collisions = get_collision_convex_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "roof",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-roof"),
+                    models = MODELS, collisions = get_collision_convex_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wreath",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-wreath"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
-        CABIN_ROOF_CORNER = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-corner"),
-            models = MODELS, collisions = get_collision_convex_config(9), phong = vmath.vector4(2, 0.1, 0, 0),
+        WINDOW = {
+            skins = {
+                {
+                    id = "a",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-a"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "b",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-b"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "c",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-c"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "large",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-large"),
+                    models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
-        CABIN_ROOF_DORMER = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-dormer"),
-            models = MODELS, collisions = get_collision_config(5), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF_POINT = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-point"),
-            models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF_SNOW_CHIMNEY = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-chimney"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF_SNOW_CORNER = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-corner"),
-            models = MODELS, collisions = get_collision_convex_config(9), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF_SNOW_DORMER = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-dormer"),
-            models = MODELS, collisions = get_collision_config(5), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF_SNOW_POINT = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow-point"),
-            models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF_SNOW = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-snow"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF_TOP = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof-top"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_ROOF = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-roof"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WALL_LOW = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-low"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WALL_ROOF_CENTER = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-roof-center"),
-            models = MODELS, collisions = get_collision_convex_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WALL_ROOF = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-roof"),
-            models = MODELS, collisions = get_collision_convex_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WALL_WREATH = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall-wreath"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WALL = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-wall"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WINDOW_A = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-a"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WINDOW_B = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-b"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WINDOW_C = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-c"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CABIN_WINDOW_LARGE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#cabin-window-large"),
-            models = MODELS, collisions = get_collision_config(2), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CANDY_CANE_GREEN = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#candy-cane-green"),
-            models = MODELS, collisions = get_collision_convex_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        CANDY_CANE_RED = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#candy-cane-red"),
-            models = MODELS, collisions = get_collision_convex_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+        CANDY_CANE = {
+            skins = {
+                {
+                    id = "green",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#candy-cane-green"),
+                    models = MODELS, collisions = get_collision_convex_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "red",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#candy-cane-red"),
+                    models = MODELS, collisions = get_collision_convex_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
         FESTIVUS_POLE = {
             type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#festivus-pole"),
             models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
         },
-        FLOOR_STONE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#floor-stone"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+        FLOOR = {
+            skins = {
+                {
+                    id = "stone",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#floor-stone"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wood_snow",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#floor-wood-snow"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "wood",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#floor-wood"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            },
         },
-        FLOOR_WOOD_SNOW = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#floor-wood-snow"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+        GINGERBREAD = {
+            skins = {
+                {
+                    id = "man",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#gingerbread-man"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "woman",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#gingerbread-woman"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
-        FLOOR_WOOD = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#floor-wood"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+        HANUKKAH = {
+            skins = {
+                {
+                    id = "dreidel",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#hanukkah-dreidel"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "menorah_candles",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#hanukkah-menorah-candles"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "menorah",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#hanukkah-menorah"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
-        GINGERBREAD_MAN = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#gingerbread-man"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        GINGERBREAD_WOMAN = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#gingerbread-woman"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        HANUKKAH_DREIDEL = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#hanukkah-dreidel"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        HANUKKAH_MENORAH_CANDLES = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#hanukkah-menorah-candles"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        HANUKKAH_MENORAH = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#hanukkah-menorah"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        KWANZAA_KIKOMBE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#kwanzaa-kikombe"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        KWANZAA_KINARA_ALTERNATIVE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#kwanzaa-kinara-alternative"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        KWANZAA_KINARA = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#kwanzaa-kinara"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        LANTERN_HANGING = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lantern-hanging"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+        KWANZAA = {
+            skins = {
+                {
+                    id = "kinara_alternative",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#kwanzaa-kinara-alternative"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "kinara",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#kwanzaa-kinara"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "kikombe",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#kwanzaa-kikombe"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
         LANTERN = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lantern"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+            skins = {
+                {
+                    id = "default",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lantern"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "hanging",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lantern-hanging"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
-        LIGHTS_COLORED = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lights-colored"),
-            models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        LIGHTS_GREEN = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lights-green"),
-            models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        LIGHTS_RED = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lights-red"),
-            models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+        LIGHTS = {
+            skins = {
+                {
+                    id = "colored",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lights-colored"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "green",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lights-green"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "red",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#lights-red"),
+                    models = MODELS, collisions = {}, phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
         NUTCRACKER = {
             type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#nutcracker"),
             models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
         },
-        PRESENT_A_CUBE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-a-cube"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        PRESENT_A_RECTANGLE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-a-rectangle"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        PRESENT_A_ROUND = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-a-round"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        PRESENT_B_CUBE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-b-cube"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        PRESENT_B_RECTANGLE = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-b-rectangle"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
-        },
-        PRESENT_B_ROUND = {
-            type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-b-round"),
-            models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+        PRESENT = {
+            skins = {
+                {
+                    id = "a_cube",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-a-cube"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "a_rectangle",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-a-rectangle"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "a_round",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-a-round"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "b_cube",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-b-cube"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "b_rectangle",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-b-rectangle"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
+                    id = "b_round",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#present-b-round"),
+                    models = MODELS, collisions = get_collision_config(1), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+            }
         },
         REINDEER = {
             type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#reindeer"),
