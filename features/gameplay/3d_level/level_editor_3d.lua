@@ -736,6 +736,8 @@ function System:initialize()
 		matrix = vmath.matrix4(),
 		id = nil
 	}
+
+	self.object_type_filter = "ALL"
 end
 
 local function sort_tree(tree_node)
@@ -1455,13 +1457,15 @@ function System:draw_object_ui()
 
 
 	if imgui.begin_combo("type##items_id", object_cfg.type) then
-		for i = 1, #DEF_OBJECTS.OBJECTS_LIST do
-			if imgui.selectable(DEF_OBJECTS.OBJECTS_LIST[i], DEF_OBJECTS.OBJECTS_LIST[i] == object_cfg.type) then
-				if object_cfg.type ~= DEF_OBJECTS.OBJECTS_LIST[i] then
-					self:execute_command(ChangeTypeObjectCommand.new(self, selected_object, DEF_OBJECTS.OBJECTS_LIST[i]))
+		local current_type = self.object_type_filter
+		local type_list = DEF_OBJECTS.TYPES_LIST[current_type]
+		for i = 1, #type_list do
+			if imgui.selectable(type_list[i], type_list[i] == object_cfg.type) then
+				if object_cfg.type ~= type_list[i] then
+					self:execute_command(ChangeTypeObjectCommand.new(self, selected_object, type_list[i]))
 				end
 			end
-			if DEF_OBJECTS.OBJECTS_LIST[i] == object_cfg.type then
+			if type_list[i] == object_cfg.type then
 				imgui.set_item_default_focus()
 			end
 		end

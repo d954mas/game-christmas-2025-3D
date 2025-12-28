@@ -16,7 +16,7 @@ local function get_collision_config(shapes_num)
     end
     local collisions = { root = HASH_URL_ROOT, collision = hash("collisionobject"), shapes = {} }
     for i = 1, shapes_num do
-        collisions.shapes[i] =  hash("shape_" .. i)
+        collisions.shapes[i] = hash("shape_" .. i)
     end
     COLLISIONS_GO_CONFIGS_COLLISIONS[shapes_num] = collisions
     return { collisions }
@@ -26,6 +26,7 @@ end
 
 M.TYPES = {
     COMMON = {
+        order_priority = 1,
         OBJECTS = {
             EMPTY = {
                 type = ENUMS.OBJECT_TYPE.OBJECT,
@@ -39,6 +40,7 @@ M.TYPES = {
         },
     },
     PHYSICS = {
+        order_priority = 1,
         OBJECTS = {
             CUBE = {
                 type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/root#factory_common_physics_cube"),
@@ -53,7 +55,7 @@ M.TYPES = {
 
 
 M.BY_ID = {}
-M.OBJECTS_LIST = {}
+M.ALL_OBJECTS_LIST = {}
 
 for type_name, type in pairs(M.TYPES) do
     for id, v in pairs(type.OBJECTS) do
@@ -61,11 +63,31 @@ for type_name, type in pairs(M.TYPES) do
         assert(not M.BY_ID[v.id], "object:" .. v.id .. " already exist")
         M.BY_ID[v.id] = v
         v.asset_pack = type_name
-        table.insert(M.OBJECTS_LIST, v.id)
+        table.insert(M.ALL_OBJECTS_LIST, v.id)
     end
 end
+table.sort(M.ALL_OBJECTS_LIST)
 
-table.sort(M.OBJECTS_LIST)
+M.TYPES_ORDER = {}
+for k, v in pairs(M.TYPES) do
+    table.insert(M.TYPES_ORDER, k)
+end
+table.sort(M.TYPES_ORDER, function (a, b)
+    --sort use order_priority
+end)
+table.insert(M.TYPES_ORDER, 1, "ALL")
+
+
+M.TYPES_LIST = {}
+M.TYPES_LIST["ALL"] = M.ALL_OBJECTS_LIST
+for k, v in pairs(M.TYPES) do
+    local result = {}
+    for k, v in pairs(v.OBJECTS) do
+        table.insert(result, v.id)
+    end
+    M.TYPES_LIST[k] = result
+end
+
 
 
 
