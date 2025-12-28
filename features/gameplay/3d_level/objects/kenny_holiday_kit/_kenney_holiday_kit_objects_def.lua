@@ -1,5 +1,4 @@
 local ENUMS = require "game.enums"
-local M = {}
 
 local MODEL = { root = hash("/model"), model = hash("model"), tint = vmath.vector4(1, 1, 1, 1) }
 local MODELS = {
