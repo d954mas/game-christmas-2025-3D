@@ -400,8 +400,8 @@ function NewObjectCommand:execute()
 		tint = vmath.vector4(1, 1, 1, 1),
 		requirements = {},
 		parent = self.object and self.object.id,
+		skin = "default"
 	}
-
 	self.value_saved = object
 	local location_data = self.system.world.game_world.level_creator.location_data
 	location_data:editor_add_object(object)
@@ -559,6 +559,11 @@ end
 local ChangeTintObjectCommand = CLASS.class("ChangeTintObjectCommand", ChangeValueObjectCommand)
 function ChangeTintObjectCommand.new(system, object, value)
 	return CLASS.new_instance(ChangeTintObjectCommand, system, object, "tint", value)
+end
+
+local ChangeSkinObjectCommand = CLASS.class("ChangeSkinObjectCommand", ChangeValueObjectCommand)
+function ChangeSkinObjectCommand.new(system, object, value)
+	return CLASS.new_instance(ChangeSkinObjectCommand, system, object, "skin", value)
 end
 
 ---@class TransformSelectionCommand:EditorCommand
@@ -976,6 +981,8 @@ function System:draw_location_ui()
 									is_default_value = #result_value == 0
 								elseif k == "is_build_cache" then
 									is_default_value = true
+								elseif k == "skin" then
+									is_default_value = v == "default"
 								end
 								if is_default_value then
 									object[k] = nil
@@ -1503,6 +1510,24 @@ function System:draw_object_ui()
 			end
 		end
 		imgui.end_combo()
+	end
+
+	if #def.skins == 1 and def.skins[1].id == "default" then
+		--pass
+	else
+		if imgui.begin_combo("Skin##ObjectSkin", object_cfg.skin) then
+			for i = 1, #def.skins do
+				local skin = def.skins[i]
+				local is_selected = skin.id == object_cfg.skin
+				if imgui.selectable(skin.id, is_selected) and not is_selected then
+					self:execute_command(ChangeSkinObjectCommand.new(self, selected_object, skin.id))
+				end
+				if is_selected then
+					imgui.set_item_default_focus()
+				end
+			end
+			imgui.end_combo()
+		end
 	end
 
 	---@diagnostic disable-next-line: cast-local-type

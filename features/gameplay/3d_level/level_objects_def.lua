@@ -67,15 +67,22 @@ for type_name, type in pairs(M.TYPES) do
         --if not skins use default
         if not v.skins then
             v.skins = {
-                id = "default",
-                type = v.type, factory = v.factory,
-                models = v.models, collisions = v.collisions, phong = v.phong,
+                {
+                    id = "default",
+                    type = v.type, factory = v.factory,
+                    models = v.models, collisions = v.collisions, phong = v.phong,
+                }
             }
             v.type = nil
             v.factory = nil
             v.models = nil
             v.collisions = nil
             v.phong = nil
+        end
+        v.skins_by_id = {}
+        for i = 1, #v.skins do
+            local skin = v.skins[i]
+            v.skins_by_id[skin.id] = skin
         end
     end
 end

@@ -26,9 +26,10 @@ function System:on_add(e)
     ---@class Entity
     e = e
     local def = LEVEL_OBJECTS_DEF.BY_ID[e.object_config_entity.object_config.type]
+    local skin = assert(def.skins_by_id[e.object_config_entity.object_config.skin], "no skin:" .. e.object_config_entity.object_config.skin)
 
     ---@diagnostic disable-next-line: param-type-mismatch
-    local urls = collectionfactory.create(def.factory, e.position, e.rotation, nil, e.scale)
+    local urls = collectionfactory.create(assert(skin.factory), e.position, e.rotation, nil, e.scale)
     e.object_entity_default_urls = urls
     assert(not e.object_entity_default_go)
     ---@class ObjectEntityDefaultGo
@@ -42,8 +43,8 @@ function System:on_add(e)
     e.object_entity_default_go = object_go
 
 
-    for i = 1, #def.models do
-        local model = def.models[i]
+    for i = 1, #skin.models do
+        local model = skin.models[i]
         local root_url = msg.url(assert(urls[model.root]))
         local model_go = {
             root = root_url,
@@ -61,7 +62,7 @@ function System:on_add(e)
             go.set_scale(SCALE_INIT, model_go.root)
             go.animate(model_go.root, HASH_SCALE, go.PLAYBACK_ONCE_FORWARD, scale, go.EASING_OUTQUAD, 0.33)
         end
-        local phong = def.phong or model.phong
+        local phong = skin.phong or model.phong
         if phong then
             go.set(model_go.model, HASH_PHONG, phong)
         end
@@ -78,8 +79,8 @@ function System:on_add(e)
     local uniform_scale = scale_x == scale_y and scale_x == scale_z
 
 
-    for i = 1, #def.collisions do
-        local collision = def.collisions[i]
+    for i = 1, #skin.collisions do
+        local collision = skin.collisions[i]
         local root_url = msg.url(assert(urls[collision.root]))
         local collision_obj = {
             root = root_url,

@@ -165,6 +165,7 @@ end
 
 function Entities:create_object(object)
 	local def = assert(LEVEL_OBJECTS_DEF.BY_ID[object.type])
+	local skin = def.skins_by_id[object.skin]
 	---@class Entity
 	---@field spawner_e Entity
 	local e = {}
@@ -176,6 +177,9 @@ function Entities:create_object(object)
 	e.tint = vmath.vector4(object.tint)
 	if def.tint then
 		xmath.mul_per_elem(e.tint, e.tint, def.tint)
+	end
+	if skin and skin.tint then
+		xmath.mul_per_elem(e.tint, e.tint, skin.tint)
 	end
 
 	local matrix = self.game_world.level_creator.location_data:get_world_transform(object.id)
