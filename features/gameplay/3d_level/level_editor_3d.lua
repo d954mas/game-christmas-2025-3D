@@ -1073,6 +1073,16 @@ function System:draw_location_ui()
 			end
 			imgui.end_popup()
 		end
+		if (imgui.begin_dragdrop_target()) then
+			local payload = imgui.accept_dragdrop_payload("DND_OBJECT")
+			if payload then
+				local child = location_data:find_by_id(payload)
+				if child then
+					self:execute_command(ChangeParentObjectCommand.new(self, child, nil))
+				end
+			end
+			imgui.end_dragdrop_target();
+		end
 		for _, object in ipairs(self.objects_tree.childrens) do
 			self:draw_object_tree(object)
 		end
