@@ -142,9 +142,9 @@ function Entities:create_player(position)
 	e.jump = {
 		last_time = -1,
 		in_jump = true,
-		power = 15000,
+		power = 20000,
 		idx = 0, -- for double jump
-		max_jumps = 1,
+		max_jumps = 2,
 	}
 
 	e.punch = {

@@ -17,7 +17,7 @@ embedded_instances {
   "  type: \"mesh\"\n"
   "  data: \"material: \\\"/features/core/mesh_char/materials/char.material\\\"\\n"
   "vertices: \\\"/features/core/mesh_char/buffers/dummy.buffer\\\"\\n"
-  "textures: \\\"/assets/textures/chars/new_char_banan_3.png\\\"\\n"
+  "textures: \\\"/assets/textures/chars/christmas.png\\\"\\n"
   "textures: \\\"/assets/textures/rgb/data.png\\\"\\n"
   "textures: \\\"/assets/textures/rgb/shadow.png\\\"\\n"
   "textures: \\\"/assets/textures/rgb/white.png\\\"\\n"

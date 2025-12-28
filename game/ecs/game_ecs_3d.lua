@@ -12,6 +12,7 @@ local UpdatePhysicsObjectsLinearVelocitySystem = require "features.core.physics.
 local CheckObjectsSystem = require "features.gameplay.3d_level.check_level_object_system"
 local CreateLevelObjectEntityDefaultSystem = require "features.gameplay.3d_level.create_level_object_entity_default_system"
 local UpdateGoPositionSetterSystem = require "features.core.go_position_setter.update_go_position_setter"
+local CheckGroundSystem = require "features.gameplay.player.ground_check_system"
 
 
 local DrawPlayer3dSystem = require "features.gameplay.player3d.draw_3d_player_system"
@@ -53,6 +54,7 @@ function EcsWorld:add_systems()
 	self.ecs:add_system(self.player_camera_system)
 	self.ecs:add_system(CheckObjectsSystem.new())
 	self.ecs:add_system(CreateLevelObjectEntityDefaultSystem.new())
+	self.ecs:add_system(CheckGroundSystem.new())
 	self.ecs:add_system(UpdateGoPositionSetterSystem.new())
 
 	self.ecs:add_system(UpdatePhysicsObjectsSystem.new())
