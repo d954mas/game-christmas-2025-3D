@@ -23,6 +23,10 @@ instances {
     }
   }
 }
+collection_instances {
+  id: "_kenney_holiday_kit"
+  collection: "/features/gameplay/3d_level/objects/kenny_holiday_kit/_kenney_holiday_kit.collection"
+}
 scale_along_z: 1
 embedded_instances {
   id: "root"
