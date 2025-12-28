@@ -1456,6 +1456,20 @@ function System:draw_object_ui()
 	end
 
 
+	if imgui.begin_combo("Filter##object_type_filter", self.object_type_filter) then
+		for i = 1, #DEF_OBJECTS.TYPES_ORDER do
+			local filter = DEF_OBJECTS.TYPES_ORDER[i]
+			local is_selected = self.object_type_filter == filter
+			if imgui.selectable(filter, is_selected) then
+				self.object_type_filter = filter
+			end
+			if is_selected then
+				imgui.set_item_default_focus()
+			end
+		end
+		imgui.end_combo()
+	end
+
 	if imgui.begin_combo("type##items_id", object_cfg.type) then
 		local current_type = self.object_type_filter
 		local type_list = DEF_OBJECTS.TYPES_LIST[current_type]

@@ -69,12 +69,20 @@ end
 table.sort(M.ALL_OBJECTS_LIST)
 
 M.TYPES_ORDER = {}
-for k, v in pairs(M.TYPES) do
+for k, _ in pairs(M.TYPES) do
     table.insert(M.TYPES_ORDER, k)
 end
+
+
 table.sort(M.TYPES_ORDER, function (a, b)
-    --sort use order_priority
+    local order_a = M.TYPES[a].order_priority or 0
+    local order_b = M.TYPES[b].order_priority or 0
+    if order_a == order_b then
+        return a < b
+    end
+    return order_a > order_b
 end)
+pprint(M.TYPES_ORDER)
 table.insert(M.TYPES_ORDER, 1, "ALL")
 
 

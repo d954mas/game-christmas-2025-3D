@@ -29,9 +29,7 @@ local function get_collision_convex_config(shapes_num)
     end
     local collisions = {}
     for i = 1, shapes_num do
-        collisions[i] = {
-            { root = HASH_URL_COLLISION, collision = hash("collisionobject_" .. i), shapes = {} }
-        }
+        collisions[i] = { root = HASH_URL_COLLISION, collision = hash("collisionobject_" .. i), shapes = {} }
     end
     COLLISIONS_GO_CONVEX_CONFIGS_COLLISIONS[shapes_num] = collisions
     return collisions

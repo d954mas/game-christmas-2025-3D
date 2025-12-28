@@ -1,1 +1,1 @@
-{"spawn_position":[0,1,0],"id":"LEVEL_1","objects":[{"scale":[26,1,26],"type":"COMMON_CUBE_1","id":"floor"},{"type":"COMMON_CUBE_1","id":"object_1","position":[-1.8515645265579,0.4999914765358,3.1269297599792]}]}
+{"spawn_position":[0,1,0],"id":"LEVEL_1","objects":[{"type":"COMMON_CUBE_1","id":"floor","scale":[26,1,26]},{"position":[-1.8515645265579,0.4999914765358,3.1269297599792],"type":"KENNEY_HOLIDAY_KIT_ROCKS_LARGE","scale":[3,3,3],"id":"object_1"},{"parent":"object_1","id":"object_2","type":"COMMON_CUBE_1"}]}
