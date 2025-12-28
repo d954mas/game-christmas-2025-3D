@@ -158,6 +158,25 @@ function SelectObjectCommand:selections_equal(a, b)
 	return true
 end
 
+local ChangeObjectTypeFilterCommand = CLASS.class("ChangeObjectTypeFilterCommand", Command)
+function ChangeObjectTypeFilterCommand.new(system, value)
+	return CLASS.new_instance(ChangeObjectTypeFilterCommand, system, value)
+end
+
+function ChangeObjectTypeFilterCommand:execute()
+	self.value_saved = self.system.object_type_filter
+	self.system.object_type_filter = self.value
+end
+
+function ChangeObjectTypeFilterCommand:undo()
+	self.system.object_type_filter = self.value_saved
+end
+
+function ChangeObjectTypeFilterCommand:merge(command)
+	Command.merge(self, command)
+	self.value = command.value
+end
+
 ---@class ObjectCommand:EditorCommand
 local ObjectCommand = CLASS.class("ObjectCommand", Command)
 function ObjectCommand.new(system, object, value)
@@ -1460,8 +1479,8 @@ function System:draw_object_ui()
 		for i = 1, #DEF_OBJECTS.TYPES_ORDER do
 			local filter = DEF_OBJECTS.TYPES_ORDER[i]
 			local is_selected = self.object_type_filter == filter
-			if imgui.selectable(filter, is_selected) then
-				self.object_type_filter = filter
+			if imgui.selectable(filter, is_selected) and not is_selected then
+				self:execute_command(ChangeObjectTypeFilterCommand.new(self, filter))
 			end
 			if is_selected then
 				imgui.set_item_default_focus()
