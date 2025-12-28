@@ -556,6 +556,30 @@ function ChangeTypeObjectCommand.new(system, object, value)
 	return CLASS.new_instance(ChangeTypeObjectCommand, system, object, "type", value)
 end
 
+function ChangeTypeObjectCommand:execute()
+	self.value_saved = {
+		type = self.object.type,
+		skin = self.object.skin,
+	}
+
+	self.object.type = self.value
+
+	local def = DEF_OBJECTS.BY_ID[self.value]
+	local found = def.skins_by_id[self.value_saved.skin]
+	self.object.skin = found or def.skins[1].id
+
+	self.system:trigger_need_update()
+	self.system:object_changed(self.object.id)
+end
+
+function ChangeTypeObjectCommand:undo()
+	if not self.value_saved then return end
+	self.object.type = self.value_saved.type
+	self.object.skin = self.value_saved.skin
+	self.system:trigger_need_update()
+	self.system:object_changed(self.object.id)
+end
+
 local ChangeTintObjectCommand = CLASS.class("ChangeTintObjectCommand", ChangeValueObjectCommand)
 function ChangeTintObjectCommand.new(system, object, value)
 	return CLASS.new_instance(ChangeTintObjectCommand, system, object, "tint", value)
