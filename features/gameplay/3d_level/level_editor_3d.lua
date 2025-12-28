@@ -1495,12 +1495,24 @@ function System:draw_object_ui()
 		end
 		imgui.end_combo()
 	end
-
-	if imgui.begin_combo("type##items_id", object_cfg.type) then
-		local current_type = self.object_type_filter
+	local filter_to_remove = self.object_type_filter .. "_"
+	local current_name = object_cfg.type
+	if self.object_type_filter ~= "ALL" then
+		if string.sub(current_name, 1, #filter_to_remove) == filter_to_remove then
+			current_name = string.sub(current_name, #filter_to_remove + 1)
+		end
+	end
+	if imgui.begin_combo("type##items_id", current_name) then
+		local current_type = self.object_type_filter .. "_"
 		local type_list = DEF_OBJECTS.TYPES_LIST[current_type]
 		for i = 1, #type_list do
-			if imgui.selectable(type_list[i], type_list[i] == object_cfg.type) then
+			local name = type_list[i]
+			if self.object_type_filter ~= "ALL" then
+				if string.sub(name, 1, #filter_to_remove) == filter_to_remove then
+					name = string.sub(name, #filter_to_remove + 1)
+				end
+			end
+			if imgui.selectable(name, type_list[i] == object_cfg.type) then
 				if object_cfg.type ~= type_list[i] then
 					self:execute_command(ChangeTypeObjectCommand.new(self, selected_object, type_list[i]))
 				end
