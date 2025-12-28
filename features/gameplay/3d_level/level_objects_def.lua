@@ -1,4 +1,5 @@
 local ENUMS = require "game.enums"
+local KENNEY_HOLIDAY_KIT = require "features.gameplay.3d_level.objects.kenny_holiday_kit._kenney_holiday_kit_objects_def"
 local M = {}
 
 local MODEL = { root = hash("/model"), model = hash("model"), tint = vmath.vector4(1, 1, 1, 1) }
@@ -45,6 +46,7 @@ M.TYPES = {
             },
         },
     },
+    KENNEY_HOLIDAY_KIT = KENNEY_HOLIDAY_KIT,
 }
 
 
