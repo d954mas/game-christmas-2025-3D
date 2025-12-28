@@ -6,6 +6,7 @@ local LUME = require "libs.lume"
 local HASHES = require "libs.hashes"
 local SM = require "features.core.scenes.scene_manager.scene_manager"
 local CAMERA_FEATURE = require "features.core.camera.cameras_feature"
+local IMGUI_FEATURE = require "features.debug.imgui.imgui_feature"
 
 local TEMP_V = vmath.vector3()
 local TEMP_DIR = vmath.vector3()
@@ -62,7 +63,7 @@ function System:update(_)
 
 
 	local zoom_value = CAMERA_FEATURE.storage:get_zoom()
-	if SM:get_top() and SM:get_top()._name == "GameScene" then
+	if SM:get_top() and SM:get_top()._name == "GameScene" and not IMGUI_FEATURE:is_imgui_handled_input() then
 		if socket.gettime() - INPUT.get_key_data(HASHES.INPUT.SCROLL_UP).pressed_time < 0.05 then
 			local a = (0.05 - (socket.gettime() - INPUT.get_key_data(HASHES.INPUT.SCROLL_UP).pressed_time)) / 0.05
 			zoom_value = math.min(zoom_value - 0.5 / 18 * a, 1)
