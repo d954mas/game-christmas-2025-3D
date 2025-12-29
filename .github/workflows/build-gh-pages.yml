@@ -41,7 +41,7 @@ jobs:
         run: |
           OUTPUT_DIR="build/web/pages"
           mkdir -p "$OUTPUT_DIR"
-          java -jar bob.jar --settings bob/settings/dev_game.project_settings --settings bob/settings/github_pages_game.project_settings --archive --texture-compression true --with-symbols --variant debug --platform=js-web --bo "$OUTPUT_DIR" -brhtml "$OUTPUT_DIR/report.html" --liveupdate yes clean resolve build bundle
+          java -jar bob.jar --settings bob/settings/dev_game.project_settings --settings bob/settings/github_pages_game.project_settings --archive --texture-compression true --with-symbols --variant debug --platform=js-web --bo "$OUTPUT_DIR" -brhtml "$OUTPUT_DIR/report.html" --liveupdate no clean resolve build bundle
           rm -rf public
           if [ -f "$OUTPUT_DIR/index.html" ]; then
             mkdir -p public
