@@ -1,0 +1,76 @@
+name: Build and Deploy HTML5 Demo
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+
+      - name: Resolve Defold version
+        run: |
+          python3 -c "import json, urllib.request; info=json.load(urllib.request.urlopen('https://d.defold.com/stable/info.json')); print('DEFOLD_SHA=' + info['sha1'])" >> "$GITHUB_ENV"
+
+      - name: Download Bob build tool
+        run: |
+          curl -sSL "https://d.defold.com/archive/${DEFOLD_SHA}/bob/bob.jar" -o bob.jar
+
+      - name: Build HTML5 GitHub Pages bundle
+        run: |
+          OUTPUT_DIR="build/web/pages"
+          mkdir -p "$OUTPUT_DIR"
+          java -jar bob.jar --settings bob/settings/dev_game.project_settings --settings bob/settings/github_pages_game.project_settings --archive --texture-compression true --with-symbols --variant debug --platform=js-web --bo "$OUTPUT_DIR" -brhtml "$OUTPUT_DIR/report.html" --liveupdate yes clean resolve build bundle
+          rm -rf public
+          if [ -f "$OUTPUT_DIR/index.html" ]; then
+            mkdir -p public
+            rsync -a "$OUTPUT_DIR"/ public/
+            exit 0
+          fi
+          OUTPUT=$(find "$OUTPUT_DIR" -mindepth 1 -maxdepth 1 \( -type d -o -name '*.zip' \) | head -n 1)
+          if [ -z "$OUTPUT" ]; then
+            echo "Unable to determine bundle output" >&2
+            exit 1
+          fi
+          if [ -d "$OUTPUT" ]; then
+            mv "$OUTPUT" public
+          else
+            TMP_DIR=$(mktemp -d)
+            unzip -q "$OUTPUT" -d "$TMP_DIR"
+            INDEX_PATH=$(find "$TMP_DIR" -name index.html -print -quit)
+            if [ -z "$INDEX_PATH" ]; then
+              echo "index.html not found in bundle" >&2
+              exit 1
+            fi
+            SITE_DIR=$(dirname "$INDEX_PATH")
+            mv "$SITE_DIR" public
+          fi
+
+      - name: Deploy to gh-pages branch
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: public
+          force_orphan: true
