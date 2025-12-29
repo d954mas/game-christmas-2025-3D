@@ -15,7 +15,7 @@ function Storage:initialize(...)
         self.illumination = {
             debug_lights = false,
             debug_shadow = false,
-            draw_shadows = not CONSTANTS.IS_MOBILE_DEVICE
+            draw_shadows = true --not CONSTANTS.IS_MOBILE_DEVICE
         }
         self.storage.data.illumination = self.illumination
     end

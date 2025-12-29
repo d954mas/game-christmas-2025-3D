@@ -1,6 +1,6 @@
 local M = {}
 
-M.GAME_ID = "d954mas_christmas_2025_2d"
+M.GAME_ID = "d954mas_christmas_2025_3d"
 
 M.SYSTEM_INFO = sys.get_sys_info({ignore_secure = true})
 M.PLATFORM = M.SYSTEM_INFO.system_name

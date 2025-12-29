@@ -1,16 +1,16 @@
-# Demo: 2D Game with Box2D and Tiled Levels
+# Christmas 3D Game Demo (Defold)
 
-A small Defold example project. The goal is to showcase a basic 2D game with Box2D physics and loading a level exported from Tiled.
+A small Christmas-themed 3D demo in Defold. The main goal is to share my 3D experience and tool for Defold
 
-## What's inside
-- 2D scene with Box2D physics
-- level export from Tiled
-- Tilemap mesh renderer
+## Highlights
+- Character animation pipeline: defmesh fork + Blender Python exporter, GPU skinning with tracks baked into a texture, and a custom fp16 binary mesh format to reduce asset size.
+- 3D character controller: movement, jump, and extra step-up force for small obstacles (stairs, stones).
+- In-game 3D editor using ImGui: create objects, edit properties, move/rotate/scale.
+- ECS for 3D world setup.
+- Forward+ lighting with shadows and fog.
 
-## Windows note
-I work on Windows. The Tiled export uses `.bat`/`.sh` scripts. It should work, but it is untested and paths might need adjustments.
+## Assets
+- Uses the CC0 asset pack: https://kenney.nl/assets/holiday-kit
 
 ## Links
 - Defold: https://defold.com
-- Box2D: https://box2d.org
-- Tiled: https://www.mapeditor.org

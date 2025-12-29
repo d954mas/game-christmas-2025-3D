@@ -1,0 +1,9 @@
+[project]
+dependencies#0 =
+
+[game]
+target = OTHER
+
+[html5]
+show_fullscreen_button = 1
+show_made_with_defold = 1
