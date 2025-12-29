@@ -57,6 +57,7 @@ function EcsWorld:add_systems()
 	self.ecs:add_system(CreateLevelObjectEntityDefaultSystem.new())
 	self.ecs:add_system(CheckGroundSystem.new())
 	self.ecs:add_system(UpdateGoPositionSetterSystem.new())
+	self.ecs:add_system(RespawnOnFallSystem.new())
 
 	self.ecs:add_system(UpdatePhysicsObjectsSystem.new())
 	self.ecs:add_system(PlayerInputSystem.new())
