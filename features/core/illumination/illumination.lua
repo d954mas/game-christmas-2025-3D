@@ -292,7 +292,7 @@ function Lights:initialize()
 	}
 
 	self.shadow_params.x = self.shadow.BUFFER_RESOLUTION
-	self.shadow_params.y = 0.003
+	self.shadow_params.y = 0.005
 
 	self.lights_camera.x = self.lights_camera.near
 	self.lights_camera.y = self.lights_camera.far

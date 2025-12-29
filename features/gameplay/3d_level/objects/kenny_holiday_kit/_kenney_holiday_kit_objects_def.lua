@@ -585,6 +585,11 @@ local M = {
         TREE = {
             skins = {
                 {
+                    id = "default",
+                    type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#tree"),
+                    models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
+                },
+                {
                     id = "decorated",
                     type = ENUMS.OBJECT_TYPE.OBJECT, factory = msg.url("game_scene:/_kenney_holiday_kit/root#tree-decorated"),
                     models = MODELS, collisions = get_collision_config(3), phong = vmath.vector4(2, 0.1, 0, 0),
