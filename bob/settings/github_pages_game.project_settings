@@ -9,6 +9,7 @@ target = OTHER
 
 [liveupdate]
 enabled = 0
+settings =
 
 [html5]
 show_fullscreen_button = 1
