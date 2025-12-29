@@ -13,4 +13,5 @@ A small Christmas-themed 3D demo in Defold. The main goal is to share my 3D expe
 - Uses the CC0 asset pack: https://kenney.nl/assets/holiday-kit
 
 ## Links
+- Play on GitHub Pages: https://d954mas.github.io/game-christmas-2025-3D/
 - Defold: https://defold.com
