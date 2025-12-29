@@ -7,6 +7,9 @@ dependencies#3 = https://github.com/d954mas/defold-imgui-gizmo/archive/master.zi
 [game]
 target = OTHER
 
+[liveupdate]
+enabled = 0
+
 [html5]
 show_fullscreen_button = 1
 show_made_with_defold = 1
